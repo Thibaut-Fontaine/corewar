@@ -16,7 +16,7 @@
 typedef struct 		s_labellist
 {
 	char			*name;
-	uint32			abs_pos;
+	uint32_t		abs_pos;
 	t_labellist 	*next;
 }					t_labellist;;
 

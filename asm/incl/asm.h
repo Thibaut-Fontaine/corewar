@@ -15,6 +15,9 @@
 # include "prototypes.h"
 # include "struct.h"
 # include "op.h"
-
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <stdint.h>
 
 #endif
