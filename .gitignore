@@ -36,6 +36,5 @@
 *.su
 
 # resources folder and corewar files
-ressources/*
 *.s
 *.cor
