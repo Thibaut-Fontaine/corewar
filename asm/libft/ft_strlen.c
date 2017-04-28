@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:00:10 by mperronc         ###   ########.fr       */
+/*   Created: 2016/11/07 22:59:56 by tfontain          #+#    #+#             */
+/*   Updated: 2016/11/07 23:06:02 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "includes/libft.h"
 
-int		main(void)
+size_t			ft_strlen(const char *s)
 {
-	return (0);
+	size_t		k;
+
+	k = 0;
+	while (s[k] != '\0')
+		++k;
+	return (k);
 }

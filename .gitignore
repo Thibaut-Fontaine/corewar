@@ -34,3 +34,8 @@
 # Debug files
 *.dSYM/
 *.su
+
+# resources folder and corewar files
+ressources/*
+*.s
+*.cor

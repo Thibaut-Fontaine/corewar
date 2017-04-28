@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 15:33:23 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 15:33:32 by jgagnot          ###   ########.fr       */
+/*   Created: 2016/11/10 02:45:11 by tfontain          #+#    #+#             */
+/*   Updated: 2016/11/10 02:50:47 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
-# include "prototypes.h"
-# include "struct.h"
-# include "op.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <stdint.h>
+#include "includes/libft.h"
 
-#endif
+int			ft_toupper(int c)
+{
+	if ('a' <= c && c <= 'z')
+		c = c - 32;
+	return (c);
+}

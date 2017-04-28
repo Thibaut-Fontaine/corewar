@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:00:10 by mperronc         ###   ########.fr       */
+/*   Created: 2016/11/14 21:31:56 by tfontain          #+#    #+#             */
+/*   Updated: 2016/11/20 20:03:46 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "includes/libft.h"
 
-int		main(void)
+void		ft_putendl(char const *s)
 {
-	return (0);
+	if (s != NULL)
+	{
+		ft_putstr(s);
+		ft_putchar('\n');
+	}
 }

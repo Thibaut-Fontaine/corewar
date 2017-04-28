@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prototypes.h                                       :+:      :+:    :+:   */
+/*   ft_strwlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 15:35:31 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 15:35:33 by jgagnot          ###   ########.fr       */
+/*   Created: 2017/03/16 10:20:47 by tfontain          #+#    #+#             */
+/*   Updated: 2017/03/16 10:22:46 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROTOTYPES_H
-# define PROTOTYPES_H
+#include "includes/libft.h"
 
+size_t			ft_strwlen(const wchar_t *s)
+{
+	size_t		k;
 
-#endif
+	k = 0;
+	while (s[k] != 0)
+		++k;
+	return (k);
+}

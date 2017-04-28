@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:00:10 by mperronc         ###   ########.fr       */
+/*   Created: 2016/11/14 16:09:29 by tfontain          #+#    #+#             */
+/*   Updated: 2016/11/20 20:06:08 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "includes/libft.h"
 
-int		main(void)
+int			ft_strequ(char const *s1, char const *s2)
 {
-	return (0);
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	return (ft_strcmp(s1, s2) == 0);
 }

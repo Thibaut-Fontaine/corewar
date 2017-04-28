@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:00:10 by mperronc         ###   ########.fr       */
+/*   Created: 2016/11/08 19:24:04 by tfontain          #+#    #+#             */
+/*   Updated: 2016/11/09 01:00:24 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "includes/libft.h"
 
-int		main(void)
+char			*ft_strrchr(const char *s, int c)
 {
-	return (0);
+	size_t		k;
+
+	k = 0;
+	while (s[k] != '\0')
+		++k;
+	while (s[k] != (char)c && k > 0)
+		--k;
+	if (s[k] != (char)c)
+		return (NULL);
+	return ((char*)s + k);
 }
