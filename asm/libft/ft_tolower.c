@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:00:10 by mperronc         ###   ########.fr       */
+/*   Created: 2016/11/10 02:50:59 by tfontain          #+#    #+#             */
+/*   Updated: 2016/11/10 02:52:28 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "includes/libft.h"
 
-int		main(void)
+int			ft_tolower(int c)
 {
-	return (0);
+	if ('A' <= c && c <= 'Z')
+		c = c + 32;
+	return (c);
 }

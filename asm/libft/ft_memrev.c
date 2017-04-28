@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:00:10 by mperronc         ###   ########.fr       */
+/*   Created: 2017/02/21 22:30:11 by tfontain          #+#    #+#             */
+/*   Updated: 2017/02/21 22:43:04 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "./includes/libft.h"
 
-int		main(void)
+void				ft_memrev(unsigned char *str, size_t len)
 {
-	return (0);
+	int				i;
+	int				j;
+	unsigned char	a;
+
+	i = 0;
+	j = len - 1;
+	while (i < j)
+	{
+		a = str[i];
+		str[i] = str[j];
+		str[j] = a;
+		++i;
+		--j;
+	}
 }

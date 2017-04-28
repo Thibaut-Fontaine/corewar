@@ -6,15 +6,19 @@
 #    By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 04:52:55 by tfontain          #+#    #+#              #
-#    Updated: 2017/04/28 18:01:56 by mperronc         ###   ########.fr        #
+#    Updated: 2017/04/28 18:13:49 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
 CC = clang
 HEADER = ./includes/libft.h
+
 FLAG = -Wall -Wextra -Werror -g
+
 OPTION = -c -I $(HEADER)
+
 SRC = ft_memccpy.c ft_putnbr.c ft_strequ.c ft_strnequ.c ft_memchr.c \
 	  ft_putnbr_fd.c ft_striter.c ft_strnew.c ft_atoi.c ft_memcmp.c \
 	  ft_putstr.c ft_striteri.c ft_strnstr.c ft_bzero.c ft_memcpy.c \
@@ -34,6 +38,7 @@ SRC = ft_memccpy.c ft_putnbr.c ft_strequ.c ft_strnequ.c ft_memchr.c \
 	  ft_putwstr_fdr.c ft_putnbr_fdr.c string.c ft_memdup.c ft_strwlen.c \
 	  ft_strnchr.c ft_putnwstr_fdr.c ft_putnstr_fdr.c ./ft_swap.c \
 	  ./get_next_line.c
+
 OBJ = $(addsuffix .o,$(basename $(SRC)))
 
 .PHONY : all clean fclean re

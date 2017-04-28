@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:00:10 by mperronc         ###   ########.fr       */
+/*   Created: 2016/11/14 15:33:50 by tfontain          #+#    #+#             */
+/*   Updated: 2016/11/26 08:21:30 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "includes/libft.h"
 
-int		main(void)
+void				ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	return (0);
+	unsigned int	k;
+
+	if (s == NULL || f == NULL)
+		return ;
+	k = 0;
+	while (!&(s[k]) || s[k])
+	{
+		f(k, &s[k]);
+		++k;
+	}
 }

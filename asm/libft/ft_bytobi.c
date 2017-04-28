@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bytobi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:00:10 by mperronc         ###   ########.fr       */
+/*   Created: 2017/02/21 16:12:53 by tfontain          #+#    #+#             */
+/*   Updated: 2017/02/26 08:43:49 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "./includes/libft.h"
 
-int		main(void)
+const char			*ft_bytobi(unsigned char c)
 {
-	return (0);
+	static char		r[9];
+	size_t			z;
+
+	r[0] = 0;
+	z = 128;
+	while (z > 0)
+	{
+		ft_strcat(r, ((c & z) == z) ? "1" : "0");
+		z >>= 1;
+	}
+	return (r);
 }

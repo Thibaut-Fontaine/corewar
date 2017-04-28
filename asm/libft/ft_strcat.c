@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:00:10 by mperronc         ###   ########.fr       */
+/*   Created: 2016/11/08 17:02:46 by tfontain          #+#    #+#             */
+/*   Updated: 2016/11/08 18:24:41 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "includes/libft.h"
 
-int		main(void)
+char			*ft_strcat(char *dest, const char *src)
 {
-	return (0);
+	size_t		k;
+	size_t		i;
+
+	k = 0;
+	while (dest[k] != '\0')
+		++k;
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[k] = src[i];
+		++k;
+		++i;
+	}
+	dest[k] = src[i];
+	return (dest);
 }

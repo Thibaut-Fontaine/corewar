@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstreplace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:00:10 by mperronc         ###   ########.fr       */
+/*   Created: 2016/12/06 11:35:55 by tfontain          #+#    #+#             */
+/*   Updated: 2016/12/06 12:29:51 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "libft.h"
 
-int		main(void)
+t_list			*ft_lstreplace(t_list *previous, t_list *new)
 {
-	return (0);
+	t_list		*to_erase;
+
+	to_erase = previous->next;
+	new->next = to_erase->next;
+	previous->next = new;
+	free(to_erase->content);
+	free(to_erase);
+	return (new);
 }

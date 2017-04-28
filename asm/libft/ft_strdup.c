@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:00:10 by mperronc         ###   ########.fr       */
+/*   Created: 2016/11/07 22:53:03 by tfontain          #+#    #+#             */
+/*   Updated: 2016/11/18 18:01:14 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "includes/libft.h"
 
-int		main(void)
+char			*ft_strdup(const char *s)
 {
-	return (0);
+	char		*ret;
+	size_t		k;
+
+	if ((ret = (char*)malloc(ft_strlen(s) + 1)) == NULL)
+		return (NULL);
+	k = 0;
+	while (s[k] != '\0')
+	{
+		ret[k] = s[k];
+		++k;
+	}
+	ret[k] = '\0';
+	return (ret);
 }
