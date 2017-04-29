@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/04/28 15:44:36 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/04/29 22:18:57 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,3 +16,4 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "../libft/includes/libft.h"
+#include "./op.h"
