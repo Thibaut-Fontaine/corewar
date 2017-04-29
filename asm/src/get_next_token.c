@@ -6,33 +6,33 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 16:11:40 by mperronc          #+#    #+#             */
-/*   Updated: 2017/04/29 16:21:39 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/04/29 21:46:19 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_asm.h"
 
-static t_token_type	get_token_type(char *str)
+static t_token_type	get_token_type(const char *source)
 {
-	t_token_type	type;
+	t_token_type 	type;
 
 	return (type);
 }
 
-static void	*get_token_content(t_token_type type, char *str)
+static void			*get_token_content(const char *source)
 {
-	void	*content;
+	void			*content;
 
 	return (content);
 }
 
-t_token		*get_next_token(char **pstr)
+t_token				*get_next_token(const char *source)
 {
-	t_token	*token;
+	t_token			*token;
 
 	token = (t_token *)malloc(sizeof (t_token));
-	token->type = get_token_type(*pstr);
-	token->content = get_token_content(token->type, *pstr);
-	update_pstr(token, pstr);
+
+	// Get token
+
 	return (token);
 }

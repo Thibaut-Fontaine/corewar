@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_token.h                                         :+:      :+:    :+:   */
+/*   extract_label.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/29 16:02:44 by mperronc          #+#    #+#             */
-/*   Updated: 2017/04/29 16:59:24 by mperronc         ###   ########.fr       */
+/*   Created: 2017/04/29 21:32:18 by mperronc          #+#    #+#             */
+/*   Updated: 2017/04/29 21:46:17 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_H
-# define TOKEN_H
+#include "../include/ft_asm.h"
 
-# define TOKEN_BUFFSIZE	COMMENT_LENGTH
-
-typedef enum 		e_token_type
+char	*extract_labeldecl(const char *str)
 {
-	INVALID,
-	ARG_REG,
-	ARG_DIR,
-	ARG_INDIR,
-	ARG_DELIM,
-	LABEL_DECL,
-	CMD,
-	STRING
-}					t_token_type;
+	int		i;
+	char	*labeldecl;
 
-
-typedef struct		s_token
-{
-	t_token_type	type;
-	void			*content;
-}					t_token;
-
-#endif
+	i = 0;
+	while (str[i] && str[i] != LABEL_CHAR)
+	{
+		if (is_labelchar(str[i]))
+			i++;
+		else
+			return (NULL);
+	}
+	labeldecl = ft_strnew(i + 1);
+	ft_strncpy(labeldecl, str, i);
+	return (labeldecl);
+}

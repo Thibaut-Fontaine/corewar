@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 20:35:19 by tfontain          #+#    #+#             */
-/*   Updated: 2017/03/26 15:51:02 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/04/29 16:39:41 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,7 @@ ssize_t				ft_putnstr_fdr(char const *s, size_t n, int fd);
 /*
 ** ft_put*[bin,hex] display len bytes in binary, with mpl max bytes per line.
 */
+
+int					ft_iswhitespace(char c);
 
 #endif

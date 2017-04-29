@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_token.h                                         :+:      :+:    :+:   */
+/*   ft_iswhitespace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/29 16:02:44 by mperronc          #+#    #+#             */
-/*   Updated: 2017/04/29 16:59:24 by mperronc         ###   ########.fr       */
+/*   Created: 2017/04/29 16:37:55 by mperronc          #+#    #+#             */
+/*   Updated: 2017/04/29 16:39:45 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_H
-# define TOKEN_H
+#include "includes/libft.h"
 
-# define TOKEN_BUFFSIZE	COMMENT_LENGTH
-
-typedef enum 		e_token_type
+int		ft_iswhitespace(char c)
 {
-	INVALID,
-	ARG_REG,
-	ARG_DIR,
-	ARG_INDIR,
-	ARG_DELIM,
-	LABEL_DECL,
-	CMD,
-	STRING
-}					t_token_type;
-
-
-typedef struct		s_token
-{
-	t_token_type	type;
-	void			*content;
-}					t_token;
-
-#endif
+	return (c == ' ' || c == '\t');
+}

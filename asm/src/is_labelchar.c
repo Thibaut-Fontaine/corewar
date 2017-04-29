@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_token.h                                         :+:      :+:    :+:   */
+/*   is_labelchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/29 16:02:44 by mperronc          #+#    #+#             */
-/*   Updated: 2017/04/29 16:59:24 by mperronc         ###   ########.fr       */
+/*   Created: 2017/04/29 17:03:57 by mperronc          #+#    #+#             */
+/*   Updated: 2017/04/29 21:46:22 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_H
-# define TOKEN_H
+#include "../include/ft_asm.h"
 
-# define TOKEN_BUFFSIZE	COMMENT_LENGTH
-
-typedef enum 		e_token_type
+int		is_labelchar(const char c)
 {
-	INVALID,
-	ARG_REG,
-	ARG_DIR,
-	ARG_INDIR,
-	ARG_DELIM,
-	LABEL_DECL,
-	CMD,
-	STRING
-}					t_token_type;
-
-
-typedef struct		s_token
-{
-	t_token_type	type;
-	void			*content;
-}					t_token;
-
-#endif
+	return (ft_strchr(LABEL_CHARS, c) ? 1 : 0);
+}
