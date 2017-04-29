@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asm.h                                           :+:      :+:    :+:   */
+/*   ft_token.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 15:33:23 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/29 16:12:48 by mperronc         ###   ########.fr       */
+/*   Created: 2017/04/29 16:02:44 by mperronc          #+#    #+#             */
+/*   Updated: 2017/04/29 16:11:15 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#ifndef TOKEN_H
+# define TOKEN_H
 
-# include <stdlib.h>
-# include <stdio.h>
+typedef enum 		e_token_type
+{
+	INVALID,
+	ARG_REG,
+	ARG_DIR,
+	ARG_INDIR,
+	ARG_DELIM,
+	LABEL_DECL,
+	CMD,
+	STRING
+}					t_token_type;
 
-#include "../libft/includes/libft.h"
 
-# include "ft_op.h"
-# include "ft_prototypes.h"
-# include "ft_struct.h"
-# include "ft_token.h"
+typedef struct		s_token
+{
+	t_token_type	type;
+	void			*content;
+}					t_token;
 
 #endif
