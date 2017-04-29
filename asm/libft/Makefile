@@ -6,7 +6,7 @@
 #    By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 04:52:55 by tfontain          #+#    #+#              #
-#    Updated: 2017/04/28 18:13:49 by mperronc         ###   ########.fr        #
+#    Updated: 2017/04/29 16:39:07 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC = ft_memccpy.c ft_putnbr.c ft_strequ.c ft_strnequ.c ft_memchr.c \
 	  ft_putadr_fdr.c ft_putchar_fdr.c ft_putstr_fdr.c ft_putwchar_fdr.c \
 	  ft_putwstr_fdr.c ft_putnbr_fdr.c string.c ft_memdup.c ft_strwlen.c \
 	  ft_strnchr.c ft_putnwstr_fdr.c ft_putnstr_fdr.c ./ft_swap.c \
-	  ./get_next_line.c
+	  ./get_next_line.c ./ft_iswhitespace.c
 
 OBJ = $(addsuffix .o,$(basename $(SRC)))
 

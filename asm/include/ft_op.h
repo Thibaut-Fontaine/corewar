@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:36:59 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/28 18:08:50 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/04/29 16:43:32 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@
 #define LABEL_CHAR				':'
 #define DIRECT_CHAR				'%'
 #define SEPARATOR_CHAR			','
+#define COMMAND_CHAR			'.'
+#define STRING_CHAR				'"'
 
 #define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789"
 
-#define NAME_CMD_STRING			".name"
-#define COMMENT_CMD_STRING		".comment"
+#define NAME_CMD_STRING			"name"
+#define COMMENT_CMD_STRING		"comment"
 
 #define REG_NUMBER				16
 
