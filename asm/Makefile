@@ -6,7 +6,7 @@
 #    By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 12:07:00 by mperronc          #+#    #+#              #
-#    Updated: 2017/04/29 21:45:38 by mperronc         ###   ########.fr        #
+#    Updated: 2017/04/29 21:52:23 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 SRC_PATH = src/
 
 SRC_NAME =	main.c /
-			extract_label.c
+			extract_labeldecl.c
 			is_labelchar.c
 
 OBJ_PATH = obj/
