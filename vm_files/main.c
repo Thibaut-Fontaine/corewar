@@ -6,14 +6,31 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:22:42 by tfontain          #+#    #+#             */
-/*   Updated: 2017/04/29 22:10:43 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/04/30 22:59:44 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./vm.h"
+#include <stdio.h> //
 
 int			main(int argc, const char *argv[])
 {
-	
+	int		tmp;
+	unsigned char *s;
+	int		i;
+
+	s = open_file(argv[1], &tmp);
+	i = 0;
+	while (i <= tmp)
+	{
+		if (i % 16 == 0)
+		{
+			printf("%07x ", i);
+			fflush(stdout);
+		}
+		ft_putstr(ft_bytohex(s[i], TRUE));
+		ft_putchar((i + 1) % 16 == 0 ? '\n' : ' ');
+		++i;
+	}
 	return (0);
 }

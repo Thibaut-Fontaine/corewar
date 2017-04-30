@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 03:43:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/04/30 04:48:25 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/04/30 22:59:48 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /*
 ** open the file, then allocate memory for a buffer to fill it,
 ** then fill the buffer with it, then close it.
+** return the buffer and fill *len with the size of the buffer.
 */
 
 unsigned char		*open_file(const char *name, int *len)
