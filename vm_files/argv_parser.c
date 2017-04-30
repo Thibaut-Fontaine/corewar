@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/04/30 03:38:23 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/04/30 03:46:07 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** [-d N -s N -v N | -b --stealth | -n --stealth] [-a] <champion1.cor> <...>
 */
 
-int			ret_flag(char c)
+int					ret_flag(char c)
 {
 	if (c == 'a')
 		return (0);
@@ -34,7 +34,7 @@ int			ret_flag(char c)
 		return (0);
 }
 
-int			fill_flag(t_opt *f, const char *c)
+int					fill_flag(t_opt *f, const char *c)
 {
 	if (c[0] == '-')
 	{
@@ -47,7 +47,7 @@ int			fill_flag(t_opt *f, const char *c)
 	return (0);
 }
 
-void		get_arg(int i, t_opt *f, const char *argv[])
+void				get_arg(int i, t_opt *f, const char *argv[])
 {
 	if (i == _d_)
 		f->nd = ft_atoi(*argv);
@@ -59,9 +59,9 @@ void		get_arg(int i, t_opt *f, const char *argv[])
 		f->flag |= _stealth_;
 }
 
-t_opt		get_option(int argc, const char *argv[])
+t_opt				*get_option(int argc, const char *argv[])
 {
-	t_opt	f;
+	static t_opt	f;
 	int		tmp;
 
 	ft_bzero(&f, sizeof(f));
@@ -74,8 +74,12 @@ t_opt		get_option(int argc, const char *argv[])
 			get_arg(tmp, &f, argv);
 		}
 		else
-			open_champion();
+		{
+			if (open_file() == 0)
+				return (NULL);
+		}
 		++argv;
 		--argc;
 	}
+	return (&f);
 }
