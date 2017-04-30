@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/04/30 03:46:07 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/04/30 03:57:37 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_opt				*get_option(int argc, const char *argv[])
 		}
 		else
 		{
-			if (open_file() == 0)
+			if (open_file(*argv, &tmp) == 0)
 				return (NULL);
 		}
 		++argv;

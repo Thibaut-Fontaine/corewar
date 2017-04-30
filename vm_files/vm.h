@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/04/30 03:42:16 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/04/30 04:36:19 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,30 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <errno.h>
 # include "../libft/includes/libft.h"
 # include "./op.h"
+
+/*
+** allowed funcs :
+** ◦ open
+** ◦ read
+** ◦ write
+** ◦ lseek
+** ◦ close
+** ◦ malloc
+** ◦ realloc
+** ◦ free
+** ◦ exit
+** ◦ perror / strerror (et, du coup, errno)
+*/
+
+unsigned char	*open_file(const char *name, int *len);
+
+void			usage(void);
+void			bad_source_file(const char *name);
+void			bad_magic_number(const char *name);
+void			close_error(const char *name);
 
 /*
 ** argv parsing flags.
