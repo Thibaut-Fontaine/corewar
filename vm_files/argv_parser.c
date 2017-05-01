@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/04/30 04:52:01 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/01 22:06:05 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int					ret_flag(char c)
 	if (c == 'a')
 		return (0);
 	else if (c == 'd')
-		return (_d_);
+		return (_D_);
 	else if (c == 's')
-		return (_s_);
+		return (_S_);
 	else if (c == 'v')
-		return (_v_);
+		return (_V_);
 	else if (c == 'b')
-		return (_b_);
+		return (_B_);
 	else if (c == 'n')
-		return (_n_);
+		return (_N_);
 	else
 		return (0);
 }
@@ -49,14 +49,14 @@ int					fill_flag(t_opt *f, const char *c)
 
 void				get_arg(int i, t_opt *f, const char *argv[])
 {
-	if (i == _d_)
+	if (i == _D_)
 		f->nd = ft_atoi(*argv);
-	else if (i == _s_)
+	else if (i == _S_)
 		f->ns = ft_atoi(*argv);
-	else if (i == _v_)
+	else if (i == _V_)
 		f->nv = ft_atoi(*argv);
-	else if ((i == _b_ || i == _n_) && ft_strequ(*argv, "--stealth"))
-		f->flag |= _stealth_;
+	else if ((i == _B_ || i == _N_) && ft_strequ(*argv, "--stealth"))
+		f->flag |= _STEALTH_;
 }
 
 t_opt				*get_option(int argc, const char *argv[])

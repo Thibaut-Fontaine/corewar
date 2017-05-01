@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 03:43:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/04/30 22:59:48 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/02 00:44:08 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ unsigned char		*open_file(const char *name, int *len)
 		bad_source_file(name);
 	if ((*len = lseek(fd, 0, SEEK_END)) == -1)
 		exit(-1);
+	if (*len <= (PROG_NAME_LENGTH + COMMENT_LENGTH + sizeof(unsigned int) * 2))
+		;
 	if ((s = malloc(*len)) == NULL)
 		exit(-1);
 	if (lseek(fd, 0, SEEK_SET) == -1)
