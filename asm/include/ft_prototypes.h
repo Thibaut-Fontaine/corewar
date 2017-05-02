@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:35:31 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/29 21:46:13 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 16:13:30 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define PROTOTYPES_H
 
 int		is_labelchar(const char c);
+
+char	*extract_command(const char *str);
+char	*extract_direct(const char *str);
+char	*extract_indirect(const char *str);
 char	*extract_labeldecl(const char *str);
+char	*extract_op(const char *str);
+char	*extract_register(const char *str);
+char	*extract_string(const char *str);
 
 #endif

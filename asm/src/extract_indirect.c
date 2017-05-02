@@ -6,13 +6,13 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:55:12 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/02 15:56:11 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 16:13:33 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_asm.h"
 
-static char	*extract_label(char *str)
+static char	*extract_label(const char *str)
 {
 	char	*label;
 	int		i;
@@ -26,7 +26,7 @@ static char	*extract_label(char *str)
 	return(label);
 }
 
-static char *extract_number(char *str)
+static char *extract_number(const char *str)
 {
 	char	*number;
 	int		i;
@@ -44,7 +44,7 @@ static char *extract_number(char *str)
 	return (number);
 }
 
-char	*extract_direct(char *str)
+char	*extract_indirect(const char *str)
 {
 	char	*direct;
 
