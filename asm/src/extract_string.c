@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 21:55:19 by mperronc          #+#    #+#             */
-/*   Updated: 2017/04/29 22:25:56 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:18:12 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*extract_string(char *str)
 	i = 1;
 	while (str[i] && str[i] != STRING_CHAR)
 		i++;
-	string = ft_strnew(i);
-	ft_strncpy(string, str + 1, i - 1);
+	string = ft_strnew(i + 1);
+	ft_strncpy(string, str, i);
+	ft_strcat(string, "\"");
 	return (string);
 }

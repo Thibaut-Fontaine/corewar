@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   extract_op.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/02 15:56:43 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/02 15:19:43 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/02 15:22:30 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_asm.h"
 
-int		main(void)
+char	*extract_op(const char *str)
 {
-	return (0);
+	int		i;
+	char	*op;
+
+	i = 0;
+	while (str[i] && !ft_iswhitespace(str[i]))
+	{
+		if (ft_isalpha(str[i]))
+			i++;
+		else
+			return (NULL);
+	}
+	op = ft_strnew(i + 1);
+	ft_strncpy(op, str, i);
+	return (op);
 }

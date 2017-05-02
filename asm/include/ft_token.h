@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 16:02:44 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/02 15:03:55 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:06:11 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef enum 		e_token_type
 typedef struct		s_token
 {
 	t_token_type	type;
-	void			*content;
+	char			*content;
 	struct s_token 	*next;
 }					t_token;
 

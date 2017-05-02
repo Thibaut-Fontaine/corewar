@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 22:23:38 by mperronc          #+#    #+#             */
-/*   Updated: 2017/04/29 22:35:13 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:16:16 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*extract_register(const char *str)
 	i = 1;
 	while (str[i] && ft_isdigit(str[i]))
 		i++;
+	if (i == 1)
+		return (NULL);
 	reg = ft_strnew(i + 1);
 	ft_strncpy(reg, str, i);
 	return (reg);
