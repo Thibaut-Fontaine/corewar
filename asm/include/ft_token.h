@@ -6,32 +6,35 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 16:02:44 by mperronc          #+#    #+#             */
-/*   Updated: 2017/04/29 16:59:24 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:03:55 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
 
-# define TOKEN_BUFFSIZE	COMMENT_LENGTH
+# define TOKEN_BUFFSIZE	2048
 
 typedef enum 		e_token_type
 {
 	INVALID,
-	ARG_REG,
-	ARG_DIR,
-	ARG_INDIR,
-	ARG_DELIM,
-	LABEL_DECL,
-	CMD,
-	STRING
+	ARG_REG,		// r[0-9+]
+	ARG_DIR,		// [DIRECT_CHAR[-][0-9+] OU [DIRECT_CHAR][LABEL_CHAR][labelcharset+]
+	ARG_INDIR,		// [-][0-9+] OU LABEL_CHAR[labelcharset+]
+	ARG_DELIM,		// SEPARATOR_CHAR
+	LABEL_DECL,		// [labelcharset+]LABEL_CHAR
+	CMD,			// [COMMAND_CHAR][a-z+]
+	STRING,			// [STRING_CHAR][ascii+][STRING_CHAR]
+	OP,				// [a-z+][space]
+	ENDL,			// \n
+	COMMENT			// COMMENT_CHAR
 }					t_token_type;
-
 
 typedef struct		s_token
 {
 	t_token_type	type;
 	void			*content;
+	struct s_token 	*next;
 }					t_token;
 
 #endif

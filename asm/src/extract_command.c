@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 21:32:18 by mperronc          #+#    #+#             */
-/*   Updated: 2017/04/29 22:45:13 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 14:29:49 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,4 @@ char	*extract_command(const char *str)
 		return (ft_strdup(COMMENT_CMD_STRING));
 	else
 		return (NULL);
-}
-
-void	test_extract_command()
-{
-	assert_equals(".name", extract_command(".name"));
-	assert_equals(".command", extract_command(".command"));
-	assert_equals(".name", extract_command(".name   \"toto\""));
-	assert_equals(NULL, extract_command(".nametoto"));
-	assert_equals(NULL, extract_command("name"));
-	assert_equals(NULL, extract_command(NULL));
 }
