@@ -3,58 +3,159 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+         #
+#    By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/11/05 04:52:55 by tfontain          #+#    #+#              #
-#    Updated: 2017/04/29 16:39:07 by mperronc         ###   ########.fr        #
+#    Created: 2015/12/02 12:07:00 by mperronc          #+#    #+#              #
+#    Updated: 2017/05/02 17:05:03 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# Thanks to fdaudre- for his tutorial #
+
+SRC_PATH = ./src/
+
+SRC_NAME = 	format_char.c \
+			format_dec.c \
+			format_hex.c \
+			format_oct.c \
+			format_str.c \
+			format_stuff.c \
+			format_udec.c \
+			format_wchar.c \
+			format_wstr.c \
+			ft_atoi.c \
+			ft_binlen.c \
+			ft_bzero.c \
+			ft_intlen.c \
+			ft_isalnum.c \
+			ft_isalpha.c \
+			ft_isascii.c \
+			ft_isdigit.c \
+			ft_islower.c \
+			ft_isprint.c \
+			ft_isupper.c \
+			ft_itoa.c \
+			ft_itoa_base16.c \
+			ft_lstadd.c \
+			ft_lstdel.c \
+			ft_lstdelone.c \
+			ft_lstiter.c \
+			ft_lstmap.c \
+			ft_lstnew.c \
+			ft_ltoi.c \
+			ft_max2.c \
+			ft_memalloc.c \
+			ft_memccpy.c \
+			ft_memchr.c \
+			ft_memcmp.c \
+			ft_memcpy.c \
+			ft_memdel.c \
+			ft_memmove.c \
+			ft_memset.c \
+			ft_min2.c \
+			ft_nbrlen.c \
+			ft_printf.c \
+			ft_putchar.c \
+			ft_putchar_fd.c \
+			ft_putendl.c \
+			ft_putendl_fd.c \
+			ft_putnbr.c \
+			ft_putnbr_fd.c \
+			ft_putstr.c \
+			ft_putstr_fd.c \
+			ft_putwchar.c \
+			ft_putwstr.c \
+			ft_spacetozero.c \
+			ft_strcat.c \
+			ft_strchr.c \
+			ft_strclr.c \
+			ft_strcmp.c \
+			ft_strcnt.c \
+			ft_strcpy.c \
+			ft_strctrim.c \
+			ft_strcut.c \
+			ft_strdel.c \
+			ft_strdup.c \
+			ft_strequ.c \
+			ft_striter.c \
+			ft_striteri.c \
+			ft_strjoin.c \
+			ft_strlcat.c \
+			ft_strlen.c \
+			ft_strmap.c \
+			ft_strmapi.c \
+			ft_strncat.c \
+			ft_strncmp.c \
+			ft_strncpy.c \
+			ft_strnequ.c \
+			ft_strnew.c \
+			ft_strnstr.c \
+			ft_strpad.c \
+			ft_strrchr.c \
+			ft_strrev.c \
+			ft_strsplit.c \
+			ft_strstr.c \
+			ft_strsub.c \
+			ft_strtoupper.c \
+			ft_strtrim.c \
+			ft_strtrns.c \
+			ft_tolower.c \
+			ft_toupper.c \
+			ft_uitoa_base16.c \
+			ft_unbrlen.c \
+			ft_wstrchr.c \
+			ft_wstrcut.c \
+			ft_wstrdup.c \
+			ft_wstrlen.c \
+			ft_wstrncpy.c \
+			ft_wstrnew.c \
+			ft_wstrpad.c \
+			get_next_line.c \
+			handle_num_precision.c \
+			handle_prefix.c \
+			handle_prefix_x.c \
+			init_specs.c \
+			parse_flags.c \
+			parse_length.c \
+			parse_precision.c \
+			parse_specs.c \
+			parse_type.c \
+			parse_width.c \
+			strip_sign.c \
+			ft_abs.c \
+			ft_iswhitespace.c
+
+OBJ_PATH = ./obj/
+
+INC_PATH = ./includes/
 
 NAME = libft.a
 
 CC = clang
-HEADER = ./includes/libft.h
+CFLAGS = -Wall -Wextra -Werror
 
-FLAG = -Wall -Wextra -Werror -g
+OBJ_NAME = $(SRC_NAME:.c=.o)
 
-OPTION = -c -I $(HEADER)
+SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+INC = $(addprefix -I,$(INC_PATH))
 
-SRC = ft_memccpy.c ft_putnbr.c ft_strequ.c ft_strnequ.c ft_memchr.c \
-	  ft_putnbr_fd.c ft_striter.c ft_strnew.c ft_atoi.c ft_memcmp.c \
-	  ft_putstr.c ft_striteri.c ft_strnstr.c ft_bzero.c ft_memcpy.c \
-	  ft_putstr_fd.c ft_strjoin.c ft_strrchr.c ft_isalnum.c ft_memdel.c \
-	  ft_strcat.c ft_strlcat.c ft_strsplit.c ft_isalpha.c ft_memmove.c \
-	  ft_strchr.c ft_strlen.c ft_strstr.c ft_isascii.c ft_memset.c \
-	  ft_strclr.c ft_strmap.c ft_strsub.c ft_isdigit.c ft_putchar.c \
-	  ft_strcmp.c ft_strmapi.c ft_strtrim.c ft_isprint.c ft_putchar_fd.c \
-	  ft_strcpy.c ft_strncat.c ft_tolower.c ft_itoa.c ft_putendl.c \
-	  ft_strdel.c ft_strncmp.c ft_toupper.c ft_memalloc.c ft_putendl_fd.c \
-	  ft_strdup.c ft_strncpy.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c \
-	  ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_putlstmem.c ft_lstaddend.c \
-	  ft_lstinsert.c ft_lstaddend.c ft_strfjoin.c ft_putwstr_fd.c \
-	  ft_putwchar_fd.c ft_bytobi.c ft_putbin_fd.c ft_bytohex.c ft_puthex_fd.c \
-	  ft_memrev.c ft_bitoby.c ft_endian.c ft_putadr_fd.c ft_putlnbr_fd.c \
-	  ft_putadr_fdr.c ft_putchar_fdr.c ft_putstr_fdr.c ft_putwchar_fdr.c \
-	  ft_putwstr_fdr.c ft_putnbr_fdr.c string.c ft_memdup.c ft_strwlen.c \
-	  ft_strnchr.c ft_putnwstr_fdr.c ft_putnstr_fdr.c ./ft_swap.c \
-	  ./get_next_line.c ./ft_iswhitespace.c
+all: $(NAME)
 
-OBJ = $(addsuffix .o,$(basename $(SRC)))
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
-.PHONY : all clean fclean re
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
 
-all : $(NAME)
+.PHONY: clean fclean re
 
-$(NAME) : $(OBJ)
-		ar rc $(NAME) $(OBJ)
-		ranlib $(NAME)
+clean:
+	rm -fv $(OBJ)
+	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
 
-%.o : %.c
-	$(CC) $(FLAG) $(OPTION) -c $< -o $@
+fclean: clean
+	rm -fv $(NAME)
 
-clean :
-		rm -f $(OBJ)
-fclean : clean
-		rm -f $(NAME)
-
-re : fclean all
+re:	fclean all

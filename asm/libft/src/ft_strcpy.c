@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asm.h                                           :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 15:33:23 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/02 17:02:32 by mperronc         ###   ########.fr       */
+/*   Created: 2015/11/23 17:50:38 by mperronc          #+#    #+#             */
+/*   Updated: 2015/11/25 15:27:05 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+char	*ft_strcpy(char *dst, const char *src)
+{
+	char *ret;
 
-# include <stdlib.h>
-# include <stdio.h>
-
-#include "../libft/incl/libft.h"
-
-# include "ft_op.h"
-# include "ft_prototypes.h"
-# include "ft_struct.h"
-# include "ft_token.h"
-
-#endif
+	ret = dst;
+	while (*src != 0)
+	{
+		*dst = *src;
+		dst++;
+		src++;
+	}
+	*dst = 0;
+	return (ret);
+}

@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_op.c                                       :+:      :+:    :+:   */
+/*   ft_min2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/02 15:19:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/02 17:05:54 by mperronc         ###   ########.fr       */
+/*   Created: 2016/02/16 13:10:04 by mperronc          #+#    #+#             */
+/*   Updated: 2016/02/16 13:11:34 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "../incl/libft.h"
 
-char	*extract_op(const char *str)
+int		ft_min2(int x, int y)
 {
-	int		i;
-	char	*op;
-
-	i = 0;
-	while (str[i] && !ft_iswhitespace(str[i]))
-	{
-		if (ft_isalpha(str[i]))
-			i++;
-		else
-			return (NULL);
-	}
-	op = ft_strnew(i + 1);
-	ft_strncpy(op, str, i);
-	return (op);
+	if (x <= y)
+		return (x);
+	return (y);
 }

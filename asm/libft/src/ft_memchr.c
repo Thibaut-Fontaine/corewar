@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asm.h                                           :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 15:33:23 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/02 17:02:32 by mperronc         ###   ########.fr       */
+/*   Created: 2015/11/23 16:46:04 by mperronc          #+#    #+#             */
+/*   Updated: 2016/02/12 17:19:08 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include "../incl/libft.h"
 
-# include <stdlib.h>
-# include <stdio.h>
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char *p;
 
-#include "../libft/incl/libft.h"
-
-# include "ft_op.h"
-# include "ft_prototypes.h"
-# include "ft_struct.h"
-# include "ft_token.h"
-
-#endif
+	p = (unsigned char *)s;
+	while (n > 0 && *p != (unsigned char)c)
+	{
+		p++;
+		n--;
+	}
+	if (n == 0)
+		return (NULL);
+	else
+		return (p);
+}

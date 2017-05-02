@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asm.h                                           :+:      :+:    :+:   */
+/*   ft_binlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 15:33:23 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/02 17:02:32 by mperronc         ###   ########.fr       */
+/*   Created: 2016/09/03 18:39:04 by mperronc          #+#    #+#             */
+/*   Updated: 2016/09/03 18:39:45 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include "../incl/ft_printf.h"
 
-# include <stdlib.h>
-# include <stdio.h>
+size_t		ft_binlen(intmax_t n)
+{
+	size_t		len;
 
-#include "../libft/incl/libft.h"
-
-# include "ft_op.h"
-# include "ft_prototypes.h"
-# include "ft_struct.h"
-# include "ft_token.h"
-
-#endif
+	len = 0;
+	if (n < 0)
+		len++;
+	while (n != 0)
+	{
+		n /= 2;
+		len++;
+	}
+	return (len);
+}

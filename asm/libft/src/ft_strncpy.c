@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_op.c                                       :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mperronc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/02 15:19:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/02 17:05:54 by mperronc         ###   ########.fr       */
+/*   Created: 2015/11/23 18:03:29 by mperronc          #+#    #+#             */
+/*   Updated: 2016/02/11 17:44:15 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "../incl/libft.h"
 
-char	*extract_op(const char *str)
+char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
-	int		i;
-	char	*op;
+	char *ret;
 
-	i = 0;
-	while (str[i] && !ft_iswhitespace(str[i]))
+	ret = dst;
+	while (n > 0)
 	{
-		if (ft_isalpha(str[i]))
-			i++;
+		if (*src == 0)
+		{
+			*dst = 0;
+			dst++;
+			n--;
+		}
 		else
-			return (NULL);
+		{
+			*dst = *src;
+			dst++;
+			src++;
+			n--;
+		}
 	}
-	op = ft_strnew(i + 1);
-	ft_strncpy(op, str, i);
-	return (op);
+	return (ret);
 }

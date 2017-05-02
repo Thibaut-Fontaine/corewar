@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asm.h                                           :+:      :+:    :+:   */
+/*   strip_sign.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 15:33:23 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/02 17:02:32 by mperronc         ###   ########.fr       */
+/*   Created: 2016/09/03 18:39:35 by mperronc          #+#    #+#             */
+/*   Updated: 2016/09/03 18:39:46 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include "../incl/ft_printf.h"
 
-# include <stdlib.h>
-# include <stdio.h>
+char	*strip_sign(char *str)
+{
+	char *tmp;
 
-#include "../libft/incl/libft.h"
-
-# include "ft_op.h"
-# include "ft_prototypes.h"
-# include "ft_struct.h"
-# include "ft_token.h"
-
-#endif
+	tmp = ft_strdup(str);
+	free(str);
+	str = ft_strnew(ft_strlen(tmp) - 1);
+	ft_strcpy(str, tmp + 1);
+	free(tmp);
+	return (str);
+}

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_op.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mperronc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/02 15:19:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/02 17:05:54 by mperronc         ###   ########.fr       */
+/*   Created: 2015/11/27 20:15:31 by mperronc          #+#    #+#             */
+/*   Updated: 2016/02/11 17:44:14 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "../incl/libft.h"
 
-char	*extract_op(const char *str)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	int		i;
-	char	*op;
+	t_list	*flst;
 
-	i = 0;
-	while (str[i] && !ft_iswhitespace(str[i]))
+	flst = NULL;
+	if (lst)
 	{
-		if (ft_isalpha(str[i]))
-			i++;
-		else
+		flst = ft_lstnew(lst->content, lst->content_size);
+		if (!flst)
 			return (NULL);
+		flst = (*f)(flst);
+		flst->next = ft_lstmap(lst->next, (*f));
 	}
-	op = ft_strnew(i + 1);
-	ft_strncpy(op, str, i);
-	return (op);
+	return (flst);
 }

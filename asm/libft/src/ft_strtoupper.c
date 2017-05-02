@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_op.c                                       :+:      :+:    :+:   */
+/*   ft_strtoupper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mperronc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/02 15:19:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/02 17:05:54 by mperronc         ###   ########.fr       */
+/*   Created: 2016/09/03 18:39:11 by mperronc          #+#    #+#             */
+/*   Updated: 2016/09/03 18:39:45 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "../incl/ft_printf.h"
 
-char	*extract_op(const char *str)
+char	*ft_strtoupper(char *str)
 {
-	int		i;
-	char	*op;
+	int i;
 
 	i = 0;
-	while (str[i] && !ft_iswhitespace(str[i]))
+	while (str[i])
 	{
-		if (ft_isalpha(str[i]))
-			i++;
-		else
-			return (NULL);
+		str[i] = ft_toupper(str[i]);
+		i++;
 	}
-	op = ft_strnew(i + 1);
-	ft_strncpy(op, str, i);
-	return (op);
+	return (str);
 }

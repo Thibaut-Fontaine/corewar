@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_labelchar.c                                     :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mperronc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/29 17:03:57 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/02 16:31:06 by mperronc         ###   ########.fr       */
+/*   Created: 2015/11/24 11:59:33 by mperronc          #+#    #+#             */
+/*   Updated: 2016/02/10 11:20:22 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include <stdlib.h>
+#include "../incl/libft.h"
 
-int		is_labelchar(const char c)
+char	*ft_strnew(size_t size)
 {
-	return (ft_strchr(LABEL_CHARSET, c) ? 1 : 0);
+	char	*fresh_str;
+
+	fresh_str = (char *)malloc(sizeof(char) * size + 1);
+	if (fresh_str == 0)
+		return (NULL);
+	ft_bzero(fresh_str, size + 1);
+	return (fresh_str);
 }

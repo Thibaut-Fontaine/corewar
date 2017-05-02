@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_op.c                                       :+:      :+:    :+:   */
+/*   ft_wstrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mperronc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/02 15:19:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/02 17:05:54 by mperronc         ###   ########.fr       */
+/*   Created: 2015/11/23 20:00:43 by mperronc          #+#    #+#             */
+/*   Updated: 2016/02/10 11:20:22 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+#include "../incl/ft_printf.h"
 
-char	*extract_op(const char *str)
+wchar_t	*ft_wstrchr(const wchar_t *s, wchar_t c)
 {
+	wchar_t	*res;
 	int		i;
-	char	*op;
 
+	res = (wchar_t *)s;
 	i = 0;
-	while (str[i] && !ft_iswhitespace(str[i]))
+	while (res[i] != 0)
 	{
-		if (ft_isalpha(str[i]))
-			i++;
-		else
-			return (NULL);
+		if (res[i] == c)
+			return (&(res[i]));
+		i++;
 	}
-	op = ft_strnew(i + 1);
-	ft_strncpy(op, str, i);
-	return (op);
+	if (c == 0)
+		return (&(res[i]));
+	return (NULL);
 }
