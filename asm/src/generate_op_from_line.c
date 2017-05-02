@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_token.c                                   :+:      :+:    :+:   */
+/*   generate_op_from_line.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 16:11:40 by mperronc          #+#    #+#             */
-/*   Updated: 2017/04/29 21:46:19 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 20:18:40 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_asm.h"
 
-static t_token_type	get_token_type(const char *source)
+size_t	generate_op_from_line(char	*line, t_oplist *oplist, t_labellist *labels)
 {
-	t_token_type 	type;
+	size_t	opsize;
+	t_tokens
 
-	return (type);
-}
+	get_label_token()
+	get_op_token()
+	while (get_arg_tokens())
+		get_sep_token()
+	append_endl_token()
 
-static void			*get_token_content(const char *source)
-{
-	void			*content;
-	
-	return (content);
-}
+	--> token list locale
 
-int				get_next_token(const char *source, t_token *token)
-{
-	int		i;
-	int		ret;
-
-	i = 0;
-	ret = 0;
-	while (!(ft_iswhitespace(source[i])))
-	{
-		analyze_token(source, token);
-		i++;
-	}
-	return (ret);
+	calculate_size(tokenlistlocale)
 }
