@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 03:43:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/02 02:48:21 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/02 18:22:54 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ t_file			*open_file(const char *name, int *len)
 	// parsing a faire ici :
 	if (lseek(fd, 0, SEEK_SET) == -1)
 		error(_ERR_STDERROR)(name);
-	if (read(fd, /*buffer*/, 8)) // mettre dans magic number et tester
+	if (read(fd, (void*)&(file->info.magic), 4)) // mettre dans magic number et tester
+		file->info.magic != 0xf383ea00 ? error(_ERR_MAGIC_NUMBER)(name) : 0;
+	if (read(fd, file->info.prog_name, PROG_NAME_LENGTH)) // prog_name
+			; // nul-terminer !
+	if (read(fd, (void*)&(file->info.prog_size), 4)) // mettre dans prog_size et tester
 		;
-	if (read ... // prog_name
-			;
-	if (read(fd, /*buffer*/, 8)) // mettre dans prog_size et tester
-		;
-	if (read ..) // comment
-		;
+	if (read(fd, file->info.prog_name, COMMENT_LENGTH)) // comment
+		; // nul-terminer !
 	//    //    //    //    //
 	file = malloc(sizeof(t_file)); // a proteger
 	file->prog = malloc(sizeof(*len)); // a proteger
