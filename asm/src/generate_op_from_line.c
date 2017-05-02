@@ -16,13 +16,20 @@ size_t	generate_op_from_line(char *line, t_oplist *oplist, t_labellist *labels)
 {
 	size_t		opsize;
 	t_tokenlist	*tokens;
+	t_tokenlist	*target;
 
 	tokens = token_init();
-
-
-	if get_token(&extract_label, LABEL)
-		// on a une label
-	get_token(&extract_op, OP)
+	target = tokens;
+	if (target = get_token(line, &extract_labeldecl, LABEL))
+	{
+		line += ft_strlen(target->content);
+		target = target->next;
+	}
+	if (target = get_token(line, &extract_op, OP))
+	{
+		line += ft_strlen(target->content);
+		target = target->next;
+	}
 	while (get_arg_tokens())
 		get_sep_token()
 	append_endl_token()
@@ -31,9 +38,7 @@ size_t	generate_op_from_line(char *line, t_oplist *oplist, t_labellist *labels)
 
 	calculate_size(tokenlistlocale)
 }
-
-
-get_token(f, type)
+	get_token(f, type)
 	token = malloc(blabla);
 	token->content = f(line);
 	if token->content
