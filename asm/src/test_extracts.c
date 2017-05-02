@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/02 17:12:43 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 17:43:46 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	test_extract(char *expected, char *str, char * (*f)(const char *))
 
 	ret = f(str);
 	if (!ret && !expected)
-		ft_printf("Test %-20s OK\n", str);
+		ft_printf("Test %-40s OK\n", str);
 	else if ((!ret && expected) || (ret && !expected) || ft_strcmp(ret, expected))
-		ft_printf("Test %-20s KO : got %s\n", str, ret);
+		ft_printf("Test %-40s KO : got %s expected %s\n", str, ret, expected);
 	else
-		ft_printf("Test %-20s OK\n", str);
+		ft_printf("Test %-40s OK\n", str);
 	if (ret)
 		free(ret);
 }
@@ -41,11 +41,45 @@ int		main(void)
 	ft_printf("\n === EXTRACT COMMAND TESTS ===\n");
 	test_extract(".name", ".name", &extract_command);
 	test_extract(".comment", ".comment", &extract_command);
-	test_extract(".name", ".name\t\t", &extract_command);
+	test_extract(".name", ".name\t", &extract_command);
 	test_extract(".name", ".name wololo", &extract_command);
 	test_extract(".comment", ".comment lmao", &extract_command);
 	test_extract(".name", ".namecommand", &extract_command);
 	test_extract(NULL, "", &extract_command);
+	test_extract(NULL, ".", &extract_command);
+
+	ft_printf("\n === EXTRACT STRING TESTS ===\n");
+	test_extract("\"Wololo\"", "\"Wololo\"", &extract_string);
+	test_extract("\"Wololo ayy lmao\t\1\"", "\"Wololo ayy lmao\t\1\"", &extract_string);
+	test_extract(NULL, "\"Wololo", &extract_string);
+	test_extract(NULL, "\"a", &extract_string);
+	test_extract("\"\"", "\"\"", &extract_string);
+
+	ft_printf("\n === EXTRACT DIRECT TESTS ===\n");
+	test_extract("%10", "%10", &extract_direct);
+	test_extract("%-42", "%-42", &extract_direct);
+	test_extract("%42", "%42lmao", &extract_direct);
+	test_extract("%-42", "%-42lmao", &extract_direct);
+	test_extract("%:toto", "%:toto", &extract_direct);
+	test_extract(NULL, "%-label", &extract_direct);
+	test_extract(NULL, "%:", &extract_direct);
+	test_extract(NULL, "%label", &extract_direct);
+	test_extract("%:toto", "%:toto sans blague", &extract_direct);
+
+	ft_printf("\n === EXTRACT INDIRECT TESTS ===\n");
+	test_extract("10", "10", &extract_indirect);
+	test_extract("-42", "-42", &extract_indirect);
+	test_extract("42", "42lmao", &extract_indirect);
+	test_extract("-42", "-42lmao", &extract_indirect);
+	test_extract(":toto", ":toto", &extract_indirect);
+	test_extract(NULL, "-label", &extract_indirect);
+	test_extract(NULL, ":", &extract_indirect);
+	test_extract(NULL, "label", &extract_indirect);
+	test_extract(":toto", ":toto sans blague", &extract_indirect);
+
+	ft_printf("\n === EXTRACT OP TESTS ===\n");
+
+	ft_printf("\n === EXTRACT LABELDECL TESTS ===\n");
 
 	return (0);
 }

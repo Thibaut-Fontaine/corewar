@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:55:12 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/02 16:13:33 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 17:44:04 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*extract_label(const char *str)
 		i++;
 	if (i == 1)
 		return (NULL);
-	label = ft_strsub(str, 0, i + 1);
+	label = ft_strsub(str, 0, i);
 	return(label);
 }
 
@@ -40,7 +40,7 @@ static char *extract_number(const char *str)
 		i++;
 	if (i == (flag ? 1 : 0))
 		return (NULL);
-	number = ft_strsub(str, 0, i + (flag ? 1 : 0));
+	number = ft_strsub(str, 0, i);
 	return (number);
 }
 
