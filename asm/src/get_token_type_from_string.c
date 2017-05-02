@@ -14,6 +14,24 @@
 
 static int 	is_op_token(const char *source)
 {
+	
+}
+
+static int 		is_indir_token(const char *source)
+{
+	int 	i;
+
+	if (i = ft_atoi(source) != 0)
+		return (1);
+	i = 1;
+	if (source[0] != LABEL_CHAR)
+		return (0);
+	while (source[i])
+	{
+		if (!(ft_strchr(LABEL_CHARS, source[i])))
+			return (0);
+	}
+	return (1);
 }
 
 static int 	is_reg_token(const char *source)
@@ -54,7 +72,7 @@ int 		get_token_type_from_string(const char *source)
 		return (LABEL);
 	else if (is_reg_token(source))
 		return (REG);
-	else if (is_token_indir(source))
+	else if (is_indir_token(source))
 		return (INDIR);
 	else if (is_op_token(source))
 		return (OP);
