@@ -26,13 +26,17 @@ static void			*get_token_content(const char *source)
 	return (content);
 }
 
-t_token				*get_next_token(const char *source)
+int				get_next_token(const char *source, t_token *token)
 {
-	t_token			*token;
+	int		i;
+	int		ret;
 
-	token = (t_token *)malloc(sizeof (t_token));
-
-	// Get token
-
-	return (token);
+	i = 0;
+	ret = 0;
+	while (!(ft_iswhitespace(source[i])))
+	{
+		analyze_token(source, token);
+		i++;
+	}
+	return (ret);
 }
