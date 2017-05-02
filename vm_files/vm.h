@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/02 02:18:13 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/02 02:39:57 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,15 @@
 ** ◦ perror / strerror (et, du coup, errno)
 */
 
+typedef struct
+{
+	t_header		info;
+	unsigned char	*prog;
+}					t_file;
+
 typedef void		(*t_error)();
 
-unsigned char		*open_file(const char *name, int *len);
+t_file				*open_file(const char *name, int *len);
 t_error				error(int err);
 
 /*
@@ -65,12 +71,6 @@ typedef struct
 	int				ns;
 	int				nv;
 }					t_opt;
-
-typedef struct
-{
-	t_header		info;
-	unsigned char	*prog;
-}					t_file;
 
 # define _
 # define HEADER_LENGTH (PROG_NAME_LENGTH + COMMENT_LENGTH + 8)
