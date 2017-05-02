@@ -10,8 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+# include "../include/asm.h"
 
 int 		get_token_type_from_string(const char *source)
 {
-
+	if (is_label_token(source))
+		return (LABEL);
+	else if (is_reg_token(source))
+		return (REG);
+	else if (is_token_indir(source))
+		return (INDIR);
+	else if (is_op_token(source))
+		return (OP);
+	return(INVALID);
 }

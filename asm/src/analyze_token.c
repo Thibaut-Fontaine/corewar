@@ -29,8 +29,6 @@ void		analyze_token(char *source, t_token *token)
 		token->type = STRING;
 	else if (token->content[0] == '\n')
 		token->type = ENDL;
-	else if (token->content[0] == COMMENT_CHAR)
-		token->type = COMMENT;
 	else
 		token->type = get_token_type_from_string(token->content);
 }
