@@ -12,7 +12,7 @@
 
 # include "../include/asm.h"
 
-int		get_command_type(char *source)
+int		get_command_type(const char *source)
 {
 	if (!(ft_strcmp(source, ".name")))
 		return (CMD_NAME);

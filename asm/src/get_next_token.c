@@ -22,7 +22,7 @@ static t_token_type	get_token_type(const char *source)
 static void			*get_token_content(const char *source)
 {
 	void			*content;
-
+	
 	return (content);
 }
 
