@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/02 17:43:46 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 18:19:36 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,14 @@ int		main(void)
 	test_extract(":toto", ":toto sans blague", &extract_indirect);
 
 	ft_printf("\n === EXTRACT OP TESTS ===\n");
+	test_extract("add", "add ", &extract_op);
+	test_extract("add", "add  llmao", &extract_op);
+	test_extract(NULL, "a:lmao ", &extract_op);
+	test_extract("a123", "a123 et des patetes", &extract_op);
+	test_extract("sti123", "sti123", &extract_op);
 
 	ft_printf("\n === EXTRACT LABELDECL TESTS ===\n");
+	test_extract("a:", "a:lmao ", &extract_labeldecl);
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:19:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/02 17:05:54 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 18:18:50 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ char	*extract_op(const char *str)
 	i = 0;
 	while (str[i] && !ft_iswhitespace(str[i]))
 	{
-		if (ft_isalpha(str[i]))
-			i++;
-		else
+		if (!is_labelchar(str[i]))
 			return (NULL);
+		i++;
 	}
-	op = ft_strnew(i + 1);
-	ft_strncpy(op, str, i);
+	op = ft_strsub(str, 0, i);
 	return (op);
 }

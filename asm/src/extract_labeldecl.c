@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 21:32:18 by mperronc          #+#    #+#             */
-/*   Updated: 2017/04/29 21:52:06 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/02 18:04:05 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	*extract_labeldecl(const char *str)
 		else
 			return (NULL);
 	}
-	labeldecl = ft_strnew(i + 1);
-	ft_strncpy(labeldecl, str, i);
+	labeldecl = ft_strsub(str, 0, i + 1);
 	return (labeldecl);
 }
