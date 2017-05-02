@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 03:43:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/02 00:44:08 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/02 02:27:57 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ unsigned char		*open_file(const char *name, int *len)
 	unsigned char	*s;
 
 	if ((fd = open(name, O_RDONLY)) == -1)
-		bad_source_file(name);
+		error(_ERR_SOURCE_FILE)(name);
 	if ((*len = lseek(fd, 0, SEEK_END)) == -1)
-		exit(-1);
-	if (*len <= (PROG_NAME_LENGTH + COMMENT_LENGTH + sizeof(unsigned int) * 2))
-		;
+		error(_ERR_STDERROR)(name);
+	if (*len <= HEADER_LENGTH)
+		error(_ERR_CH_TOO_SMALL)(name);
 	if ((s = malloc(*len)) == NULL)
-		exit(-1);
+		error(_ERR_STDERROR)(name);
 	if (lseek(fd, 0, SEEK_SET) == -1)
-		exit(-1);
+		error(_ERR_STDERROR)(name);
 	if (read(fd, s, *len) == -1)
-		exit(-1);
+		error(_ERR_STDERROR)(name);
 	if (close(fd) == -1)
-		close_error(name);
+		error(_ERR_STDERROR)(name);
 	return (s);
 }

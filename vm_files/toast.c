@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   toast.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/27 20:22:42 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/02 02:28:02 by tfontain         ###   ########.fr       */
+/*   Created: 2017/05/02 01:31:24 by tfontain          #+#    #+#             */
+/*   Updated: 2017/05/02 01:34:47 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./vm.h"
-#include <stdio.h> //
+#include <stdio.h>
 
-int			main(int argc, const char *argv[])
+int main(int argc, const char *argv[])
 {
-	int		tmp;
-	unsigned char *s;
-	int		i;
-
-	s = open_file(argv[1], &tmp);
-	i = 0;
-	while (i <= tmp)
-	{
-		if (i % 16 == 0)
-		{
-			printf("%07x ", i);
-			fflush(stdout);
-		}
-		ft_putstr(ft_bytohex(s[i], TRUE));
-		ft_putchar((i + 1) % 16 == 0 ? '\n' : ' ');
-		++i;
-	}
-	return (0);
+	printf("%u, %lu\n", HEADER_LENGTH, PROG_NAME_LENGTH + COMMENT_LENGTH + sizeof(unsigned int) * 2);
+	return 0;
 }

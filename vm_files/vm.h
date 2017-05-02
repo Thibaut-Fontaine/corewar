@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/01 23:08:04 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/02 02:18:13 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <errno.h>
 # include "../libft/includes/libft.h"
 # include "./op.h"
+# include "./error.h"
 
 /*
 ** allowed funcs :
@@ -36,12 +38,10 @@
 ** ◦ perror / strerror (et, du coup, errno)
 */
 
-unsigned char		*open_file(const char *name, int *len);
+typedef void		(*t_error)();
 
-void				usage(void);
-void				bad_source_file(const char *name);
-void				bad_magic_number(const char *name);
-void				close_error(const char *name);
+unsigned char		*open_file(const char *name, int *len);
+t_error				error(int err);
 
 /*
 ** argv parsing flags.
@@ -73,5 +73,6 @@ typedef struct
 }					t_file;
 
 # define _
+# define HEADER_LENGTH (PROG_NAME_LENGTH + COMMENT_LENGTH + 8)
 
 #endif
