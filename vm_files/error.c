@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:11 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 16:39:39 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/03 17:46:34 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		(*error(int err))()
 		return (code_size_differ);
 	if (err == _ERR_CH_TOO_SMALL)
 		return (champion_too_small);
-	if (err == _ERR_STDERROR)
+	if (err == _ERR_STD)
 		return (exit_perror);
 	if (err == _ERR_CH_TOO_BIG)
 		return (champion_too_big);

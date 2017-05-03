@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 01:43:01 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 16:39:35 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/03 17:46:16 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define _ERR_USAGE 3
 # define _ERR_CSIZE_DIFFER 4
 # define _ERR_CH_TOO_SMALL 5
-# define _ERR_STDERROR 6
+# define _ERR_STD 6
 # define _ERR_CH_TOO_BIG 7
 
 void	exit_perror(const char *name);
