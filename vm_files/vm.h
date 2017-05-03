@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/02 02:39:57 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/03 15:45:17 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ typedef struct
 	int				nv;
 }					t_opt;
 
+typedef unsigned int uint;
+
 # define _
 # define HEADER_LENGTH (PROG_NAME_LENGTH + COMMENT_LENGTH + 8)
+# define UINT_LEN 4
 
 #endif
