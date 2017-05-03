@@ -40,8 +40,14 @@ t_tokenlist		*get_token(char *line, t_tokenlist *(*f)(const char *, t_tokenlist 
 	t_tokenlist *token;
 
 	token = token_init();
-	f(line, token);
-	//token->content = f(line);
-	//token->next = NULL;
+	while (line[i] && ft_iswhitespace(line[i]))
+		line++;
+	if (line[i] == COMMENT_CHAR)
+	{
+		token->type = ENDL;
+		token->content = line;
+	}
+	else
+		f(line, token);
 	return (token);
 }
