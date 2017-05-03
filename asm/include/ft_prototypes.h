@@ -20,9 +20,10 @@ char					*extract_command(const char *str);
 char					*extract_direct(const char *str);
 char					*extract_indirect(const char *str);
 t_tokenlist				*extract_labeldecl(const char *str, t_tokenlist *token);
-char					*extract_op(const char *str);
+t_tokenlist				*extract_op(const char *str, t_tokenlist *token);
 char					*extract_register(const char *str);
 char					*extract_string(const char *str);
-t_tokenlist				*get_token(char *line, t_tokenlist *(*f)(const char *, t_tokenlist *token), t_token_type type);
+t_tokenlist				*get_token(char *line, t_tokenlist *(*f)(const char *, t_tokenlist *token));
+size_t					generate_op_from_line(char *line, t_oplist *oplist, t_labellist *labels);
 
 #endif

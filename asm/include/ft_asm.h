@@ -20,7 +20,7 @@
 
 # include "ft_token.h"
 # include "ft_op.h"
-# include "ft_prototypes.h"
 # include "ft_struct.h"
+# include "ft_prototypes.h"
 
 #endif

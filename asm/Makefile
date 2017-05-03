@@ -25,7 +25,9 @@ SRC_NAME =	extract_labeldecl.c \
 			extract_command.c \
 			test_extracts.c \
 			token_init.c \
-			ft_isendl.c
+			ft_isendl.c \
+			get_token.c \
+			generate_op_from_line.c
 
 OBJ_PATH = obj/
 

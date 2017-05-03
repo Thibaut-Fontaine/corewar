@@ -36,5 +36,4 @@ typedef struct			s_tokenlist
 	char				*content;
 	struct s_tokenlist 	*next;
 }						t_tokenlist;
-
 #endif

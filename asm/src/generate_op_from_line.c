@@ -12,33 +12,41 @@
 
 #include "../include/ft_asm.h"
 
-size_t	generate_op_from_line(char *line, t_oplist *oplist, t_labellist *labels)
+size_t		generate_op_from_line(char *line, t_oplist *oplist, t_labellist *labels)
 {
-	size_t		opsize;
+	//size_t		opsize;
 	t_tokenlist	*tokens;
 	t_tokenlist	*target;
 
 	tokens = token_init();
 	target = tokens;
-	if (target = get_token(line, &extract_labeldecl, LABEL))
+
+	if ((target = get_token(line, &extract_labeldecl)))
 	{
 		line += ft_strlen(target->content);
+		printf("type = %d, content = %s\n", target->type, target->content);
 		target = target->next;
 	}
-	if (target = get_token(line, &extract_op, OP))
+	if ((target = get_token(line, &extract_op)))
 	{
 		line += ft_strlen(target->content);
+		printf("type = %d, content = %s\n", target->type, target->content);
 		target = target->next;
 	}
-	while (get_arg_tokens())
+	(void)oplist;
+	(void)labels;
+	return (1);
+}
+	/*while (get_arg_tokens())
 		get_sep_token()
 	append_endl_token()
 
 	--> token list locale
 
-	calculate_size(tokenlistlocale)
-}
-	get_token(f, type)
+	calculate_size(tokenlistlocale)*/
+
+
+/*	get_token(f, type)
 	token = malloc(blabla);
 	token->content = f(line);
 	if token->content
@@ -47,3 +55,4 @@ size_t	generate_op_from_line(char *line, t_oplist *oplist, t_labellist *labels)
 	else
 		free(token)
 		return NULL
+*/

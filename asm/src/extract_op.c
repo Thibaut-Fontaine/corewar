@@ -12,18 +12,38 @@
 
 #include "../include/ft_asm.h"
 
-char	*extract_op(const char *str)
+int				is_valid_op(const char *str)
+{
+	char 	*tab[16] = {"lfork","sti", "fork", "lld", "ld", "add", "zjmp", "sub", "ldi", "or", "st", "aff", "live", "xor", "lldi"};
+	int 	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (!(ft_strcmp(tab[i], str)))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+t_tokenlist		*extract_op(const char *str, t_tokenlist *token)
 {
 	int		i;
-	char	*op;
 
 	i = 0;
 	while (str[i] && !ft_iswhitespace(str[i]))
 	{
 		if (!is_labelchar(str[i]))
-			return (NULL);
+		{
+			token->type = INVALID;
+			token->content = ft_strsub(str, 0, i);
+			return (token);
+		}
 		i++;
 	}
-	op = ft_strsub(str, 0, i);
-	return (op);
+	token->content = ft_strsub(str, 0, i);
+	if (is_valid_op(token->content))
+		token->type = OP;
+	return (token);
 }
