@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:11 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 17:46:34 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/03 20:17:26 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ void		champion_too_big(const char *name, unsigned int len)
 	ft_putnbr(len);
 	ft_putstr(" bytes > ");
 	ft_putnbr(CHAMP_MAX_SIZE);
-	ft_putstr(" bytes)");
+	ft_putstr(" bytes)\n");
+	exit(-1);
 }

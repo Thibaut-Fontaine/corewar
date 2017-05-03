@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 03:43:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 19:18:58 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/03 20:32:26 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,17 @@ t_file			*open_file(const char *name, int *n)
 	COREWAR_EXEC_MAGIC != file->info.magic ? error(_ERR_MAGIC_NUMBER)(name) : 0;
 	if (read(fd, file->info.prog_name, PROG_NAME_LENGTH + 1) != PROG_NAME_LENGTH + 1)
 		error(_ERR_STD)(name);
-	file->info.prog_name[PROG_NAME_LENGTH] != '\0' ? error(/* erreur pas de '\0' ! */)(name) : 0;
-	read(fd, buf, PADDING_PROGN); // padding de 3
+	file->info.prog_name[PROG_NAME_LENGTH] != '\0' ? error(_ERR_CSIZE_DIFFER)(name) : 0;
+	read(fd, buf, PADDING_PROGN) != PADDING_PROGN ? error(_ERR_STD)(name) : 0;
 	if (read(fd, (void*)&(file->info.prog_size), U_) != U_)
 		error(_ERR_STD)(name);
-	file->info.prog_size = swap_uint(file->info.prog_size);
-	CHAMP_MAX_SIZE < file->info.prog_size ? error(_ERR_CH_TOO_BIG)(name) : 0;
+	if ((file->info.prog_size = swap_uint(file->info.prog_size)) != *n)
+		error(_ERR_CSIZE_DIFFER)(name);
+	CHAMP_MAX_SIZE < file->info.prog_size ? error(_ERR_CH_TOO_BIG)(name, file->info.prog_size) : 0;
 	if (read(fd, file->info.comment, COMMENT_LENGTH + 1) != COMMENT_LENGTH + 1)
 		error(_ERR_STD)(name);
-	read(fd, buf, PADDING_CMT); // padding de 3
-	file->info.comment[COMMENT_LENGTH] != '\0' ? error(/* erreur pas de '\0' ! */)(name) : 0;
+	read(fd, buf, PADDING_CMT) != PADDING_CMT ? error(_ERR_STD)(name) : 0;
+	file->info.comment[COMMENT_LENGTH] != '\0' ? error(_ERR_CSIZE_DIFFER)(name) : 0;
 	(file->prog = malloc(sizeof(*n))) == NULL ? error(_ERR_STD)(name) : 0;
 	read(fd, file->prog, *n) == -1 ? error(_ERR_STD)(name) : 0;
 	close(fd) == -1 ? error(_ERR_STD)(name) : 0;

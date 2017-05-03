@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:22:42 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 18:37:40 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/03 20:11:35 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			main(int argc, const char *argv[])
 
 	s = open_file(argv[1], &tmp);
 	printf("magic number : %x\nprog name : %s\nprog_size : %d\ncomment : %s\nlen : %d\n", s->info.magic, s->info.prog_name, s->info.prog_size, s->info.comment, tmp);
-	i = 0;
+	/*i = 0;
 	while (i <= tmp)
 	{
 		if (i % 16 == 0)
@@ -32,6 +32,6 @@ int			main(int argc, const char *argv[])
 		ft_putstr(ft_bytohex(s->prog[i], TRUE));
 		ft_putchar((i + 1) % 16 == 0 ? '\n' : ' ');
 		++i;
-	}
+	}*/
 	return (0);
 }
