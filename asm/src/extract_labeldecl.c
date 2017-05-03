@@ -12,19 +12,22 @@
 
 #include "../include/ft_asm.h"
 
-char	*extract_labeldecl(const char *str)
+t_tokenlist		*extract_labeldecl(const char *str, t_tokenlist *token)
 {
 	int		i;
-	char	*labeldecl;
 
 	i = 0;
-	while (str[i] && str[i] != LABEL_CHAR)
-	{
-		if (is_labelchar(str[i]))
+	while (str[i] && is_labelchar(str[i]))
 			i++;
-		else
-			return (NULL);
+	if (ft_iswhitespace(str[i]) || ft_isendl(str[i]))
+		return (NULL);
+	else if (str[i] == LABEL_CHAR)
+	{
+		token->content = ft_strsub(str, 0, i + 1);
+		token->type = LABEL_DECL;
+		return (token);
 	}
-	labeldecl = ft_strsub(str, 0, i + 1);
-	return (labeldecl);
+	token->content = ft_strsub(str, 0, i + 1);
+	token->type = INVALID;
+	return (token);
 }

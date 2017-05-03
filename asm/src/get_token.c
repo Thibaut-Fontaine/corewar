@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/asm.h"
-
+# include "../include/ft_asm.h"
+/*
 void 			extract_labeldecl(const char *str, t_tokenlist *token)
 {
 	int		i;
@@ -34,8 +34,8 @@ void 			extract_labeldecl(const char *str, t_tokenlist *token)
 	labeldecl = ft_strsub(str, 0, i + 1);
 	return (labeldecl);
 }
-
-t_tokenlist		*get_token(char *line, char *(*f)(const char *), t_token_type type)
+*/
+t_tokenlist		*get_token(char *line, t_tokenlist *(*f)(const char *, t_tokenlist *token), t_token_type type)
 {
 	t_tokenlist *token;
 

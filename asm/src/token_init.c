@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/asm.h"
+# include "../include/ft_asm.h"
 
 t_tokenlist		*token_init(void)
 {
 	t_tokenlist 	*token;
 
 	if (!(token = malloc(sizeof(t_tokenlist))))
-		ft_error("failed to malloc token", -1);
+		ft_putendl_fd("failed to malloc token", -1);
 	token->type = INVALID;
 	token->content = NULL;
 	token->next = NULL;

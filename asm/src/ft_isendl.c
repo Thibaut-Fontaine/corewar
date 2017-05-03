@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asm.h                                           :+:      :+:    :+:   */
+/*   ft_isendl.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 15:33:23 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/02 17:02:32 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/03 14:18:40 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/05/03 14:20:12 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+# include "../include/ft_asm.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-
-#include "../libft/incl/libft.h"
-
-# include "ft_token.h"
-# include "ft_op.h"
-# include "ft_prototypes.h"
-# include "ft_struct.h"
-
-#endif
+int			ft_isendl(const char c)
+{
+	return (c == '\0' || c == '\n');
+}

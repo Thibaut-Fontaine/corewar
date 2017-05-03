@@ -29,6 +29,8 @@ static void	test_extract(char *expected, char *str, char * (*f)(const char *))
 
 int		main(void)
 {
+	t_tokenlist 	*token;
+
 	ft_printf(" === EXTRACTOR FUNCTIONS TESTS ===\n\n");
 
 	ft_printf(" === EXTRACT REGISTER TESTS ===\n");
@@ -85,7 +87,16 @@ int		main(void)
 	test_extract("sti123", "sti123", &extract_op);
 
 	ft_printf("\n === EXTRACT LABELDECL TESTS ===\n");
-	test_extract("a:", "a:lmao ", &extract_labeldecl);
-
+	token = token_init();
+	token = extract_labeldecl("   tutu:", token);
+	if (token)
+		ft_printf("token = %s, type = %d\n\n", token->content, token->type);
+	else 
+		ft_printf("NULL");
+	/*test_extract("a:", "a:lmao ", &extract_labeldecl);
+	test_extract("a:", "a: lmao ", &extract_labeldecl);
+	test_extract("error", "a&toto:lmao ", &extract_labeldecl);
+	test_extract("1233:", "1233:lmao ", &extract_labeldecl);
+	test_extract("error", "tutu", &extract_labeldecl);*/
 	return (0);
 }
