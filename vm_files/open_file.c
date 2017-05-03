@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 03:43:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 17:48:15 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/03 17:54:20 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <errno.h>
 
 /*
-** open the file, then allocate memory for a buffer to fill it,
-** then fill the buffer with it, then close it.
-** return the buffer and fill *len with the size of the buffer.
+** open the file, then parse all the header in a struct
+** and put the exec in memory
+** return the struct and close the file.
 */
 
 static uint		swap_uint(unsigned int n)
