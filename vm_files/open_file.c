@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 03:43:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 17:54:20 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/03 19:18:58 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_file			*open_file(const char *name, int *n)
 {
 	int				fd;
 	t_file			*file;
+	char			buf[U_];
 
 	(fd = open(name, O_RDONLY)) == -1 ? error(_ERR_SOURCE_FILE)(name) : 0;
 	(*n = lseek(fd, 0, SEEK_END)) == -1 ? error(_ERR_STD)(name) : 0;
@@ -38,16 +39,18 @@ t_file			*open_file(const char *name, int *n)
 	read(fd, (void*)&(file->info.magic), U_) != U_ ? error(_ERR_STD)(name) : 0;
 	file->info.magic = swap_uint(file->info.magic);
 	COREWAR_EXEC_MAGIC != file->info.magic ? error(_ERR_MAGIC_NUMBER)(name) : 0;
-	if (read(fd, file->info.prog_name, PROG_NAME_LENGTH) != PROG_NAME_LENGTH)
+	if (read(fd, file->info.prog_name, PROG_NAME_LENGTH + 1) != PROG_NAME_LENGTH + 1)
 		error(_ERR_STD)(name);
-	file->info.prog_name[PROG_NAME_LENGTH] = 0;
+	file->info.prog_name[PROG_NAME_LENGTH] != '\0' ? error(/* erreur pas de '\0' ! */)(name) : 0;
+	read(fd, buf, PADDING_PROGN); // padding de 3
 	if (read(fd, (void*)&(file->info.prog_size), U_) != U_)
 		error(_ERR_STD)(name);
 	file->info.prog_size = swap_uint(file->info.prog_size);
 	CHAMP_MAX_SIZE < file->info.prog_size ? error(_ERR_CH_TOO_BIG)(name) : 0;
-	if (read(fd, file->info.comment, COMMENT_LENGTH) != COMMENT_LENGTH)
+	if (read(fd, file->info.comment, COMMENT_LENGTH + 1) != COMMENT_LENGTH + 1)
 		error(_ERR_STD)(name);
-	file->info.comment[COMMENT_LENGTH] = 0;
+	read(fd, buf, PADDING_CMT); // padding de 3
+	file->info.comment[COMMENT_LENGTH] != '\0' ? error(/* erreur pas de '\0' ! */)(name) : 0;
 	(file->prog = malloc(sizeof(*n))) == NULL ? error(_ERR_STD)(name) : 0;
 	read(fd, file->prog, *n) == -1 ? error(_ERR_STD)(name) : 0;
 	close(fd) == -1 ? error(_ERR_STD)(name) : 0;

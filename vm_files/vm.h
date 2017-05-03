@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 17:48:06 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/03 19:13:01 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ typedef unsigned int uint;
 # define _
 # define HEADER_LENGTH (PROG_NAME_LENGTH + COMMENT_LENGTH + 8)
 # define U_ 4
+# define PADDING_PROGN (U_ - (PROG_NAME_LENGTH + sizeof(char)) % U_)
+# define PADDING_CMT (U_ - (COMMENT_LENGTH + sizeof(char)) % U_)
 
 #endif
