@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 03:43:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/02 18:22:54 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/03 20:32:26 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,46 @@
 #include <errno.h>
 
 /*
-** open the file, then allocate memory for a buffer to fill it,
-** then fill the buffer with it, then close it.
-** return the buffer and fill *len with the size of the buffer.
+** open the file, then parse all the header in a struct
+** and put the exec in memory
+** return the struct and close the file.
 */
 
-t_file			*open_file(const char *name, int *len)
+static uint		swap_uint(unsigned int n)
+{
+	return (((n >> 24) & 0xff) | ((n << 8) & 0xff0000) |
+			((n >> 8) & 0xff00) | ((n << 24) & 0xff000000));
+}
+
+t_file			*open_file(const char *name, int *n)
 {
 	int				fd;
-	unsigned char	*s;
 	t_file			*file;
+	char			buf[U_];
 
-	if ((fd = open(name, O_RDONLY)) == -1)
-		error(_ERR_SOURCE_FILE)(name);
-	if ((*len = lseek(fd, 0, SEEK_END)) == -1)
-		error(_ERR_STDERROR)(name);
-	if ((*len = *len - HEADER_LENGTH) <= 0)
-		error(_ERR_CH_TOO_SMALL)(name);
-	if ((s = malloc(*len)) == NULL)
-		error(_ERR_STDERROR)(name);
-	//    //    //    //    //
-	file = malloc(sizeof(t_file)); // a proteger
-	file->prog = malloc(sizeof(*len)); // a proteger
-	// parsing a faire ici :
-	if (lseek(fd, 0, SEEK_SET) == -1)
-		error(_ERR_STDERROR)(name);
-	if (read(fd, (void*)&(file->info.magic), 4)) // mettre dans magic number et tester
-		file->info.magic != 0xf383ea00 ? error(_ERR_MAGIC_NUMBER)(name) : 0;
-	if (read(fd, file->info.prog_name, PROG_NAME_LENGTH)) // prog_name
-			; // nul-terminer !
-	if (read(fd, (void*)&(file->info.prog_size), 4)) // mettre dans prog_size et tester
-		;
-	if (read(fd, file->info.prog_name, COMMENT_LENGTH)) // comment
-		; // nul-terminer !
-	//    //    //    //    //
-	file = malloc(sizeof(t_file)); // a proteger
-	file->prog = malloc(sizeof(*len)); // a proteger
-	//    //    //    //    //
-	if (read(fd, s, *len) == -1)
-		error(_ERR_STDERROR)(name);
-	//
-	if (close(fd) == -1)
-		error(_ERR_STDERROR)(name);
+	(fd = open(name, O_RDONLY)) == -1 ? error(_ERR_SOURCE_FILE)(name) : 0;
+	(*n = lseek(fd, 0, SEEK_END)) == -1 ? error(_ERR_STD)(name) : 0;
+	(*n = *n - HEADER_LENGTH) <= 0 ? error(_ERR_CH_TOO_SMALL)(name) : 0;
+	lseek(fd, 0, SEEK_SET) == -1 ? error(_ERR_STD)(name) : 0;
+	(file = malloc(sizeof(t_file))) == NULL ? error(_ERR_STD)(name) : 0;
+	read(fd, (void*)&(file->info.magic), U_) != U_ ? error(_ERR_STD)(name) : 0;
+	file->info.magic = swap_uint(file->info.magic);
+	COREWAR_EXEC_MAGIC != file->info.magic ? error(_ERR_MAGIC_NUMBER)(name) : 0;
+	if (read(fd, file->info.prog_name, PROG_NAME_LENGTH + 1) != PROG_NAME_LENGTH + 1)
+		error(_ERR_STD)(name);
+	file->info.prog_name[PROG_NAME_LENGTH] != '\0' ? error(_ERR_CSIZE_DIFFER)(name) : 0;
+	read(fd, buf, PADDING_PROGN) != PADDING_PROGN ? error(_ERR_STD)(name) : 0;
+	if (read(fd, (void*)&(file->info.prog_size), U_) != U_)
+		error(_ERR_STD)(name);
+	if ((file->info.prog_size = swap_uint(file->info.prog_size)) != *n)
+		error(_ERR_CSIZE_DIFFER)(name);
+	CHAMP_MAX_SIZE < file->info.prog_size ? error(_ERR_CH_TOO_BIG)(name, file->info.prog_size) : 0;
+	if (read(fd, file->info.comment, COMMENT_LENGTH + 1) != COMMENT_LENGTH + 1)
+		error(_ERR_STD)(name);
+	read(fd, buf, PADDING_CMT) != PADDING_CMT ? error(_ERR_STD)(name) : 0;
+	file->info.comment[COMMENT_LENGTH] != '\0' ? error(_ERR_CSIZE_DIFFER)(name) : 0;
+	(file->prog = malloc(sizeof(*n))) == NULL ? error(_ERR_STD)(name) : 0;
+	read(fd, file->prog, *n) == -1 ? error(_ERR_STD)(name) : 0;
+	close(fd) == -1 ? error(_ERR_STD)(name) : 0;
 	return (file);
 }

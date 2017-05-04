@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/02 02:39:57 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/03 21:19:28 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,15 @@ typedef struct
 	int				nv;
 }					t_opt;
 
+typedef unsigned int uint;
+
 # define _
-# define HEADER_LENGTH (PROG_NAME_LENGTH + COMMENT_LENGTH + 8)
+# define U_ sizeof(unsigned int)
+# define PROG_NAME_LEN_0 (PROG_NAME_LENGTH + sizeof(char))
+# define COMMENT_LEN_0 (COMMENT_LENGTH + sizeof(char))
+# define PADDING_PROGN (U_ - PROG_NAME_LEN_0 % U_)
+# define PADDING_CMT (U_ - COMMENT_LEN_0 % U_)
+# define PADDING (PADDING_PROGN + PADDING_CMT)
+# define HEADER_LENGTH (PROG_NAME_LEN_0 + COMMENT_LEN_0 + U_ * 2 + PADDING)
 
 #endif
