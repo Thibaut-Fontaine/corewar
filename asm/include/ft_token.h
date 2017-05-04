@@ -23,7 +23,8 @@ typedef enum 			e_token_type
 	ARG_INDIR,			// [-][0-9+] OU LABEL_CHAR[labelcharset+]
 	ARG_DELIM,			// SEPARATOR_CHAR
 	LABEL_DECL,			// [labelcharset+]LABEL_CHAR
-	CMD,				// [COMMAND_CHAR][a-z+]
+	CMD_NAME,			// [COMMAND_CHAR][a-z+]
+	CMD_COMMENT			// [COMMAND_CHAR][a-z+]
 	STRING,				// [STRING_CHAR][ascii+][STRING_CHAR]
 	OP,					// [a-z+][space]
 	ENDL,				// \n
@@ -34,6 +35,7 @@ typedef struct			s_tokenlist
 {
 	t_token_type		type;
 	char				*content;
+	int					padding;
 	struct s_tokenlist 	*next;
 }						t_tokenlist;
 #endif

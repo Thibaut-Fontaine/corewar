@@ -15,6 +15,7 @@
 
 int						is_labelchar(const char c);
 int 					ft_isendl(const char c);
+char					**split_spaces(char *str);
 t_tokenlist				*token_init(void);
 char					*extract_command(const char *str);
 char					*extract_direct(const char *str);

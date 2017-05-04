@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_file.c                                       :+:      :+:    :+:   */
+/*   is_empty.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 16:35:59 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/03 16:36:00 by jgagnot          ###   ########.fr       */
+/*   Created: 2017/05/04 15:03:24 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/05/04 15:03:25 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/ft_asm.h"
+# include "...include/ft_asm.h"
 
-
-t_asm		*parse_file(char *path)
+int			is_empty(char *str)
 {
-	t_asm 	obj;
-	char 	*line;
+	int		i;
 
-	asm_init(&obj);
-	while (get_next_line(1, &line))
+	i = 0;
+	while (str[i])
 	{
-		if (!is_empty(line))
-		{
-			if (!obj->header->prog_name || !obj->header->prog_comment)
-				parse_start(obj->header, &line);
-	//	else
-	//		generate_op_from_line(obj, line);
-		}
+		if (!ft_iswhitespace(str[i]) && str[i] != '\n')
+			return(0);
+		i++;
 	}
-	return (obj);
+	return (1);
 }
