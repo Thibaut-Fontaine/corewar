@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 21:19:28 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/06 05:11:24 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,18 @@
 ** ◦ perror / strerror (et, du coup, errno)
 */
 
-typedef struct
+/*typedef struct
 {
 	t_header		info;
 	unsigned char	*prog;
-}					t_file;
+}					t_file;*/
 
 typedef void		(*t_error)();
 
-t_file				*open_file(const char *name, int *len);
+t_header			*open_file(const char *name, char *prog);
 t_error				error(int err);
+const char			*generate_memory(char **arena_pt);
+int					champ_num(int reset);
 
 /*
 ** argv parsing flags.
@@ -72,9 +74,20 @@ typedef struct
 	int				nv;
 }					t_opt;
 
+typedef struct
+{
+	t_opt			f;
+	t_header		*champ[MAX_PLAYERS];
+	const char		*arena;
+}					t_argv;
+
+t_argv				*parse(int argc, const char *argv[]);
 typedef unsigned int uint;
 
+# define CH_NUM_RESET 0
+# define C_ (CH_NUM_RESET + 1)
 # define _
+# define BYTES_PER_PLAYER (MEM_SIZE / MAX_PLAYERS)
 # define U_ sizeof(unsigned int)
 # define PROG_NAME_LEN_0 (PROG_NAME_LENGTH + sizeof(char))
 # define COMMENT_LEN_0 (COMMENT_LENGTH + sizeof(char))

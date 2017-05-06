@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 18:16:31 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/06 05:18:39 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,34 @@ void				get_arg(int i, t_opt *f, const char *argv[])
 		f->flag |= _STEALTH_;
 }
 
-t_opt				*get_option(int argc, const char *argv[])
+const char		*champion_to_memory(const char *arg, t_header **current_champ)
 {
-	static t_opt	f;
-	int		tmp;
+	char		*tmp;
+	const char	*arena;
 
-	ft_bzero(&f, sizeof(f));
+	arena = generate_memory(&tmp);
+	*current_champ = open_file(arg, tmp);
+	return (arena);
+}
+
+t_argv				*parse(int argc, const char *argv[])
+{
+	int				tmp;
+	static t_argv	ret;
+
+	ft_bzero(&ret.f, sizeof(ret.f));
 	while (argc)
 	{
-		if (argc >= 2 && (tmp = fill_flag(&f, *argv)) != 0)
+		if (argc >= 2 && (tmp = fill_flag(&ret.f, *argv)) != 0)
 		{
 			++argv;
 			--argc;
-			get_arg(tmp, &f, argv);
+			get_arg(tmp, &ret.f, argv);
 		}
 		else
-		{
-			if (open_file(*argv, &tmp) == NULL) // revoir la fonction open_file, notamment pour le magic number (en gros ne garder que les instructions)
-				return (NULL);
-		}
+			ret.arena = champion_to_memory(*argv, &(ret.champ[champ_num(C_)]));
 		++argv;
 		--argc;
 	}
-	return (&f);
+	return (&ret);
 }
