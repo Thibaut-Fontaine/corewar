@@ -47,7 +47,7 @@ typedef	struct 			s_oplist
 
 typedef struct 			s_asm
 {
-	t_header			header;
+	t_header			*header;
 	t_oplist			*oplist;
 	t_labellist			*labels;
 } 						t_asm;

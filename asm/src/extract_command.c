@@ -12,13 +12,12 @@
 
 #include "../include/ft_asm.h"
 
-char	*extract_command(const char *str)
+int			*extract_command(const char *str)
 {
-	if (ft_strncmp(str, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)) == 0)
-		return (ft_strdup(NAME_CMD_STRING));
-	else if (ft_strncmp(str, COMMENT_CMD_STRING,
-			ft_strlen(COMMENT_CMD_STRING)) == 0)
-		return (ft_strdup(COMMENT_CMD_STRING));
+	if (ft_strcmp(str, NAME_CMD_STRING) == 0)
+		return (CMD_NAME);
+	else if (ft_strcmp(str, COMMENT_CMD_STRING))
+		return (CMD_COMMENT);
 	else
-		return (NULL);
+		return (INVALID);
 }

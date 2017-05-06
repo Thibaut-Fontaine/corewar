@@ -78,7 +78,16 @@ int		main(void)
 	test_extract(NULL, "label", &extract_indirect);
 	test_extract(":toto", ":toto sans blague", &extract_indirect);
 
-	generate_op_from_line("live: sti ", NULL, NULL);
+	char **test;
+	int 	i;
+
+	i = 0;
+	test = split_spaces(" t les gens de bien");
+	while (test[i])
+	{
+		printf("%s\n", test[i]);
+		i++;
+	}
 /*
 	ft_printf("\n === EXTRACT OP TESTS ===\n");
 	test_extract("add", "add ", &extract_op);

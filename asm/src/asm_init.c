@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_file.c                                       :+:      :+:    :+:   */
+/*   asm_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 16:35:59 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/03 16:36:00 by jgagnot          ###   ########.fr       */
+/*   Created: 2017/05/04 14:06:46 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/05/04 14:06:47 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../include/ft_asm.h"
 
-
-t_asm		*parse_file(char *path)
+void	asm_init(t_asm *obj)
 {
-	t_asm 	obj;
-	char 	*line;
-
-	asm_init(&obj);
-	while (get_next_line(1, &line))
+	if (!(obj->header = malloc(sizeof t_header)))
 	{
-		if (!is_empty(line))
-		{
-			if (!obj->header->prog_name || !obj->header->prog_comment)
-				parse_start(obj->header, &line);
-	//	else
-	//		generate_op_from_line(obj, line);
-		}
+		obj = NULL:
+		return ;
 	}
-	return (obj);
+	obj->header->magic = COREWAR_EXEC_MAGIC;
+	obj->header->prog_name = NULL;
+	obj->header->prog_size = 0;
+	obj->header->prog_comment = NULL;
+	obj->oplist = NULL;
+	obj->labels = NULL;
 }
