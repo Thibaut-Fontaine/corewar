@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 01:43:01 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 17:46:16 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/06 05:27:30 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define _ERR_CH_TOO_SMALL 5
 # define _ERR_STD 6
 # define _ERR_CH_TOO_BIG 7
+# define _ERR_TOO_MANY_CH 8
 
 void	exit_perror(const char *name);
 void	usage(void);
@@ -28,5 +29,6 @@ void	bad_magic_number(const char *name);
 void	code_size_differ(const char *name);
 void	champion_too_small(const char *name);
 void	champion_too_big(const char *name, unsigned int len);
+void	too_many_champions(void);
 
 #endif
