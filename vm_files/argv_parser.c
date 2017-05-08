@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/06 05:30:34 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/08 02:58:23 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_argv				*parse(int argc, const char *argv[])
 	int				tmp;
 	static t_argv	ret;
 
-	ft_bzero(&ret.f, sizeof(ret.f));
+	ft_bzero(&ret, sizeof(ret));
 	--argc;
 	++argv;
 	if (argc > MAX_PLAYERS)

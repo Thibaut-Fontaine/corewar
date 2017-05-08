@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/06 05:11:24 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/08 02:15:49 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,19 @@
 
 typedef void		(*t_error)();
 
+typedef struct
+{
+	int				flag;
+	int				nd;
+	int				ns;
+	int				nv;
+}					t_opt;
+
 t_header			*open_file(const char *name, char *prog);
 t_error				error(int err);
 const char			*generate_memory(char **arena_pt);
 int					champ_num(int reset);
+int					is_there_flag(t_opt flag, int which);
 
 /*
 ** argv parsing flags.
@@ -65,14 +74,6 @@ int					champ_num(int reset);
 # define _B_ (1 << 4)
 # define _N_ (1 << 5)
 # define _STEALTH_ (1 << 6)
-
-typedef struct
-{
-	int				flag;
-	int				nd;
-	int				ns;
-	int				nv;
-}					t_opt;
 
 typedef struct
 {
