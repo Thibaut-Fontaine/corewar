@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/08 06:13:49 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/08 15:01:35 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct
 {
 	t_opt			f;
 	int				n_champs;
-	t_header		*champ[MAX_PLAYERS];
+	t_header		champ[MAX_PLAYERS];
 	const char		*arena;
 }					t_argv;
 
