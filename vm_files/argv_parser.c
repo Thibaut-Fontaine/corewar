@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/08 15:05:40 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/08 15:50:12 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,15 @@ void				get_arg(int i, t_opt *f, const char *argv[])
 		f->flag |= _STEALTH_;
 }
 
-const char		*champion_to_memory(const char *arg, t_header *current_champ)
+const char		*champion_to_memory(const char *arg, t_header *current_champ,
+		int n_players)
 {
-	char		*tmp;
+	char		*ptchamp;
 	const char	*arena;
 	t_header	*tofree;
 
-	arena = generate_memory(&tmp);
-	tofree = open_file(arg, tmp);
+	arena = generate_memory(&ptchamp, n_players);
+	tofree = open_file(arg, ptchamp);
 	*current_champ = *tofree;
 	free(tofree);
 	return (arena);
@@ -94,7 +95,8 @@ t_argv				*parse(int argc, const char *argv[])
 			get_arg(tmp, &ret.f, argv);
 		}
 		else
-			ret.arena = champion_to_memory(*argv, ret.champ + champ_num(C_));
+			ret.arena = champion_to_memory(*argv, ret.champ + champ_num(C_),
+					ret.n_champs);
 		++argv;
 		--argc;
 	}

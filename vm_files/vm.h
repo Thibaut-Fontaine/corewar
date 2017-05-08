@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/08 15:01:35 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/08 15:50:39 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct
 
 t_header			*open_file(const char *name, char *prog);
 t_error				error(int err);
-const char			*generate_memory(char **arena_pt);
+const char			*generate_memory(char **arena_pt, int n_champs);
 int					champ_num(int reset);
 int					is_there_flag(t_opt flag, int which);
 void				dump(const char *arena);
@@ -92,7 +92,7 @@ typedef unsigned int uint;
 # define CH_NUM_RESET 0
 # define C_ (CH_NUM_RESET + 1)
 # define _
-# define BYTES_PER_PLAYER (MEM_SIZE / MAX_PLAYERS)
+# define MAX_BYTES_PER_PLAYER (MEM_SIZE / MAX_PLAYERS)
 # define U_ sizeof(unsigned int)
 # define PROG_NAME_LEN_0 (PROG_NAME_LENGTH + sizeof(char))
 # define COMMENT_LEN_0 (COMMENT_LENGTH + sizeof(char))

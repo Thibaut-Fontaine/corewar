@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 21:00:55 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/08 14:56:15 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/08 16:04:10 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** return the arena.
 */
 
-const char			*generate_memory(char **arena_pt)
+const char			*generate_memory(char **arena_pt, int n_players)
 {
 	static char		arena[MEM_SIZE] = {0};
 	static int		start = 0;
@@ -26,7 +26,7 @@ const char			*generate_memory(char **arena_pt)
 	if (start < MEM_SIZE)
 	{
 		*arena_pt = (char*)arena + start;
-		start += BYTES_PER_PLAYER;
+		start += MEM_SIZE / n_players;
 	}
 	return (arena);
 }
