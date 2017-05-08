@@ -6,12 +6,12 @@
 #    By: tfontain <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 04:52:55 by tfontain          #+#    #+#              #
-#    Updated: 2017/05/08 06:56:14 by tfontain         ###   ########.fr        #
+#    Updated: 2017/05/08 07:26:00 by tfontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-CC = gcc
+CC = clang
 HEADER = ./includes/libft.h
 FLAG = -Wall -Wextra -Werror
 OPTION = -c -I $(HEADER)
