@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 03:43:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/06 04:09:04 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/08 07:16:57 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_header		*open_file(const char *name, char *prog)
 	read(fd, buf, PADDING_PROGN) != PADDING_PROGN ? error(_ERR_STD)(name) : 0;
 	if (read(fd, (void*)&(file->prog_size), U_) != U_)
 		error(_ERR_STD)(name);
-	if ((file->prog_size = swap_uint(file->prog_size)) != n)
+	if ((file->prog_size = swap_uint(file->prog_size)) != (unsigned int)n)
 		error(_ERR_CSIZE_DIFFER)(name);
 	CHAMP_MAX_SIZE < file->prog_size ? error(_ERR_CH_TOO_BIG)(name, file->prog_size) : 0;
 	if (read(fd, file->comment, COMMENT_LENGTH + 1) != COMMENT_LENGTH + 1)

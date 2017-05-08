@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 21:00:55 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/08 02:49:52 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/08 06:11:26 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ const char			*generate_memory(char **arena_pt)
 
 int			champ_num(int reset)
 {
-	static int		ret = 0;
+	static int		ret = -1;
 
 	if (reset == CH_NUM_RESET)
-		ret = 0;
+		ret = -1;
 	if (ret < MAX_PLAYERS)
 		++ret;
 	return (ret);

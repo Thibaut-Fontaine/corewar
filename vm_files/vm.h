@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/08 02:15:49 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/08 06:13:49 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ t_error				error(int err);
 const char			*generate_memory(char **arena_pt);
 int					champ_num(int reset);
 int					is_there_flag(t_opt flag, int which);
+void				dump(const char *arena);
+void				introducing_contestants(int n_champs,
+		t_header champ[MAX_PLAYERS]);
 
 /*
 ** argv parsing flags.
@@ -78,6 +81,7 @@ int					is_there_flag(t_opt flag, int which);
 typedef struct
 {
 	t_opt			f;
+	int				n_champs;
 	t_header		*champ[MAX_PLAYERS];
 	const char		*arena;
 }					t_argv;

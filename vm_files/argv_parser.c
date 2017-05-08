@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/08 02:58:23 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/08 06:12:58 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_argv				*parse(int argc, const char *argv[])
 		error(_ERR_TOO_MANY_CH)();
 	if (argc == 0)
 		error(_ERR_USAGE)();
+	ret.n_champs = argc;
 	while (argc)
 	{
 		if (argc >= 2 && (tmp = fill_flag(&ret.f, *argv)) != 0)
