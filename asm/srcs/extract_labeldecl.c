@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_token.c                                        :+:      :+:    :+:   */
+/*   parse_label.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/02 20:46:50 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/02 20:46:51 by jgagnot          ###   ########.fr       */
+/*   Created: 2017/04/27 11:17:03 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/04/27 11:17:04 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/ft_asm.h"
-
-t_tokenlist		*get_token(char *line, t_tokenlist *(*f)(const char *, t_tokenlist *token))
+# include "../includes/asm.h"
+# include <stdio.h>
+void		extract_labeldecl(t_labellist *labellist, t_parser *parser, uint32_t position)
 {
-	t_tokenlist		*token;
 	int 	i;
+	char 	*name;
 
-	token = token_init();
 	i = 0;
-	while (line[i] && ft_iswhitespace(line[i]))
+	while (parser->line[parser->current_char + i] &&
+		is_labelchar(parser->line[parser->current_char + i]))
 		i++;
-	if (line[i] == COMMENT_CHAR)
+	if (parser->line[parser->current_char + i] == LABEL_CHAR)
 	{
-		token->type = ENDL;
-		token->content = line;
+		name = ft_strsub(parser->line, parser->current_char, i);
+		printf("%s\n", name);
 	}
-	else
-		f(line + i, token);
-	return (token);
+	(void)labellist;
+	(void)position;
 }

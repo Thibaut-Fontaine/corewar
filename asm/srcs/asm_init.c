@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm_init.c                                         :+:      :+:    :+:   */
+/*   hell_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/04 14:06:46 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/04 14:06:47 by jgagnot          ###   ########.fr       */
+/*   Created: 2017/04/25 15:37:05 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/04/25 15:37:06 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/ft_asm.h"
+# include "../includes/asm.h"
 
 void	asm_init(t_asm *obj)
 {
-	if (!(obj->header = malloc(sizeof t_header)))
+	int		i;
+
+	i = 0;
+	while (i <= PROG_NAME_LENGTH)
 	{
-		obj = NULL:
-		return ;
+		obj->header.prog_name[i] = '\0';
+		i++;
 	}
-	obj->header->magic = COREWAR_EXEC_MAGIC;
-	obj->header->prog_name = NULL;
-	obj->header->prog_size = 0;
-	obj->header->comment = NULL;
+	i = 0;
+	while (i <= COMMENT_LENGTH)
+	{
+		obj->header.comment[i] = '\0';
+		i++;
+	}
 	obj->oplist = NULL;
-	obj->labels = NULL;
+	obj->labellist = NULL;
 }

@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_file.c                                       :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 16:35:59 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/03 16:36:00 by jgagnot          ###   ########.fr       */
+/*   Created: 2017/04/13 16:23:58 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/04/13 16:24:00 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/ft_asm.h"
+#ifndef PARSER_H
+# define PARSER_H
 
-
-t_asm		*parse_file(char *path)
+typedef struct	s_parser
 {
-	t_asm 	obj;
-	char 	*line;
+	char		*line;
+	int			current_line;
+	int			current_char;
+	int 		check_name;
+	int	 		check_comment;
+	int			fd;
+	uint32_t 	position;
+}				t_parser;
 
-	asm_init(&obj);
-	while (get_next_line(1, &line))
-	{
-		if (!is_empty(line))
-		{
-			if (!(obj.header->prog_name && obj.header->comment))
-				parse_start(obj.header, line);
-	//	else
-	//		generate_op_from_line(obj, line);
-		}
-	}
-	return (&obj);
-}
+#endif

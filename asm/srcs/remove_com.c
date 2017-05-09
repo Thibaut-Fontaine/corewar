@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_init.c                                       :+:      :+:    :+:   */
+/*   remove_com.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/02 20:53:33 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/02 20:53:34 by jgagnot          ###   ########.fr       */
+/*   Created: 2017/05/04 17:56:48 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/05/04 17:57:00 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/ft_asm.h"
+# include "../includes/asm.h"
 
-t_tokenlist		*token_init(void)
+void		remove_com(char **line)
 {
-	t_tokenlist 	*token;
+	int 	i;
 
-	if (!(token = malloc(sizeof(t_tokenlist))))
-		ft_putendl_fd("failed to malloc token", -1);
-	token->type = INVALID;
-	token->content = NULL;
-	token->next = NULL;
-	return (token);
+	i = 0;
+	while ((*line)[i] && (*line)[i] != COMMENT_CHAR)
+		i++;
+	if ((*line)[i] == COMMENT_CHAR)
+	{
+		if (!(*line = ft_strsub(*line, 0, i)))
+			ft_putendl_fd("Failed to sub comment removing", 2);
+	}
 }

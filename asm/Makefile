@@ -3,67 +3,69 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+         #
+#    By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/12/02 12:07:00 by mperronc          #+#    #+#              #
-#    Updated: 2017/05/02 17:24:53 by mperronc         ###   ########.fr        #
+#    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
+#    Updated: 2017/03/13 10:00:02 by jgagnot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Thanks to fdaudre- for his tutorial #
-
-SRC_PATH = src/
-
-SRC_NAME =	extract_labeldecl.c \
-			is_labelchar.c \
-			extract_indirect.c \
-			extract_direct.c \
-			extract_labeldecl.c \
-			extract_op.c \
-			extract_register.c \
-			extract_command.c \
-			test_extracts.c \
-			token_init.c \
-			ft_isendl.c \
-			get_token.c \
-			ft_error.c \
-			parse_file \
-			split_spaces.c
-
-OBJ_PATH = obj/
-
-CPPFLAGS = -Iinclude
-
-LDFLAGS = -Llibft
-LDLIBS = -lft
-
 NAME = asm
 
-CC = clang
-CFLAGS = -Werror -Wall -Wextra -g -O0
+CFLAGS = -Wall -Wextra -Werror
 
-OBJ_NAME = $(SRC_NAME:.c=.o)
+CC = gcc
 
-SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
+INCLUDES_PATH = includes/
 
-.PHONY: all, clean, fclean, re
+SRCS_PATH = srcs/
 
-all: $(NAME)
+SRCS_NAME = main.c\
+			parse.c\
+			asm_init.c\
+			parse_header.c\
+			remove_com.c\
+			ft_error.c\
+			parse_comment.c\
+			parse_name.c\
+			extract_labeldecl.c\
+			is_labelchar.c
 
-$(NAME): $(OBJ)
-	cd libft && make
-	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
+SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+OBJS_PATH = objs/
+
+OBJS_NAME = $(SRCS_NAME:.c=.o)
+
+OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
+
+LIBRARY = -lm -L libft/ -lft
+
+all: odir $(NAME)
+
+$(NAME): $(OBJS)
+	@Make -C libft
+	@echo " - Making $(NAME)"
+	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY) -g -fsanitize=address
+
+
+$(OBJS_PATH)%.o: $(SRCS_PATH)%.c
+	@echo " - Compiling $<"
+	@$(CC) $(CFLAGS) -o $@ -c $< -I$(INCLUDES_PATH)
+
+odir:
+	@mkdir -p $(OBJS_PATH)
 
 clean:
-	rm -fv $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || true
+	@Make clean -C libft
+	@echo " - Cleaning objs"
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -fv $(NAME)
+	@Make fclean -C libft
+	@echo " - Cleaning executable"
+	@rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: clean fclean re odir

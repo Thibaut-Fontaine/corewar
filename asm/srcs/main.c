@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:18:02 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/02 15:56:43 by mperronc         ###   ########.fr       */
+/*   Created: 2017/04/11 11:59:31 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/04/11 11:59:35 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_asm.h"
+# include "../includes/asm.h"
+# include <stdio.h>
 
 int		main(int ac, char **av)
 {
-	t_asm		obj;
+	t_asm		env;
 
 	if (ac != 2)
 	{
@@ -25,7 +26,8 @@ int		main(int ac, char **av)
 	}
 	if (av[1][ft_strlen(av[1]) - 1] != 's'
 			|| av[1][ft_strlen(av[1]) - 2] != '.')
-		ft_error("Invalid file name");
-	obj = parse_file(av[1]);
+		ft_putendl_fd("Invalid file name", 2);
+	env = parse(av[1]);
+	printf("name = %s, comment = %s\n", env.header.prog_name, env.header.comment);
 	return (0);
 }
