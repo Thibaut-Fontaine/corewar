@@ -21,6 +21,7 @@ INCLUDES_PATH = includes/
 SRCS_PATH = srcs/
 
 SRCS_NAME = main.c\
+			init_optab.c\
 			parse.c\
 			asm_init.c\
 			parse_header.c\
@@ -29,6 +30,9 @@ SRCS_NAME = main.c\
 			parse_comment.c\
 			parse_name.c\
 			extract_labeldecl.c\
+			extract_instruction.c\
+			add_operation.c\
+			get_operation_type.c\
 			add_label_to_list.c \
 			is_labelchar.c
 

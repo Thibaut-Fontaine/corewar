@@ -24,7 +24,6 @@ typedef	struct 			s_arglist
 {
 	char				type;
 	void				*value;
-	struct s_arglist	*prev;
 	struct s_arglist	*next;
 }						t_arglist;
 
@@ -33,6 +32,7 @@ typedef struct 			s_oplist
 	char				type;
 	size_t				size;
 	t_arglist			args;
+	struct s_oplist		*next;
 }						t_oplist;
 
 typedef struct 			s_asm

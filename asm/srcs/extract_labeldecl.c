@@ -23,8 +23,12 @@ void		extract_labeldecl(t_labellist **labellist, t_parser *parser)
 		i++;
 	if (parser->line[parser->current_char + i] == LABEL_CHAR)
 	{
-		name = ft_strsub(parser->line, parser->current_char, i);
+		if (!(name = ft_strsub(parser->line, parser->current_char, i)))
+		{
+			ft_putendl_fd("failed to malloc label name", 2);
+			exit(-1);
+		}
 		add_label_to_list(labellist, parser, name);
-		parser->current_char += i;
+		parser->current_char += i + 1;
 	}
 }
