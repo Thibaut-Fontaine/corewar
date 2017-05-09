@@ -14,4 +14,11 @@
 
 void		extract_instruction(t_oplist **oplist, t_parser *parser)
 {
+	int		i;
+	char	*op;
+
+	i = 0;
+	while (parser->line[current_char + i] &&
+		!ft_iswhitespace(parser->line[current_char + i]))
+		i++;
 }
