@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/14 21:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2016/11/20 20:03:18 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/08 06:39:00 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@ void		ft_putstr(char const *s)
 {
 	if (s != NULL)
 	{
-		while (*s)
-		{
-			ft_putchar(*s);
-			++s;
-		}
+		write(1, s, ft_strlen(s));
 	}
 }

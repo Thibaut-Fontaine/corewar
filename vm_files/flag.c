@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   flag.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/27 20:22:42 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/08 15:40:23 by tfontain         ###   ########.fr       */
+/*   Created: 2017/05/08 02:01:54 by tfontain          #+#    #+#             */
+/*   Updated: 2017/05/08 02:14:19 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./vm.h"
 
-int			main(int argc, const char *argv[])
+/*
+** function used to know if there is the current flag
+** return the value associated to this flag, or 1 if there is no associated
+** value, or -1 if the flag isn't present.
+*/
+
+int		is_there_flag(t_opt flag, int which)
 {
-	t_argv	*all;
-
-	all = parse(argc, argv);
-
-	introducing_contestants(all->n_champs, all->champ);
-	dump(all->arena);
-	return (0);
+	if ((flag.flag & which) != 0)
+	{
+		if (which == _D_)
+			return (flag.nd);
+		if (which == _S_)
+			return (flag.ns);
+		if (which == _V_)
+			return (flag.nv);
+		return (1);
+	}
+	else
+		return (-1);
 }
+
+
+
+
+
+

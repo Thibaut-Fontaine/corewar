@@ -38,4 +38,6 @@
 # resources folder and corewar files
 *.s
 *.cor
-asm/asm
+./ressources/*
+corewar
+asm

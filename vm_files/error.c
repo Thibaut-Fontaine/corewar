@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:11 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/03 20:17:26 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/06 05:27:32 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,15 @@ void		(*error(int err))()
 		return (exit_perror);
 	if (err == _ERR_CH_TOO_BIG)
 		return (champion_too_big);
+	if (err == _ERR_TOO_MANY_CH)
+		return (too_many_champions);
 	return (NULL);
+}
+
+void		too_many_champions(void)
+{
+	ft_putstr("Too many champions\n");
+	exit(-1);
 }
 
 void		exit_perror(const char *name)
