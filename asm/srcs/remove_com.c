@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/asm.h"
+#include "../includes/asm.h"
 
 void		remove_com(char **line)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while ((*line)[i] && (*line)[i] != COMMENT_CHAR)

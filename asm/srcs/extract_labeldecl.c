@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/asm.h"
-# include <stdio.h>
+#include "../includes/asm.h"
+
 void		extract_labeldecl(t_labellist **labellist, t_parser *parser)
 {
-	int 	i;
-	char 	*name;
+	int		i;
+	char	*name;
 
 	i = 0;
 	while (parser->line[parser->current_char + i] &&
