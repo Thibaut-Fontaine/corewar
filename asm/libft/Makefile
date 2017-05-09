@@ -6,7 +6,7 @@
 #    By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 12:07:00 by mperronc          #+#    #+#              #
-#    Updated: 2017/05/02 17:05:03 by mperronc         ###   ########.fr        #
+#    Updated: 2017/05/09 20:09:57 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,8 @@ SRC_NAME = 	format_char.c \
 			parse_width.c \
 			strip_sign.c \
 			ft_abs.c \
-			ft_iswhitespace.c
+			ft_iswhitespace.c \
+			ft_logbasen.c
 
 OBJ_PATH = ./obj/
 

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   generate_bytecode.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/03 18:39:04 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/09 20:10:33 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/09 19:12:49 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/09 20:12:43 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/ft_printf.h"
+#include "../includes/asm.h"
 
-size_t		ft_nbrlen(intmax_t n)
+void	generate_bytecode(t_asm *tasm, char *file)
 {
-	size_t		len;
+	int		fhandle;
 
-	len = 0;
-	if (n < 0)
-		len++;
-	while (n != 0)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
+	fhandle = open(file, O_CREAT | O_WRONLY, 0644);
+	write_header(fhandle, tasm->header);
+	close(fhandle);
 }

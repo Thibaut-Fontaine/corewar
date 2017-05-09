@@ -6,13 +6,21 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 16:08:10 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/09 16:10:07 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/09 19:44:26 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int		main(void)
+int		main(int argc, char **argv)
 {
-	return (0);
+	t_asm	*tasm;
+
+	if (argc == 2) {
+		tasm = make_example_asm();
+		generate_bytecode(tasm, argv[1]);
+	}
+	else {
+		ft_putstr_fd("Usage : ./asm [file]", 2);
+	}
 }

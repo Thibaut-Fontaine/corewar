@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 16:18:37 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/09 16:53:38 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/09 19:36:43 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #define T_DIR					2
 #define T_IND					4
 
-char	***init_optab()
+char	***init_optab(void)
 {
 	char	***optab;
 

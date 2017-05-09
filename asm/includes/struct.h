@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 17:51:44 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/09 16:20:09 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/09 19:08:13 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct 			s_asm
 {
 	t_labellist			*labellist;
 	t_oplist			*oplist;
-	t_header 			header;
+	t_header 			*header;
 	char				***optab;
 }						t_asm;
 

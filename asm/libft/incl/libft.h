@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 13:30:23 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/02 17:08:17 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/09 20:08:47 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
-size_t				ft_intlen(int n);
 size_t				ft_strlen(const char *s);
 char				*ft_strdup(const char *s1);
 char				*ft_strcpy(char *dst, const char *src);
@@ -83,6 +82,8 @@ int					ft_min2(int x, int y);
 int					ft_max2(int x, int y);
 int					ft_abs(int n);
 int					ft_iswhitespace(char c);
+size_t				ft_logbasen(intmax_t n, char base);
+size_t				ft_intlen(int n);
 
 typedef struct		s_list
 {

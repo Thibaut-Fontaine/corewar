@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   ft_logbasen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/03 18:39:04 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/09 20:10:33 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/09 20:23:29 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/ft_printf.h"
 
-size_t		ft_nbrlen(intmax_t n)
+size_t		ft_logbasen(intmax_t n, char base)
 {
 	size_t		len;
 
@@ -21,7 +21,7 @@ size_t		ft_nbrlen(intmax_t n)
 		len++;
 	while (n != 0)
 	{
-		n /= 10;
+		n /= base;
 		len++;
 	}
 	return (len);

@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   write_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/03 18:39:04 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/09 20:10:33 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/09 19:37:12 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/09 20:27:00 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/ft_printf.h"
+#include "../includes/asm.h"
 
-size_t		ft_nbrlen(intmax_t n)
+static void	write_magic(int fhandle, unsigned int magic)
 {
-	size_t		len;
+	write(fhandle, &magic, 4);
+}
 
-	len = 0;
-	if (n < 0)
-		len++;
-	while (n != 0)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
+void	write_header(int fhandle, t_header *header)
+{
+	lseek(fhandle, 0, SEEK_SET);
+	write_magic(fhandle, header->magic);
+	// write_prog_name(fhandle, header->prog_name);
+	// write_prog_size(fhandle, header->prog_size);
+	// write_comment(fhandle, header->comment);
 }
