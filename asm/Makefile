@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/03/13 10:00:02 by jgagnot          ###   ########.fr        #
+#    Updated: 2017/05/09 16:07:10 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +20,7 @@ INCLUDES_PATH = includes/
 
 SRCS_PATH = srcs/
 
-SRCS_NAME = main.c\
-			parse.c\
-			asm_init.c\
-			parse_header.c\
-			remove_com.c\
-			ft_error.c\
-			parse_comment.c\
-			parse_name.c\
-			extract_labeldecl.c\
-			is_labelchar.c
+SRCS_NAME = bytegen.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

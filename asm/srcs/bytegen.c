@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   bytegen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/13 16:23:58 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/13 16:24:00 by jgagnot          ###   ########.fr       */
+/*   Created: 2017/05/09 16:08:10 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/09 16:10:07 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include "../includes/asm.h"
 
-typedef struct	s_parser
+int		main(void)
 {
-	char		*line;
-	int			current_line;
-	int			current_char;
-	int 		check_name;
-	int	 		check_comment;
-	int			fd;
-	uint32_t 	position;
-}				t_parser;
-
-#endif
+	return (0);
+}
