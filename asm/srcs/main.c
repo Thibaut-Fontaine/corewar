@@ -29,5 +29,10 @@ int		main(int ac, char **av)
 		ft_putendl_fd("Invalid file name", 2);
 	env = parse(av[1]);
 	printf("name = %s, comment = %s\n", env.header.prog_name, env.header.comment);
+	while (env.labellist)
+	{
+		printf("label = %s\n", env.labellist->name);
+		env.labellist = env.labellist->next;
+	}
 	return (0);
 }

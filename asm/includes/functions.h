@@ -13,11 +13,13 @@
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
 
+void			add_label_to_list(t_labellist **labellist,t_parser *parser,char *name);
 int				is_labelchar(const char c);
 void			remove_com(char **line);
 void			asm_init(t_asm *obj);
 void			ft_error(char *str, t_parser *parser);
-void			extract_labeldecl(t_labellist *labellist, t_parser *parser, uint32_t position);
+void			extract_instruction(t_oplist **oplist, t_parser *parser);
+void			extract_labeldecl(t_labellist **labellist, t_parser *parser);
 void			parse_name(t_asm *obj, t_parser *parser);
 void			parse_comment(t_asm *obj, t_parser *parser);
 int				parse_header(t_asm *obj, t_parser *parser);

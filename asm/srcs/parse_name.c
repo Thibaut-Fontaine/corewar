@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/asm.h"
+#include "../includes/asm.h"
 
 void		parse_name(t_asm *obj, t_parser *parser)
 {
-	size_t		j;
+	int		j;
 
 	while (ft_iswhitespace(parser->line[parser->current_char]))
 		parser->current_char++;
@@ -22,17 +22,15 @@ void		parse_name(t_asm *obj, t_parser *parser)
 		ft_error("Expected double quotes around name", parser);
 	parser->current_char++;
 	j = 0;
-	while (parser->line[parser->current_char] && parser->line[parser->current_char] != '"')
+	while (parser->line[parser->current_char + j] &&
+		parser->line[parser->current_char + j] != '"')
 	{
 		if (j >= PROG_NAME_LENGTH)
-		{
-			ft_putendl_fd("Name to long", 2);
-			exit(-1);
-		}
-		obj->header.prog_name[j] = parser->line[parser->current_char];
+			ft_error("Name to long", parser);
+		obj->header.prog_name[j] = parser->line[parser->current_char + j];
 		j++;
-		parser->current_char++;
 	}
+	parser->current_char += j;
 	if (parser->line[parser->current_char] != '"')
 		ft_error("Expected double quotes around name", parser);
 }

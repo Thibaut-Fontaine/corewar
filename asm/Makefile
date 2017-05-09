@@ -29,6 +29,7 @@ SRCS_NAME = main.c\
 			parse_comment.c\
 			parse_name.c\
 			extract_labeldecl.c\
+			add_label_to_list.c \
 			is_labelchar.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))

@@ -12,7 +12,7 @@
 
 # include "../includes/asm.h"
 # include <stdio.h>
-void		extract_labeldecl(t_labellist *labellist, t_parser *parser, uint32_t position)
+void		extract_labeldecl(t_labellist **labellist, t_parser *parser)
 {
 	int 	i;
 	char 	*name;
@@ -24,8 +24,7 @@ void		extract_labeldecl(t_labellist *labellist, t_parser *parser, uint32_t posit
 	if (parser->line[parser->current_char + i] == LABEL_CHAR)
 	{
 		name = ft_strsub(parser->line, parser->current_char, i);
-		printf("%s\n", name);
+		add_label_to_list(labellist, parser, name);
+		parser->current_char += i;
 	}
-	(void)labellist;
-	(void)position;
 }

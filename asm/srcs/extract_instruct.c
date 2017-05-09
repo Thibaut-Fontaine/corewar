@@ -10,4 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/asm.h"
 
+void		extract_instruction(t_oplist **oplist, t_parser *parser)
+{
+}

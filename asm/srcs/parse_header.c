@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/asm.h"
+#include "../includes/asm.h"
 
 int			parse_header(t_asm *obj, t_parser *parser)
 {
@@ -34,7 +34,8 @@ int			parse_header(t_asm *obj, t_parser *parser)
 	{
 		if (parser->line[parser->current_char] == '.')
 			ft_error("invalid command name", parser);
-		ft_error("No file name or comment at the beginning of the file", parser);
+		ft_error("No file name or comment at the beginning of the file",
+			parser);
 	}
 	return (0);
 }

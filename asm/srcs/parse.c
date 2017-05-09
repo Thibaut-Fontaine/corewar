@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/asm.h"
-# include <stdio.h>
-void		parse_line(t_asm *obj, t_parser *parser)
+#include "../includes/asm.h"
+
+void			parse_line(t_asm *obj, t_parser *parser)
 {
 	parser->line = ft_strtrim(parser->line);
 	if (ft_strlen(parser->line) == 0 || parser->line[0] == COMMENT_CHAR)
@@ -21,12 +21,12 @@ void		parse_line(t_asm *obj, t_parser *parser)
 		if (parse_header(obj, parser))
 			return ;
 	remove_com(&parser->line);
-	extract_labeldecl(obj->labellist, parser, obj->position);
+	extract_labeldecl(&obj->labellist, parser);
 	while (ft_iswhitespace(parser->line[parser->current_char]))
 		parser->current_char++;
 	if (!parser->line[parser->current_char])
 		return ;
-	//extract_instruction(obj, parser);
+	extract_instruction(&obj->oplist, parser);
 }
 
 t_asm			parse(char *av)
@@ -47,5 +47,5 @@ t_asm			parse(char *av)
 		parse_line(&obj, &parser);
 		parser.line++;
 	}
-	return (obj);	
+	return (obj);
 }
