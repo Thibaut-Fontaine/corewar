@@ -18,10 +18,10 @@ typedef struct	s_parser
 	char		*line;
 	int			current_line;
 	int			current_char;
-	int 		check_name;
-	int	 		check_comment;
+	int			check_name;
+	int			check_comment;
 	int			fd;
-	uint32_t 	position;
+	uint32_t	position;
 }				t_parser;
 
 #endif
