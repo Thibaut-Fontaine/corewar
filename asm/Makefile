@@ -21,12 +21,13 @@ SRC_NAME =	extract_labeldecl.c \
 			extract_labeldecl.c \
 			extract_op.c \
 			extract_register.c \
-			extract_string.c \
 			extract_command.c \
 			test_extracts.c \
 			token_init.c \
 			ft_isendl.c \
 			get_token.c \
+			ft_error.c \
+			parse_file \
 			split_spaces.c
 
 OBJ_PATH = obj/

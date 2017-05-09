@@ -13,11 +13,16 @@
 #ifndef PROTOTYPES_H
 # define PROTOTYPES_H
 
+int						is_empty(char *str);
+t_asm					*parse_file(char *path);
+void					parse_start(t_header *header, char *line);
+void					asm_init(t_asm *obj);
+void					ft_error(char *error);
 int						is_labelchar(const char c);
 int 					ft_isendl(const char c);
 char					**split_spaces(char *str);
 t_tokenlist				*token_init(void);
-char					*extract_command(const char *str);
+int						extract_command(const char *str);
 char					*extract_direct(const char *str);
 char					*extract_indirect(const char *str);
 t_tokenlist				*extract_labeldecl(const char *str, t_tokenlist *token);

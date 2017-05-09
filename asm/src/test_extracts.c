@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/ft_asm.h"
-
+/*
 static void	test_extract(char *expected, char *str, char * (*f)(const char *))
 {
 	char	*ret;
@@ -26,10 +26,10 @@ static void	test_extract(char *expected, char *str, char * (*f)(const char *))
 	if (ret)
 		free(ret);
 }
-
+*/
 int		main(void)
 {
-
+/*
 	ft_printf(" === EXTRACTOR FUNCTIONS TESTS ===\n\n");
 
 	ft_printf(" === EXTRACT REGISTER TESTS ===\n");
@@ -77,17 +77,13 @@ int		main(void)
 	test_extract(NULL, ":", &extract_indirect);
 	test_extract(NULL, "label", &extract_indirect);
 	test_extract(":toto", ":toto sans blague", &extract_indirect);
+*/
+	t_asm 	*obj;
+	char 	*line;
 
-	char **test;
-	int 	i;
+	line = ".name yolo";
+	obj = parse_file(line);
 
-	i = 0;
-	test = split_spaces(" t les gens de bien");
-	while (test[i])
-	{
-		printf("%s\n", test[i]);
-		i++;
-	}
 /*
 	ft_printf("\n === EXTRACT OP TESTS ===\n");
 	test_extract("add", "add ", &extract_op);

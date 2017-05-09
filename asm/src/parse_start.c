@@ -29,9 +29,12 @@ void		parse_start(t_header *header, char *line)
 	char 	**str;
 
 	str = split_spaces(line);
+	if (str[0][0] == COMMENT_CHAR)
+		return ;
 	if (str[0] && extract_command(str[0]) == CMD_NAME)
-		header->prog_name = extract_string(str[1]);
+		printf("name");
+	//	header->prog_name = extract_string(str[1]);
 	else if (str[0] && extract_command(str[0]) == CMD_COMMENT)
-		header->prog_comment = extract_string(str[1]);
-	if (str[1] && str[1][0] != COMMENT_CHAR)
+		printf("comment");
+	//	header->prog_comment = extract_string(str[1]);
 }

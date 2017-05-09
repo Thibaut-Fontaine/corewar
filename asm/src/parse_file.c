@@ -23,11 +23,11 @@ t_asm		*parse_file(char *path)
 	{
 		if (!is_empty(line))
 		{
-			if (!obj->header->prog_name || !obj->header->prog_comment)
-				parse_start(obj->header, &line);
+			if (!(obj.header->prog_name && obj.header->comment))
+				parse_start(obj.header, line);
 	//	else
 	//		generate_op_from_line(obj, line);
 		}
 	}
-	return (obj);
+	return (&obj);
 }

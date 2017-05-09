@@ -15,12 +15,14 @@
 char	*extract_string(const char *str)
 {
 	int		i;
-	int		found;
+	//int		found;
 	char	*string;
 
 	i = 1;
 	found = 0;
-	while (str[i] && !found)
+	if (str[0] != STRING_CHAR)
+		ft_error("expected STRING_CHAR at the begining of string");
+	while (str[i] && str[i] != COMMENT_CHAR)
 	{
 		if (str[i] == STRING_CHAR)
 			found = 1;
