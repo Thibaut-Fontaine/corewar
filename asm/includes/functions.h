@@ -18,6 +18,7 @@ int				get_operation_type(char *str, t_parser *parser);
 void			add_operation(t_oplist **oplist, t_parser *parser, char *str);
 void			add_label_to_list(t_labellist **labellist, t_parser *parser,
 	char *name);
+void			add_argument(t_arglist *current, t_arglist *arglist);
 int				is_labelchar(const char c);
 void			remove_com(char **line);
 void			asm_init(t_asm *obj);
