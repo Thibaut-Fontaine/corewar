@@ -17,6 +17,8 @@ typedef struct 		s_param_parser
 {
 	int				opcode;
 	char			*name;
+	int				arg_num;
+	int				arg_types[3];
 	void			(*arg_parser)(char*);
 }					t_param_parser;
 

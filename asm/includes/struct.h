@@ -31,7 +31,7 @@ typedef struct			s_oplists
 {
 	char				type;
 	size_t				size;
-	t_arglist			args;
+	t_arglist			*args;
 	struct s_oplist		*next;
 }						t_oplist;
 

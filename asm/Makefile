@@ -32,6 +32,7 @@ SRCS_NAME = main.c\
 			parse_name.c\
 			extract_labeldecl.c\
 			extract_instruction.c\
+			extract_params.c\
 			add_operation.c\
 			get_operation_type.c\
 			add_label_to_list.c \

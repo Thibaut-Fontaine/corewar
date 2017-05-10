@@ -23,6 +23,8 @@ void			remove_com(char **line);
 void			asm_init(t_asm *obj);
 t_param_parser	*param_parser_init(void);
 void			ft_error(char *str, t_parser *parser);
+t_arglist		*extract_params(t_parser *parser, t_param_parser param_parser,
+	t_arglist *arglist);
 void			extract_instruction(t_oplist **oplist, t_parser *parser);
 void			extract_labeldecl(t_labellist **labellist, t_parser *parser);
 void			parse_name(t_asm *obj, t_parser *parser);
