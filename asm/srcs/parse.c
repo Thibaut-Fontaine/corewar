@@ -12,7 +12,7 @@
 
 #include "../includes/asm.h"
 
-void			parse_line(t_asm *obj, t_parser *parser)
+static void		parse_line(t_asm *obj, t_parser *parser)
 {
 	parser->line = ft_strtrim(parser->line);
 	if (ft_strlen(parser->line) == 0 || parser->line[0] == COMMENT_CHAR)

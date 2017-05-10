@@ -12,7 +12,7 @@
 
 #include "../includes/asm.h"
 
-void	print_token(t_parser *parser)
+static void	print_token(t_parser *parser)
 {
 	int		i;
 
@@ -25,7 +25,7 @@ void	print_token(t_parser *parser)
 	}
 }
 
-void	ft_error(char *str, t_parser *parser)
+void		ft_error(char *str, t_parser *parser)
 {
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd(" at line ", 2);
