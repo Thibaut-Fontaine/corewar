@@ -6,22 +6,46 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 19:37:12 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/09 20:27:00 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/10 06:41:33 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-static void	write_magic(int fhandle, unsigned int magic)
+static void	write_prog_name(int fhandle, char *prog_name)
 {
-	write(fhandle, &magic, 4);
+	int	pad;
+
+	pad = ft_strlen(prog_name);
+	ft_putstr_fd(prog_name, fhandle);
+	while (pad <= PROG_NAME_LENGTH + 3)
+	{
+		write(fhandle, "\0", 1);
+		pad++;
+	}
 }
 
-void	write_header(int fhandle, t_header *header)
+static void	write_comment(int fhandle, char *comment)
 {
+	int	pad;
+
+	pad = ft_strlen(comment);
+	ft_putstr_fd(comment, fhandle);
+	while (pad <= COMMENT_LENGTH + 3)
+	{
+		write(fhandle, "\0", 1);
+		pad++;
+	}
+}
+
+void	write_header(int fhandle, t_asm *tasm)
+{
+	t_header	*header;
+
+	header = tasm->header;
 	lseek(fhandle, 0, SEEK_SET);
-	write_magic(fhandle, header->magic);
-	// write_prog_name(fhandle, header->prog_name);
-	// write_prog_size(fhandle, header->prog_size);
-	// write_comment(fhandle, header->comment);
+	write_number32(fhandle, header->magic);
+	write_prog_name(fhandle, header->prog_name);
+	write_number32(fhandle, header->prog_size);
+	write_comment(fhandle, header->comment);
 }

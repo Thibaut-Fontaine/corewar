@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_bytecode.c                                :+:      :+:    :+:   */
+/*   write_octalcoding.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/09 19:12:49 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/10 01:55:00 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/10 04:54:52 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/10 06:41:39 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void	generate_bytecode(t_asm *tasm, char *file)
+void	write_octalcoding(int fhandle, t_oplist *op)
 {
-	int		fhandle;
+	char		code;
+	int			offset;
+	t_arglist	*arg;
 
-	fhandle = open(file, O_CREAT | O_WRONLY | O_TRUNC , 0644);
-	write_header(fhandle, tasm);
-	write_code(fhandle, tasm);
-	close(fhandle);
+	arg = op->args;
+	offset = 6;
+	while (arg != NULL)
+	{
+		code = code | (arg->type << offset);
+		offset -= 2;
+		arg = arg->next;
+	}
+	write(fhandle, &code, 1);
 }

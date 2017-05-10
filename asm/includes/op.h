@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 15:01:39 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/09 16:19:56 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/10 01:58:16 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #define DIRECT_CHAR				'%'
 #define SEPARATOR_CHAR			','
 
-#define LABEL_CHARSET				"abcdefghijklmnopqrstuvwxyz_0123456789"
+#define LABEL_CHARSET			"abcdefghijklmnopqrstuvwxyz_0123456789"
 
 #define NAME_CMD_STRING			".name"
 #define COMMENT_CMD_STRING		".comment"
@@ -41,12 +41,20 @@
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
-# define COREWAR_EXEC_MAGIC		0xea83f3
+# define COREWAR_EXEC_MAGIC		0xef3d14
 
 #define T_REG					1
 #define T_DIR					2
 #define T_IND					4
 #define T_LAB					8
+
+#define OPCODE					0
+#define NAME					1
+#define ARGS					2
+#define CARRYFLAG				3
+#define OCTALFLAG				4
+#define CYCLES					5
+#define LABELSIZE				6
 
 typedef struct 					s_header
 {

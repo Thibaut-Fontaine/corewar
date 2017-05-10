@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   write_code.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/13 15:10:31 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/09 20:54:29 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/10 01:46:52 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/10 01:58:22 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include "../includes/asm.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stddef.h>
+void	write_code(int fhandle, t_asm *tasm)
+{
+	t_oplist	*iter;
 
-#include <stdio.h>
-
-# include "../libft/incl/libft.h"
-
-# include "op.h"
-# include "struct.h"
-# include "functions.h"
-
-#endif
+	iter = tasm->oplist;
+	while (iter != NULL)
+	{
+		write_op(fhandle, iter, tasm);
+		iter = iter->next;
+	}
+}

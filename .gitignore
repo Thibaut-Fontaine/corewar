@@ -39,3 +39,4 @@
 *.s
 *.cor
 ./asm/asm
+asm_ref

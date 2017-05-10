@@ -6,23 +6,11 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 16:18:37 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/09 19:36:43 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/10 05:32:22 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
-
-#define OPCODE		0
-#define NAME		1
-#define ARGS		2
-#define CARRYFLAG	3
-#define OCTALFLAG	4
-#define CYCLES		5
-#define LABELSIZE	6
-
-#define T_REG					1
-#define T_DIR					2
-#define T_IND					4
 
 char	***init_optab(void)
 {
