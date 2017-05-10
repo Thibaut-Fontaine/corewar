@@ -14,13 +14,14 @@
 # define FUNCTIONS_H
 
 char			***init_optab(void);
-int				get_operation_type(char *str);
+int				get_operation_type(char *str, t_parser *parser);
 void			add_operation(t_oplist **oplist, t_parser *parser, char *str);
 void			add_label_to_list(t_labellist **labellist, t_parser *parser,
 	char *name);
 int				is_labelchar(const char c);
 void			remove_com(char **line);
 void			asm_init(t_asm *obj);
+t_param_parser	*param_parser_init(void);
 void			ft_error(char *str, t_parser *parser);
 void			extract_instruction(t_oplist **oplist, t_parser *parser);
 void			extract_labeldecl(t_labellist **labellist, t_parser *parser);

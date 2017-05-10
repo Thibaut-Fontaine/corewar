@@ -14,7 +14,6 @@
 
 static void		parse_line(t_asm *obj, t_parser *parser)
 {
-	parser->line = ft_strtrim(parser->line);
 	if (ft_strlen(parser->line) == 0 || parser->line[0] == COMMENT_CHAR)
 		return ;
 	if (!parser->check_name || !parser->check_comment)
@@ -29,6 +28,18 @@ static void		parse_line(t_asm *obj, t_parser *parser)
 	extract_instruction(&obj->oplist, parser);
 }
 
+/*
+t_param_parser	*param_parser_init(void)
+{
+	t_param_parser 	*tmp;
+
+	tmp = malloc(sizeof(t_param_parser) * 17);
+	tmp[0] = (t_param_parser){0, NULL, to_remove};
+	tmp[1] = (t_param_parser){1, "sti", to_remove};
+	ft_putendl(tmp[1].name);
+	return (tmp);
+}
+*/
 t_asm			parse(char *av)
 {
 	t_parser	parser;
@@ -38,6 +49,7 @@ t_asm			parse(char *av)
 	parser.position = 0;
 	parser.check_name = 0;
 	parser.check_comment = 0;
+	parser.param_parser = param_parser_init();
 	asm_init(&obj);
 	if ((parser.fd = open(av, O_RDONLY)) == -1)
 		ft_putendl_fd("failed to open file", 2);

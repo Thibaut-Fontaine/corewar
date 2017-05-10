@@ -24,6 +24,7 @@ SRCS_NAME = main.c\
 			init_optab.c\
 			parse.c\
 			asm_init.c\
+			param_parser_init.c\
 			parse_header.c\
 			remove_com.c\
 			ft_error.c\

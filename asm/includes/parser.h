@@ -13,15 +13,23 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-typedef struct	s_parser
+typedef struct 		s_param_parser
 {
-	char		*line;
-	int			current_line;
-	int			current_char;
-	int			check_name;
-	int			check_comment;
-	int			fd;
-	uint32_t	position;
-}				t_parser;
+	int				opcode;
+	char			*name;
+	void			(*arg_parser)(char*);
+}					t_param_parser;
+
+typedef struct		s_parser
+{
+	char			*line;
+	int				current_line;
+	int				current_char;
+	int				check_name;
+	int				check_comment;
+	int				fd;
+	uint32_t		position;
+	t_param_parser	*param_parser;
+}					t_parser;
 
 #endif
