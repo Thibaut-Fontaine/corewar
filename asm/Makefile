@@ -6,7 +6,7 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/05/09 19:41:38 by mperronc         ###   ########.fr        #
+#    Updated: 2017/05/11 22:43:14 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,12 @@ SRCS_NAME = bytegen.c \
 			generate_bytecode.c \
 			init_optab.c \
 			make_example_asm.c \
-			write_header.c
+			write_args.c \
+			write_code.c \
+			write_header.c \
+			write_number.c \
+			write_octalcoding.c \
+			write_op.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

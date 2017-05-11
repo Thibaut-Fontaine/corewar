@@ -6,11 +6,28 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:58:08 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/11 17:50:54 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/11 23:22:13 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
+
+#define LIVE	1
+#define LD		2
+#define ST		3
+#define ADD 	4
+#define SUB 	5
+#define AND 	6
+#define OR		7
+#define XOR 	8
+#define ZJMP 	9
+#define LDI		10
+#define STI 	11
+#define FORK 	12
+#define LLD 	13
+#define LLDI 	14
+#define LFORK 	15
+#define AFF 	16
 
 static t_header	*make_example_header(void)
 {
@@ -25,87 +42,65 @@ static t_header	*make_example_header(void)
 	return (header);
 }
 
-static t_arglist *add_arg(char *arg)
-{
-	char		**farg;
-	t_arglist	*larg;
-
-	larg = (t_arglist *)malloc(sizeof(t_arglist));
-	farg = ft_strsplit(arg, ':');
-	if (ft_strcmp(farg[0], "reg") == 0)
-		larg->type = 1;
-	else if (ft_strcmp(farg[0], "dir") == 0)
-		larg->type = 2;
-	else if (ft_strcmp(farg[0], "indir") == 0)
-		larg->type = 3;
-	larg->value = ft_strdup(farg[1]);
-	larg->next = NULL;
-	free(farg[0]);
-	free(farg[1]);
-	free(farg);
-	return larg;
-}
-
-static t_arglist *add_args(char *args)
-{
-	t_arglist	*list;
-	t_arglist	*tmp;
-	char 		**arg_tab;
-	int			i;
-
-	arg_tab = ft_strsplit(args, ',');
-	list = add_arg(arg_tab[0]);
-	tmp = list->next;
-	i = 1;
-	while (arg_tab[i])
-	{
-		tmp = add_arg(arg_tab[i]);
-		tmp = tmp->next;
-		i++;
-	}
-	return (list);
-}
-
-static t_oplist *add_op(char code, size_t size, char *args)
-{
-	t_oplist *op;
-
-	op = (t_oplist *)malloc(sizeof(t_oplist));
-	op->type = code;
-	op->size = size;
-	op->args = add_args(args);
-	op->next = NULL;
-	return (op);
-}
-
 static t_oplist	*make_example_oplist(void)
 {
-	t_oplist	*oplist;
-	t_oplist	*tmp;
+	t_oplist	*head;
+	t_oplist	*new;
 
-	oplist = add_op(1, 5, "reg:1");
-	tmp = oplist->next;
-	tmp = add_op(4, 5, "reg:1,reg:2,reg:3");
-	return (oplist);
+	head = (t_oplist *)malloc(sizeof(t_oplist));
+	new = head;
+
+	// OP 1
+	new->type = LIVE;
+	new->size = 3;
+		//ARG 1
+	new->args = (t_arglist *)malloc(sizeof (t_arglist));
+	new->args->type = T_DIR;
+	new->args->value = ft_strdup("%42");
+	new->args->next = NULL;
+
+	new->next = (t_oplist *)malloc(sizeof(t_arglist));
+	new = new->next;
+
+	// OP 2
+	new->type = AND;
+	new->size = 9;
+		//ARG 1
+	new->args = (t_arglist *)malloc(sizeof (t_arglist));
+	new->args->type = T_DIR;
+	new->args->value = ft_strdup("%42");
+
+	new->args->next = (t_arglist *)malloc(sizeof (t_arglist));
+	new->args = new->args->next;
+		// ARG 2
+	new->args->type = T_IND;
+	new->args->value = ft_strdup("77");
+
+	new->args->next = (t_arglist *)malloc(sizeof (t_arglist));
+	new->args = new->args->next;
+		// ARG 3
+	new->args->type = T_REG;
+	new->args->value = ft_strdup("r3");
+	new->args->next = NULL;
+
+	new->next = NULL;
+	return (head);
 }
 
-static t_labellist	*add_label(char *name, uint32_t pos)
+static t_labellist *make_example_labellist(void)
 {
-	t_labellist	*label;
+	t_labellist	*head;
+	t_labellist *new;
 
-	label = (t_labellist *)malloc(sizeof(t_labellist));
-	label->name = ft_strdup(name);
-	label->abs_pos = pos;
-	label->next = NULL;
-	return (label);
-}
+	head = (t_labellist *)malloc(sizeof(t_labellist));
+	new = head;
 
-static t_labellist	*make_example_labellist(void)
-{
-	t_labellist	*labellist;
+	// Label 1
+	new->name = ft_strdup("main");
+	new->abs_pos = 0;
+	new->next = NULL;
 
-	labellist = add_label("main", 0);
-	return (labellist);
+	return (head);
 }
 
 t_asm	*make_example_asm(void)
