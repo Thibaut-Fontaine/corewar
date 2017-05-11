@@ -24,13 +24,14 @@ void			remove_com(char **line);
 void			asm_init(t_asm *obj);
 t_param_parser	*param_parser_init(void);
 void			ft_error(char *str, t_parser *parser);
-t_arglist		*extract_params(t_parser *parser, t_param_parser param_parser,
-	t_arglist *arglist);
+t_arglist		*extract_params(t_parser *parser, t_param_parser param_parser);
 void			extract_instruction(t_oplist **oplist, t_parser *parser);
 void			extract_labeldecl(t_labellist **labellist, t_parser *parser);
+int				get_arg_type(t_parser *parser);
 void			parse_name(t_asm *obj, t_parser *parser);
 void			parse_comment(t_asm *obj, t_parser *parser);
 int				parse_header(t_asm *obj, t_parser *parser);
+t_arglist		*parse_argument(t_parser *parser, t_param_parser param_parser);
 t_asm			parse(char *av);
 
 #endif

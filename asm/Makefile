@@ -36,7 +36,9 @@ SRCS_NAME = main.c\
 			add_operation.c\
 			get_operation_type.c\
 			add_label_to_list.c \
-			is_labelchar.c
+			is_labelchar.c\
+			parse_argument.c\
+			get_arg_type.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
