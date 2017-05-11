@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 01:52:18 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/10 06:41:22 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:42:40 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	write_op(int fhandle, t_oplist *op, t_asm *tasm)
 	write(fhandle, &(op->type), 1);
 	if (ft_strcmp(tasm->optab[(int)op->type][OCTALFLAG], "1") == 0)
 		write_octalcoding(fhandle, op);
-	write_args(fhandle, op->args, bytes_written, tasm);
+	write_args(fhandle, op, bytes_written, tasm);
 	bytes_written += op->size;
 }

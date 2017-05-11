@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 06:31:49 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/10 06:52:54 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:50:49 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,34 @@ static int	get_offset(char	*value, size_t bw, t_labellist *table)
 	return (bw - label->abs_pos);
 }
 
-static void	write_arg(int fd, t_arglist *arg, size_t bytes_written, t_asm *tasm)
+static void	write_arg(int fd, t_arglist *arg, size_t bytes_written, t_asm *tasm, t_oplist *op)
 {
 	if (arg->type == 1)
 		write(fd, &(arg->value), 1);
 	else if (arg->type == 2)
 	{
 		if (arg->value[1] == ':')
-			write_number32(fd, get_offset(arg->value, bytes_written, tasm->labellist));
+			write_number(fd, get_offset(arg->value, bytes_written, tasm->labellist), (size_t) tasm->optab[(int) op->type][LABELSIZE]);
 		else
-			write_number32(fd, ft_atoi(&(arg->value[1])));
+			write_number(fd, ft_atoi(&(arg->value[1])), 2);
+	}
+	else
+	{
+		if (arg->value[0] == ':')
+			write_number(fd, get_offset(arg->value, bytes_written, tasm->labellist), 2);
+		else
+			write_number(fd, ft_atoi(&(arg->value[1])), 2);
 	}
 }
 
-void	write_args(int fd, t_arglist *args, size_t bytes_written, t_asm *tasm)
+void	write_args(int fd, t_oplist *op, size_t bytes_written, t_asm *tasm)
 {
 	t_arglist	*arg;
 
-	arg = args;
+	arg = op->args;
 	while (arg != NULL)
 	{
-		write_arg(fd, arg, bytes_written, tasm);
+		write_arg(fd, arg, bytes_written, tasm, op);
 		arg = arg->next;
 	}
 }

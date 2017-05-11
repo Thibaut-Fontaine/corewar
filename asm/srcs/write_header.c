@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 19:37:12 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/10 06:41:33 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:40:17 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	write_header(int fhandle, t_asm *tasm)
 
 	header = tasm->header;
 	lseek(fhandle, 0, SEEK_SET);
-	write_number32(fhandle, header->magic);
+	write_number(fhandle, header->magic, 4);
 	write_prog_name(fhandle, header->prog_name);
-	write_number32(fhandle, header->prog_size);
+	write_number(fhandle, header->prog_size, 4);
 	write_comment(fhandle, header->comment);
 }
