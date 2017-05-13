@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 03:54:02 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/08 07:34:58 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/09 18:38:04 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,15 @@ void		introducing_contestants(int n_champs, t_header champ[MAX_PLAYERS])
 		ft_putstr("\") !\n");
 		++i;
 	}
+}
+
+/*
+** print the winner champion as following :
+** Contestant 2, "Celebration Funebre v0.99pl42", has won !
+*/
+
+void		display_winner(int champ_number, t_header champ[MAX_PLAYERS])
+{
+	ft_printf("Contestant %d, \"%s\", has won !\n",
+			champ_number, champ[champ_number - 1].prog_name);
 }
