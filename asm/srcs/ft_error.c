@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/asm.h"
+#include "../includes/asm.h"
 
-void	print_token(t_parser *parser)
+static void	print_token(t_parser *parser)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
-	while(parser->line[parser->current_char + i] &&
+	while (parser->line[parser->current_char + i] &&
 		!ft_iswhitespace(parser->line[parser->current_char + i]))
 	{
 		ft_putchar_fd(parser->line[parser->current_char + i], 2);
@@ -25,7 +25,7 @@ void	print_token(t_parser *parser)
 	}
 }
 
-void	ft_error(char *str, t_parser *parser)
+void		ft_error(char *str, t_parser *parser)
 {
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd(" at line ", 2);
@@ -35,4 +35,4 @@ void	ft_error(char *str, t_parser *parser)
 	print_token(parser);
 	ft_putendl_fd("]", 2);
 	exit(-1);
-} 
+}

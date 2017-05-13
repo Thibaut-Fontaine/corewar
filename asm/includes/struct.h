@@ -13,33 +13,33 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef struct 			s_labellist
+typedef struct			s_labellist
 {
 	char				*name;
 	uint32_t			abs_pos;
-	struct s_labellist 	*next;
+	struct s_labellist	*next;
 }						t_labellist;
 
-typedef	struct 			s_arglist
+typedef	struct			s_arglist
 {
 	char				type;
 	void				*value;
-	struct s_arglist	*prev;
 	struct s_arglist	*next;
 }						t_arglist;
 
-typedef struct 			s_oplist
+typedef struct			s_oplists
 {
 	char				type;
 	size_t				size;
-	t_arglist			args;
+	t_arglist			*args;
+	struct s_oplist		*next;
 }						t_oplist;
 
-typedef struct 			s_asm
+typedef struct			s_asm
 {
 	t_labellist			*labellist;
 	t_oplist			*oplist;
-	t_header 			header;
+	t_header			header;
 }						t_asm;
 
 #endif

@@ -21,15 +21,24 @@ INCLUDES_PATH = includes/
 SRCS_PATH = srcs/
 
 SRCS_NAME = main.c\
+			init_optab.c\
 			parse.c\
 			asm_init.c\
+			param_parser_init.c\
 			parse_header.c\
 			remove_com.c\
 			ft_error.c\
 			parse_comment.c\
 			parse_name.c\
 			extract_labeldecl.c\
-			is_labelchar.c
+			extract_instruction.c\
+			extract_params.c\
+			add_operation.c\
+			get_operation_type.c\
+			add_label_to_list.c \
+			is_labelchar.c\
+			parse_argument.c\
+			get_arg_type.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

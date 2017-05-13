@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/asm.h"
-# include <stdio.h>
-void		extract_labeldecl(t_labellist *labellist, t_parser *parser, uint32_t position)
+#include "../includes/asm.h"
+
+void		extract_labeldecl(t_labellist **labellist, t_parser *parser)
 {
-	int 	i;
-	char 	*name;
+	int		i;
+	char	*name;
 
 	i = 0;
 	while (parser->line[parser->current_char + i] &&
@@ -23,9 +23,12 @@ void		extract_labeldecl(t_labellist *labellist, t_parser *parser, uint32_t posit
 		i++;
 	if (parser->line[parser->current_char + i] == LABEL_CHAR)
 	{
-		name = ft_strsub(parser->line, parser->current_char, i);
-		printf("%s\n", name);
+		if (!(name = ft_strsub(parser->line, parser->current_char, i)))
+		{
+			ft_putendl_fd("failed to malloc label name", 2);
+			exit(-1);
+		}
+		add_label_to_list(labellist, parser, name);
+		parser->current_char += i + 1;
 	}
-	(void)labellist;
-	(void)position;
 }
