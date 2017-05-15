@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 06:37:33 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/11 17:39:40 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/15 14:54:43 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,6 @@ void	write_number(int handle, unsigned int number, size_t size)
 		write_number16(handle, (unsigned short) number);
 	else if (size == 4)
 		write_number32(handle, number);
+	else if (size == 1)
+		write(handle, &number, 1);
 }

@@ -6,13 +6,13 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/05/11 22:43:14 by mperronc         ###   ########.fr        #
+#    Updated: 2017/05/15 12:56:38 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = asm
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 CC = gcc
 
@@ -46,8 +46,7 @@ all: odir $(NAME)
 $(NAME): $(OBJS)
 	@Make -C libft
 	@echo " - Making $(NAME)"
-	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY) -g -fsanitize=address
-
+	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@echo " - Compiling $<"

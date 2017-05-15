@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:58:08 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/11 23:22:13 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/15 14:29:15 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_header	*make_example_header(void)
 	header = (t_header *)malloc(sizeof(t_header));
 	header->magic = COREWAR_EXEC_MAGIC;
 	ft_strcpy(header->prog_name, "Olala");
-	header->prog_size = 5;
+	header->prog_size = 14;
 	ft_strcpy(header->comment, "Topkek");
 
 	return (header);
@@ -51,39 +51,19 @@ static t_oplist	*make_example_oplist(void)
 	new = head;
 
 	// OP 1
-	new->type = LIVE;
-	new->size = 3;
+	new->type = LD;
+	new->size = 5;
 		//ARG 1
 	new->args = (t_arglist *)malloc(sizeof (t_arglist));
-	new->args->type = T_DIR;
-	new->args->value = ft_strdup("%42");
-	new->args->next = NULL;
-
-	new->next = (t_oplist *)malloc(sizeof(t_arglist));
-	new = new->next;
-
-	// OP 2
-	new->type = AND;
-	new->size = 9;
-		//ARG 1
-	new->args = (t_arglist *)malloc(sizeof (t_arglist));
-	new->args->type = T_DIR;
-	new->args->value = ft_strdup("%42");
-
-	new->args->next = (t_arglist *)malloc(sizeof (t_arglist));
-	new->args = new->args->next;
-		// ARG 2
 	new->args->type = T_IND;
-	new->args->value = ft_strdup("77");
+	new->args->value = ft_strdup(":toto");
 
 	new->args->next = (t_arglist *)malloc(sizeof (t_arglist));
-	new->args = new->args->next;
-		// ARG 3
-	new->args->type = T_REG;
-	new->args->value = ft_strdup("r3");
-	new->args->next = NULL;
-
+	new->args->next->type = T_REG;
+	new->args->next->value = ft_strdup("r3");
+	new->args->next->next = NULL;
 	new->next = NULL;
+
 	return (head);
 }
 
@@ -98,6 +78,11 @@ static t_labellist *make_example_labellist(void)
 	// Label 1
 	new->name = ft_strdup("main");
 	new->abs_pos = 0;
+	new->next = (t_labellist *)malloc(sizeof(t_labellist));
+	new = new->next;
+
+	new->name = ft_strdup("toto");
+	new->abs_pos = 5;
 	new->next = NULL;
 
 	return (head);
