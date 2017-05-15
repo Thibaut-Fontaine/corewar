@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 11:22:28 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/15 13:08:05 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,24 @@
 */
 
 int				run(t_argv info)
+{
+	size_t		n;
+	t_plst		*head;
+	t_plst		*cur;
+
+	head = init_process(info);
+	cur = head;
+	n = 0;
+	while (n < CYCLE_TO_DIE)
+	{
+		
+		++n;
+	}
+	return (0);
+}
+
+
+int				toast_func(t_argv info) // to remove
 {
 	//size_t	n;
 	t_plst		*headd;
