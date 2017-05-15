@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 13:08:05 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/15 16:05:59 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,22 @@ int				run(t_argv info)
 	return (0);
 }
 
+/*
+** execute the register onto which there is the current processus
+** see processus->pc;
+*/
+
+int				execute_process(t_process proc, const char *arena)
+{
+	if (proc.wait > 0)
+	{
+		--proc.wait;
+		proc.pc = (proc.pc + 1) % MEM_SIZE; // modulo pour l'arena
+	}
+	else
+		;//arena[proc.pc]; donne l'opcode
+	return (0); //
+}
 
 int				toast_func(t_argv info) // to remove
 {
