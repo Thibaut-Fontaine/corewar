@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 11:26:21 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/15 14:23:12 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ t_argv				*parse(int argc, const char *argv[])
 	ft_bzero(&ret, sizeof(ret));
 	--argc;
 	++argv;
-	if (argc > MAX_PLAYERS)
+	ret.n_champs = count_champions(argc, argv);
+	if (ret.n_champs > MAX_PLAYERS)
 		error(_ERR_TOO_MANY_CH)();
-	argc == 0 ? error(_ERR_USAGE)() : 0;
-	ret.n_champs = argc;
+	ret.n_champs == 0 ? error(_ERR_USAGE)() : 0;
 	while (argc)
 	{
 		if (argc >= 2 && (tmp = fill_flag(&ret.f, *argv)) != 0)

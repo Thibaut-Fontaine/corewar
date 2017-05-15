@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 11:20:24 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/15 13:49:31 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct
 }					t_argv;
 
 t_argv				*parse(int argc, const char *argv[]);
+int					count_champions(int argc, const char *argv[]);
 typedef unsigned int uint;
 
 typedef struct
