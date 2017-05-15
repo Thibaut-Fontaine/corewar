@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 10:59:43 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/15 11:20:41 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,22 @@ t_plst		*init_process(t_argv info)
 ** because the last process is the first to be executed.
 */
 
-add_process()
+void	add_process(t_plst **head, t_plst *to_fork, int pc)
 {
+	size_t	reg;
+	t_plst	*new;
+
+	if ((new = malloc(sizeof(t_plst))) == NULL)
+		error(_ERR_STD)(NULL);
+	reg = 0;
+	while (reg < REG_NUMBER)
+	{
+		ft_memmove(new->proc.reg[reg], to_fork->proc.reg[reg], REG_SIZE);
+		++reg;
+	}
+	new->proc.pc = pc;
+	new->proc.carry = to_fork->proc.carry;
+	new->proc.wait = 0;
+	new->nxt = *head;
+	*head = new;
 }
