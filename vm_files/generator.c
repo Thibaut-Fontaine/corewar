@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 21:00:55 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 07:21:08 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/15 11:24:11 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ const char			*generate_memory(char **arena_pt, int n_players)
 ** return 0 to MAX_PLAYERS - 1
 */
 
-int			champ_num(int reset)
+int					champ_num(int reset)
 {
 	static int		ret = -1;
 

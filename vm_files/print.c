@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 03:54:02 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/09 18:38:04 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/15 11:27:15 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static float	ft_sqrt(float num)
 
 void			dump(const char *arena)
 {
-	int		sq;
-	int		i;
+	int			sq;
+	int			i;
 
 	sq = ft_sqrt(MEM_SIZE);
 	i = 0;
@@ -59,9 +59,10 @@ void			dump(const char *arena)
 ** etc.
 */
 
-void		introducing_contestants(int n_champs, t_header champ[MAX_PLAYERS])
+void			introducing_contestants(int n_champs,
+		t_header champ[MAX_PLAYERS])
 {
-	int		i;
+	int			i;
 
 	ft_putstr("Introducing contestants...\n");
 	i = 0;
@@ -85,7 +86,7 @@ void		introducing_contestants(int n_champs, t_header champ[MAX_PLAYERS])
 ** Contestant 2, "Celebration Funebre v0.99pl42", has won !
 */
 
-void		display_winner(int champ_number, t_header champ[MAX_PLAYERS])
+void			display_winner(int champ_number, t_header champ[MAX_PLAYERS])
 {
 	ft_printf("Contestant %d, \"%s\", has won !\n",
 			champ_number, champ[champ_number - 1].prog_name);

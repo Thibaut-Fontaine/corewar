@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/08 15:50:12 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/15 11:26:21 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void				get_arg(int i, t_opt *f, const char *argv[])
 		f->flag |= _STEALTH_;
 }
 
-const char		*champion_to_memory(const char *arg, t_header *current_champ,
-		int n_players)
+const char			*champion_to_memory(const char *arg,
+		t_header *current_champ, int n_players)
 {
-	char		*ptchamp;
-	const char	*arena;
-	t_header	*tofree;
+	char			*ptchamp;
+	const char		*arena;
+	t_header		*tofree;
 
 	arena = generate_memory(&ptchamp, n_players);
 	tofree = open_file(arg, ptchamp);
@@ -83,8 +83,7 @@ t_argv				*parse(int argc, const char *argv[])
 	++argv;
 	if (argc > MAX_PLAYERS)
 		error(_ERR_TOO_MANY_CH)();
-	if (argc == 0)
-		error(_ERR_USAGE)();
+	argc == 0 ? error(_ERR_USAGE)() : 0;
 	ret.n_champs = argc;
 	while (argc)
 	{

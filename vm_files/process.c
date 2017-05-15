@@ -6,15 +6,15 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 11:20:41 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/15 11:27:56 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./vm.h"
 
-void		fill_process_init(t_plst *cur, int n_champs, int i)
+void			fill_process_init(t_plst *cur, int n_champs, int i)
 {
-	size_t	reg;
+	size_t		reg;
 
 	reg = 0;
 	while (reg < REG_NUMBER)
@@ -30,11 +30,11 @@ void		fill_process_init(t_plst *cur, int n_champs, int i)
 ** finishing with the first.
 */
 
-t_plst		*init_process(t_argv info)
+t_plst			*init_process(t_argv info)
 {
-	t_plst	*head;
-	t_plst	*cur;
-	int		i;
+	t_plst		*head;
+	t_plst		*cur;
+	int			i;
 
 	head = NULL;
 	i = 0;
@@ -62,10 +62,10 @@ t_plst		*init_process(t_argv info)
 ** because the last process is the first to be executed.
 */
 
-void	add_process(t_plst **head, t_plst *to_fork, int pc)
+void			add_process(t_plst **head, t_plst *to_fork, int pc)
 {
-	size_t	reg;
-	t_plst	*new;
+	size_t		reg;
+	t_plst		*new;
 
 	if ((new = malloc(sizeof(t_plst))) == NULL)
 		error(_ERR_STD)(NULL);
