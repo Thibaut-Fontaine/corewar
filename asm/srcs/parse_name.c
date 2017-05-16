@@ -27,7 +27,7 @@ void		parse_name(t_asm *obj, t_parser *parser)
 	{
 		if (j >= PROG_NAME_LENGTH)
 			ft_error("Name to long", parser);
-		obj->header.prog_name[j] = parser->line[parser->current_char + j];
+		obj->header->prog_name[j] = parser->line[parser->current_char + j];
 		j++;
 	}
 	parser->current_char += j;

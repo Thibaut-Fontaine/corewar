@@ -27,7 +27,7 @@ void		parse_comment(t_asm *obj, t_parser *parser)
 	{
 		if (j >= COMMENT_LENGTH)
 			ft_error("Comment to long", parser);
-		obj->header.comment[j] = parser->line[parser->current_char + j];
+		obj->header->comment[j] = parser->line[parser->current_char + j];
 		j++;
 	}
 	parser->current_char += j;

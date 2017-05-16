@@ -48,6 +48,14 @@
 # define T_IND					4
 # define T_LAB					8
 
+# define OPCODE					0
+# define NAME					1
+# define ARGS					2
+# define CARRYFLAG				3
+# define OCTALFLAG				4
+# define CYCLES					5
+# define LABELSIZE				6
+
 typedef struct					s_header
 {
 	unsigned int					magic;

@@ -16,6 +16,7 @@
 int		main(int ac, char **av)
 {
 	t_asm		env;
+	char		*name;
 
 	if (ac != 2)
 	{
@@ -28,11 +29,7 @@ int		main(int ac, char **av)
 			|| av[1][ft_strlen(av[1]) - 2] != '.')
 		ft_putendl_fd("Invalid file name", 2);
 	env = parse(av[1]);
-	printf("name = %s, comment = %s\n", env.header.prog_name, env.header.comment);
-	while (env.labellist)
-	{
-		printf("label = %s\n", env.labellist->name);
-		env.labellist = env.labellist->next;
-	}
+	name = ft_strcat(av[1], ".cor");
+	generate_bytecode(&env, name);
 	return (0);
 }

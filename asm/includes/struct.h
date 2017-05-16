@@ -40,7 +40,8 @@ typedef struct			s_asm
 {
 	t_labellist			*labellist;
 	t_oplist			*oplist;
-	t_header			header;
+	t_header			*header;
+	char				***optab;
 }						t_asm;
 
 #endif

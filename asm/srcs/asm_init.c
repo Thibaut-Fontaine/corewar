@@ -17,17 +17,24 @@ void	asm_init(t_asm *obj)
 	int		i;
 
 	i = 0;
+	if (!(obj->header = malloc(sizeof(t_header))))
+	{
+		ft_putendl_fd("failed to malloc header", 2);
+		exit (-1);
+	}
+	obj->header->magic = COREWAR_EXEC_MAGIC;
 	while (i <= PROG_NAME_LENGTH)
 	{
-		obj->header.prog_name[i] = '\0';
+		obj->header->prog_name[i] = '\0';
 		i++;
 	}
 	i = 0;
 	while (i <= COMMENT_LENGTH)
 	{
-		obj->header.comment[i] = '\0';
+		obj->header->comment[i] = '\0';
 		i++;
 	}
 	obj->oplist = NULL;
 	obj->labellist = NULL;
+	obj->optab = init_optab();
 }

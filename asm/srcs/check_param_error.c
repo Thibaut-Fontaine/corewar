@@ -17,6 +17,8 @@ void	check_param_format(t_arglist *arg, t_parser *parser)
 	int		i;
 
 	i = 0;
+	if (arg->value[0] == '-')
+		i++;
 	while (arg->value[i])
 	{
 		if (!(ft_isdigit(arg->value[i])))

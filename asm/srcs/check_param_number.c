@@ -31,5 +31,6 @@ void		check_param_number(t_arglist *args, t_parser *parser, int num)
 		ft_putstr_fd(" arguments at line: ", 2);
 		ft_putnbr_fd(parser->current_line, 2);
 		write(2, "\n", 1);
+		exit(-1);
 	}
 }

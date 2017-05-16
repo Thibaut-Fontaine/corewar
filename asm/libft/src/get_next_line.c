@@ -3,88 +3,111 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/10 09:11:49 by mperronc          #+#    #+#             */
-/*   Updated: 2016/02/15 18:43:00 by mperronc         ###   ########.fr       */
+/*   Created: 2014/12/29 11:42:08 by jgagnot           #+#    #+#             */
+/*   Updated: 2015/03/30 16:20:52 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/libft.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-static int		look_for_endl(char **log, char **line)
+static	t_stk	*stk_line(int const fd, t_list **ptr)
 {
-	char	*endl_ptr;
-	char	*updated_log;
+	t_list	*lst;
+	t_stk	stk;
 
-	if (*log)
+	lst = *ptr;
+	while (lst)
 	{
-		endl_ptr = ft_strchr(*log, '\n');
-		if (endl_ptr)
-		{
-			*endl_ptr = '\0';
-			*line = ft_strdup(*log);
-			endl_ptr++;
-			if (*endl_ptr != 0)
-			{
-				updated_log = ft_strdup(endl_ptr);
-				ft_strdel(log);
-				*log = updated_log;
-			}
-			else
-				ft_strdel(log);
-			return (1);
-		}
+		if (((t_stk*)(lst->content))->stk_fd == fd)
+			return (lst->content);
+		lst = lst->next;
 	}
-	return (0);
+	stk.stk_fd = fd;
+	stk.stk_str = ft_strnew(BUFF_SIZE);
+	if (!stk.stk_str || !(lst = ft_lstnew(&stk, sizeof(t_stk))))
+	{
+		free(stk.stk_str);
+		return (NULL);
+	}
+	ft_lstadd(ptr, lst);
+	return ((*ptr)->content);
 }
 
-static int		read_more(int fd, char **log, int *read_ret)
+static int		read_stk(t_stk *stk, char **line)
+{
+	char	*str2;
+	int		ret;
+
+	ret = 0;
+	if ((str2 = ft_strchr(stk->stk_str, '\n')))
+	{
+		*str2 = '\0';
+		str2++;
+		ret = 1;
+	}
+	if (!(*line = ft_strdup(stk->stk_str)))
+		return (-1);
+	if (ret)
+		ft_strcpy(stk->stk_str, str2);
+	else
+		ft_strclr(stk->stk_str);
+	return (ret);
+}
+
+static int		free_str(char *str, int i)
+{
+	free(str);
+	return (i);
+}
+
+static int		readline(char *buf, t_stk *stk, char **line)
 {
 	char	*tmp;
-	char	*updated_log;
+	int		ret;
 
-	tmp = ft_strnew(BUFF_SIZE);
-	if ((*read_ret = read(fd, tmp, BUFF_SIZE)) == -1)
-		return (-1);
-	tmp[*read_ret] = '\0';
-	if (*log && *read_ret)
+	ret = 0;
+	if ((tmp = ft_strchr(buf, '\n')))
 	{
-		updated_log = ft_strjoin(*log, tmp);
-		ft_strdel(&tmp);
-		ft_strdel(log);
-		*log = updated_log;
+		*tmp = '\0';
+		tmp++;
+		ft_strcpy(stk->stk_str, tmp);
+		ret = 1;
 	}
-	else if (*read_ret)
-		*log = tmp;
-	else
-		ft_strdel(&tmp);
-	return (1);
+	tmp = *line;
+	if (!(*line = ft_strjoin(*line, buf)))
+		return (-1);
+	free(tmp);
+	return (ret);
 }
 
 int				get_next_line(int const fd, char **line)
 {
-	static char		*log[MAX_FD] = {0};
-	int				read_ret;
-	int				found_endl;
+	static t_list	*lst = NULL;
+	t_stk			*stk;
+	int				ret;
+	char			*buf;
 
-	read_ret = 1;
-	found_endl = 0;
-	if (fd < 0 || fd > MAX_FD - 1)
+	if (!line || !(BUFF_SIZE > 0) || !(stk = stk_line(fd, &lst)))
 		return (-1);
-	while (found_endl == 0 && read_ret)
+	if (!(ret = read_stk(stk, line)))
 	{
-		found_endl = look_for_endl(&log[fd], line);
-		if (read_more(fd, &log[fd], &read_ret) == -1)
+		if (!(buf = ft_strnew(BUFF_SIZE)))
 			return (-1);
+		while ((ret = read(fd, buf, BUFF_SIZE)))
+		{
+			if (ret < 0)
+				return (free_str(buf, -1));
+			buf[ret] = '\0';
+			if ((ret = readline(buf, stk, line)))
+				return (free_str(buf, ret));
+		}
+		if (**line)
+			return (free_str(buf, 1));
+		return (free_str(buf, 0));
 	}
-	if (found_endl == 1)
-		return (1);
-	else if (found_endl == 0 && log[fd])
-	{
-		*line = ft_strdup(log[fd]);
-		ft_strdel(&log[fd]);
-		return (1);
-	}
-	return (0);
+	return (ret);
 }
