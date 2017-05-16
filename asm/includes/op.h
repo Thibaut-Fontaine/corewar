@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 15:01:39 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/10 01:58:16 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/16 18:49:21 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
-# define COREWAR_EXEC_MAGIC		0xef3d14
+# define COREWAR_EXEC_MAGIC		0xea83f3
 
 #define T_REG					1
 #define T_DIR					2

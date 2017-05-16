@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 06:37:33 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/15 14:54:43 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:54:37 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static void	write_number16(int fhandle, unsigned short number)
 	write(fhandle, &number, 1);
 }
 
-void	write_number(int handle, unsigned int number, size_t size)
+void		write_number(int handle, unsigned int number, size_t size)
 {
 	if (size == 2)
-		write_number16(handle, (unsigned short) number);
+		write_number16(handle, (unsigned short)number);
 	else if (size == 4)
 		write_number32(handle, number);
 	else if (size == 1)

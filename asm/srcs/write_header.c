@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 19:37:12 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/11 17:40:17 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:52:57 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	write_comment(int fhandle, char *comment)
 	}
 }
 
-void	write_header(int fhandle, t_asm *tasm)
+void		write_header(int fhandle, t_asm *tasm)
 {
 	t_header	*header;
 

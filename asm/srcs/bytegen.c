@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 16:08:10 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/15 13:04:25 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:51:43 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int		main(int argc, char **argv)
 {
 	t_asm	*tasm;
 
-	if (argc == 2) {
+	if (argc == 2)
+	{
 		tasm = make_example_asm();
 		generate_bytecode(tasm, argv[1]);
 	}
-	else {
+	else
 		ft_putstr_fd("Usage : ./asm [file]", 2);
-	}
 }

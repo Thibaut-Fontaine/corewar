@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 17:51:44 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/10 06:38:48 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/16 19:00:10 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ typedef struct 			s_labellist
 
 typedef	struct 			s_arglist
 {
-	char				type;			// 1 for reg, 2 for dir , 3 for indir
+	char				type;
 	char				*value;
 	struct s_arglist	*next;
 }						t_arglist;
 
 typedef struct 			s_oplist
 {
-	char				type;			//just opcode
+	char				type;
 	size_t				size;
 	t_arglist			*args;
 	struct s_oplist		*next;

@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 19:12:49 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/11 17:50:52 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:51:51 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	generate_bytecode(t_asm *tasm, char *file)
 {
 	int		fhandle;
 
-	fhandle = open(file, O_CREAT | O_WRONLY | O_TRUNC , 0644);
+	fhandle = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	write_header(fhandle, tasm);
 	write_code(fhandle, tasm);
 	close(fhandle);
