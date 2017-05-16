@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 18:16:31 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/13 18:16:32 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/05/16 22:32:02 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			write_code(int fhandle, t_asm *tasm);
 void			write_header(int fhandle, t_asm *tasm);
 void			generate_bytecode(t_asm *tasm, char *file);
 void			check_param_number(t_arglist *args, t_parser *parser, int num);
-void			check_param_error(t_oplist	*op, t_parser *parser,
+void			check_param_error(t_oplist *op, t_parser *parser,
 	t_param_parser p);
 void			check_labels_error(t_labellist *labellist, t_oplist *oplist);
 char			***init_optab(void);

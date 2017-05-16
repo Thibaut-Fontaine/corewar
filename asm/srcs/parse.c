@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 15:50:57 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/13 15:50:59 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/05/16 22:30:19 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ t_asm			parse(char *av)
 		ft_bzero(parser.line, ft_strlen(parser.line));
 	}
 	check_labels_error(obj.labellist, obj.oplist);
+	obj.header->prog_size = parser.position;
 	return (obj);
 }
