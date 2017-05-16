@@ -19,7 +19,8 @@ typedef struct 		s_param_parser
 	char			*name;
 	int				arg_num;
 	int				arg_types[3];
-	void			(*arg_parser)(char*);
+	uint32_t		size;
+	uint32_t		label_size;
 }					t_param_parser;
 
 typedef struct		s_parser

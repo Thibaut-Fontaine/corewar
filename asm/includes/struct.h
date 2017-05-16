@@ -22,15 +22,16 @@ typedef struct			s_labellist
 
 typedef	struct			s_arglist
 {
+	int					line;
 	char				type;
-	void				*value;
+	char				*value;
 	struct s_arglist	*next;
 }						t_arglist;
 
-typedef struct			s_oplists
+typedef struct			s_oplist
 {
 	char				type;
-	size_t				size;
+	uint32_t			size;
 	t_arglist			*args;
 	struct s_oplist		*next;
 }						t_oplist;

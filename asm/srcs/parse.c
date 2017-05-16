@@ -28,18 +28,6 @@ static void		parse_line(t_asm *obj, t_parser *parser)
 	extract_instruction(&obj->oplist, parser);
 }
 
-/*
-t_param_parser	*param_parser_init(void)
-{
-	t_param_parser 	*tmp;
-
-	tmp = malloc(sizeof(t_param_parser) * 17);
-	tmp[0] = (t_param_parser){0, NULL, to_remove};
-	tmp[1] = (t_param_parser){1, "sti", to_remove};
-	ft_putendl(tmp[1].name);
-	return (tmp);
-}
-*/
 t_asm			parse(char *av)
 {
 	t_parser	parser;
@@ -57,7 +45,9 @@ t_asm			parse(char *av)
 	{
 		parser.current_char = 0;
 		parse_line(&obj, &parser);
-		parser.line++;
+		parser.current_line++;
+		ft_bzero(parser.line, ft_strlen(parser.line));
 	}
+	check_labels_error(obj.labellist, obj.oplist);
 	return (obj);
 }

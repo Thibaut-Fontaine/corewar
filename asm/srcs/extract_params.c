@@ -1,0 +1,67 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   extract_params.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/10 16:08:37 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/05/10 16:08:39 by jgagnot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/asm.h"
+
+static void			check_existing_line(t_parser *parser)
+{
+	int		i;
+
+	i = 1;
+	while (parser->line[parser->current_char + i])
+	{
+		if (ft_iswhitespace(parser->line[parser->current_char + i]))
+			i++;
+		else
+			return ;
+	}
+	ft_error("Syntax error, expected argument after SEPARATOR_CHAR", parser);
+}
+
+static void			check_end_line(t_parser *parser)
+{
+	int		i;
+
+	i = 0;
+	while (parser->line[parser->current_char + i])
+	{
+		if (ft_iswhitespace(parser->line[parser->current_char + i]))
+			i++;
+		else
+		{
+			parser->current_char += i;
+			ft_error("Syntax error, missing SEPARATOR_CHAR", parser);
+		}
+	}
+}
+
+t_arglist			*extract_params(t_parser *parser)
+{
+	t_arglist	*arglist;
+	t_arglist	*current;
+
+	arglist = NULL;
+	while (ft_iswhitespace(parser->line[parser->current_char]))
+		parser->current_char++;
+	while ((current = parse_argument(parser)))
+	{
+		add_argument(current, &arglist);
+		while ((ft_iswhitespace(parser->line[parser->current_char])))
+			parser->current_char++;
+		if (parser->line[parser->current_char] != SEPARATOR_CHAR)
+			check_end_line(parser);
+		else
+			check_existing_line(parser);
+		parser->current_char++;
+	}
+	return (arglist);
+}
