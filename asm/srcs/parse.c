@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 15:50:57 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/17 18:22:29 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/17 18:31:02 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_asm			parse(char *av)
 		ft_putendl_fd("failed to open file", 2);
 		exit(-1);
 	}
-	while (get_next_line(parser.fd, &parser.line))
+	while (get_next_line(parser.fd, &parser.line) > 0)
 	{
 		parser.current_char = 0;
 		parse_line(&obj, &parser);
