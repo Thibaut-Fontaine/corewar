@@ -22,10 +22,10 @@ int			get_operation_type(char *str, t_parser *parser)
 		if (ft_strcmp(str, parser->param_parser[i].name) == 0)
 		{
 			parser->current_char += ft_strlen(str);
+			free(str);
 			return (parser->param_parser[i].opcode);
 		}
 		i++;
 	}
-	free(str);
 	return (0);
 }
