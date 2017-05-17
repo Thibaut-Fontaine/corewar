@@ -12,12 +12,36 @@
 
 #include "../includes/asm.h"
 
-void		check_param_type(t_arglist *arg, int type)
+void			expected_type(int type)
 {
-	if (type == T_REG && arg->type != T_REG)
-		param_error(arg, "register");
-	if (type == T_DIR && !(arg->type == T_DIR || arg->type == T_DIR + T_LAB))
-		param_error(arg, "direct");
-	if (type == T_IND && !(arg->type == T_IND || arg->type == T_IND + T_LAB))
-		param_error(arg, "indirect");
+	int		flag;
+
+	flag = 0;
+	if (type & T_REG)
+	{
+		ft_putstr_fd("register", 2);
+		flag = 1;
+	}
+	if (type & T_DIR)
+	{
+		if (flag == 1)
+			ft_putstr_fd(" or ", 2);
+		ft_putstr_fd("direct", 2);
+		flag = 1;
+	}
+	if (type & T_IND)
+	{
+		if (flag == 1)
+			ft_putstr_fd(" or ", 2);
+		ft_putstr_fd("indirect", 2);
+	}
+}
+
+void			check_param_type(t_arglist *arg, int type)
+{
+	int		i;
+
+	i = arg->type & type;
+	if (i == 0)
+		param_error(arg, type);
 }

@@ -25,7 +25,7 @@ static void	print_token(t_parser *parser)
 	}
 }
 
-void		param_error(t_arglist *arg, char *type)
+void		param_error(t_arglist *arg, int type)
 {
 	char	*prefix;
 
@@ -42,10 +42,11 @@ void		param_error(t_arglist *arg, char *type)
 	ft_putstr_fd("Invalid parameter: ", 2);
 	ft_putstr_fd(prefix, 2);
 	ft_putstr_fd(arg->value, 2);
+	ft_putstr_fd(", expected argument of type ", 2);
+	expected_type(type);
 	ft_putstr_fd(" at line ", 2);
 	ft_putnbr_fd(arg->line, 2);
-	ft_putstr_fd(", expected argument of type ", 2);
-	ft_putendl_fd(type, 2);
+	write(2, "\n", 1);
 	exit(-1);
 }
 
