@@ -28,5 +28,7 @@ int		main(int ac, char **av)
 	i = ft_strlen(av[1]) - 2;
 	generate_bytecode(&env, replace_filename(av[1]));
 	free_asm(&env);
+	while (42)
+	{}
 	return (0);
 }

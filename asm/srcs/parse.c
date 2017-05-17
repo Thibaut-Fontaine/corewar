@@ -48,7 +48,7 @@ t_asm			parse(char *av)
 		parser.current_char = 0;
 		parse_line(&obj, &parser);
 		parser.current_line++;
-		ft_bzero(parser.line, ft_strlen(parser.line));
+		free(parser.line);
 	}
 	check_labels_error(obj.labellist, obj.oplist);
 	obj.header->prog_size = parser.position;
