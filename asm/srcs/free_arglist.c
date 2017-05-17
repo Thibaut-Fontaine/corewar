@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bytegen.c                                          :+:      :+:    :+:   */
+/*   free_arglist.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/09 16:08:10 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/16 22:26:00 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/17 16:55:26 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/17 17:06:24 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int		main(int argc, char **argv)
+void	free_arglist(t_arglist *args)
 {
-	t_asm	*tasm;
+	t_arglist	*tmp;
+	t_arglist	*del;
 
-	if (argc == 2)
+	tmp = args;
+	while (tmp != NULL)
 	{
-		tasm = make_example_asm();
-		generate_bytecode(tasm, argv[1]);
+		if (tmp->value)
+			free(tmp->value);
+		del = tmp;
+		tmp = tmp->next;
+		free(del);
 	}
-	else
-		ft_putstr_fd("Usage : ./asm [file]", 2);
 }

@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 11:59:31 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 22:26:11 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/17 17:20:08 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int		main(int ac, char **av)
 	i = ft_strlen(av[1]) - 2;
 	name = ft_strcat(ft_strsub(av[1], 0, i), ".cor");
 	generate_bytecode(&env, name);
+	free_asm(&env);
 	return (0);
 }

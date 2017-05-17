@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 18:16:31 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 22:32:02 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/17 17:06:17 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,10 @@ void			parse_comment(t_asm *obj, t_parser *parser);
 int				parse_header(t_asm *obj, t_parser *parser);
 t_arglist		*parse_argument(t_parser *parser);
 t_asm			parse(char *av);
+void			free_asm(t_asm *tasm);
+void			free_oplist(t_oplist *ops);
+void			free_arglist(t_arglist *args);
+void			free_labellist(t_labellist *labels);
+void			free_optab(char ***optab);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/03/13 10:00:02 by jgagnot          ###   ########.fr        #
+#    Updated: 2017/05/17 17:07:41 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,11 @@ SRCS_NAME = main.c\
 			extract_instruction.c\
 			extract_labeldecl.c\
 			extract_params.c\
+			free_arglist.c\
+			free_asm.c\
+			free_labellist.c\
+			free_oplist.c\
+			free_optab.c\
 			ft_error.c\
 			generate_bytecode.c\
 			get_arg_type.c\

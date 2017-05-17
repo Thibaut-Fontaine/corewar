@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_operation_type.c                               :+:      :+:    :+:   */
+/*   free_asm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/09 18:58:42 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/17 17:15:51 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/17 16:51:48 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/17 17:06:30 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int			get_operation_type(char *str, t_parser *parser)
+void	free_asm(t_asm 	*tasm)
 {
-	int		i;
-
-	i = 0;
-	while (i < 16)
+	if (tasm)
 	{
-		if (ft_strcmp(str, parser->param_parser[i].name) == 0)
-		{
-			parser->current_char += ft_strlen(str);
-			return (parser->param_parser[i].opcode);
-		}
-		i++;
+		if (tasm->labellist)
+			free_labellist(tasm->labellist);
+		if (tasm->oplist)
+			free_oplist(tasm->oplist);
+		if (tasm->header)
+			free(tasm->header);
+		if (tasm->optab)
+			free_optab(tasm->optab);
 	}
-	free(str);
-	return (0);
 }

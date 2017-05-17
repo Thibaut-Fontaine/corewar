@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_operation_type.c                               :+:      :+:    :+:   */
+/*   free_optab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/09 18:58:42 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/17 17:15:51 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/17 17:05:44 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/17 17:06:50 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int			get_operation_type(char *str, t_parser *parser)
+void	free_optab(char ***optab)
 {
-	int		i;
+	int	i;
+	int	j;
 
 	i = 0;
-	while (i < 16)
+	while (optab[i])
 	{
-		if (ft_strcmp(str, parser->param_parser[i].name) == 0)
+		j = 0;
+		while(optab[i][j])
 		{
-			parser->current_char += ft_strlen(str);
-			return (parser->param_parser[i].opcode);
+			free(optab[i][j]);
+			j++;
 		}
+		free(optab[i]);
 		i++;
 	}
-	free(str);
-	return (0);
+	free(optab);
 }
