@@ -28,6 +28,7 @@ SRCS_NAME = main.c\
 			check_labels_error.c\
 			check_param_error.c\
 			check_param_number.c\
+			check_param_type.c\
 			extract_instruction.c\
 			extract_labeldecl.c\
 			extract_params.c\

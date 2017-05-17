@@ -20,7 +20,7 @@ void	asm_init(t_asm *obj)
 	if (!(obj->header = malloc(sizeof(t_header))))
 	{
 		ft_putendl_fd("failed to malloc header", 2);
-		exit (-1);
+		exit(-1);
 	}
 	obj->header->magic = COREWAR_EXEC_MAGIC;
 	while (i <= PROG_NAME_LENGTH)

@@ -25,7 +25,7 @@ static void			check_existing_line(t_parser *parser)
 			return ;
 	}
 	if (!parser->line[parser->current_char + i])
-		return;
+		return ;
 	ft_error("Syntax error, expected argument after SEPARATOR_CHAR", parser);
 }
 
@@ -54,7 +54,6 @@ t_arglist			*extract_params(t_parser *parser)
 	arglist = NULL;
 	while (ft_iswhitespace(parser->line[parser->current_char]))
 		parser->current_char++;
-
 	while ((current = parse_argument(parser)))
 	{
 		add_argument(current, &arglist);

@@ -13,7 +13,7 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-typedef struct 		s_param_parser
+typedef struct		s_param_parser
 {
 	int				opcode;
 	char			*name;

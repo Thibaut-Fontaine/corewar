@@ -24,6 +24,7 @@ void			check_param_number(t_arglist *args, t_parser *parser, int num);
 void			check_param_error(t_oplist *op, t_parser *parser,
 	t_param_parser p);
 void			check_labels_error(t_labellist *labellist, t_oplist *oplist);
+void			check_param_type(t_arglist *arg, int type);
 char			***init_optab(void);
 void			add_operation(t_oplist **oplist, t_parser *parser, char *str);
 void			add_label_to_list(t_labellist **labellist, t_parser *parser,
@@ -36,6 +37,7 @@ t_param_parser	*param_parser_init(void);
 void			ft_error(char *str, t_parser *parser);
 void			format_error(char *str, t_parser *parser);
 void			label_error(char *str, int i);
+void			param_error(t_arglist *arg, char *type);
 t_arglist		*extract_params(t_parser *parser);
 void			extract_instruction(t_oplist **oplist, t_parser *parser);
 void			extract_labeldecl(t_labellist **labellist, t_parser *parser);

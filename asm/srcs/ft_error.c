@@ -25,6 +25,30 @@ static void	print_token(t_parser *parser)
 	}
 }
 
+void		param_error(t_arglist *arg, char *type)
+{
+	char	*prefix;
+
+	if (arg->type == T_REG)
+		prefix = "r";
+	else if (arg->type == T_DIR)
+		prefix = "%";
+	else if (arg->type == T_DIR + T_LAB)
+		prefix = "%:";
+	else if (arg->type == T_IND + T_LAB)
+		prefix = ":";
+	else
+		prefix = NULL;
+	ft_putstr_fd("Invalid parameter: ", 2);
+	ft_putstr_fd(prefix, 2);
+	ft_putstr_fd(arg->value, 2);
+	ft_putstr_fd(" at line ", 2);
+	ft_putnbr_fd(arg->line, 2);
+	ft_putstr_fd(", expected argument of type ", 2);
+	ft_putendl_fd(type, 2);
+	exit(-1);
+}
+
 void		label_error(char *str, int i)
 {
 	ft_putstr_fd("No such label ", 2);

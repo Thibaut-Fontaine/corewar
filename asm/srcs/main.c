@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/asm.h"
-# include <stdio.h>
+#include "../includes/asm.h"
 
 int		main(int ac, char **av)
 {
 	t_asm		env;
 	char		*name;
+	int			i;
 
 	if (ac != 2)
 	{
@@ -29,7 +29,8 @@ int		main(int ac, char **av)
 			|| av[1][ft_strlen(av[1]) - 2] != '.')
 		ft_putendl_fd("Invalid file name", 2);
 	env = parse(av[1]);
-	name = ft_strcat(av[1], ".cor");
+	i = ft_strlen(av[1]) - 2;
+	name = ft_strcat(ft_strsub(av[1], 0, i), ".cor");
 	generate_bytecode(&env, name);
 	return (0);
 }
