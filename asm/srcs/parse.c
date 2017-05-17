@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 15:50:57 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 22:30:19 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/17 17:57:07 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ t_asm			parse(char *av)
 	parser.check_comment = 0;
 	parser.param_parser = param_parser_init();
 	asm_init(&obj);
-	if ((parser.fd = open(av, O_RDONLY)) == -1)
+	if ((parser.fd = open(av, O_RDONLY)) == -1) {
 		ft_putendl_fd("failed to open file", 2);
+		exit(-1);
+	}
 	while (get_next_line(parser.fd, &parser.line))
 	{
 		parser.current_char = 0;

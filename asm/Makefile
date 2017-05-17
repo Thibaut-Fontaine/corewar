@@ -6,7 +6,7 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/05/17 17:07:41 by mperronc         ###   ########.fr        #
+#    Updated: 2017/05/17 17:46:41 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS_NAME = main.c\
 			parse_header.c\
 			parse_name.c\
 			remove_com.c\
+			replace_filename.c\
 			write_args.c\
 			write_code.c\
 			write_header.c\

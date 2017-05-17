@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 11:59:31 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/17 17:20:08 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/05/17 17:56:01 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int		main(int ac, char **av)
 {
 	t_asm		env;
-	char		*name;
 	int			i;
 
 	if (ac != 2)
@@ -24,14 +23,10 @@ int		main(int ac, char **av)
 		ft_putstr(av[0]);
 		ft_putendl(" <sourcefile.s>");
 		return (-1);
-	}
-	if (av[1][ft_strlen(av[1]) - 1] != 's'
-			|| av[1][ft_strlen(av[1]) - 2] != '.')
-		ft_putendl_fd("Invalid file name", 2);
+	}		
 	env = parse(av[1]);
 	i = ft_strlen(av[1]) - 2;
-	name = ft_strcat(ft_strsub(av[1], 0, i), ".cor");
-	generate_bytecode(&env, name);
+	generate_bytecode(&env, replace_filename(av[1]));
 	free_asm(&env);
 	return (0);
 }

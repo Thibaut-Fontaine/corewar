@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_bytecode.c                                :+:      :+:    :+:   */
+/*   replace_filename.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/09 19:12:49 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/17 17:53:12 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/17 17:37:40 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/17 17:52:40 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void	generate_bytecode(t_asm *tasm, char *file)
+char	*replace_filename(char *path)
 {
-	int		fhandle;
+	char	*new;
+	int		i;
 
-	fhandle = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	write_header(fhandle, tasm);
-	write_code(fhandle, tasm);
-	close(fhandle);
-	ft_printf("Wrote bytecode to %s\n", file);
+	i = 0;
+	new = ft_strnew(ft_strlen(path) + 4);
+	if (!ft_strchr(path, '.'))
+	{
+		new = ft_strcpy(new, path);
+		ft_strcat(new, ".cor");
+	}
+	else
+	{
+		while (path[i] != '.')
+		{
+			new[i] = path[i];
+			i++;
+		}
+		ft_strcat(new, ".cor");
+	}
+	return (new);
 }
