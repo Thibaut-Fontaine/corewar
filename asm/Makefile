@@ -37,6 +37,7 @@ SRCS_NAME = main.c\
 			free_labellist.c\
 			free_oplist.c\
 			free_optab.c\
+			free_parser.c\
 			ft_error.c\
 			generate_bytecode.c\
 			get_arg_type.c\

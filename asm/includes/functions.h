@@ -55,6 +55,7 @@ void			free_oplist(t_oplist *ops);
 void			free_arglist(t_arglist *args);
 void			free_labellist(t_labellist *labels);
 void			free_optab(char ***optab);
+void			free_parser(t_parser *parser);
 char			*replace_filename(char *name);
 
 #endif

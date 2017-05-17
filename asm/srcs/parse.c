@@ -52,5 +52,6 @@ t_asm			parse(char *av)
 	}
 	check_labels_error(obj.labellist, obj.oplist);
 	obj.header->prog_size = parser.position;
+	free_parser(&parser);
 	return (obj);
 }

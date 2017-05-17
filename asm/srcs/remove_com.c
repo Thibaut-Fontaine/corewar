@@ -12,6 +12,19 @@
 
 #include "../includes/asm.h"
 
+static char	*ft_strsub_free(char *s, unsigned int start, size_t len)
+{
+	char	*fs;
+
+	fs = ft_strnew(len);
+	if (fs == NULL)
+		return (NULL);
+	fs = ft_strncpy(fs, s + start, len);
+	fs[len] = 0;
+	free(s);
+	return (fs);
+}
+
 void		remove_com(char **line)
 {
 	int		i;
@@ -21,7 +34,7 @@ void		remove_com(char **line)
 		i++;
 	if ((*line)[i] == COMMENT_CHAR)
 	{
-		if (!(*line = ft_strsub(*line, 0, i)))
+		if (!(*line = ft_strsub_free(*line, 0, i)))
 			ft_putendl_fd("Failed to sub comment removing", 2);
 	}
 }
