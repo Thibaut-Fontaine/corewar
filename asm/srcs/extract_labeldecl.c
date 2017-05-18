@@ -12,7 +12,8 @@
 
 #include "../includes/asm.h"
 
-void		extract_labeldecl(t_labellist **labellist, t_parser *parser)
+void		extract_labeldecl(t_labellist **labellist, t_asm *obj,
+	t_parser *parser)
 {
 	int		i;
 	char	*name;
@@ -26,9 +27,11 @@ void		extract_labeldecl(t_labellist **labellist, t_parser *parser)
 		if (!(name = ft_strsub(parser->line, parser->current_char, i)))
 		{
 			ft_putendl_fd("failed to malloc label name", 2);
+			free_asm(obj);
+			free_parser(parser);
 			exit(-1);
 		}
-		add_label_to_list(labellist, parser, name);
+		add_label_to_list(labellist, obj, parser, name);
 		parser->current_char += i + 1;
 	}
 }

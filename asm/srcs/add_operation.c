@@ -12,7 +12,7 @@
 
 #include "../includes/asm.h"
 
-void		add_operation(t_oplist **oplist, t_parser *parser, char *str, 
+void		add_operation(t_oplist **oplist, t_parser *parser, char *str,
 	t_asm *obj)
 {
 	t_oplist	*new;
@@ -31,7 +31,7 @@ void		add_operation(t_oplist **oplist, t_parser *parser, char *str,
 	new->args = extract_params(parser, obj);
 	new->size = get_op_size(new, parser, parser->param_parser[new->type - 1]);
 	new->next = NULL;
-	check_param_error(new, parser, parser->param_parser[new->type - 1]);
+	check_param_error(new, obj, parser, parser->param_parser[new->type - 1]);
 	if (!tmp)
 		*oplist = new;
 	else

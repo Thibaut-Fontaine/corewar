@@ -26,7 +26,8 @@ static int		label_exist(char *str, t_labellist *labellist)
 	return (0);
 }
 
-void			check_labels_error(t_labellist *labellist, t_oplist *oplist)
+void			check_labels_error(t_labellist *labellist, t_oplist *oplist,
+	t_asm *obj, t_parser *parser)
 {
 	t_oplist	*current;
 	t_arglist	*arg;
@@ -35,10 +36,6 @@ void			check_labels_error(t_labellist *labellist, t_oplist *oplist)
 		return ;
 	current = oplist;
 	arg = oplist->args;
-	if (!current)
-		ft_putendl("no oplist");
-	if (!arg)
-		ft_putendl("no arg");
 	while (current)
 	{
 		arg = current->args;
@@ -46,7 +43,7 @@ void			check_labels_error(t_labellist *labellist, t_oplist *oplist)
 		{
 			if (arg->type == T_LAB + T_DIR || arg->type == T_LAB + T_IND)
 				if (label_exist(arg->value, labellist) == 0)
-					label_error(arg->value, arg->line);
+					label_error(arg->value, arg->line, obj, parser);
 			arg = arg->next;
 		}
 		current = current->next;

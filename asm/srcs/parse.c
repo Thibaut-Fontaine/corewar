@@ -20,7 +20,7 @@ static void		parse_line(t_asm *obj, t_parser *parser)
 		if (parse_header(obj, parser))
 			return ;
 	remove_com(&parser->line, obj, parser);
-	extract_labeldecl(&obj->labellist, parser);
+	extract_labeldecl(&obj->labellist, obj, parser);
 	while (ft_iswhitespace(parser->line[parser->current_char]))
 		parser->current_char++;
 	if (!parser->line[parser->current_char])
@@ -59,8 +59,8 @@ t_asm			parse(char *av)
 		parser.current_line++;
 		free(parser.line);
 	}
-	check_empty_obj(obj.oplist);
-	check_labels_error(obj.labellist, obj.oplist);
+	check_empty_obj(obj.oplist, &obj, &parser);
+	check_labels_error(obj.labellist, obj.oplist, &obj, &parser);
 	obj.header->prog_size = parser.position;
 	free_parser(&parser);
 	return (obj);

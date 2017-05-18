@@ -37,11 +37,12 @@ void			expected_type(int type)
 	}
 }
 
-void			check_param_type(t_arglist *arg, int type)
+void			check_param_type(t_arglist *arg, int type, t_asm *obj,
+	t_parser *parser)
 {
 	int		i;
 
 	i = arg->type & type;
 	if (i == 0)
-		param_error(arg, type);
+		param_error(arg, type, obj, parser);
 }

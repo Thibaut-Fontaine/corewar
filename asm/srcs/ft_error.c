@@ -25,7 +25,7 @@ static void	print_token(t_parser *parser)
 	}
 }
 
-void		param_error(t_arglist *arg, int type)
+void		param_error(t_arglist *arg, int type, t_asm *obj, t_parser *parser)
 {
 	char	*prefix;
 
@@ -47,26 +47,32 @@ void		param_error(t_arglist *arg, int type)
 	ft_putstr_fd(" at line ", 2);
 	ft_putnbr_fd(arg->line, 2);
 	write(2, "\n", 1);
+	free_asm(obj);
+	free_parser(parser);
 	exit(-1);
 }
 
-void		label_error(char *str, int i)
+void		label_error(char *str, int i, t_asm *obj, t_parser *parser)
 {
 	ft_putstr_fd("No such label ", 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd(" while attempting to dereference token at line : ", 2);
 	ft_putnbr_fd(i, 2);
 	write(2, "\n", 1);
+	free_asm(obj);
+	free_parser(parser);
 	exit(-1);
 }
 
-void		format_error(char *str, t_parser *parser)
+void		format_error(char *str, t_asm *obj, t_parser *parser)
 {
 	ft_putstr_fd("Syntax error at line ", 2);
 	ft_putnbr_fd(parser->current_line, 2);
 	ft_putstr_fd(" : Invalid token : [", 2);
 	ft_putstr_fd(str, 2);
 	ft_putendl_fd("]", 2);
+	free_asm(obj);
+	free_parser(parser);
 	exit(-1);
 }
 

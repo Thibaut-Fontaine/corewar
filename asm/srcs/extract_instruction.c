@@ -24,6 +24,8 @@ void		extract_instruction(t_oplist **oplist, t_parser *parser, t_asm *obj)
 	if (!(op = ft_strsub(parser->line, parser->current_char, i)))
 	{
 		ft_putendl_fd("failed to malloc operation name", 2);
+		free_asm(obj);
+		free_parser(parser);
 		exit(-1);
 	}
 	add_operation(oplist, parser, op, obj);

@@ -12,10 +12,12 @@
 
 #include "../includes/asm.h"
 
-void		check_empty_obj(t_oplist *oplist)
+void		check_empty_obj(t_oplist *oplist, t_asm *obj, t_parser *parser)
 {
 	if (oplist)
 		return ;
 	ft_putendl_fd("Error: no operation in file", 2);
+	free_asm(obj);
+	free_parser(parser);
 	exit(-1);
 }

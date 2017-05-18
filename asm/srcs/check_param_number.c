@@ -12,7 +12,8 @@
 
 #include "../includes/asm.h"
 
-void		check_param_number(t_arglist *args, t_parser *parser, int num)
+void		check_param_number(t_arglist *args, t_asm *obj,
+	t_parser *parser, int num)
 {
 	int			i;
 	t_arglist	*tmp;
@@ -31,6 +32,8 @@ void		check_param_number(t_arglist *args, t_parser *parser, int num)
 		ft_putstr_fd(" arguments at line: ", 2);
 		ft_putnbr_fd(parser->current_line, 2);
 		write(2, "\n", 1);
+		free_asm(obj);
+		free_parser(parser);
 		exit(-1);
 	}
 }

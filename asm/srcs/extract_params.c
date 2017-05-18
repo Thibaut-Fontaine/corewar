@@ -48,7 +48,7 @@ static void			check_end_line(t_parser *parser, t_asm *obj)
 	}
 }
 
-t_arglist			*extract_params(t_parser *parser,t_asm *obj)
+t_arglist			*extract_params(t_parser *parser, t_asm *obj)
 {
 	t_arglist	*arglist;
 	t_arglist	*current;
