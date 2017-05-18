@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 16:23:58 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/13 16:24:00 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/05/16 22:32:02 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-typedef struct 		s_param_parser
+typedef struct		s_param_parser
 {
 	int				opcode;
 	char			*name;

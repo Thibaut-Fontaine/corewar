@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_argument.c                                     :+:      :+:    :+:   */
+/*   free_labellist.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/10 19:51:00 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 22:25:53 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/17 16:55:26 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/17 17:06:39 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void		add_argument(t_arglist *current, t_arglist **arglist)
+void	free_labellist(t_labellist *labels)
 {
-	t_arglist	*tmp;
+	t_labellist	*tmp;
+	t_labellist	*del;
 
-	tmp = *arglist;
-	if (!tmp)
-		*arglist = current;
-	else
+	tmp = labels;
+	while (tmp != NULL)
 	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = current;
+		if (tmp->name)
+			free(tmp->name);
+		del = tmp;
+		tmp = tmp->next;
+		free(del);
 	}
 }

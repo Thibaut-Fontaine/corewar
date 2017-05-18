@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_argument.c                                     :+:      :+:    :+:   */
+/*   free_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/10 19:51:00 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 22:25:53 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/17 17:24:30 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/05/17 17:24:47 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void		add_argument(t_arglist *current, t_arglist **arglist)
+void		free_parser(t_parser *parser)
 {
-	t_arglist	*tmp;
+	int		i;
 
-	tmp = *arglist;
-	if (!tmp)
-		*arglist = current;
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = current;
-	}
+	i = 0;
+	if (!parser)
+		return ;
+	if (parser->line)
+		free(parser->line);
+	free(parser->param_parser);
 }

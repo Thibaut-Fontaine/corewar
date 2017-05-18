@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_operation_type.c                               :+:      :+:    :+:   */
+/*   replace_filename.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/09 18:58:42 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/17 17:15:51 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/17 17:37:40 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/17 17:52:40 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int			get_operation_type(char *str, t_parser *parser)
+char	*replace_filename(char *path)
 {
+	char	*new;
 	int		i;
 
 	i = 0;
-	while (i < 16)
+	new = ft_strnew(ft_strlen(path) + 4);
+	if (!ft_strchr(path, '.'))
 	{
-		if (ft_strcmp(str, parser->param_parser[i].name) == 0)
-		{
-			parser->current_char += ft_strlen(str);
-			free(str);
-			return (parser->param_parser[i].opcode);
-		}
-		i++;
+		new = ft_strcpy(new, path);
+		ft_strcat(new, ".cor");
 	}
-	return (0);
+	else
+	{
+		while (path[i] != '.')
+		{
+			new[i] = path[i];
+			i++;
+		}
+		ft_strcat(new, ".cor");
+	}
+	return (new);
 }

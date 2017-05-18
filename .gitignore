@@ -40,4 +40,4 @@
 *.cor
 ./ressources/*
 corewar
-asm
+asm/asm

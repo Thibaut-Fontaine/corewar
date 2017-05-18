@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/03/13 10:00:02 by jgagnot          ###   ########.fr        #
+#    Updated: 2017/05/17 17:46:41 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = asm
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 CC = gcc
 
@@ -21,29 +21,45 @@ INCLUDES_PATH = includes/
 SRCS_PATH = srcs/
 
 SRCS_NAME = main.c\
-			init_optab.c\
-			parse.c\
-			asm_init.c\
-			param_parser_init.c\
-			parse_header.c\
-			remove_com.c\
-			ft_error.c\
-			parse_comment.c\
-			parse_name.c\
-			extract_labeldecl.c\
-			extract_instruction.c\
-			extract_params.c\
-			add_operation.c\
-			get_operation_type.c\
-			add_label_to_list.c \
-			is_labelchar.c\
-			parse_argument.c\
-			get_arg_type.c\
 			add_argument.c\
+			add_label_to_list.c\
+			add_operation.c\
+			asm_init.c\
+			check_labels_error.c\
 			check_param_error.c\
 			check_param_number.c\
+			check_param_type.c\
+			check_empty_obj.c\
+			extract_instruction.c\
+			extract_labeldecl.c\
+			extract_params.c\
+			free_arglist.c\
+			free_asm.c\
+			free_labellist.c\
+			free_oplist.c\
+			free_optab.c\
+			free_parser.c\
+			ft_error.c\
+			generate_bytecode.c\
+			get_arg_type.c\
 			get_op_size.c\
-			check_labels_error.c
+			get_operation_type.c\
+			init_optab.c\
+			is_labelchar.c\
+			param_parser_init.c\
+			parse.c\
+			parse_argument.c\
+			parse_comment.c\
+			parse_header.c\
+			parse_name.c\
+			remove_com.c\
+			replace_filename.c\
+			write_args.c\
+			write_code.c\
+			write_header.c\
+			write_number.c\
+			write_octalcoding.c\
+			write_op.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
@@ -60,8 +76,7 @@ all: odir $(NAME)
 $(NAME): $(OBJS)
 	@Make -C libft
 	@echo " - Making $(NAME)"
-	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY) -g -fsanitize=address
-
+	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@echo " - Compiling $<"

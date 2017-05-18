@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_labelchar.c                                     :+:      :+:    :+:   */
+/*   write_op.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/29 17:03:57 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/16 22:26:10 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/10 01:52:18 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/16 22:26:19 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int		is_labelchar(const char c)
+void	write_op(int fhandle, t_oplist *op, t_asm *tasm)
 {
-	return (ft_strchr(LABEL_CHARSET, c) ? 1 : 0);
+	static size_t bytes_written = 0;
+
+	write(fhandle, &(op->type), 1);
+	if (ft_strcmp(tasm->optab[(int)op->type][OCTALFLAG], "1") == 0)
+		write_octalcoding(fhandle, op);
+	write_args(fhandle, op, bytes_written, tasm);
+	bytes_written += op->size;
 }

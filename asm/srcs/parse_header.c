@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 18:46:49 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/04 18:46:50 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/05/16 22:26:14 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int			parse_header(t_asm *obj, t_parser *parser)
 	else
 	{
 		if (parser->line[parser->current_char] == '.')
-			ft_error("invalid command name", parser);
+			ft_error("invalid command name", parser, obj);
 		ft_error("No file name or comment at the beginning of the file",
-			parser);
+			parser, obj);
 	}
 	return (0);
 }

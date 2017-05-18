@@ -21,6 +21,12 @@
 # define BUFF_SIZE 4096
 # define MAX_FD 256
 
+typedef struct		s_stk
+{
+	char			*stk_str;
+	int				stk_fd;
+}					t_stk;
+
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);

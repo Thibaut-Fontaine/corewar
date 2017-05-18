@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_argument.c                                     :+:      :+:    :+:   */
+/*   free_oplist.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/10 19:51:00 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 22:25:53 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/17 16:55:26 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/17 17:02:15 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void		add_argument(t_arglist *current, t_arglist **arglist)
+void	free_oplist(t_oplist *ops)
 {
-	t_arglist	*tmp;
+	t_oplist	*tmp;
+	t_oplist	*del;
 
-	tmp = *arglist;
-	if (!tmp)
-		*arglist = current;
-	else
+	tmp = ops;
+	while (tmp != NULL)
 	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = current;
+		if (tmp->args)
+			free_arglist(tmp->args);
+		del = tmp;
+		tmp = tmp->next;
+		free(del);
 	}
 }

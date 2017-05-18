@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_argument.c                                     :+:      :+:    :+:   */
+/*   free_asm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/10 19:51:00 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 22:25:53 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/17 16:51:48 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/17 18:21:40 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void		add_argument(t_arglist *current, t_arglist **arglist)
+void	free_asm(t_asm *tasm)
 {
-	t_arglist	*tmp;
-
-	tmp = *arglist;
-	if (!tmp)
-		*arglist = current;
-	else
+	if (tasm)
 	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = current;
+		if (tasm->labellist)
+			free_labellist(tasm->labellist);
+		if (tasm->oplist)
+			free_oplist(tasm->oplist);
+		if (tasm->header)
+			free(tasm->header);
+		if (tasm->optab)
+			free_optab(tasm->optab);
 	}
 }

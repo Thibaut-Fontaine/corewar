@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_argument.c                                     :+:      :+:    :+:   */
+/*   free_optab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/10 19:51:00 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 22:25:53 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/17 17:05:44 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/17 18:21:53 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void		add_argument(t_arglist *current, t_arglist **arglist)
+void	free_optab(char ***optab)
 {
-	t_arglist	*tmp;
+	int	i;
+	int	j;
 
-	tmp = *arglist;
-	if (!tmp)
-		*arglist = current;
-	else
+	i = 0;
+	while (optab[i])
 	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = current;
+		j = 0;
+		while (optab[i][j])
+		{
+			free(optab[i][j]);
+			j++;
+		}
+		free(optab[i]);
+		i++;
 	}
+	free(optab);
 }

@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_argument.c                                     :+:      :+:    :+:   */
+/*   generate_bytecode.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/10 19:51:00 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 22:25:53 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/09 19:12:49 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/17 17:53:12 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void		add_argument(t_arglist *current, t_arglist **arglist)
+void	generate_bytecode(t_asm *tasm, char *file)
 {
-	t_arglist	*tmp;
+	int		fhandle;
 
-	tmp = *arglist;
-	if (!tmp)
-		*arglist = current;
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = current;
-	}
+	fhandle = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	write_header(fhandle, tasm);
+	write_code(fhandle, tasm);
+	close(fhandle);
+	ft_printf("Wrote bytecode to %s\n", file);
 }

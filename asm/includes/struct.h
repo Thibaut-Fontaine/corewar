@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 17:51:44 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/04 17:51:47 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/05/16 22:32:01 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef struct			s_asm
 {
 	t_labellist			*labellist;
 	t_oplist			*oplist;
-	t_header			header;
+	t_header			*header;
+	char				***optab;
 }						t_asm;
 
 #endif

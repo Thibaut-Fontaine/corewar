@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_param_number.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 15:40:18 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 15:40:19 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/05/16 22:26:03 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void		check_param_number(t_arglist *args, t_parser *parser, int num)
 		ft_putstr_fd(" arguments at line: ", 2);
 		ft_putnbr_fd(parser->current_line, 2);
 		write(2, "\n", 1);
+		exit(-1);
 	}
 }

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_argument.c                                     :+:      :+:    :+:   */
+/*   write_code.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/10 19:51:00 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 22:25:53 by mperronc         ###   ########.fr       */
+/*   Created: 2017/05/10 01:46:52 by mperronc          #+#    #+#             */
+/*   Updated: 2017/05/16 22:26:17 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void		add_argument(t_arglist *current, t_arglist **arglist)
+void	write_code(int fhandle, t_asm *tasm)
 {
-	t_arglist	*tmp;
+	t_oplist	*iter;
 
-	tmp = *arglist;
-	if (!tmp)
-		*arglist = current;
-	else
+	iter = tasm->oplist;
+	while (iter != NULL)
 	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = current;
+		write_op(fhandle, iter, tasm);
+		iter = iter->next;
 	}
 }

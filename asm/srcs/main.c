@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 11:59:31 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/04/11 11:59:35 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/05/17 18:06:34 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/asm.h"
-# include <stdio.h>
+#include "../includes/asm.h"
 
 int		main(int ac, char **av)
 {
 	t_asm		env;
+	char		*name;
+	int			i;
 
 	if (ac != 2)
 	{
@@ -24,15 +25,11 @@ int		main(int ac, char **av)
 		ft_putendl(" <sourcefile.s>");
 		return (-1);
 	}
-	if (av[1][ft_strlen(av[1]) - 1] != 's'
-			|| av[1][ft_strlen(av[1]) - 2] != '.')
-		ft_putendl_fd("Invalid file name", 2);
 	env = parse(av[1]);
-	printf("name = %s, comment = %s\n", env.header.prog_name, env.header.comment);
-	while (env.labellist)
-	{
-		printf("label = %s\n", env.labellist->name);
-		env.labellist = env.labellist->next;
-	}
+	i = ft_strlen(av[1]) - 2;
+	generate_bytecode(&env, name = replace_filename(av[1]));
+	free(name);
+	free_asm(&env);
+	//sleep(2000);
 	return (0);
 }

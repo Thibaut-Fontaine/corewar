@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_labels_error.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 18:18:20 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 18:18:22 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/05/16 22:26:02 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void			check_labels_error(t_labellist *labellist, t_oplist *oplist)
 	t_oplist	*current;
 	t_arglist	*arg;
 
+	if (!labellist)
+		return ;
 	current = oplist;
 	arg = oplist->args;
 	if (!current)
