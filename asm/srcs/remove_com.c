@@ -25,7 +25,7 @@ static char	*ft_strsub_free(char *s, unsigned int start, size_t len)
 	return (fs);
 }
 
-void		remove_com(char **line)
+void		remove_com(char **line, t_asm *obj, t_parser *parser)
 {
 	int		i;
 
@@ -35,6 +35,11 @@ void		remove_com(char **line)
 	if ((*line)[i] == COMMENT_CHAR)
 	{
 		if (!(*line = ft_strsub_free(*line, 0, i)))
+		{
 			ft_putendl_fd("Failed to sub comment removing", 2);
+			free_asm(obj);
+			free_parser(parser);
+			exit(-1);
+		}
 	}
 }

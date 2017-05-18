@@ -31,6 +31,8 @@ void			check_labels_error(t_labellist *labellist, t_oplist *oplist)
 	t_oplist	*current;
 	t_arglist	*arg;
 
+	if (!labellist)
+		return ;
 	current = oplist;
 	arg = oplist->args;
 	if (!current)

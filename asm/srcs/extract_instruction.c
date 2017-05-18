@@ -12,7 +12,7 @@
 
 #include "../includes/asm.h"
 
-void		extract_instruction(t_oplist **oplist, t_parser *parser)
+void		extract_instruction(t_oplist **oplist, t_parser *parser, t_asm *obj)
 {
 	int		i;
 	char	*op;
@@ -26,5 +26,5 @@ void		extract_instruction(t_oplist **oplist, t_parser *parser)
 		ft_putendl_fd("failed to malloc operation name", 2);
 		exit(-1);
 	}
-	add_operation(oplist, parser, op);
+	add_operation(oplist, parser, op, obj);
 }

@@ -30,6 +30,6 @@ int		main(int ac, char **av)
 	generate_bytecode(&env, name = replace_filename(av[1]));
 	free(name);
 	free_asm(&env);
-	sleep(2000);
+	//sleep(2000);
 	return (0);
 }

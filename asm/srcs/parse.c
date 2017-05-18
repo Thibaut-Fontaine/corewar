@@ -19,13 +19,25 @@ static void		parse_line(t_asm *obj, t_parser *parser)
 	if (!parser->check_name || !parser->check_comment)
 		if (parse_header(obj, parser))
 			return ;
-	remove_com(&parser->line);
+	remove_com(&parser->line, obj, parser);
 	extract_labeldecl(&obj->labellist, parser);
 	while (ft_iswhitespace(parser->line[parser->current_char]))
 		parser->current_char++;
 	if (!parser->line[parser->current_char])
 		return ;
-	extract_instruction(&obj->oplist, parser);
+	extract_instruction(&obj->oplist, parser, obj);
+}
+
+t_parser		init_parser(void)
+{
+	t_parser	parser;
+
+	parser.current_line = 1;
+	parser.position = 0;
+	parser.check_name = 0;
+	parser.check_comment = 0;
+	parser.param_parser = param_parser_init();
+	return (parser);
 }
 
 t_asm			parse(char *av)
@@ -33,11 +45,7 @@ t_asm			parse(char *av)
 	t_parser	parser;
 	t_asm		obj;
 
-	parser.current_line = 1;
-	parser.position = 0;
-	parser.check_name = 0;
-	parser.check_comment = 0;
-	parser.param_parser = param_parser_init();
+	parser = init_parser();
 	asm_init(&obj);
 	if ((parser.fd = open(av, O_RDONLY)) == -1)
 	{
@@ -51,6 +59,7 @@ t_asm			parse(char *av)
 		parser.current_line++;
 		free(parser.line);
 	}
+	check_empty_obj(obj.oplist);
 	check_labels_error(obj.labellist, obj.oplist);
 	obj.header->prog_size = parser.position;
 	free_parser(&parser);

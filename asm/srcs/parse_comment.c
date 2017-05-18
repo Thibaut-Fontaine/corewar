@@ -19,18 +19,18 @@ void		parse_comment(t_asm *obj, t_parser *parser)
 	while (ft_iswhitespace(parser->line[parser->current_char]))
 		parser->current_char++;
 	if (parser->line[parser->current_char] != '"')
-		ft_error("Expected double quotes around comment", parser);
+		ft_error("Expected double quotes around comment", parser, obj);
 	parser->current_char++;
 	j = 0;
 	while (parser->line[parser->current_char + j]
 		&& parser->line[parser->current_char + j] != '"')
 	{
 		if (j >= COMMENT_LENGTH)
-			ft_error("Comment to long", parser);
+			ft_error("Comment to long", parser,obj);
 		obj->header->comment[j] = parser->line[parser->current_char + j];
 		j++;
 	}
 	parser->current_char += j;
 	if (parser->line[parser->current_char] != '"')
-		ft_error("Expected double quotes around name", parser);
+		ft_error("Expected double quotes around name", parser, obj);
 }

@@ -12,7 +12,8 @@
 
 #include "../includes/asm.h"
 
-void		add_operation(t_oplist **oplist, t_parser *parser, char *str)
+void		add_operation(t_oplist **oplist, t_parser *parser, char *str, 
+	t_asm *obj)
 {
 	t_oplist	*new;
 	t_oplist	*tmp;
@@ -21,11 +22,13 @@ void		add_operation(t_oplist **oplist, t_parser *parser, char *str)
 	if (!(new = malloc(sizeof(t_oplist))))
 	{
 		ft_putendl_fd("failed to malloc oplist", 2);
+		free_asm(obj);
+		free_parser(parser);
 		exit(-1);
 	}
 	if ((new->type = get_operation_type(str, parser)) == 0)
-		ft_error("Unknown instruction", parser);
-	new->args = extract_params(parser);
+		ft_error("Unknown instruction", parser, obj);
+	new->args = extract_params(parser, obj);
 	new->size = get_op_size(new, parser, parser->param_parser[new->type - 1]);
 	new->next = NULL;
 	check_param_error(new, parser, parser->param_parser[new->type - 1]);

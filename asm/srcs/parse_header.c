@@ -33,9 +33,9 @@ int			parse_header(t_asm *obj, t_parser *parser)
 	else
 	{
 		if (parser->line[parser->current_char] == '.')
-			ft_error("invalid command name", parser);
+			ft_error("invalid command name", parser, obj);
 		ft_error("No file name or comment at the beginning of the file",
-			parser);
+			parser, obj);
 	}
 	return (0);
 }

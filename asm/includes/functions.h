@@ -25,22 +25,25 @@ void			check_param_error(t_oplist *op, t_parser *parser,
 	t_param_parser p);
 void			check_labels_error(t_labellist *labellist, t_oplist *oplist);
 void			check_param_type(t_arglist *arg, int type);
+void			check_empty_obj(t_oplist *oplist);
 char			***init_optab(void);
-void			add_operation(t_oplist **oplist, t_parser *parser, char *str);
+void			add_operation(t_oplist **oplist, t_parser *parser, char *str,
+	t_asm *obj);
 void			add_label_to_list(t_labellist **labellist, t_parser *parser,
 	char *name);
 void			add_argument(t_arglist *current, t_arglist **arglist);
 int				is_labelchar(const char c);
-void			remove_com(char **line);
+void			remove_com(char **line, t_asm *obj, t_parser *parser);
 void			asm_init(t_asm *obj);
 t_param_parser	*param_parser_init(void);
-void			ft_error(char *str, t_parser *parser);
+void			ft_error(char *str, t_parser *parser, t_asm *obj);
 void			format_error(char *str, t_parser *parser);
 void			label_error(char *str, int i);
 void			param_error(t_arglist *arg, int type);
 void			expected_type(int type);
-t_arglist		*extract_params(t_parser *parser);
-void			extract_instruction(t_oplist **oplist, t_parser *parser);
+t_arglist		*extract_params(t_parser *parser, t_asm *obj);
+void			extract_instruction(t_oplist **oplist, t_parser *parser,
+	t_asm *obj);
 void			extract_labeldecl(t_labellist **labellist, t_parser *parser);
 int				get_operation_type(char *str, t_parser *parser);
 uint32_t		get_op_size(t_oplist *op, t_parser *parser, t_param_parser p);
@@ -48,7 +51,7 @@ int				get_arg_type(t_parser *parser);
 void			parse_name(t_asm *obj, t_parser *parser);
 void			parse_comment(t_asm *obj, t_parser *parser);
 int				parse_header(t_asm *obj, t_parser *parser);
-t_arglist		*parse_argument(t_parser *parser);
+t_arglist		*parse_argument(t_parser *parser,t_asm *obj);
 t_asm			parse(char *av);
 void			free_asm(t_asm *tasm);
 void			free_oplist(t_oplist *ops);

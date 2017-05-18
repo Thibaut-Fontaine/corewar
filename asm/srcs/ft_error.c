@@ -70,7 +70,7 @@ void		format_error(char *str, t_parser *parser)
 	exit(-1);
 }
 
-void		ft_error(char *str, t_parser *parser)
+void		ft_error(char *str, t_parser *parser, t_asm *obj)
 {
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd(" at line ", 2);
@@ -79,5 +79,7 @@ void		ft_error(char *str, t_parser *parser)
 	ft_putstr_fd("Invalid token :[", 2);
 	print_token(parser);
 	ft_putendl_fd("]", 2);
+	free_asm(obj);
+	free_parser(parser);
 	exit(-1);
 }
