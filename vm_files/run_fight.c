@@ -6,11 +6,27 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 16:05:59 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/18 15:11:18 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./vm.h"
+
+/*
+** func to check the number of call to live
+*/
+
+int				count_live(int i, int reset)
+{
+	static int	rem = 0;
+	int			tmp;
+
+	tmp = rem;
+	if (reset != 0)
+		rem = 0;
+	rem += i != 0;
+	return (tmp);
+}
 
 /*
 ** execute the fight and return the winner champ's number.
@@ -18,17 +34,30 @@
 
 int				run(t_argv info)
 {
-	size_t		n;
+	uintmax_t	cycle;
+	int			cycle_to_die;
+	int			max_checks;
 	t_plst		*head;
 	t_plst		*cur;
 
+	cycle_to_die = CYCLE_TO_DIE;
+	max_checks = MAX_CHECKS;
 	head = init_process(info);
 	cur = head;
-	n = 0;
-	while (n < CYCLE_TO_DIE)
+	cycle = 0;
+	while (head != NULL) // tant que il exite des process
 	{
-		
-		++n;
+		++cycle;
+			if (cycle % cycle_to_die == 0) // si on est arrive a CYCLE_TO_DIE
+				if (process_live(&head) == 0) // alors on check tous les process dont live vaut 0 et on les tue
+					break ;
+			if (count_live(0, 1) >= NBR_LIVE) // si il y a eu au moins NBR_LIVE exécutions de live
+				cycle_to_die -= CYCLE_DELTA; // on décrés
+			if (--max_checks == 0) // Si on n’a pas décrémenté CYCLE_TO_DIE depuis MAX_CHECKS vérifications
+			{
+				--cycle_to_die; // on le decremente
+				max_checks = MAX_CHECKS;
+			}
 	}
 	return (0);
 }
@@ -46,10 +75,17 @@ int				execute_process(t_process proc, const char *arena)
 		proc.pc = (proc.pc + 1) % MEM_SIZE; // modulo pour l'arena
 	}
 	else
-		;//arena[proc.pc]; donne l'opcode
+		(void)arena;//arena[proc.pc]; donne l'opcode
 	return (0); //
 }
 
+
+
+
+//
+// TEST FUNCS --
+//
+//
 int				toast_func(t_argv info) // to remove
 {
 	//size_t	n;
