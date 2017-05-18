@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/18 15:09:31 by vkim             ###   ########.fr       */
+/*   Updated: 2017/05/18 15:42:22 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ const char			*generate_memory(char **arena_pt, int n_champs);
 int					champ_num(int reset);
 int					is_there_flag(t_opt flag, int which);
 void				dump(const char *arena);
+void				dump_once(const char *arena);
 void				introducing_contestants(int n_champs,
 		t_header champ[MAX_PLAYERS]);
 void				display_winner(int champ_n, t_header ch[MAX_PLAYERS]);
