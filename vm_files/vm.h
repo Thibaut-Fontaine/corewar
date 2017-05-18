@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/18 15:07:45 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/18 15:09:31 by vkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef unsigned int uint;
 
 typedef struct
 {
-	unsigned char	reg[REG_NUMBER][REG_SIZE];
+	char	reg[REG_NUMBER][REG_SIZE];
 	int				pc;
 	int				carry;
 	int				live;
