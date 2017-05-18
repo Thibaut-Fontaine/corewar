@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/18 15:11:18 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/18 15:44:53 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,25 @@ int				run(t_argv info)
 	head = init_process(info);
 	cur = head;
 	cycle = 0;
-	while (head != NULL) // tant que il exite des process
+	while (head != NULL) // tant que il existe des process
 	{
+		if (is_there_flag(info.f, _S_) && cycle % info.f.ns == 0)
+			dump(info.arena);
+		else if (is_there_flag(info.f, _D_) && cycle % info.f.nd == 0)
+			dump_once(info.arena);
+		if (is_there_flag(info.f, _V_) && cycle % info.f.nv == 0)
+			; // verbose, see flag.c file for more infos
 		++cycle;
-			if (cycle % cycle_to_die == 0) // si on est arrive a CYCLE_TO_DIE
-				if (process_live(&head) == 0) // alors on check tous les process dont live vaut 0 et on les tue
-					break ;
-			if (count_live(0, 1) >= NBR_LIVE) // si il y a eu au moins NBR_LIVE exécutions de live
-				cycle_to_die -= CYCLE_DELTA; // on décrés
-			if (--max_checks == 0) // Si on n’a pas décrémenté CYCLE_TO_DIE depuis MAX_CHECKS vérifications
-			{
-				--cycle_to_die; // on le decremente
-				max_checks = MAX_CHECKS;
-			}
+		if (cycle % cycle_to_die == 0) // si on est arrive a CYCLE_TO_DIE
+			if (process_live(&head) == 0) // alors on check tous les process dont live vaut 0 et on les tue
+				break ;
+		if (count_live(0, 1) >= NBR_LIVE) // si il y a eu au moins NBR_LIVE exécutions de live
+			cycle_to_die -= CYCLE_DELTA; // on décrés
+		if (--max_checks == 0) // Si on n’a pas décrémenté CYCLE_TO_DIE depuis MAX_CHECKS vérifications
+		{
+			--cycle_to_die; // on le decremente
+			max_checks = MAX_CHECKS;
+		}
 	}
 	return (0);
 }
