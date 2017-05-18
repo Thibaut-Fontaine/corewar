@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 11:27:56 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/18 12:27:07 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void			fill_process_init(t_plst *cur, int n_champs, int i)
 	cur->proc.pc = (MEM_SIZE / n_champs) * (n_champs - i - 1);
 	cur->proc.carry = 0;
 	cur->proc.wait = 0;
+	cur->proc.live = 0;
 	cur->nxt = NULL;
 }
 
@@ -58,11 +59,11 @@ t_plst			*init_process(t_argv info)
 }
 
 /*
-** add a forked process to the start of the list (he become the head)
+** add a forked process to the start of the list by copy (he become the head)
 ** because the last process is the first to be executed.
 */
 
-void			add_process(t_plst **head, t_plst *to_fork, int pc)
+void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 {
 	size_t		reg;
 	t_plst		*new;
@@ -78,6 +79,47 @@ void			add_process(t_plst **head, t_plst *to_fork, int pc)
 	new->proc.pc = pc;
 	new->proc.carry = to_fork->proc.carry;
 	new->proc.wait = 0;
+	new->proc.live = 0;
 	new->nxt = *head;
 	*head = new;
+}
+
+/*
+** kill all process with a live egal to 0
+** and replace all live != 0 of process with 0
+** return 1 if there is a least 1 process still alive
+** return 0 if all process are mothafuckin'DEAD
+*/
+
+int				process_live(t_plst **head)
+{
+	t_plst	*cur;
+	t_plst	*tmp;
+
+	cur = *head;
+	while (cur)
+	{
+		if (cur->proc.live == 0)
+		{
+			if (cur == *head)
+			{
+				*head = (*head)->nxt;
+				free(cur); // kill it
+				cur = *head;
+			}
+			else
+			{
+				tmp = *head;
+				while (tmp->nxt != cur)
+					++tmp;
+				tmp->nxt = cur->nxt;
+				free(cur); // kill it
+				cur = tmp;
+			}
+		}
+		else
+			cur->proc.live = 0;
+		cur = cur->nxt;
+	}
+	return (*head != NULL);
 }
