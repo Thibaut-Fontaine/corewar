@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/18 15:44:53 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/19 10:00:45 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int				run(t_argv info)
 			dump_once(info.arena);
 		if (is_there_flag(info.f, _V_) && cycle % info.f.nv == 0)
 			; // verbose, see flag.c file for more infos
+		execute_all_process(head, info.arena);
 		++cycle;
 		if (cycle % cycle_to_die == 0) // si on est arrive a CYCLE_TO_DIE
 			if (process_live(&head) == 0) // alors on check tous les process dont live vaut 0 et on les tue
@@ -69,11 +70,25 @@ int				run(t_argv info)
 }
 
 /*
+** execute all the process, beginning with thyounger.
+*/
+
+int				execute_all_process(t_plst *p, const char *arena)
+{
+	while (p)
+	{
+		execute_one_process(p->proc, arena);
+		p = p->nxt;
+	}
+	return (0);
+}
+
+/*
 ** execute the register onto which there is the current processus
 ** see processus->pc;
 */
 
-int				execute_process(t_process proc, const char *arena)
+int				execute_one_process(t_process proc, const char *arena)
 {
 	if (proc.wait > 0)
 	{

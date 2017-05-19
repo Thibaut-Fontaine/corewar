@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/18 15:42:22 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/19 09:58:38 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ int					run(t_argv info);
 void				add_process(t_plst **head, t_plst *to_fork, int pc);
 int					process_live(t_plst **head);
 int					count_live(int to_increment, int reset);
+int					execute_one_process(t_process proc, const char *arena);
+int					execute_all_process(t_plst *p, const char *arena);
 
 # define CH_NUM_RESET 0
 # define C_ (CH_NUM_RESET + 1)
