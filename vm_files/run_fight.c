@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/19 10:00:45 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/19 12:09:48 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ int				run(t_argv info)
 	cycle = 0;
 	while (head != NULL) // tant que il existe des process
 	{
+		// affichages :
 		if (is_there_flag(info.f, _S_) && cycle % info.f.ns == 0)
 			dump(info.arena);
 		else if (is_there_flag(info.f, _D_) && cycle % info.f.nd == 0)
 			dump_once(info.arena);
 		if (is_there_flag(info.f, _V_) && cycle % info.f.nv == 0)
 			; // verbose, see flag.c file for more infos
+		// -----------
 		execute_all_process(head, info.arena);
 		++cycle;
 		if (cycle % cycle_to_die == 0) // si on est arrive a CYCLE_TO_DIE
@@ -70,7 +72,7 @@ int				run(t_argv info)
 }
 
 /*
-** execute all the process, beginning with thyounger.
+** execute all the process, beginning with the younger.
 */
 
 int				execute_all_process(t_plst *p, const char *arena)
@@ -91,10 +93,7 @@ int				execute_all_process(t_plst *p, const char *arena)
 int				execute_one_process(t_process proc, const char *arena)
 {
 	if (proc.wait > 0)
-	{
 		--proc.wait;
-		proc.pc = (proc.pc + 1) % MEM_SIZE; // modulo pour l'arena
-	}
 	else
 		(void)arena;//arena[proc.pc]; donne l'opcode
 	return (0); //
