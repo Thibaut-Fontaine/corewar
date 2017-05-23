@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_fight.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/19 12:09:48 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/23 17:28:11 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ int				toast_func(t_argv info) // to remove
 	//
 	/*while (n < CYCLE_TO_DIE)
 	{
-		
+
 		++n;
 	}*/
 	return (0);
