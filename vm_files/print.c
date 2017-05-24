@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 03:54:02 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/18 15:41:29 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/23 17:04:10 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,21 +96,7 @@ void			display_winner(int champ_number, t_header champ[MAX_PLAYERS])
 ** for -v (verbose)
 */
 
-void			diplay_infos()
+void			diplay_infos(int n)
 {
-}
-
-/*
-** dump only once. (-d / --dump)
-*/
-
-void			dump_once(const char *arena)
-{
-	static int	i = 0;
-
-	if (i == 0)
-	{
-		dump(arena);
-		i = 1;
-	}
+	(void)n;
 }

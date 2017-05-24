@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/23 21:18:33 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/23 20:47:15 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ int				process_live(t_plst **head)
 	t_plst	*cur;
 	t_plst	*tmp;
 
-	if (head == NULL)
-		return (0);
 	if ((*head)->proc.live)
 		(*head)->proc.live = 0;
 	else
@@ -107,15 +105,10 @@ int				process_live(t_plst **head)
 		*head = tmp;
 	}
 	cur = *head;
-	while (cur && cur->nxt) // pas sur
+	while (cur->nxt)
 	{
-		if (cur->nxt->proc.live)
-			cur->nxt->proc.live = 0;
-		else
+		if (cur->nxt->)
 		{
-			tmp = cur->nxt->nxt;
-			free(cur->nxt);
-			cur->nxt = tmp;
 		}
 		cur = cur->nxt;
 	}

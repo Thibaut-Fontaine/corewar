@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:22:42 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/16 10:53:07 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/23 16:54:39 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int			main(int argc, const char *argv[])
 	all = parse(argc, argv);
 
 	introducing_contestants(all->n_champs, all->champ);
-	dump(all->arena);
+	//dump(all->arena);
 	run(*all);
-	//display_winner(2, all->champ);
+	display_winner(2, all->champ);
 	return (0);
 }
