@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/24 18:18:43 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/28 17:42:11 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				run(t_argv info)
 		//if (is_there_flag(info.f, _V_) != -1 && cycle % info.f.nv == 0) // NO SURE TO DO VERBOSE BONUS
 		//	; // verbose, see flag.c file for more infos
 		// -----------
-		execute_all_process(head, info.arena);
+		execute_all_process(head, info.arena); // on execute tous les process un par un
 		++cycle; // on incremente car le reste doit s'executer apres au moins 1 cycle
 		if (cycle % cycle_to_die == 0) // si on est arrive a CYCLE_TO_DIE
 			if (process_live(&head) == 0) // alors on check tous les process dont live vaut 0 et on les tue
@@ -97,49 +97,4 @@ int				execute_one_process(t_process proc, const char *arena)
 	else
 		(void)arena;//arena[proc.pc]; donne l'opcode
 	return (0); //
-}
-
-
-
-
-// // // // // // /// // // // / / / / / / / // / / / / / / //
-// TEST FUNCS --
-//
-//
-int				toast_func(t_argv info) // to remove
-{
-	//size_t	n;
-	t_plst		*headd;
-	t_plst		*head;
-	//n = 0;
-	headd = init_process(info);
-	head = headd;
-	//
-	int reg;
-	while (head)
-	{
-		reg = 0;
-		while (reg < REG_NUMBER)
-		{
-			int k = 0;
-			while (k < REG_SIZE)
-			{
-				printf("%c", (head->proc.reg[reg][k] == 0 ? '0' : 'R'));
-				++k;
-			}
-			printf("|");
-			++reg;
-		}
-		printf("\npc %d\n", head->proc.pc);
-		printf("\ncarry %d\n", head->proc.carry);
-		printf("\nwait %d\n", head->proc.wait);
-		head = head->nxt;
-	}
-	//
-	/*while (n < CYCLE_TO_DIE)
-	{
-
-		++n;
-	}*/
-	return (0);
 }

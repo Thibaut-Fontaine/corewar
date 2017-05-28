@@ -6,15 +6,15 @@
 /*   By: vkim <vkim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 09:14:38 by vkim              #+#    #+#             */
-/*   Updated: 2017/05/18 16:18:56 by vkim             ###   ########.fr       */
+/*   Updated: 2017/05/28 20:47:54 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./vm.h"
 
 /* Describe possible instructions
-**fork in process.c (lfork ?)
-**live in another castle
+** fork in process.c (lfork ?)
+** live in another castle
 */
 
 void			ft_aff(t_process prc, int reg_num)
@@ -90,7 +90,7 @@ void			ft_xor(t_process prc, int reg_num1, int reg_num2, int dst)
 }
 
 /*
- **zjump
- **ldi
- **lldi
+** zjump
+** ldi
+** lldi
 */
