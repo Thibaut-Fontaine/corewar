@@ -75,7 +75,7 @@ int				run(t_argv info)
 ** execute all the process, beginning with the younger.
 */
 
-int				execute_all_process(t_plst *p, const char *arena)
+int				execute_all_process(t_plst *p, char *arena)
 {
 	while (p)
 	{
@@ -90,11 +90,15 @@ int				execute_all_process(t_plst *p, const char *arena)
 ** see processus->pc;
 */
 
-int				execute_one_process(t_process proc, const char *arena)
+int				execute_one_process(t_process proc, char *arena)
 {
-	if (proc.wait > 0)
+	if (!proc.instruct)
+		proc.instruct = check_operation(arena + proc.pc);
+	else if (proc.wait > 0)
 		--proc.wait;
 	else
-		(void)arena;//arena[proc.pc]; donne l'opcode
-	return (0); //
+		proc.pc++; //to remove
+		//exec_instruction(arena, proc);
+	return (0); 
 }
+

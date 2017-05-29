@@ -18,7 +18,7 @@
 ** return the arena.
 */
 
-const char			*generate_memory(char **arena_pt, int n_players)
+char				*generate_memory(char **arena_pt, int n_players)
 {
 	static char		arena[MEM_SIZE] = {0};
 	static int		start = 0;

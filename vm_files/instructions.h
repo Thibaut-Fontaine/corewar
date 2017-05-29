@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation.c                                        :+:      :+:    :+:   */
+/*   instructions.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/15 15:47:47 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 16:04:34 by tfontain         ###   ########.fr       */
+/*   Created: 2017/05/23 16:33:30 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/05/23 20:52:57 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
+#ifndef INSTRUCTIONS_H
+# define INSTRUCTIONS_H
 
-/*
-** see which opcode it is, and return the function for it.
-*/
-
-int		(*opcode(char *arena, t_process current))()
+typedef struct 		s_instruct
 {
-	return (NULL); // a faire
-}
+	char			opcode;
+	int				*args;
+	int				*types;
+}					t_instruct;
+
+#endif

@@ -59,11 +59,11 @@ void				get_arg(int i, t_opt *f, const char *argv[])
 		f->flag |= _STEALTH_;
 }
 
-const char			*champion_to_memory(const char *arg,
+char				*champion_to_memory(const char *arg,
 		t_header *current_champ, int n_players)
 {
 	char			*ptchamp;
-	const char		*arena;
+	char			*arena;
 	t_header		*tofree;
 
 	arena = generate_memory(&ptchamp, n_players);

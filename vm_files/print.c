@@ -35,7 +35,7 @@ static float	ft_sqrt(float num)
 	return (guess);
 }
 
-void			dump(const char *arena)
+void			dump(char *arena)
 {
 	int			sq;
 	int			i;

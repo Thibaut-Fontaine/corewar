@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <errno.h>
 # include "../libft/includes/libft.h"
+# include "./instructions.h"
 # include "./op.h"
 # include "./error.h"
 
@@ -56,11 +57,11 @@ typedef struct
 
 t_header			*open_file(const char *name, char *prog);
 t_error				error(int err);
-const char			*generate_memory(char **arena_pt, int n_champs);
+char				*generate_memory(char **arena_pt, int n_champs);
 int					champ_num(int reset);
 int					is_there_flag(t_opt flag, int which);
-void				dump(const char *arena);
-void				dump_once(const char *arena);
+void				dump(char *arena);
+void				dump_once(char *arena);
 void				introducing_contestants(int n_champs,
 		t_header champ[MAX_PLAYERS]);
 void				display_winner(int champ_n, t_header ch[MAX_PLAYERS]);
@@ -85,7 +86,7 @@ typedef struct
 	t_opt			f;
 	int				n_champs;
 	t_header		champ[MAX_PLAYERS];
-	const char		*arena;
+	char			*arena;
 }					t_argv;
 
 t_argv				*parse(int argc, const char *argv[]);
@@ -94,6 +95,7 @@ typedef unsigned int uint;
 
 typedef struct
 {
+	t_instruct		*instruct;
 	char			reg[REG_NUMBER][REG_SIZE];
 	int				pc;
 	int				carry;
@@ -111,13 +113,14 @@ typedef struct		s_plst
 	struct s_plst	*nxt;
 }					t_plst;
 
+t_instruct			*check_operation(char *opcode);
 t_plst				*init_process(t_argv info);
 int					run(t_argv info);
 void				add_process(t_plst **head, t_plst *to_fork, int pc);
 int					process_live(t_plst **head);
 int					count_live(int to_increment, int reset);
-int					execute_one_process(t_process proc, const char *arena);
-int					execute_all_process(t_plst *p, const char *arena);
+int					execute_one_process(t_process proc, char *arena);
+int					execute_all_process(t_plst *p, char *arena);
 
 # define CH_NUM_RESET 0
 # define C_ (CH_NUM_RESET + 1)

@@ -16,7 +16,7 @@ HEADER = ./vm.h
 FLAG = -Wall -Wextra -Werror
 OPTION = -c -I $(HEADER)
 SRC = ./argv_parser.c ./error.c ./flag.c ./generator.c ./main.c ./open_file.c \
-	  ./print.c ./process.c ./run_fight.c ./parser2.c
+	  ./print.c ./process.c ./run_fight.c ./parser2.c ./check_operation.c
 
 OBJ = $(addsuffix .o,$(basename $(SRC)))
 
