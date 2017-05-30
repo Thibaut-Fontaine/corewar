@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/28 17:42:11 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 00:49:35 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int				execute_one_process(t_process proc, char *arena)
 		--proc.wait;
 	else
 		proc.pc++; //to remove
-		//exec_instruction(arena, proc);
+		exec_instruction(arena, proc); // et effacer instruct ?
 	return (0); 
 }
 

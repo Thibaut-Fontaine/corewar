@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/23 17:22:05 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/30 23:36:58 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char				*generate_memory(char **arena_pt, int n_champs);
 int					champ_num(int reset);
 int					is_there_flag(t_opt flag, int which);
 void				dump(char *arena);
-void				dump_once(char *arena);
 void				introducing_contestants(int n_champs,
 		t_header champ[MAX_PLAYERS]);
 void				display_winner(int champ_n, t_header ch[MAX_PLAYERS]);
@@ -121,6 +120,7 @@ int					process_live(t_plst **head);
 int					count_live(int to_increment, int reset);
 int					execute_one_process(t_process proc, char *arena);
 int					execute_all_process(t_plst *p, char *arena);
+int					exec_instruction(char *arena, t_process proc);
 
 # define CH_NUM_RESET 0
 # define C_ (CH_NUM_RESET + 1)
