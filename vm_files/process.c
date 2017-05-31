@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 07:00:33 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 09:49:27 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 int				process_live(t_plst **head)
 {
 	int			i;
+	t_plst		*cur;
+	t_plst		*tmp;
 
 	i = 0;
 	while (i < MAX_PLAYERS)
@@ -106,12 +108,27 @@ int				process_live(t_plst **head)
 			get_champion()[i].live = 0;
 		else
 		{
-			
-		} // chercher tous les process ayant ayant cet id et les tuer
+			while (*head && (*head)->proc.id == i + 1)
+			{
+				tmp = (*head)->nxt;
+				free(*head);
+				*head = tmp;
+			}
+			cur = *head;
+			while (cur && cur->nxt)
+			{
+				if (cur->nxt->proc.id == i + 1)
+				{
+					tmp = cur->nxt->nxt;
+					free(cur->nxt);
+					cur->nxt = tmp;
+				}
+				cur = cur->nxt;
+			}
+		} // chercher tous les process ayant l'id specifie par le live a 0 du champ et les kill
 		++i;
 	}
-	(void)head;
-	return (0);
+	return (*head != NULL);
 }
 
 // OLD :
