@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 01:55:52 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 04:19:11 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,25 @@ typedef struct
 	int				nv;
 }					t_opt;
 
+/*
+** pratically the same than t_header, but without prog_size and magic
+** and with live in addition
+*/
+
+typedef struct
+{
+	int				live;
+	char			prog_name[PROG_NAME_LENGTH + 1];
+	char			comment[COMMENT_LENGTH + 1];
+}					t_champion;
+
 typedef struct
 {
 	t_instruct		*instruct;
 	char			reg[REG_NUMBER][REG_SIZE];
 	int				pc;
 	int				carry;
-	int				live;
+	//int				live;
 	int				wait;
 	int				id; // the number of the process's champion
 }					t_process;
@@ -75,7 +87,9 @@ void				dump(char *arena);
 void				introducing_contestants(int n_champs,
 		t_header champ[MAX_PLAYERS]);
 void				display_winner(int champ_n, t_header ch[MAX_PLAYERS]);
-void				display_live(t_process proc, t_header ch[MAX_PLAYERS]);
+void				display_live(int n, t_champion ch[MAX_PLAYERS]);
+t_champion			*get_champion(void);
+void				save_ch_names(t_header ch[MAX_PLAYERS]);
 
 /*
 ** argv parsing flags.
@@ -120,9 +134,9 @@ int					run(t_argv info);
 void				add_process(t_plst **head, t_plst *to_fork, int pc);
 int					process_live(t_plst **head);
 int					count_live(int to_increment, int reset);
-int					execute_one_process(t_process proc, char *arena);
+int					execute_one_process(t_process prc, t_plst *h, char *arena);
 int					execute_all_process(t_plst *p, char *arena);
-int					exec_instruction(char *arena, t_process proc);
+int					exec_instruction(char *arena, t_process proc, t_plst *hd);
 
 # define CH_NUM_RESET 0
 # define C_ (CH_NUM_RESET + 1)

@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   champ_names.c                                      :+:      :+:    :+:   */
+/*   champ_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 02:10:01 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 02:29:57 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 03:53:51 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./vm.h"
 
-/*
-** basically save the champions names
-*/
-
-void				save_ch_names(t_header ch[MAX_PLAYERS])
+t_champion				*get_champion(void)
 {
-	static t_header	local[MAX_PLAYERS];
-	uint8_t			i;
+	static t_champion	local[MAX_PLAYERS];
+
+	return (local);
+}
+
+void					save_ch_names(t_header ch[MAX_PLAYERS])
+{
+	uint8_t				i;
 
 	i = 0;
-	while (ch[i])
+	while (i < MAX_PLAYERS)
 	{
-		local[i] = ch[i];
+		ft_strcpy(get_champion()[i].prog_name, ch[i].prog_name);
+		ft_strcpy(get_champion()[i].comment, ch[i].comment);
+		get_champion()[i].live = 0;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 15:47:47 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 00:51:04 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 03:24:45 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 ** then += something to the pc of the process
 */
 
-int			exec_instruction(char *arena, t_process proc)
+int			exec_instruction(char *arena, t_process proc, t_plst *head)
 {
 	(void)arena;
 	(void)proc;
 	if (proc.instruct->opcode == 1)
-		live();
+		live(proc, head, 42);
 	if (proc.instruct->opcode == 2)
 		ld();
 	if (proc.instruct->opcode == 3)

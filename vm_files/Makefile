@@ -6,7 +6,7 @@
 #    By: tfontain <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 04:52:55 by tfontain          #+#    #+#              #
-#    Updated: 2017/05/31 00:50:28 by tfontain         ###   ########.fr        #
+#    Updated: 2017/05/31 03:25:51 by tfontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ FLAG = -Wall -Wextra -Werror
 OPTION = -c -I $(HEADER)
 SRC = ./argv_parser.c ./error.c ./flag.c ./generator.c ./main.c ./open_file.c \
 	  ./print.c ./process.c ./run_fight.c ./parser2.c ./check_operation.c \
-	  ./operation.c
+	  ./operation.c ./instructions.c ./champ_header.c
 
 OBJ = $(addsuffix .o,$(basename $(SRC)))
 

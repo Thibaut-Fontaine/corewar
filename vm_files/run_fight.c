@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 00:49:35 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 03:09:12 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,12 @@ int				run(t_argv info)
 
 int				execute_all_process(t_plst *p, char *arena)
 {
+	t_plst		*head;
+
+	head = p;
 	while (p)
 	{
-		execute_one_process(p->proc, arena);
+		execute_one_process(p->proc, head, arena);
 		p = p->nxt;
 	}
 	return (0);
@@ -90,7 +93,7 @@ int				execute_all_process(t_plst *p, char *arena)
 ** see processus->pc;
 */
 
-int				execute_one_process(t_process proc, char *arena)
+int				execute_one_process(t_process proc, t_plst *head, char *arena)
 {
 	if (!proc.instruct)
 		proc.instruct = check_operation(arena + proc.pc);
@@ -98,7 +101,7 @@ int				execute_one_process(t_process proc, char *arena)
 		--proc.wait;
 	else
 		proc.pc++; //to remove
-		exec_instruction(arena, proc); // et effacer instruct ?
+		exec_instruction(arena, proc, head); // et effacer instruct ?
 	return (0); 
 }
 

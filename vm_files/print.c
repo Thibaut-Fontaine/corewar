@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 03:54:02 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 01:56:01 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 04:19:15 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ void			display_winner(int champ_number, t_header champ[MAX_PLAYERS])
 ** Player 1, "zork", is alive.
 */
 
-void			display_live(t_process proc, t_header champ[MAX_PLAYERS])
+void			display_live(int ch_number, t_champion champ[MAX_PLAYERS])
 {
-	ft_printf("Player %d, \"%s\", is alive !", proc.id,
-			champ[proc.id - 1].prog_name);
+	ft_printf("Player %d, \"%s\", is alive !", ch_number,
+			champ[ch_number - 1].prog_name);
 }
 
 /*

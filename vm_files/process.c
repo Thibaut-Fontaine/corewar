@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 02:03:42 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 07:00:33 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void			fill_process_init(t_plst *cur, int n_champs, int i)
 	cur->proc.pc = (MEM_SIZE / n_champs) * (n_champs - i - 1);
 	cur->proc.carry = 0;
 	cur->proc.wait = 0;
-	cur->proc.live = 0;
 	cur->proc.instruct = NULL;
 	cur->proc.id = i + 1; // numero du joueur
 	cur->nxt = NULL;
@@ -81,7 +80,6 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 	new->proc.pc = pc;
 	new->proc.carry = to_fork->proc.carry;
 	new->proc.wait = 0;
-	new->proc.live = 0;
 	new->proc.instruct = NULL;
 	new->proc.id = to_fork->proc.id;
 	new->nxt = *head;
@@ -89,7 +87,7 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 }
 
 /*
-** kill all process with a live egal to 0
+** kill all process with a champ's live egal to 0
 ** and replace all live != 0 of process with 0
 ** return 1 if there is a least 1 process still alive
 ** return 0 if all process are mothafuckin'DEAD
@@ -99,13 +97,34 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 
 int				process_live(t_plst **head)
 {
+	int			i;
+
+	i = 0;
+	while (i < MAX_PLAYERS)
+	{
+		if (get_champion()[i].live)
+			get_champion()[i].live = 0;
+		else
+		{
+			
+		} // chercher tous les process ayant ayant cet id et les tuer
+		++i;
+	}
+	(void)head;
+	return (0);
+}
+
+// OLD :
+
+/*int				process_live(t_plst **head)
+{
 	t_plst	*cur;
 	t_plst	*tmp;
 
 	if (head == NULL)
 		return (0);
-	if ((*head)->proc.live)
-		(*head)->proc.live = 0;
+	if (get_champion()[(*head)->proc.id].live)
+		get_champion()[(*head)->proc.id].live = 0;
 	else
 	{
 		tmp = (*head)->nxt;
@@ -115,8 +134,8 @@ int				process_live(t_plst **head)
 	cur = *head;
 	while (cur && cur->nxt) // pas sur
 	{
-		if (cur->nxt->proc.live)
-			cur->nxt->proc.live = 0;
+		if (get_champion()[cur->nxt->proc.id].live)
+			get_champion()[cur->nxt->proc.id].live = 0;
 		else
 		{
 			tmp = cur->nxt->nxt;
@@ -126,4 +145,4 @@ int				process_live(t_plst **head)
 		cur = cur->nxt;
 	}
 	return (*head != NULL);
-}
+}*/
