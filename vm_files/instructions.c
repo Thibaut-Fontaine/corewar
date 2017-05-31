@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 05:15:44 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 10:46:58 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,48 +24,82 @@ int					live(int direct)
 	return (0);
 }
 
-int					ld()
+int					ld(t_process proc, int direct, int *dest)
 {
+	if ((*dest = direct) == 0)
+		proc.carry = 1;
+	else
+		proc.carry = 0;
 	return (0);
 }
 
-int					st()
+int					st(t_process proc, int direct, int *dest)
 {
+	if ((*dest = direct) == 0)
+		proc.carry = 1;
+	else
+		proc.carry = 0;
 	return (0);
 }
 
-int					add()
+int					add(t_process proc, int source1, int source2, int *dest)
 {
+	if ((*dest = source1 + source2) == 0)
+		proc.carry = 1;
+	else
+		proc.carry = 0;
 	return (0);
 }
 
-int					sub()
+int					sub(t_process proc, int source1, int source2, int *dest)
 {
+	if ((*dest = source1 - source2) == 0)
+		proc.carry = 1;
+	else
+		proc.carry = 0;
 	return (0);
 }
 
-int					and()
+int					and(t_process proc, int source1, int source2, int *dest)
 {
+	if ((*dest = source1 & source2) == 0)
+		proc.carry = 1;
+	else
+		proc.carry = 0;
 	return (0);
 }
 
-int					or()
+int					or(t_process proc, int source1, int source2, int *dest)
 {
+	if ((*dest = source1 | source2) == 0)
+		proc.carry = 1;
+	else
+		proc.carry = 0;
 	return (0);
 }
 
-int					xor()
+int					xor(t_process proc, int source1, int source2, int *dest)
 {
+	if ((*dest = source1 ^ source2) == 0)
+		proc.carry = 1;
+	else
+		proc.carry = 0;
 	return (0);
 }
 
-int					zjmp()
+int					zjmp(t_process proc, int source)
 {
+	if (proc.carry == 1)
+		proc.pc = (proc.pc + source) % MEM_SIZE;
 	return (0);
 }
 
-int					ldi()
+int					ldi(t_process proc, int indirect1, int indirect2, int *dest)
 {
+	if ((*dest = indirect1 + indirect2) == 0)
+		proc.carry = 1;
+	else
+		proc.carry = 0;
 	return (0);
 }
 
