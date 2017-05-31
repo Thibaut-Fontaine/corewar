@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/30 23:36:58 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 01:55:52 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,17 @@ typedef struct
 	int				nv;
 }					t_opt;
 
+typedef struct
+{
+	t_instruct		*instruct;
+	char			reg[REG_NUMBER][REG_SIZE];
+	int				pc;
+	int				carry;
+	int				live;
+	int				wait;
+	int				id; // the number of the process's champion
+}					t_process;
+
 t_header			*open_file(const char *name, char *prog);
 t_error				error(int err);
 char				*generate_memory(char **arena_pt, int n_champs);
@@ -64,6 +75,7 @@ void				dump(char *arena);
 void				introducing_contestants(int n_champs,
 		t_header champ[MAX_PLAYERS]);
 void				display_winner(int champ_n, t_header ch[MAX_PLAYERS]);
+void				display_live(t_process proc, t_header ch[MAX_PLAYERS]);
 
 /*
 ** argv parsing flags.
@@ -91,16 +103,6 @@ typedef struct
 t_argv				*parse(int argc, const char *argv[]);
 int					count_champions(int argc, const char *argv[]);
 typedef unsigned int uint;
-
-typedef struct
-{
-	t_instruct		*instruct;
-	char			reg[REG_NUMBER][REG_SIZE];
-	int				pc;
-	int				carry;
-	int				live;
-	int				wait;
-}					t_process;
 
 /*
 ** to generate a list who contains all the champions process.

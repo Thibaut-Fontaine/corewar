@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/23 21:18:33 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 02:03:42 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void			fill_process_init(t_plst *cur, int n_champs, int i)
 	cur->proc.carry = 0;
 	cur->proc.wait = 0;
 	cur->proc.live = 0;
+	cur->proc.instruct = NULL;
+	cur->proc.id = i + 1; // numero du joueur
 	cur->nxt = NULL;
 }
 
@@ -80,6 +82,8 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 	new->proc.carry = to_fork->proc.carry;
 	new->proc.wait = 0;
 	new->proc.live = 0;
+	new->proc.instruct = NULL;
+	new->proc.id = to_fork->proc.id;
 	new->nxt = *head;
 	*head = new;
 }
@@ -90,6 +94,8 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 ** return 1 if there is a least 1 process still alive
 ** return 0 if all process are mothafuckin'DEAD
 */
+
+ // il manque le free du proc->instruct si il n'est pas NULL
 
 int				process_live(t_plst **head)
 {

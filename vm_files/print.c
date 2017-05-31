@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 03:54:02 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/23 17:04:10 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/05/31 01:56:01 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,17 @@ void			display_winner(int champ_number, t_header champ[MAX_PLAYERS])
 {
 	ft_printf("Contestant %d, \"%s\", has won !\n",
 			champ_number, champ[champ_number - 1].prog_name);
+}
+
+/*
+** print a living champ as : 
+** Player 1, "zork", is alive.
+*/
+
+void			display_live(t_process proc, t_header champ[MAX_PLAYERS])
+{
+	ft_printf("Player %d, \"%s\", is alive !", proc.id,
+			champ[proc.id - 1].prog_name);
 }
 
 /*
