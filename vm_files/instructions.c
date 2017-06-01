@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 10:46:58 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/01 16:36:29 by vkim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,24 +94,28 @@ int					zjmp(t_process proc, int source)
 	return (0);
 }
 
-int					ldi(t_process proc, int indirect1, int indirect2, int *dest)
+int					ldi(t_process proc, int indirect_res, int *dest, char *arn)
 {
-	if ((*dest = indirect1 + indirect2) == 0)
+	if ((*dest = *(int *)(&arn[(proc.pc + indirect_res) % MEM_SIZE])) == 0)
 		proc.carry = 1;
 	else
 		proc.carry = 0;
 	return (0);
 }
 
-int					sti()
+int					sti(t_process proc, int *src, int indirect_res, char *arn)
 {
+	if ((*(int *)(&arn[(proc.pc + indirect_res) % MEM_SIZE]) = *src) == 0)
+		proc.carry = 1;
+	else
+		proc.carry = 0;
 	return (0);
 }
 
-int					fork()
+/*int					fork()
 {
 	return (0);
-}
+}*/
 
 int					lld()
 {
@@ -123,12 +127,13 @@ int					lldi()
 	return (0);
 }
 
-int					lfork()
+/*int					lfork()
 {
 	return (0);
-}
+}*/
 
-int					aff()
+int					aff(t_process prc, int reg_num)
 {
+	ft_putchar(((int)prc.reg[reg_num]) % 256);
 	return (0);
 }
