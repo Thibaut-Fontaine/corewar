@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 03:09:12 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/02 14:01:05 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,16 @@ int				run(t_argv info)
 		execute_all_process(head, info.arena); // on execute tous les process un par un
 		++cycle; // on incremente car le reste doit s'executer apres au moins 1 cycle
 		if (cycle % cycle_to_die == 0) // si on est arrive a CYCLE_TO_DIE
+		{
 			if (process_live(&head) == 0) // alors on check tous les process dont live vaut 0 et on les tue
 				break ;
+			cycle = 0;
+		}
 		if (count_live(0, 1) >= NBR_LIVE) // si il y a eu au moins NBR_LIVE exécutions de live
+		{
 			cycle_to_die -= CYCLE_DELTA; // on décrés
+			max_checks = MAX_CHECKS;
+		}
 		if (--max_checks == 0) // Si on n’a pas décrémenté CYCLE_TO_DIE depuis MAX_CHECKS vérifications
 		{
 			--cycle_to_die; // on le decremente

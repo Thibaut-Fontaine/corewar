@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/01 16:36:29 by vkim             ###   ########.fr       */
+/*   Updated: 2017/06/02 14:02:56 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,10 @@ int					sti(t_process proc, int *src, int indirect_res, char *arn)
 	return (0);
 }
 
-/*int					fork()
+int					fork() // doit utiliser la fonction fork_process
 {
 	return (0);
-}*/
+}
 
 int					lld()
 {
@@ -127,10 +127,10 @@ int					lldi()
 	return (0);
 }
 
-/*int					lfork()
+int					lfork() // doit utiliser la fonction fork_process
 {
 	return (0);
-}*/
+}
 
 int					aff(t_process prc, int reg_num)
 {
