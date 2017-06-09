@@ -29,5 +29,6 @@ void					save_ch_names(t_header ch[MAX_PLAYERS])
 		ft_strcpy(get_champion()[i].prog_name, ch[i].prog_name);
 		ft_strcpy(get_champion()[i].comment, ch[i].comment);
 		get_champion()[i].live = 0;
+		i++;
 	}
 }

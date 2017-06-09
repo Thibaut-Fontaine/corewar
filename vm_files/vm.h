@@ -112,6 +112,7 @@ typedef struct
 	int				n_champs;
 	t_header		champ[MAX_PLAYERS];
 	char			*arena;
+	int 			**ref_tab;
 }					t_argv;
 
 t_argv				*parse(int argc, const char *argv[]);
@@ -128,14 +129,18 @@ typedef struct		s_plst
 	struct s_plst	*nxt;
 }					t_plst;
 
-t_instruct			*check_operation(char *opcode);
+t_instruct			*check_operation(char *opcode, t_process *proc, int **ref_tab);
+void				get_args(t_process *proc, char *arena, int *tab,
+	t_instruct *instruct);
+int					extract_reg(t_process *proc, t_instruct *instruct, char *arena);
 t_plst				*init_process(t_argv info);
+int 				**get_ref_tab(void);
 int					run(t_argv info);
 void				add_process(t_plst **head, t_plst *to_fork, int pc);
 int					process_live(t_plst **head);
 int					count_live(int to_increment, int reset);
-int					execute_one_process(t_process prc, t_plst *h, char *arena);
-int					execute_all_process(t_plst *p, char *arena);
+int					execute_one_process(t_process prc, t_plst *h, char *arena, int **ref_tab);
+int					execute_all_process(t_plst *p, char *arena, int **ref_tab);
 int					exec_instruction(char *arena, t_process proc, t_plst *hd);
 
 # define CH_NUM_RESET 0

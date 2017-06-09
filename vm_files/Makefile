@@ -17,7 +17,8 @@ FLAG = -Wall -Wextra -Werror
 OPTION = -c -I $(HEADER)
 SRC = ./argv_parser.c ./error.c ./flag.c ./generator.c ./main.c ./open_file.c \
 	  ./print.c ./process.c ./run_fight.c ./parser2.c ./check_operation.c \
-	  ./operation.c ./instructions.c ./champ_header.c
+	  ./operation.c ./instructions.c ./champ_header.c ./get_ref_tab.c \
+	  ./get_args.c ./extract_reg.c
 
 OBJ = $(addsuffix .o,$(basename $(SRC)))
 

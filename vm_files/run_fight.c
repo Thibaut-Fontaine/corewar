@@ -55,7 +55,7 @@ int				run(t_argv info)
 		//if (is_there_flag(info.f, _V_) != -1 && cycle % info.f.nv == 0) // NO SURE TO DO VERBOSE BONUS
 		//	; // verbose, see flag.c file for more infos
 		// -----------
-		execute_all_process(head, info.arena); // on execute tous les process un par un
+		execute_all_process(head, info.arena, info.ref_tab); // on execute tous les process un par un
 		++cycle; // on incremente car le reste doit s'executer apres au moins 1 cycle
 		if (cycle % cycle_to_die == 0) // si on est arrive a CYCLE_TO_DIE
 		{
@@ -81,14 +81,14 @@ int				run(t_argv info)
 ** execute all the process, beginning with the younger.
 */
 
-int				execute_all_process(t_plst *p, char *arena)
+int				execute_all_process(t_plst *p, char *arena, int **ref_tab)
 {
 	t_plst		*head;
 
 	head = p;
 	while (p)
 	{
-		execute_one_process(p->proc, head, arena);
+		execute_one_process(p->proc, head, arena, ref_tab);
 		p = p->nxt;
 	}
 	return (0);
@@ -99,15 +99,15 @@ int				execute_all_process(t_plst *p, char *arena)
 ** see processus->pc;
 */
 
-int				execute_one_process(t_process proc, t_plst *head, char *arena)
+int				execute_one_process(t_process proc, t_plst *head, char *arena, int **ref_tab)
 {
 	if (!proc.instruct)
-		proc.instruct = check_operation(arena + proc.pc);
+		proc.instruct = check_operation(arena, &proc, ref_tab);
 	else if (proc.wait > 0)
 		--proc.wait;
 	else
 		proc.pc++; //to remove
-		exec_instruction(arena, proc, head); // et effacer instruct ?
+	//	exec_instruction(arena, proc, head); // et effacer instruct ?
+	(void)head;
 	return (0); 
 }
-

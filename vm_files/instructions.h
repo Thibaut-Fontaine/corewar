@@ -15,6 +15,7 @@
 
 typedef struct		s_instruct
 {
+	int				size;
 	char			opcode;
 	int				*args;
 	int				*types;

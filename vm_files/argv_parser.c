@@ -99,5 +99,6 @@ t_argv				*parse(int argc, const char *argv[])
 		++argv;
 		--argc;
 	}
+	ret.ref_tab = get_ref_tab();
 	return (&ret);
 }
