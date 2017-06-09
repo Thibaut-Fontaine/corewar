@@ -106,7 +106,7 @@ int				execute_one_process(t_process proc, t_plst *head, char *arena, int **ref_
 	else if (proc.wait > 0)
 		--proc.wait;
 	else
-		proc.pc++; //to remove
+		proc.pc = (proc.pc + 1) % MEM_SIZE;
 	//	exec_instruction(arena, proc, head); // et effacer instruct ?
 	(void)head;
 	return (0); 
