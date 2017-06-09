@@ -10,4 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "./vm.h"
 
+int			extract_dir(t_process *proc, t_instruct *instruct, char *arena,
+	int *tab)
+{
+	int		size;
+	int		i;
+
+	i = 0;
+	size = 0;
+	while (size < tab[3])
+	{
+		i = i << 8;
+		i += *(arena + ((proc->pc + instruct->size + size) % MEM_SIZE));
+		size++;
+	}
+	instruct->size += tab[3];
+	return (i);
+}

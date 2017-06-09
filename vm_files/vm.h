@@ -133,6 +133,9 @@ t_instruct			*check_operation(char *opcode, t_process *proc, int **ref_tab);
 void				get_args(t_process *proc, char *arena, int *tab,
 	t_instruct *instruct);
 int					extract_reg(t_process *proc, t_instruct *instruct, char *arena);
+int					extract_dir(t_process *proc, t_instruct *instruct, char *arena,
+	int *tab);
+int					extract_ind(t_process *proc, t_instruct *instruct, char *arena);
 t_plst				*init_process(t_argv info);
 int 				**get_ref_tab(void);
 int					run(t_argv info);

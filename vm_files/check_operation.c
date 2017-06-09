@@ -62,39 +62,6 @@ static int check_args(t_instruct *instruct, const char coding_byte, int *tab)
 		return (1);
 	return (0);
 }
-/*
-static int extract_arg(char *arg, int coding_byte, int **tab)
-{
-	do stuff
-}
-
-static int extract_type(char *arg, int coding_byte, int **tab)
-{
-	do stuff
-}
-
-static void get_args(t_process *proc, char *opcode, char coding_byte, int **tab)
-{
-	int n_args;
-	int i;
-
-	n_args = count_args(coding_byte);
-	proc->instruct->args = (int *)malloc(sizeof(int) * (n_args + 1));
-	proc->instruct->types = (int *)malloc(sizeof(int) * (n_args + 1));
-
-	i = 0;
-	opcode += 2;
-	while (i < n_args)
-	{
-//		instruct->args[i] = extract_arg(opcode, coding_byte, tab);
-//		instruct->types[i] = extract_type(opcode, coding_byte, tab);
-		i++;
-	}
-	proc->instruct->args[i] = 0;
-	proc->instruct->types[i] = 0;
-	(void)tab;
-}
-*/
 
 t_instruct	*check_operation(char *arena, t_process *proc, int **tab)
 {
@@ -120,8 +87,7 @@ t_instruct	*check_operation(char *arena, t_process *proc, int **tab)
 	{
 		instruct->size = 1;
 		instruct->types[0] = 1;
-	//	get_args(proc, arena, tab[*(arena + (proc->pc % MEM_SIZE)) - 1], instruct);*/
+		get_args(proc, arena, tab[*(arena + (proc->pc % MEM_SIZE)) - 1], instruct);
 	}
-	(void)proc;
 	return (instruct);
 }
