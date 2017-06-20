@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 04:19:11 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/20 20:39:37 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ typedef struct		s_plst
 	struct s_plst	*nxt;
 }					t_plst;
 
+void				modify_proc_register(t_process p, int n, int data);
 t_instruct			*check_operation(char *opcode, t_process *proc, int **ref_tab);
 void				get_args(t_process *proc, char *arena, int *tab,
 	t_instruct *instruct);
