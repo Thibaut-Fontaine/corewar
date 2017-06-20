@@ -14,7 +14,7 @@
 
 int			extract_reg(t_process *proc, t_instruct *instruct, char *arena)
 {
-	int 	i;
+	int		i;
 
 	i = *(arena + ((proc->pc + instruct->size) % MEM_SIZE));
 	instruct->size += 1;
