@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 19:45:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/20 21:20:55 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/20 22:24:46 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,48 @@ int lld(t_process *proc, t_instruct *instruct, char *arena)
 
 int ldi(t_process *proc, t_instruct *instruct, char *arena)
 {
+	int val1;
+	int val2;
+
+	if (instruct->types[0] == T_REG)
+		val1 = (int) proc->reg[instruct->args[0]];
+	else if (instruct->types[0] == T_DIR)
+		val1 = instruct->args[0];
+	else
+		val1 = extract_at(arena, (proc->pc + instruct->args[0]) % IDX_MOD);
+	if (instruct->types[1] == T_DIR)
+		val2 = instruct->args[1];
+	else
+		val2 = extract_at(arena, (proc->pc + instruct->args[1]) % IDX_MOD);
+	val1 = val1 + val2;
+	proc->reg[instruct->args[2]] = val1;
+	if (!val1)
+		proc->carry = 1;
+	else
+		proc->carry = 0;
+	return (1);
+}
+
+int lldi(t_process *proc, t_instruct *instruct, char *arena)
+{
+	int val1;
+	int val2;
+
+	if (instruct->types[0] == T_REG)
+		val1 = (int) proc->reg[instruct->args[0]];
+	else if (instruct->types[0] == T_DIR)
+		val1 = instruct->args[0];
+	else
+		val1 = extract_at(arena, (proc->pc + instruct->args[0]) % MEM_SIZE);
+	if (instruct->types[1] == T_DIR)
+		val2 = instruct->args[1];
+	else
+		val2 = extract_at(arena, (proc->pc + instruct->args[1]) % MEM_SIZE);
+	val1 = val1 + val2;
+	proc->reg[instruct->args[2]] = val1;
+	if (!val1)
+		proc->carry = 1;
+	else
+		proc->carry = 0;
+	return (1);
 }
