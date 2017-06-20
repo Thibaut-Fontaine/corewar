@@ -103,20 +103,6 @@ int				execute_one_process(t_process proc, t_plst *head, char *arena, int **ref_
 {
 	if (!proc.instruct)
 		proc.instruct = check_operation(arena, &proc, ref_tab);
-	if ((proc.instruct))
-	{
-		int i = 0;
-
-		while (i < 3)
-		{
-			printf("arg_num = %d, arg_type = %d, arg_val = %d", i + 1, proc.instruct->types[i], proc.instruct->args[i]);
-			i++;
-			printf("\n");
-		}
-		printf("\n");
-	}
-	if (!(proc.instruct))
-		printf("no instruct\n");
 	if (proc.wait > 0)
 		--proc.wait;
 	else
