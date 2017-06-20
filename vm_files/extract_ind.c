@@ -15,17 +15,9 @@
 int			extract_ind(t_process *proc, t_instruct *instruct, char *arena)
 {
 	int		adr;
-	int		i;
-	int		j;
 
-	adr = 0;
-	adr += *(arena + ((proc->pc + instruct->size) % MEM_SIZE));
-	adr = adr << 8;
-	adr += *(arena + ((proc->pc + instruct->size + 1) % MEM_SIZE));
-	j = (proc->pc + adr) % MEM_SIZE;
-	if (j < 0)
-		j = MEM_SIZE - j;
-	i = *(arena + j);
+	adr = 0 | *(arena + ((proc->pc + instruct->size) % MEM_SIZE)) * (1 << 8);
+	adr = adr | *(arena + ((proc->pc + instruct->size + 1) % MEM_SIZE));
 	instruct->size += 2;
-	return (i);
+	return (adr);
 }

@@ -44,7 +44,7 @@ static int	convert(char byte)
 	return (ret);
 }
 
-static int	check_args(t_instruct *instruct, const char coding_byte, int *tab)
+static int	check_coding_byte(t_instruct *instruct, const char coding_byte, int *tab)
 {
 	int		offset;
 	int		coding_int;
@@ -63,31 +63,42 @@ static int	check_args(t_instruct *instruct, const char coding_byte, int *tab)
 	return (0);
 }
 
-t_instruct	*check_operation(char *arena, t_process *proc, int **tab)
+void		fill_instruction(char *arena, t_process *proc, t_instruct *instruct,
+	int **tab)
 {
-	t_instruct	*instruct;
-	char		c_byte;
+	unsigned char c_byte;
 
-	instruct = (t_instruct *)malloc(sizeof(t_instruct));
-	if (*(arena + proc->pc) < 1 || *(arena + proc->pc) > 16)
-		return (NULL);
-	instruct->opcode = *(arena + proc->pc);
 	c_byte = *(arena + ((proc->pc + 1) % MEM_SIZE));
 	if (tab[*(arena + (proc->pc % MEM_SIZE)) - 1][0])
 	{
-		if (check_args(instruct, c_byte, tab[*(arena + (proc->pc % MEM_SIZE)) - 1]))
+		if (check_coding_byte(instruct, c_byte, tab[*(arena +
+			(proc->pc % MEM_SIZE)) - 1]))
 		{
 			instruct->size = 2;
-			get_args(proc, arena, tab[*(arena + (proc->pc % MEM_SIZE)) - 1], instruct);
+			get_args(proc, arena, tab[*(arena +
+				(proc->pc % MEM_SIZE)) - 1], instruct);
 		}
 		else
-			return (NULL);
+			instruct = NULL;
 	}
 	else
 	{
 		instruct->size = 1;
 		instruct->types[0] = 1;
-		get_args(proc, arena, tab[*(arena + (proc->pc % MEM_SIZE)) - 1], instruct);
+		get_args(proc, arena, tab[*(arena +
+			(proc->pc % MEM_SIZE)) - 1], instruct);
 	}
+}
+
+t_instruct	*check_operation(char *arena, t_process *proc, int **tab)
+{
+	t_instruct	*instruct;
+
+	if (!(instruct = (t_instruct *)malloc(sizeof(t_instruct))))
+		exit_perror("Malloc error");
+	if (*(arena + proc->pc) < 1 || *(arena + proc->pc) > 16)
+		return (NULL);
+	instruct->opcode = *(arena + proc->pc);
+	fill_instruction(arena, proc, instruct, tab);
 	return (instruct);
 }
