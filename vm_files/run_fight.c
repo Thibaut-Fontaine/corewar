@@ -103,7 +103,7 @@ int				execute_one_process(t_process proc, t_plst *head, char *arena, int **ref_
 {
 	if (!proc.instruct)
 		proc.instruct = check_operation(arena, &proc, ref_tab);
-	else if (proc.wait > 0)
+	if (proc.wait > 0)
 		--proc.wait;
 	else
 		proc.pc = (proc.pc + 1) % MEM_SIZE;
