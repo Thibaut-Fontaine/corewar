@@ -9,6 +9,7 @@
 /*   Updated: 2017/06/09 14:45:13 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "./vm.h"
 
 #define LIVE		0
@@ -28,7 +29,7 @@
 #define LFORK 		14
 #define AFF 		15
 
-int 	*fill_tab(int x, int y, int i, int j)
+int		*fill_tab(int x, int y, int i, int j)
 {
 	int *ret;
 
@@ -37,23 +38,21 @@ int 	*fill_tab(int x, int y, int i, int j)
 	ret[1] = y;
 	ret[2] = i;
 	ret[3] = j;
-
 	return (ret);
 }
 
-int 	**get_ref_tab(void)
+int		**get_ref_tab(void)
 {
-	int 	**tab;
+	int	**tab;
 
 	tab = (int **)malloc(sizeof(int *) * 16);
-
 	tab[LIVE] = fill_tab(0, 0x01000000, 1, 4);
 	tab[LD] = fill_tab(1, 0x06010000, 2, 4);
-	tab[ST]	= fill_tab(1, 0x01050000, 2, 0);
+	tab[ST] = fill_tab(1, 0x01050000, 2, 0);
 	tab[ADD] = fill_tab(1, 0x01010100, 3, 0);
 	tab[SUB] = fill_tab(1, 0x01010100, 3, 0);
 	tab[AND] = fill_tab(1, 0x07070100, 3, 4);
-	tab[OR]	= fill_tab(1, 0x07070100, 3, 4);
+	tab[OR] = fill_tab(1, 0x07070100, 3, 4);
 	tab[XOR] = fill_tab(1, 0x07070100, 3, 4);
 	tab[ZJMP] = fill_tab(0, 0x10000000, 1, 2);
 	tab[LDI] = fill_tab(1, 0x07030100, 3, 2);

@@ -12,7 +12,8 @@
 
 #include "./vm.h"
 
-int 		set_wait2(char opcode)
+/*
+int		set_wait2(char opcode)
 {
 	if (opcode == 10)
 		return (25);
@@ -31,7 +32,7 @@ int 		set_wait2(char opcode)
 	return (0);
 }
 
-int 		set_wait(char opcode)
+int		set_wait(char opcode)
 {
 	if (opcode == 1)
 		return (10);
@@ -53,25 +54,34 @@ int 		set_wait(char opcode)
 		return (20);
 	return (set_wait2(opcode));
 }
+*/
+
+int			set_wait(char opcode)
+{
+	static int wait[] =
+	{10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25,
+		800, 10, 50, 1000, 2};
+	return (wait[opcode - 1]);
+}
 
 void		get_args(t_process *proc, char *arena, int *tab,
 	t_instruct *instruct)
-	{
-		int 	i;
+{
+	int	i;
 
-		i = 0;
-		if (!(instruct->args = (int *)malloc(sizeof(int) * tab[2])))
-			exit(-1);
-		while (i < tab[2])
-		{
-			if (instruct->types[i] == T_REG)
-				instruct->args[i] = extract_reg(proc, instruct, arena);
-			else if (instruct->types[i] == T_DIR)
-				instruct->args[i] = extract_dir(proc, instruct, arena, tab);
-			else if (instruct->types[i] == T_IND)
-				instruct->args[i] = extract_ind(proc, instruct, arena);
-			i++;
-		}
-		proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
-		proc->wait = set_wait(instruct->opcode);
+	i = 0;
+	if (!(instruct->args = (int *)malloc(sizeof(int) * tab[2])))
+		exit(-1);
+	while (i < tab[2])
+	{
+		if (instruct->types[i] == T_REG)
+			instruct->args[i] = extract_reg(proc, instruct, arena);
+		else if (instruct->types[i] == T_DIR)
+			instruct->args[i] = extract_dir(proc, instruct, arena, tab);
+		else if (instruct->types[i] == T_IND)
+			instruct->args[i] = extract_ind(proc, instruct, arena);
+		i++;
 	}
+	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
+	proc->wait = set_wait(instruct->opcode);
+}
