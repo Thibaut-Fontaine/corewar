@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/20 22:21:32 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/20 22:58:53 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,30 @@
 int				get_value_to_use(t_process *proc, t_instruct *i, char *arena, int n)
 {
 	if (i->types[n] == T_REG)
+	{
+		if (i->args[n] > 16 || i->args[n] < 1)
+			return (0);
 		return (*(proc->reg[i->args[n]]));
+	}
 	if (i->types[n] == T_IND)
-		return (*(arena + i->args[n]));
+		return (*(arena + ((i->args[n] + proc->pc) % MEM_SIZE)));
 	if (i->types[n] == T_DIR)
+	{
 		return (i->args[n]);
+	}
 	return (0);
 }
 
 void				*get_pt_to_modify(t_process *proc, t_instruct *i, char *arena, int n)
 {
 	if (i->types[n] == T_REG)
+	{
+		if (i->args[n] > 16 || i->args[n] < 1)
+			return (NULL);
 		return (proc->reg[i->args[n]]);
+	}
 	if (i->types[n] == T_IND)
-		return (arena + i->args[n]);
+		return (arena + ((i->args[n] + proc->pc) % MEM_SIZE));
 	if (i->types[n] == T_DIR) // on ne peut pas ecrire dans un direct, erreur
 		return (NULL);
 	return (NULL);
@@ -40,7 +50,6 @@ void				*get_pt_to_modify(t_process *proc, t_instruct *i, char *arena, int n)
 
 int					and(t_process proc, t_instruct *i)
 {
-	//modify_proc_register(proc, , i->args[0] & i->args[2]);
 	
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/20 20:39:45 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/20 21:08:18 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 ** modifiy the n' register of the current process with data
 */
 
-void			modify_proc_register(t_process p, int n, int data)
+void			modify_proc_register(t_process *p, int n, int data)
 {
-	*(int*)(p.reg[n]) = data;
+	*(int*)(p->reg[n]) = data;
 }
 
 void			fill_process_init(t_plst *cur, int n_champs, int i)
