@@ -6,7 +6,7 @@
 /*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/20 22:58:53 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/21 19:36:29 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,21 @@
 ** function who returns the pt where to write in all case (can be IND or REG)
 */
 
-int				get_value_to_use(t_process *proc, t_instruct *i, char *arena, int n)
+static int			swap_32int(int num)
+{
+	return ((num >> 24) & 0xff) | ((num << 8) & 0xff0000)
+		| ((num >> 8) & 0xff00) | ((num << 24) & 0xff000000);
+}
+int					op_value(t_process *proc, t_instruct *i, char *arena, int n)
 {
 	if (i->types[n] == T_REG)
 	{
 		if (i->args[n] > 16 || i->args[n] < 1)
 			return (0);
-		return (*(proc->reg[i->args[n]]));
+		return (*(int*)(proc->reg[i->args[n] - 1]));
 	}
 	if (i->types[n] == T_IND)
-		return (*(arena + ((i->args[n] + proc->pc) % MEM_SIZE)));
+		return (*(arena + ((i->args[n] - 1 + proc->pc) % MEM_SIZE)));
 	if (i->types[n] == T_DIR)
 	{
 		return (i->args[n]);
@@ -33,24 +38,25 @@ int				get_value_to_use(t_process *proc, t_instruct *i, char *arena, int n)
 	return (0);
 }
 
-void				*get_pt_to_modify(t_process *proc, t_instruct *i, char *arena, int n)
+void				*op_stock(t_process *proc, t_instruct *i, char *arena, int n)
 {
 	if (i->types[n] == T_REG)
 	{
 		if (i->args[n] > 16 || i->args[n] < 1)
 			return (NULL);
-		return (proc->reg[i->args[n]]);
+		return (proc->reg[i->args[n] - 1]);
 	}
 	if (i->types[n] == T_IND)
-		return (arena + ((i->args[n] + proc->pc) % MEM_SIZE));
+		return (arena + ((i->args[n] - 1 + proc->pc) % MEM_SIZE));
 	if (i->types[n] == T_DIR) // on ne peut pas ecrire dans un direct, erreur
 		return (NULL);
 	return (NULL);
 }
 
-int					and(t_process proc, t_instruct *i)
+int					and(t_process *proc, t_instruct *i, char *arena)
 {
-	
+	*(int*)op_stock(proc, i, arena, 3) =
+		(op_value(proc, i, arena, 0) & op_value(proc, i, arena, 1));
 	return (0);
 }
 
