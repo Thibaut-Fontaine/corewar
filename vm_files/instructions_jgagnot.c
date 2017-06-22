@@ -30,7 +30,7 @@ int 	store_at(char *arena, int i, char *val)
 
 int		st(t_process *proc, t_instruct *instruct, char *arena)
 {
-	char	*val;
+	int		val;
 
 	if (!is_valid_reg(instruct->args[0]))
 		return (0);
