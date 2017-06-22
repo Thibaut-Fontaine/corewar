@@ -21,10 +21,10 @@ int		is_valid_reg(int reg)
 
 int 	store_at(char *arena, int i, char *val)
 {
-	*arena + (i % MEM_SIZE) = val[0];
-	*arena + ((i + 1) % MEM_SIZE) = val[1];
-	*arena + ((i + 2) % MEM_SIZE) = val[2];
-	*arena + ((i + 3) % MEM_SIZE) = val[3];
+	*arena + (i % MEM_SIZE) = *val;
+	*arena + ((i + 1) % MEM_SIZE) = *(val + 1);
+	*arena + ((i + 2) % MEM_SIZE) = *(val + 2);
+	*arena + ((i + 3) % MEM_SIZE) = *(val + 3);
 	return (0);
 }
 
@@ -34,7 +34,7 @@ int		st(t_proc *proc, t_instruct *instruct, char *arena)
 
 	if (!is_valid_reg(instruct->args[0]))
 		return (0);
-	val = proc->reg[instruct->args[0]];
+	val = proc->reg[instruct->args[0] - 1];
 	if (instruct->types[1] == T_REG)
 	{
 		if (!is_valid_reg(instruct->args[1]))
@@ -55,9 +55,9 @@ int		add(t_proc *proc, t_instruct *instruct)
 	if (!is_valid_reg(instruct->args[0]) || !is_valid_reg(instruct->args[1])
 		|| !is_valid_reg(instruct->args[2]))
 		return (0);
-	proc->reg[instruct->args[2]] = proc->reg[instruct->args[0]] +
-	proc->reg[instruct->args[1]];
-	if (proc->reg[instruct->args[2]] == 0)
+	proc->reg[instruct->args[2] - 1] = proc->reg[instruct->args[0] - 1] +
+	proc->reg[instruct->args[1] - 1];
+	if (proc->reg[instruct->args[2] - 1] == 0)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
@@ -69,9 +69,9 @@ int		sub(t_proc *proc, t_instruct *instruct)
 	if (!is_valid_reg(instruct->args[0]) || !is_valid_reg(instruct->args[1])
 		|| !is_valid_reg(instruct->args[2]))
 		return (0);
-	proc->reg[instruct->args[2]] = proc->reg[instruct->args[0]] -
-	proc->reg[instruct->args[1]];
-	if (proc->reg[instruct->args[2]] == 0)
+	proc->reg[instruct->args[2] - 1] = proc->reg[instruct->args[0] - 1] -
+	proc->reg[instruct->args[1] - 1];
+	if (proc->reg[instruct->args[2] - 1] == 0)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
