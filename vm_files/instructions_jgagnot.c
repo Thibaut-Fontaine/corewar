@@ -14,7 +14,7 @@
 
 int		is_valid_reg(int reg)
 {
-	if (reg < 0 || reg > 16)
+	if (reg < 1 || reg > 16)
 		return (0);
 	return (1);
 }
