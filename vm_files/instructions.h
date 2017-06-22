@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 16:33:30 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/31 00:49:37 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/22 18:08:23 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,5 @@ typedef struct		s_instruct
 	int				*args;
 	int				*types;
 }					t_instruct;
-
-int					live();
-int					ld();
-int					st();
-int					add();
-int					sub();
-int					and();
-int					or();
-int					xor();
-int					zjmp();
-int					ldi();
-int					sti();
-int					fork();
-int					lld();
-int					lldi();
-int					lfork();
-int					aff();
 
 #endif

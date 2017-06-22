@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/02 14:02:56 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/22 18:09:28 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,26 +109,6 @@ int					sti(t_process proc, int *src, int indirect_res, char *arn)
 		proc.carry = 1;
 	else
 		proc.carry = 0;
-	return (0);
-}
-
-int					fork() // doit utiliser la fonction fork_process
-{
-	return (0);
-}
-
-int					lld()
-{
-	return (0);
-}
-
-int					lldi()
-{
-	return (0);
-}
-
-int					lfork() // doit utiliser la fonction fork_process
-{
 	return (0);
 }
 

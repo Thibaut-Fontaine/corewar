@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/20 21:08:16 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/22 18:22:08 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct
 typedef struct
 {
 	t_instruct		*instruct;
-	char			reg[REG_NUMBER][REG_SIZE];
+	int			reg[REG_NUMBER];
 	int				pc;
 	int				carry;
 	//int				live;
@@ -146,6 +146,7 @@ int					count_live(int to_increment, int reset);
 int					execute_one_process(t_process prc, t_plst *h, char *arena, int **ref_tab);
 int					execute_all_process(t_plst *p, char *arena, int **ref_tab);
 int					exec_instruction(char *arena, t_process proc, t_plst *hd);
+void				fork_process(t_plst **head, t_plst *to_fork, int pc);
 
 # define CH_NUM_RESET 0
 # define C_ (CH_NUM_RESET + 1)
