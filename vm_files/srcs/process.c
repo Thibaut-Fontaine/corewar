@@ -3,36 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/20 21:08:18 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/22 20:05:14 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
+#include "../includes/vm.h"
 
-/*
-** modifiy the n' register of the current process with data
-*/
-
-void			modify_proc_register(t_process *p, int n, int data)
+static void 	fill_process_init(t_plst *cur, int n_champs, int i)
 {
-	*(int*)(p->reg[n]) = data;
-}
-
-void			fill_process_init(t_plst *cur, int n_champs, int i)
-{
-	size_t		reg;
-
-	reg = 0;
-	while (reg < REG_NUMBER)
-		ft_bzero(cur->proc.reg[reg++], REG_SIZE);
+	ft_bzero(cur->proc.reg, sizeof(int) * REG_NUMBER);
 	cur->proc.pc = (MEM_SIZE / n_champs) * (n_champs - i - 1);
 	cur->proc.carry = 0;
 	cur->proc.wait = 0;
 	cur->proc.instruct = NULL;
-	cur->proc.id = i + 1; // numero du joueur
+	cur->proc.id = i + 1;
 	cur->nxt = NULL;
 }
 
@@ -83,7 +70,7 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 	reg = 0;
 	while (reg < REG_NUMBER)
 	{
-		ft_memmove(new->proc.reg[reg], to_fork->proc.reg[reg], REG_SIZE);
+		new->proc.reg[reg] = to_fork->proc.reg[reg];
 		++reg;
 	}
 	new->proc.pc = pc;
@@ -101,8 +88,6 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 ** return 1 if there is a least 1 process still alive
 ** return 0 if all process are mothafuckin'DEAD
 */
-
- // il manque le free du proc->instruct si il n'est pas NULL
 
 int				process_live(t_plst **head)
 {
@@ -134,41 +119,8 @@ int				process_live(t_plst **head)
 				}
 				cur = cur->nxt;
 			}
-		} // chercher tous les process ayant l'id specifie par le live a 0 du champ et les kill
+		}
 		++i;
 	}
 	return (*head != NULL);
 }
-
-// OLD :
-
-/*int				process_live(t_plst **head)
-{
-	t_plst	*cur;
-	t_plst	*tmp;
-
-	if (head == NULL)
-		return (0);
-	if (get_champion()[(*head)->proc.id].live)
-		get_champion()[(*head)->proc.id].live = 0;
-	else
-	{
-		tmp = (*head)->nxt;
-		free(*head);
-		*head = tmp;
-	}
-	cur = *head;
-	while (cur && cur->nxt) // pas sur
-	{
-		if (get_champion()[cur->nxt->proc.id].live)
-			get_champion()[cur->nxt->proc.id].live = 0;
-		else
-		{
-			tmp = cur->nxt->nxt;
-			free(cur->nxt);
-			cur->nxt = tmp;
-		}
-		cur = cur->nxt;
-	}
-	return (*head != NULL);
-}*/

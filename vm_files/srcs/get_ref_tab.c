@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_ref_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 14:45:12 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/09 14:45:13 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/06/22 19:40:03 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
+#include "../includes/vm.h"
 
 #define LIVE		0
 #define LD			1
@@ -29,7 +29,7 @@
 #define LFORK 		14
 #define AFF 		15
 
-int		*fill_tab(int x, int y, int i, int j)
+static int		*fill_tab(int x, int y, int i, int j)
 {
 	int *ret;
 

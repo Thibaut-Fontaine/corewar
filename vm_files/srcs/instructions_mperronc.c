@@ -6,23 +6,11 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 19:45:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/22 18:09:33 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/22 19:40:08 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
-
-int extract_at(char *arena, int addr)
-{
-	int ret;
-
-	ret = 0;
-	ret = ret | *(arena + (addr++ % MEM_SIZE)) * (1 << 24);
-	ret = ret | *(arena + (addr++ % MEM_SIZE)) * (1 << 16);
-	ret = ret | *(arena + (addr++ % MEM_SIZE)) * (1 << 8);
-	ret = ret | *(arena + (addr % MEM_SIZE));
-	return (ret);
-}
+#include "../includes/vm.h"
 
 int aff(t_process *proc, t_instruct *instruct)
 {
@@ -31,11 +19,11 @@ int aff(t_process *proc, t_instruct *instruct)
 	reg_num = instruct->args[0];
 	if (reg_num < 1 || reg_num > REG_NUMBER)
 		return (0);
-	ft_putchar(((int)proc->reg[reg_num - 1]) % 256);
+	ft_putchar(proc->reg[reg_num - 1] % 256);
 	return (1);
 }
 
-int fork(t_plst *self, t_plst *head, t_instruct *instruct)
+int frk(t_plst *self, t_plst *head, t_instruct *instruct)
 {
 	int npc;
 
@@ -91,7 +79,7 @@ int ldi(t_process *proc, t_instruct *instruct, char *arena)
 	if (instruct->args[1] < 1 || instruct->args[1] > REG_NUMBER)
 		return (0);
 	if (instruct->types[0] == T_REG)
-		val1 = (int) proc->reg[instruct->args[0]];
+		val1 = proc->reg[instruct->args[0]];
 	else if (instruct->types[0] == T_DIR)
 		val1 = instruct->args[0];
 	else
@@ -114,7 +102,7 @@ int lldi(t_process *proc, t_instruct *instruct, char *arena)
 	if (instruct->args[1] < 1 || instruct->args[1] > REG_NUMBER)
 		return (0);
 	if (instruct->types[0] == T_REG)
-		val1 = (int) proc->reg[instruct->args[0]];
+		val1 = proc->reg[instruct->args[0]];
 	else if (instruct->types[0] == T_DIR)
 		val1 = instruct->args[0];
 	else

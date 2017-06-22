@@ -1,71 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructions.c                                     :+:      :+:    :+:   */
+/*   instructions_tfontain.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/22 18:09:28 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/22 19:29:27 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
+#include "../includes/vm.h"
 
 /*
-** this file contains instructions to execute only.
+** function who returns the pt where to write in all case (can be IND or REG)
 */
 
-int					live(int direct)
+int					op_value(t_process *proc, t_instruct *i, char *arena, int n)
 {
-	count_live(1, 0); // increment. du nbr de live
-	get_champion()[direct].live = 1; // on met le live du champion a 1
-	display_live(direct, get_champion()); // on affiche le joueur vivant
+	if (i->types[n] == T_REG)
+	{
+		if (i->args[n] > 16 || i->args[n] < 1)
+			return (0);
+		return (*(int*)(proc->reg[i->args[n] - 1]));
+	}
+	if (i->types[n] == T_IND)
+		return (*(arena + ((i->args[n] - 1 + proc->pc) % MEM_SIZE)));
+	if (i->types[n] == T_DIR)
+	{
+		return (i->args[n]);
+	}
 	return (0);
 }
 
-int					ld(t_process proc, int direct, int *dest)
+void				*op_stock(t_process *proc, t_instruct *i, char *arena, int n)
 {
-	if ((*dest = direct) == 0)
-		proc.carry = 1;
-	else
-		proc.carry = 0;
-	return (0);
+	if (i->types[n] == T_REG)
+	{
+		if (i->args[n] > 16 || i->args[n] < 1)
+			return (NULL);
+		return (proc->reg[i->args[n] - 1]);
+	}
+	if (i->types[n] == T_IND)
+		return (arena + ((i->args[n] - 1 + proc->pc) % MEM_SIZE));
+	if (i->types[n] == T_DIR) // on ne peut pas ecrire dans un direct, erreur
+		return (NULL);
+	return (NULL);
 }
 
-int					st(t_process proc, int direct, int *dest)
+int					and(t_process *proc, t_instruct *i, char *arena)
 {
-	if ((*dest = direct) == 0)
-		proc.carry = 1;
-	else
-		proc.carry = 0;
-	return (0);
-}
-
-int					add(t_process proc, int source1, int source2, int *dest)
-{
-	if ((*dest = source1 + source2) == 0)
-		proc.carry = 1;
-	else
-		proc.carry = 0;
-	return (0);
-}
-
-int					sub(t_process proc, int source1, int source2, int *dest)
-{
-	if ((*dest = source1 - source2) == 0)
-		proc.carry = 1;
-	else
-		proc.carry = 0;
-	return (0);
-}
-
-int					and(t_process proc, int source1, int source2, int *dest)
-{
-	if ((*dest = source1 & source2) == 0)
-		proc.carry = 1;
-	else
-		proc.carry = 0;
+	*(int*)op_stock(proc, i, arena, 3) =
+		(op_value(proc, i, arena, 0) & op_value(proc, i, arena, 1));
 	return (0);
 }
 
@@ -109,11 +95,5 @@ int					sti(t_process proc, int *src, int indirect_res, char *arn)
 		proc.carry = 1;
 	else
 		proc.carry = 0;
-	return (0);
-}
-
-int					aff(t_process prc, int reg_num)
-{
-	ft_putchar(((int)prc.reg[reg_num]) % 256);
 	return (0);
 }

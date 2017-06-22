@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argv_parser.c                                      :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 14:23:12 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/22 20:12:14 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
+#include "../includes/vm.h"
 
 /*
 ** [-d N -s N -v N | -b --stealth | -n --stealth] [-a] <champion1.cor> <...>
 */
 
-int					ret_flag(char c)
+static int		ret_flag(char c)
 {
 	if (c == 'a')
 		return (0);
@@ -34,7 +34,7 @@ int					ret_flag(char c)
 		return (0);
 }
 
-int					fill_flag(t_opt *f, const char *c)
+static int		fill_flag(t_opt *f, const char *c)
 {
 	if (c[0] == '-')
 	{
@@ -47,7 +47,7 @@ int					fill_flag(t_opt *f, const char *c)
 	return (0);
 }
 
-void				get_arg(int i, t_opt *f, const char *argv[])
+static void		get_arg(int i, t_opt *f, const char *argv[])
 {
 	if (i == _D_)
 		f->nd = ft_atoi(*argv);
@@ -59,7 +59,7 @@ void				get_arg(int i, t_opt *f, const char *argv[])
 		f->flag |= _STEALTH_;
 }
 
-char				*champion_to_memory(const char *arg,
+static char		*champion_to_memory(const char *arg,
 		t_header *current_champ, int n_players)
 {
 	char			*ptchamp;
@@ -73,7 +73,7 @@ char				*champion_to_memory(const char *arg,
 	return (arena);
 }
 
-t_argv				*parse(int argc, const char *argv[])
+t_argv	*parse(int argc, const char *argv[])
 {
 	int				tmp;
 	static t_argv	ret;

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   flag.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 02:01:54 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 11:23:56 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/22 19:40:00 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
+#include "../includes/vm.h"
 
 /*
 ** function used to know if there is the current flag

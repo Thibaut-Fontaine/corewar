@@ -3,60 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 15:47:37 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/09 15:47:39 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/06/22 19:45:26 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
+#include "../includes/vm.h"
 
-/*
-int		set_wait2(char opcode)
-{
-	if (opcode == 10)
-		return (25);
-	if (opcode == 11)
-		return (25);
-	if (opcode == 12)
-		return (800);
-	if (opcode == 13)
-		return (10);
-	if (opcode == 14)
-		return (50);
-	if (opcode == 15)
-		return (1000);
-	if (opcode == 16)
-		return (2);
-	return (0);
-}
-
-int		set_wait(char opcode)
-{
-	if (opcode == 1)
-		return (10);
-	if (opcode == 2)
-		return (5);
-	if (opcode == 3)
-		return (5);
-	if (opcode == 4)
-		return (10);
-	if (opcode == 5)
-		return (10);
-	if (opcode == 6)
-		return (6);
-	if (opcode == 7)
-		return (6);
-	if (opcode == 8)
-		return (6);
-	if (opcode == 9)
-		return (20);
-	return (set_wait2(opcode));
-}
-*/
-
-int			set_wait(char opcode)
+static int	set_wait(char opcode)
 {
 	static int wait[] =
 	{10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25,

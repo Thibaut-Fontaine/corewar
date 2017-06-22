@@ -3,43 +3,80 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tfontain <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/11/05 04:52:55 by tfontain          #+#    #+#              #
-#    Updated: 2017/05/31 03:25:51 by tfontain         ###   ########.fr        #
+#    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
+#    Updated: 2017/06/22 20:13:59 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = corewar
-CC = clang
-HEADER = ./vm.h
-FLAG = -Wall -Wextra -Werror
-OPTION = -c -I $(HEADER)
-SRC = ./parse.c ./error.c ./flag.c ./generator.c ./main.c ./open_file.c \
-	  ./print.c ./process.c ./run_fight.c ./parser2.c ./check_operation.c \
-	  ./operation.c ./instructions.c ./champ_header.c ./get_ref_tab.c \
-	  ./get_args.c ./extract_reg.c ./extract_dir.c ./extract_ind.c \
-	  ./error_champ.c ./error_file.c
 
-OBJ = $(addsuffix .o,$(basename $(SRC)))
+CFLAGS = -Wall -Wextra -Werror -g
 
-.PHONY : all clean fclean re
+CC = gcc
 
-all : $(NAME)
+INCLUDES_PATH = includes/
 
-$(NAME) : $(OBJ)
-	make -C ../libft/
-	$(CC) $(FLAG) $(OPTION) $(SRC)
-	$(CC) -o $(NAME) $(OBJ) -L/ ../libft/libft.a
-%.o : %.c
-	$(CC) $(FLAG) $(OPTION) -c $< -o $@
+SRCS_PATH = srcs/
 
-clean :
-	make -C ../libft/ clean
-	rm -f $(OBJ)
+SRCS_NAME = main.c\
+			champ_header.c\
+			check_operation.c\
+			error_champ.c\
+			error_file.c\
+			error.c\
+			extract_dir.c\
+			extract_ind.c\
+			extract_reg.c\
+			flag.c\
+			generator.c\
+			get_args.c\
+			get_ref_tab.c\
+			instructions_helpers.c\
+			instructions_jgagnot.c\
+			instructions_mperronc.c\
+			open_file.c\
+			parse.c\
+			parser2.c\
+			print.c\
+			process.c\
+			run_fight.c\
 
-fclean : clean
-	make -C ../libft/ fclean
-	rm -f $(NAME)
+SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
-re : fclean all
+OBJS_PATH = objs/
+
+OBJS_NAME = $(SRCS_NAME:.c=.o)
+
+OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
+
+LIBRARY = -lm -L ../libft/ -lft
+
+all: odir $(NAME)
+
+$(NAME): $(OBJS)
+	@Make -C ../libft
+	@echo " - Making $(NAME)"
+	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY)
+
+$(OBJS_PATH)%.o: $(SRCS_PATH)%.c
+	@echo " - Compiling $<"
+	@$(CC) $(CFLAGS) -o $@ -c $< -I$(INCLUDES_PATH)
+
+odir:
+	@mkdir -p $(OBJS_PATH)
+
+clean:
+	@Make clean -C ../libft
+	@echo " - Cleaning objs"
+	@rm -f $(OBJS)
+
+fclean: clean
+	@Make fclean -C ../libft
+	@echo " - Cleaning executable"
+	@rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: clean fclean re odir

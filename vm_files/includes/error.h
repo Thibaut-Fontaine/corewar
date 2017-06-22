@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 01:43:01 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/06 05:27:30 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/22 18:58:41 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define _ERR_CH_TOO_BIG 7
 # define _ERR_TOO_MANY_CH 8
 
+void	(*error(int err))();
 void	exit_perror(const char *name);
 void	usage(void);
 void	bad_source_file(const char *name);

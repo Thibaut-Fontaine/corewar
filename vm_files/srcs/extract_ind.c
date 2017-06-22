@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   extract_ind.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 16:15:51 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/09 16:15:52 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/06/22 19:39:59 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
+#include "../includes/vm.h"
 
 int			extract_ind(t_process *proc, t_instruct *instruct, char *arena)
 {

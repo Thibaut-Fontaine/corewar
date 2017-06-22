@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 03:54:02 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 04:19:15 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/22 19:48:32 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
+#include "../includes/vm.h"
 
 /*
 ** dump the arena on the std output.
@@ -35,7 +35,7 @@ static float	ft_sqrt(float num)
 	return (guess);
 }
 
-void			dump(char *arena)
+void		dump(char *arena)
 {
 	int			sq;
 	int			i;
@@ -93,7 +93,7 @@ void			display_winner(int champ_number, t_header champ[MAX_PLAYERS])
 }
 
 /*
-** print a living champ as : 
+** print a living champ as :
 ** Player 1, "zork", is alive.
 */
 
@@ -107,7 +107,7 @@ void			display_live(int ch_number, t_champion champ[MAX_PLAYERS])
 ** for -v (verbose)
 */
 
-void			diplay_infos(int n)
+void			display_infos(int n)
 {
 	(void)n;
 }

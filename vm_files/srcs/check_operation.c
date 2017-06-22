@@ -6,11 +6,11 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 16:25:18 by mperronc          #+#    #+#             */
-/*   Updated: 2017/05/23 22:01:21 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/22 19:39:53 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../includes/vm.h"
 
 static int	check_arg(int coding_int, int mask, int offset)
 {
@@ -63,7 +63,7 @@ static int	check_coding_byte(t_instruct *instruct, const char coding_byte, int *
 	return (0);
 }
 
-void		fill_instruction(char *arena, t_process *proc, t_instruct *instruct,
+static void		fill_instruction(char *arena, t_process *proc, t_instruct *instruct,
 	int **tab)
 {
 	unsigned char c_byte;

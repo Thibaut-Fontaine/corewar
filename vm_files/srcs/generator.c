@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   generator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 21:00:55 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/15 11:24:11 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/22 19:40:02 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
+#include "../includes/vm.h"
 
 /*
 ** at each call, return fill arena_pt with the index to place the next champion
@@ -18,7 +18,7 @@
 ** return the arena.
 */
 
-char				*generate_memory(char **arena_pt, int n_players)
+char	*generate_memory(char **arena_pt, int n_players)
 {
 	static char		arena[MEM_SIZE] = {0};
 	static int		start = 0;
@@ -35,7 +35,7 @@ char				*generate_memory(char **arena_pt, int n_players)
 ** return 0 to MAX_PLAYERS - 1
 */
 
-int					champ_num(int reset)
+int		champ_num(int reset)
 {
 	static int		ret = -1;
 

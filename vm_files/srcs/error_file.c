@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 16:59:35 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/20 16:59:36 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/06/22 19:39:56 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
-#include "./error.h"
+#include "../includes/vm.h"
 
 void		bad_source_file(const char *name)
 {

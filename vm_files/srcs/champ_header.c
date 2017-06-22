@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   champ_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfontain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 02:10:01 by tfontain          #+#    #+#             */
-/*   Updated: 2017/05/31 03:53:51 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/22 19:39:52 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./vm.h"
+#include "../includes/vm.h"
 
-t_champion				*get_champion(void)
+t_champion	*get_champion(void)
 {
 	static t_champion	local[MAX_PLAYERS];
 
 	return (local);
 }
 
-void					save_ch_names(t_header ch[MAX_PLAYERS])
+void		save_ch_names(t_header ch[MAX_PLAYERS])
 {
-	uint8_t				i;
+	uint8_t	i;
 
 	i = 0;
 	while (i < MAX_PLAYERS)

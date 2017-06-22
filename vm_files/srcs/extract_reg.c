@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructions.h                                     :+:      :+:    :+:   */
+/*   extract_reg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/23 16:33:30 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/22 18:08:23 by mperronc         ###   ########.fr       */
+/*   Created: 2017/06/09 16:15:35 by jgagnot           #+#    #+#             */
+/*   Updated: 2017/06/22 19:40:01 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INSTRUCTIONS_H
-# define INSTRUCTIONS_H
+#include "../includes/vm.h"
 
-typedef struct		s_instruct
+int			extract_reg(t_process *proc, t_instruct *instruct, char *arena)
 {
-	int				size;
-	char			opcode;
-	int				*args;
-	int				*types;
-}					t_instruct;
+	int		i;
 
-#endif
+	i = *(arena + ((proc->pc + instruct->size) % MEM_SIZE));
+	instruct->size += 1;
+	return (i);
+}
