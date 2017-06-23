@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/23 04:56:25 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/23 22:57:12 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,29 @@ void		fork_process(t_plst **head, t_plst *to_fork, int pc);
 t_plst		*init_process(t_argv info);
 int			process_live(t_plst **head);
 
+/*
+** op_value is used to get value from direct, indirect or register
+** op_stock is used to fill a value in an indirect or in a register
+*/
 
-int			live(int direct);
+int			op_value(t_process *proc, t_instruct *i, char *arena, int n);
+void		*op_stock(t_process *proc, t_instruct *i, char *arena, int n);
+
+int			live(t_instruct *i);
+int 		ld(t_process *proc, t_instruct *instruct, char *arena);
 int			st(t_process *proc, t_instruct *instruct, char *arena);
 int			add(t_process *proc, t_instruct *instruct);
 int			sub(t_process *proc, t_instruct *instruct);
-int 		ld(t_process *proc, t_instruct *instruct, char *arena);
-int 		lld(t_process *proc, t_instruct *instruct, char *arena);
+int			and(t_process *proc, t_instruct *i, char *arena);
+int			or(t_process *proc, t_instruct *i, char *arena);
+int			xor(t_process *proc, t_instruct *i, char *arena);
+int			zjmp(t_process *proc, t_instruct *i, char *arena);
 int 		ldi(t_process *proc, t_instruct *instruct, char *arena);
+int			sti(t_process *proc, t_instruct *i, char *arena);
+int 		lld(t_process *proc, t_instruct *instruct, char *arena);
 int 		lldi(t_process *proc, t_instruct *instruct, char *arena);
-int 		frk(t_plst *self, t_plst *head, t_instruct *instruct);
 int 		lfork(t_plst *self, t_plst *head, t_instruct *instruct);
+int 		frk(t_plst *self, t_plst *head, t_instruct *instruct);
 int 		aff(t_process *proc, t_instruct *instruct);
 
 int			run(t_argv info);

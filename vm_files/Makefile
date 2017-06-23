@@ -6,7 +6,7 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/06/22 20:13:59 by mperronc         ###   ########.fr        #
+#    Updated: 2017/06/23 23:20:43 by tfontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS_NAME = main.c\
 			instructions_helpers.c\
 			instructions_jgagnot.c\
 			instructions_mperronc.c\
+			instructions_tfontain.c\
 			open_file.c\
 			parse.c\
 			parser2.c\

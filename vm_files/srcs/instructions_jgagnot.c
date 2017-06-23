@@ -6,17 +6,17 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 13:38:15 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/23 04:56:34 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/23 22:16:26 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int		live(int direct)
+int		live(t_instruct *i)
 {
 	count_live(1, 0); // increment. du nbr de live
-	get_champion()[direct].live = 1; // on met le live du champion a 1
-	display_live(direct, get_champion()); // on affiche le joueur vivant
+	get_champion()[i->args[0]].live = 1; // on met le live du champion a 1
+	display_live(i->args[0], get_champion()); // on affiche le joueur vivant
 	return (0);
 }
 
