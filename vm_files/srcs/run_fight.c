@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/22 20:05:14 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/23 04:55:50 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** func to check the number of call to live
 */
 
-static int		count_live(int i, int reset)
+int		count_live(int i, int reset)
 {
 	static int	rem = 0;
 	int			tmp;

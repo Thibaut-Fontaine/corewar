@@ -6,15 +6,18 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 13:38:15 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/22 20:13:13 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/23 04:56:34 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int	live(void)
+int		live(int direct)
 {
-	return(0);
+	count_live(1, 0); // increment. du nbr de live
+	get_champion()[direct].live = 1; // on met le live du champion a 1
+	display_live(direct, get_champion()); // on affiche le joueur vivant
+	return (0);
 }
 
 int		st(t_process *proc, t_instruct *instruct, char *arena)
