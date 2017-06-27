@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 15:47:37 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/22 19:45:26 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/27 16:06:13 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void		get_args(t_process *proc, char *arena, int *tab,
 	int	i;
 
 	i = 0;
-	if (!(instruct->args = (int *)malloc(sizeof(int) * tab[2])))
-		exit(-1);
 	while (i < tab[2])
 	{
 		if (instruct->types[i] == T_REG)

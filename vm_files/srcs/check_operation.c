@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 16:25:18 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/22 19:39:53 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/27 16:39:04 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static int	check_coding_byte(t_instruct *instruct, const char coding_byte, int *
 	int		coding_int;
 	int		ret;
 
-	instruct->types = (int *)malloc(sizeof(int) * (tab[2] + 1));
 	coding_int = convert(coding_byte);
 	offset = 0;
 	while ((ret = check_arg(coding_int, tab[1], offset)))
@@ -63,7 +62,7 @@ static int	check_coding_byte(t_instruct *instruct, const char coding_byte, int *
 	return (0);
 }
 
-static void		fill_instruction(char *arena, t_process *proc, t_instruct *instruct,
+static int		fill_instruction(char *arena, t_process *proc, t_instruct *instruct,
 	int **tab)
 {
 	unsigned char c_byte;
@@ -79,7 +78,7 @@ static void		fill_instruction(char *arena, t_process *proc, t_instruct *instruct
 				(proc->pc % MEM_SIZE)) - 1], instruct);
 		}
 		else
-			instruct = NULL;
+			return (0);
 	}
 	else
 	{
@@ -88,6 +87,7 @@ static void		fill_instruction(char *arena, t_process *proc, t_instruct *instruct
 		get_args(proc, arena, tab[*(arena +
 			(proc->pc % MEM_SIZE)) - 1], instruct);
 	}
+	return (1);
 }
 
 t_instruct	*check_operation(char *arena, t_process *proc, int **tab)
@@ -96,9 +96,16 @@ t_instruct	*check_operation(char *arena, t_process *proc, int **tab)
 
 	if (!(instruct = (t_instruct *)malloc(sizeof(t_instruct))))
 		exit_perror("Malloc error");
+	instruct->size = 0;
+	instruct->types = (int *) ft_memalloc(sizeof(int) * 3);
+	instruct->args = (int *) ft_memalloc(sizeof(int) * 3);
 	if (*(arena + proc->pc) < 1 || *(arena + proc->pc) > 16)
 		return (NULL);
 	instruct->opcode = *(arena + proc->pc);
-	fill_instruction(arena, proc, instruct, tab);
+	if (!(fill_instruction(arena, proc, instruct, tab)))
+	{
+		free_instruction(instruct);
+		return (NULL);
+	}
 	return (instruct);
 }

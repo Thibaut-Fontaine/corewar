@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/27 15:49:18 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/27 16:38:07 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static inline int		execute_one_process(t_plst *curr, t_plst *head, char *arena, 
 	else if (curr->proc.wait == 0) // si le temps est null
 	{
 		select_process_and_execute(curr, head, arena);
-		free(curr->proc.instruct); // peut etre d'autres trucs a free dans instruct
+		free_instruction(curr->proc.instruct);
 		curr->proc.instruct = NULL; // et on met bien sur instruct a NULL
 	}
 	else // sinon on avance de 1

@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/22 20:08:02 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/27 16:36:45 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,14 @@ int		swap_32int(int num)
 {
 	return ((num >> 24) & 0xff) | ((num << 8) & 0xff0000)
 		| ((num >> 8) & 0xff00) | ((num << 24) & 0xff000000);
+}
+
+void	free_instruction(t_instruct *instruct)
+{
+	if (instruct)
+	{
+		free(instruct->args);
+		free(instruct->types);
+		free(instruct);
+	}
 }

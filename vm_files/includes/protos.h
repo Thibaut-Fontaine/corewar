@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/27 15:47:22 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/27 16:37:11 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int			**get_ref_tab(void);
 void		fork_process(t_plst **head, t_plst *to_fork, int pc);
 t_plst		*init_process(t_argv info);
 int			process_live(t_plst **head);
+void		free_instruction(t_instruct *instruct);
 
 /*
 ** op_value is used to get value from direct, indirect or register
