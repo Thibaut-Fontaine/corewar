@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/27 16:38:07 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/27 18:37:59 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,8 @@
 ** func to check the number of call to live
 */
 
-int		count_live(int i, int reset)
-{
-	static int	rem = 0;
-	int			tmp;
 
-	tmp = rem;
-	if (reset != 0)
-		rem = 0;
-	rem += i != 0;
-	return (tmp);
-}
-
-static inline int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
+static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
 {
 	if (p_current->proc.instruct->opcode == 0x01)
 		_live(p_current->proc.instruct);
@@ -70,27 +59,27 @@ static inline int		select_process_and_execute(t_plst *p_current, t_plst *p_head,
 ** see processus->pc;
 */
 
-static inline int		execute_one_process(t_plst *curr, t_plst *head, char *arena, int **ref_tab)
+static void	execute_one_process(t_plst *curr, t_plst *head, char *arena, int **ref_tab)
 {
+	ft_putstr("execute one process\n");
 	if (!curr->proc.instruct)
 	{
-		curr->proc.instruct = check_operation(arena, &curr->proc, ref_tab);
-		// proc.wait = (temps en fonction de l'opcode)
+		if (!(curr->proc.instruct = check_operation(arena, &curr->proc, ref_tab)))
+		{
+			curr->proc.pc = (curr->proc.pc + 1) % MEM_SIZE;
+			return ;
+		}
 	}
-	else
-	{
 	if (curr->proc.wait > 0)
 		--curr->proc.wait;
-	else if (curr->proc.wait == 0) // si le temps est null
+	else if (curr->proc.wait == 0)
 	{
 		select_process_and_execute(curr, head, arena);
 		free_instruction(curr->proc.instruct);
-		curr->proc.instruct = NULL; // et on met bien sur instruct a NULL
+		curr->proc.instruct = NULL;
 	}
-	else // sinon on avance de 1
+	else
 		curr->proc.pc = (curr->proc.pc + 1) % MEM_SIZE;
-	}
-	return (0);
 }
 
 
@@ -98,7 +87,7 @@ static inline int		execute_one_process(t_plst *curr, t_plst *head, char *arena, 
 ** execute all the process, beginning with the younger.
 */
 
-static inline int		execute_all_process(t_plst *head, char *arena, int **ref_tab)
+static void	execute_all_process(t_plst *head, char *arena, int **ref_tab)
 {
 	t_plst		*p;
 
@@ -108,7 +97,6 @@ static inline int		execute_all_process(t_plst *head, char *arena, int **ref_tab)
 		execute_one_process(p, head, arena, ref_tab);
 		p = p->nxt;
 	}
-	return (0);
 }
 
 /*
@@ -117,16 +105,14 @@ static inline int		execute_all_process(t_plst *head, char *arena, int **ref_tab)
 
 int				run(t_argv info)
 {
-	uintmax_t	cycle;
-	int			cycle_to_die;
-	int			max_checks;
-	t_plst		*head;
-	t_plst		*cur;
+	unsigned int	cycle;
+	unsigned int	cycle_to_die;
+	int				checks;
+	t_plst			*head;
 
 	cycle_to_die = CYCLE_TO_DIE;
-	max_checks = MAX_CHECKS;
+	checks = 0;
 	head = init_process(info);
-	cur = head;
 	cycle = 0;
 	while (head != NULL)
 	{
@@ -139,21 +125,22 @@ int				run(t_argv info)
 		// -----------
 		execute_all_process(head, info.arena, info.ref_tab);
 		++cycle;
-		if (cycle % cycle_to_die == 0)
+		if (cycle == cycle_to_die)
 		{
 			if (process_live(&head) == 0)
 				break ;
+			checks++;
+			if (count_live(1) >= NBR_LIVE)
+			{
+				cycle_to_die -= CYCLE_DELTA;
+				checks = 0;
+			}
+			if (checks >= MAX_CHECKS)
+			{
+				cycle_to_die -= CYCLE_DELTA;
+				checks = 0;
+			}
 			cycle = 0;
-		}
-		if (count_live(0, 1) >= NBR_LIVE)
-		{
-			cycle_to_die -= CYCLE_DELTA;
-			max_checks = MAX_CHECKS;
-		}
-		if (--max_checks == 0)
-		{
-			--cycle_to_die;
-			max_checks = MAX_CHECKS;
 		}
 	}
 	return (0);

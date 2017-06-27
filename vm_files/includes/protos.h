@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/27 16:37:11 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/27 18:12:36 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "structs.h"
 
-int			count_live(int i, int reset);
+int			count_live(int reset);
 t_argv		*parse(int argc, const char *argv[]);
 int			is_there_flag(t_opt flag, int which);
 void		save_ch_names(t_header ch[MAX_PLAYERS]);

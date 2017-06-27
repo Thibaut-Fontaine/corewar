@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 13:38:15 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/27 15:47:43 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/27 18:30:31 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int		_live(t_instruct *i)
 {
-	count_live(1, 0); // increment. du nbr de live
-	get_champion()[i->args[0]].live = 1; // on met le live du champion a 1
-	display_live(i->args[0], get_champion()); // on affiche le joueur vivant
+	count_live(0);
+	if (i->args[0] > 0 && i->args[0] < MAX_PLAYERS)
+	get_champion()[i->args[0] - 1].live = 1;
+	display_live(i->args[0], get_champion());
 	return (0);
 }
 
