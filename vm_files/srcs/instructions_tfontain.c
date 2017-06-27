@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/23 22:57:05 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/27 15:48:38 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			*op_stock(t_process *proc, t_instruct *i, char *arena, int n)
 	return (NULL);
 }
 
-int				and(t_process *proc, t_instruct *i, char *arena)
+int				_and(t_process *proc, t_instruct *i, char *arena)
 {
 	if ((*(int*)op_stock(proc, i, arena, 2) =
 		(op_value(proc, i, arena, 0) & op_value(proc, i, arena, 1))) == 0)
@@ -57,7 +57,7 @@ int				and(t_process *proc, t_instruct *i, char *arena)
 	return (0);
 }
 
-int				or(t_process *proc, t_instruct *i, char *arena)
+int				_or(t_process *proc, t_instruct *i, char *arena)
 {
 	if ((*(int*)op_stock(proc, i, arena, 2) =
 		(op_value(proc, i, arena, 0) | op_value(proc, i, arena, 1))) == 0)
@@ -67,7 +67,7 @@ int				or(t_process *proc, t_instruct *i, char *arena)
 	return (0);
 }
 
-int				xor(t_process *proc, t_instruct *i, char *arena)
+int				_xor(t_process *proc, t_instruct *i, char *arena)
 {
 	if ((*(int*)op_stock(proc, i, arena, 2) =
 		(op_value(proc, i, arena, 0) ^ op_value(proc, i, arena, 1))) == 0)
@@ -77,14 +77,14 @@ int				xor(t_process *proc, t_instruct *i, char *arena)
 	return (0);
 }
 
-int				zjmp(t_process *proc, t_instruct *i, char *arena)
+int				_zjmp(t_process *proc, t_instruct *i, char *arena)
 {
 	if (proc->carry == 1)
 		proc->pc = (proc->pc + op_value(proc, i, arena, 0)) % MEM_SIZE;
 	return (0);
 }
 
-int				sti(t_process *proc, t_instruct *i, char *arena)
+int				_sti(t_process *proc, t_instruct *i, char *arena)
 {
 	int			tmp;
 

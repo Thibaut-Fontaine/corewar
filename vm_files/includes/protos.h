@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/23 22:57:12 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/27 15:47:22 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,22 @@ int			process_live(t_plst **head);
 int			op_value(t_process *proc, t_instruct *i, char *arena, int n);
 void		*op_stock(t_process *proc, t_instruct *i, char *arena, int n);
 
-int			live(t_instruct *i);
-int 		ld(t_process *proc, t_instruct *instruct, char *arena);
-int			st(t_process *proc, t_instruct *instruct, char *arena);
-int			add(t_process *proc, t_instruct *instruct);
-int			sub(t_process *proc, t_instruct *instruct);
-int			and(t_process *proc, t_instruct *i, char *arena);
-int			or(t_process *proc, t_instruct *i, char *arena);
-int			xor(t_process *proc, t_instruct *i, char *arena);
-int			zjmp(t_process *proc, t_instruct *i, char *arena);
-int 		ldi(t_process *proc, t_instruct *instruct, char *arena);
-int			sti(t_process *proc, t_instruct *i, char *arena);
-int 		lld(t_process *proc, t_instruct *instruct, char *arena);
-int 		lldi(t_process *proc, t_instruct *instruct, char *arena);
-int 		lfork(t_plst *self, t_plst *head, t_instruct *instruct);
-int 		frk(t_plst *self, t_plst *head, t_instruct *instruct);
-int 		aff(t_process *proc, t_instruct *instruct);
+int			_live(t_instruct *i);
+int 		_ld(t_process *proc, t_instruct *instruct, char *arena);
+int			_st(t_process *proc, t_instruct *instruct, char *arena);
+int			_add(t_process *proc, t_instruct *instruct);
+int			_sub(t_process *proc, t_instruct *instruct);
+int			_and(t_process *proc, t_instruct *i, char *arena);
+int			_or(t_process *proc, t_instruct *i, char *arena);
+int			_xor(t_process *proc, t_instruct *i, char *arena);
+int			_zjmp(t_process *proc, t_instruct *i, char *arena);
+int 		_ldi(t_process *proc, t_instruct *instruct, char *arena);
+int			_sti(t_process *proc, t_instruct *i, char *arena);
+int 		_lld(t_process *proc, t_instruct *instruct, char *arena);
+int 		_lldi(t_process *proc, t_instruct *instruct, char *arena);
+int 		_lfork(t_plst *self, t_plst *head, t_instruct *instruct);
+int 		_fork(t_plst *self, t_plst *head, t_instruct *instruct);
+int 		_aff(t_process *proc, t_instruct *instruct);
 
 int			run(t_argv info);
 

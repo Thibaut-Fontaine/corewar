@@ -6,13 +6,13 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 19:45:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/22 19:40:08 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/27 15:48:07 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int aff(t_process *proc, t_instruct *instruct)
+int _aff(t_process *proc, t_instruct *instruct)
 {
 	int reg_num;
 
@@ -23,7 +23,7 @@ int aff(t_process *proc, t_instruct *instruct)
 	return (1);
 }
 
-int frk(t_plst *self, t_plst *head, t_instruct *instruct)
+int _fork(t_plst *self, t_plst *head, t_instruct *instruct)
 {
 	int npc;
 
@@ -32,7 +32,7 @@ int frk(t_plst *self, t_plst *head, t_instruct *instruct)
 	return (1);
 }
 
-int lfork(t_plst *self, t_plst *head, t_instruct *instruct)
+int _lfork(t_plst *self, t_plst *head, t_instruct *instruct)
 {
 	int npc;
 
@@ -41,7 +41,7 @@ int lfork(t_plst *self, t_plst *head, t_instruct *instruct)
 	return (1);
 }
 
-int ld(t_process *proc, t_instruct *instruct, char *arena)
+int _ld(t_process *proc, t_instruct *instruct, char *arena)
 {
 	int val;
 
@@ -56,7 +56,7 @@ int ld(t_process *proc, t_instruct *instruct, char *arena)
 	return (1);
 }
 
-int lld(t_process *proc, t_instruct *instruct, char *arena)
+int _lld(t_process *proc, t_instruct *instruct, char *arena)
 {
 	int val;
 
@@ -71,7 +71,7 @@ int lld(t_process *proc, t_instruct *instruct, char *arena)
 	return (1);
 }
 
-int ldi(t_process *proc, t_instruct *instruct, char *arena)
+int _ldi(t_process *proc, t_instruct *instruct, char *arena)
 {
 	int val1;
 	int val2;
@@ -94,7 +94,7 @@ int ldi(t_process *proc, t_instruct *instruct, char *arena)
 	return (1);
 }
 
-int lldi(t_process *proc, t_instruct *instruct, char *arena)
+int _lldi(t_process *proc, t_instruct *instruct, char *arena)
 {
 	int val1;
 	int val2;

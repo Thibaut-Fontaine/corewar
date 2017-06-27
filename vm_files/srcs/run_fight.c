@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/27 08:23:31 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/27 15:49:18 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,37 +31,37 @@ int		count_live(int i, int reset)
 static inline int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
 {
 	if (p_current->proc.instruct->opcode == 0x01)
-		live(p_current->proc.instruct);
+		_live(p_current->proc.instruct);
 	if (p_current->proc.instruct->opcode == 0x02)
-		ld(&p_current->proc, p_current->proc.instruct, arena);
+		_ld(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x03)
-		st(&p_current->proc, p_current->proc.instruct, arena);
+		_st(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x04)
-		add(&p_current->proc, p_current->proc.instruct);
+		_add(&p_current->proc, p_current->proc.instruct);
 	if (p_current->proc.instruct->opcode == 0x05)
-		sub(&p_current->proc, p_current->proc.instruct);
+		_sub(&p_current->proc, p_current->proc.instruct);
 	if (p_current->proc.instruct->opcode == 0x06)
-		and(&p_current->proc, p_current->proc.instruct, arena);
+		_and(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x07)
-		or(&p_current->proc, p_current->proc.instruct, arena);
+		_or(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x08)
-		xor(&p_current->proc, p_current->proc.instruct, arena);
+		_xor(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x09)
-		zjmp(&p_current->proc, p_current->proc.instruct, arena);
+		_zjmp(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x0A)
-		ldi(&p_current->proc, p_current->proc.instruct, arena);
+		_ldi(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x0B)
-		sti(&p_current->proc, p_current->proc.instruct, arena);
+		_sti(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x0C)
-		frk(p_current, p_head, p_current->proc.instruct);
+		_fork(p_current, p_head, p_current->proc.instruct);
 	if (p_current->proc.instruct->opcode == 0x0D)
-		lld(&p_current->proc, p_current->proc.instruct, arena);
+		_lld(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x0E)
-		lldi(&p_current->proc, p_current->proc.instruct, arena);
+		_lldi(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x0F)
-		lfork(p_current, p_head, p_current->proc.instruct);
+		_lfork(p_current, p_head, p_current->proc.instruct);
 	if (p_current->proc.instruct->opcode == 0x10)
-		aff(&p_current->proc, p_current->proc.instruct);
+		_aff(&p_current->proc, p_current->proc.instruct);
 	return (0);
 }
 
