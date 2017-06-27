@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/22 20:08:02 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/27 16:35:52 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,19 @@ int		is_valid_reg(int reg)
 
 int 	store_at(char *arena, int i, int val)
 {
-/*	*(arena + (i % MEM_SIZE)) = *val;
-	*(arena + ((i + 1) % MEM_SIZE)) = *(val + 1);
-	*(arena + ((i + 2) % MEM_SIZE)) = *(val + 2);
-	*(arena + ((i + 3) % MEM_SIZE)) = *(val + 3);*/
-	(void)arena;
-	(void)i;
-	(void)val;
+	int		offset;
+	int 	ref;
+
+	offset = 0;
+	ref = val;
+	while (offset < 4)
+	{
+		ref = val << offset * 8;
+		ref = ref >> 3 * 8;
+		*(arena + (i % MEM_SIZE)) = ref;
+		i++;
+		offset ++;
+	}
 	return (0);
 }
 
