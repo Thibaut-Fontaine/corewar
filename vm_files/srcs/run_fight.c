@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/23 23:20:13 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/27 08:23:31 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		count_live(int i, int reset)
 	return (tmp);
 }
 
-int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
+static inline int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
 {
 	if (p_current->proc.instruct->opcode == 0x01)
 		live(p_current->proc.instruct);
@@ -43,7 +43,7 @@ int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
 	if (p_current->proc.instruct->opcode == 0x06)
 		and(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x07)
-		or(&p_current->proc, p_current->proc.instruct, arena); // #TheJungle
+		or(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x08)
 		xor(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x09)
@@ -69,14 +69,16 @@ int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
 ** execute the register onto which there is the current processus
 ** see processus->pc;
 */
-				// update 23 juin
-static int		execute_one_process(t_plst *curr, t_plst *head, char *arena, int **ref_tab)
+
+static inline int		execute_one_process(t_plst *curr, t_plst *head, char *arena, int **ref_tab)
 {
 	if (!curr->proc.instruct)
 	{
 		curr->proc.instruct = check_operation(arena, &curr->proc, ref_tab);
 		// proc.wait = (temps en fonction de l'opcode)
 	}
+	else
+	{
 	if (curr->proc.wait > 0)
 		--curr->proc.wait;
 	else if (curr->proc.wait == 0) // si le temps est null
@@ -87,7 +89,7 @@ static int		execute_one_process(t_plst *curr, t_plst *head, char *arena, int **r
 	}
 	else // sinon on avance de 1
 		curr->proc.pc = (curr->proc.pc + 1) % MEM_SIZE;
-	(void)head;
+	}
 	return (0);
 }
 
@@ -96,11 +98,11 @@ static int		execute_one_process(t_plst *curr, t_plst *head, char *arena, int **r
 ** execute all the process, beginning with the younger.
 */
 
-static int		execute_all_process(t_plst *p, char *arena, int **ref_tab)
+static inline int		execute_all_process(t_plst *head, char *arena, int **ref_tab)
 {
-	t_plst		*head;
+	t_plst		*p;
 
-	head = p;
+	p = head;
 	while (p)
 	{
 		execute_one_process(p, head, arena, ref_tab);

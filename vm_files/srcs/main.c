@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:22:42 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/22 19:41:54 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/27 08:20:09 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@
 int			main(int argc, const char *argv[])
 {
 	t_argv	*all;
+	int		winner_n;
 
 	all = parse(argc, argv);
 	save_ch_names(all->champ);
 	introducing_contestants(all->n_champs, all->champ);
-	run(*all);
-	display_winner(2, all->champ);
+	winner_n = run(*all);
+	display_winner(winner_n, all->champ);
 	return (0);
 }
