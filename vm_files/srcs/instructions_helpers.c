@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/27 18:12:34 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/28 15:11:45 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int 	store_at(char *arena, int i, int val)
 	{
 		ref = val << offset * 8;
 		ref = ref >> 3 * 8;
-		*(arena + (i % MEM_SIZE)) = ref;
-		i++;
+		*(arena + ((i + offset) % MEM_SIZE)) = ref;
 		offset ++;
 	}
 	return (0);
