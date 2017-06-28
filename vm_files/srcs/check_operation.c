@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 16:25:18 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/27 16:39:04 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/28 17:53:12 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int		fill_instruction(char *arena, t_process *proc, t_instruct *instruct,
 	else
 	{
 		instruct->size = 1;
-		instruct->types[0] = 1;
+		instruct->types[0] = T_DIR;
 		get_args(proc, arena, tab[*(arena +
 			(proc->pc % MEM_SIZE)) - 1], instruct);
 	}

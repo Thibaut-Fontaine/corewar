@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 15:47:37 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/27 16:06:13 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/28 17:53:01 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ void		get_args(t_process *proc, char *arena, int *tab,
 			instruct->args[i] = extract_ind(proc, instruct, arena);
 		i++;
 	}
-	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
 	proc->wait = set_wait(instruct->opcode);
 }
