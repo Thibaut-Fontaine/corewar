@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/27 18:12:36 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/28 15:52:43 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		free_instruction(t_instruct *instruct);
 int			op_value(t_process *proc, t_instruct *i, char *arena, int n);
 void		*op_stock(t_process *proc, t_instruct *i, char *arena, int n);
 
-int			_live(t_instruct *i);
+int			_live(t_process *proc, t_instruct *i);
 int 		_ld(t_process *proc, t_instruct *instruct, char *arena);
 int			_st(t_process *proc, t_instruct *instruct, char *arena);
 int			_add(t_process *proc, t_instruct *instruct);

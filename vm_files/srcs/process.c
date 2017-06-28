@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/28 08:37:30 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/28 16:09:36 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void 	fill_process_init(t_plst *cur, int n_champs, int i)
 	cur->proc.pc = (MEM_SIZE / n_champs) * (n_champs - i - 1);
 	cur->proc.carry = 0;
 	cur->proc.wait = 0;
+	cur->proc.p_num = n_champs;
 	cur->proc.instruct = NULL;
 	cur->proc.id = i + 1;
 	cur->nxt = NULL;

@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/22 18:49:50 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/28 16:09:43 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct		s_process
 {
 	t_instruct		*instruct;
 	int				reg[REG_NUMBER];
+	int				p_num;
 	int				pc;
 	int				carry;
 	int				wait;

@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/27 15:48:38 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/28 16:31:15 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int				_and(t_process *proc, t_instruct *i, char *arena)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
+	proc->pc = (proc->pc + i->size) % MEM_SIZE;
 	return (0);
 }
 
@@ -64,6 +65,7 @@ int				_or(t_process *proc, t_instruct *i, char *arena)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
+	proc->pc = (proc->pc + i->size) % MEM_SIZE;
 	return (0);
 }
 
@@ -74,6 +76,7 @@ int				_xor(t_process *proc, t_instruct *i, char *arena)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
+	proc->pc = (proc->pc + i->size) % MEM_SIZE;
 	return (0);
 }
 
@@ -94,5 +97,6 @@ int				_sti(t_process *proc, t_instruct *i, char *arena)
 	else
 		proc->carry = 0;
 	arena[tmp] = op_value(proc, i, arena, 0);
+	proc->pc = (proc->pc + i->size) % MEM_SIZE;
 	return (0);
 }

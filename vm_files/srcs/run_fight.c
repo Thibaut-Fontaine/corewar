@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/28 09:29:05 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/06/28 15:52:52 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
 {
 	if (p_current->proc.instruct->opcode == 0x01)
-		_live(p_current->proc.instruct);
+		_live(&p_current->proc, p_current->proc.instruct);
 	if (p_current->proc.instruct->opcode == 0x02)
 		_ld(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x03)
