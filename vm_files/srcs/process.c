@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/22 20:05:14 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/28 08:37:30 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 /*
 ** kill all process with a champ's live egal to 0
 ** and replace all live != 0 of process with 0
-** return 1 if there is a least 1 process still alive
-** return 0 if all process are mothafuckin'DEAD
+** return 0 if there is a least 1 process still alive
+** return the id of the last living champ if all process are dead
 */
 
 int				process_live(t_plst **head)
@@ -94,8 +94,10 @@ int				process_live(t_plst **head)
 	int			i;
 	t_plst		*cur;
 	t_plst		*tmp;
+	int			ret;
 
 	i = 0;
+	ret = 0;
 	while (i < MAX_PLAYERS)
 	{
 		if (get_champion()[i].live)
@@ -105,6 +107,8 @@ int				process_live(t_plst **head)
 			while (*head && (*head)->proc.id == i + 1)
 			{
 				tmp = (*head)->nxt;
+				if ((*head)->nxt == NULL)
+					ret = (*head)->proc.id;
 				free(*head);
 				*head = tmp;
 			}
@@ -122,5 +126,5 @@ int				process_live(t_plst **head)
 		}
 		++i;
 	}
-	return (*head != NULL);
+	return (ret);
 }

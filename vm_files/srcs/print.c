@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 03:54:02 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/22 19:48:32 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/28 08:43:02 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void			display_winner(int champ_number, t_header champ[MAX_PLAYERS])
 
 void			display_live(int ch_number, t_champion champ[MAX_PLAYERS])
 {
-	ft_printf("Player %d, \"%s\", is alive !", ch_number,
-			champ[ch_number - 1].prog_name);
+	ft_printf("Player %d, \"%s\", is alive !\n", ch_number,
+			champ[ch_number].prog_name);
 }
 
 /*

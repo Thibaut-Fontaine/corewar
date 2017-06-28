@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/27 18:37:59 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/28 09:29:05 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *
 
 static void	execute_one_process(t_plst *curr, t_plst *head, char *arena, int **ref_tab)
 {
-	ft_putstr("execute one process\n");
 	if (!curr->proc.instruct)
 	{
 		if (!(curr->proc.instruct = check_operation(arena, &curr->proc, ref_tab)))
@@ -109,6 +108,7 @@ int				run(t_argv info)
 	unsigned int	cycle_to_die;
 	int				checks;
 	t_plst			*head;
+	int				ret;
 
 	cycle_to_die = CYCLE_TO_DIE;
 	checks = 0;
@@ -127,8 +127,7 @@ int				run(t_argv info)
 		++cycle;
 		if (cycle == cycle_to_die)
 		{
-			if (process_live(&head) == 0)
-				break ;
+			ret = process_live(&head);
 			checks++;
 			if (count_live(1) >= NBR_LIVE)
 			{
@@ -143,5 +142,5 @@ int				run(t_argv info)
 			cycle = 0;
 		}
 	}
-	return (0);
+	return (ret);
 }
