@@ -18,6 +18,7 @@
 
 static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
 {
+	ft_printf("instruction n.%d executee.\n", p_current->proc.instruct->opcode); //
 	if (p_current->proc.instruct->opcode == 0x01)
 		_live(&p_current->proc, p_current->proc.instruct);
 	if (p_current->proc.instruct->opcode == 0x02)
@@ -58,7 +59,8 @@ static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *
 ** see processus->pc;
 */
 
-static void		execute_one_process(t_plst *curr, t_plst *head, char *arena, int **ref_tab)
+static void		execute_one_process(t_plst *curr, t_plst *head, char *arena,
+		int **ref_tab)
 {
 	if (!curr->proc.instruct)
 	{
@@ -85,7 +87,7 @@ static void		execute_one_process(t_plst *curr, t_plst *head, char *arena, int **
 ** execute all the process, beginning with the younger.
 */
 
-static void			execute_all_process(t_plst *head, char *arena, int **ref_tab)
+void			execute_all_process(t_plst *head, char *arena, int **ref_tab)
 {
 	t_plst		*p;
 
@@ -106,20 +108,33 @@ int					run(t_argv info)
 	t_plst			*head;
 	uintmax_t		cycle;
 	uintmax_t		cycle_to_die;
+	uintmax_t		checks;
 
 	head = init_process(info);
 	cycle = 0;
+	checks = 0;
 	cycle_to_die = CYCLE_TO_DIE;
 	while (head)
 	{
+		if (is_there_flag(info.f, _S_) != -1 && info.f.ns != 0
+				&& cycle % info.f.ns == 0)
+			dump(info.arena);
+		else if (is_there_flag(info.f, _D_) != -1 && cycle == (uint)info.f.nd)
+			dump(info.arena);
 		execute_all_process(head, info.arena, info.ref_tab);
-		if (cycle % cycle_to_die == 0)
+		if (cycle % cycle_to_die == 0 && cycle)
+		{
+			++checks;
 			process_live(&head);
-		if (NBR_LIVE <= count_live(1))
-			cycle_to_die -= CYCLE_DELTA;
+			if (NBR_LIVE <= count_live(1) || checks % MAX_CHECKS == 0)
+			{
+				cycle_to_die -= CYCLE_DELTA;
+				checks = 0;
+			}
+		}
 		++cycle;
 	}
-	return (0);
+	return (*last_living_player());
 }
 
 // OLD :

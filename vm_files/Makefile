@@ -6,13 +6,13 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/06/27 15:58:16 by mperronc         ###   ########.fr        #
+#    Updated: 2017/06/29 11:05:57 by tfontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = corewar
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 CC = gcc
 
@@ -43,6 +43,7 @@ SRCS_NAME = main.c\
 			print.c\
 			process.c\
 			run_fight.c\
+			last_living_player.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

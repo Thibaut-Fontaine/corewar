@@ -85,7 +85,7 @@ int				process_live(t_plst **head)
 	t_plst		*p;
 	t_plst		*tmp;
 
-	while ((*head)->proc.exec_live == 0)
+	while (*head && (*head)->proc.exec_live == 0)
 	{
 		tmp = (*head)->nxt;
 		if ((*head)->proc.instruct)

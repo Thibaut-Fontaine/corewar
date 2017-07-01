@@ -35,7 +35,6 @@ typedef struct		s_opt
 
 typedef struct		s_champion
 {
-	//int				live;
 	char			prog_name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
 }					t_champion;
@@ -44,7 +43,6 @@ typedef struct		s_process
 {
 	t_instruct		*instruct;
 	int				reg[REG_NUMBER];
-	//int				p_num;
 	int				pc;
 	int				carry;
 	int				wait;
