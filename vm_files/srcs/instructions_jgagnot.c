@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 13:38:15 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/28 17:52:59 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/01 05:11:41 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		_live(t_process *proc, t_instruct *i)
 {
 	count_live(0);
-	if (i->args[0] > 0 && i->args[0] < proc->p_num)
+	if (i->args[0] > 0 && i->args[0] < n_champ(0))
 	{
 		get_champion()[i->args[0] - 1].live = 1;
 		display_live(i->args[0], get_champion());

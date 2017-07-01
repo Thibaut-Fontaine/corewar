@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 03:43:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/22 19:41:58 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/06/29 22:00:02 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@
 ** and put the exec in memory
 ** return the struct and close the file.
 */
+
+static void open_file_(const char **name, t_header **file, int *fd, int *n, char **prog, char (*buf)[U_])
+{
+	if (read(*fd, (void*)&((*file)->prog_size), U_) != U_)
+		error(_ERR_STD)(*name);
+	if (((*file)->prog_size = swap_32int((*file)->prog_size)) != (unsigned int)(*n))
+		error(_ERR_CSIZE_DIFFER)((*name));
+	CHAMP_MAX_SIZE < (*file)->prog_size ? error(_ERR_CH_TOO_BIG)((*name), (*file)->prog_size) : 0;
+	if (read(*fd, (*file)->comment, COMMENT_LENGTH + 1) != COMMENT_LENGTH + 1)
+		error(_ERR_STD)(*name);
+	read(*fd, *buf, PADDING_CMT) != PADDING_CMT ? error(_ERR_STD)(*name) : 0;
+	(*file)->comment[COMMENT_LENGTH] != '\0' ? error(_ERR_CSIZE_DIFFER)(*name) : 0;
+	read(*fd, *prog, *n) == -1 ? error(_ERR_STD)(*name) : 0;
+	close(*fd) == -1 ? error(_ERR_STD)(*name) : 0;
+}
 
 t_header		*open_file(const char *name, char *prog)
 {
@@ -37,7 +52,8 @@ t_header		*open_file(const char *name, char *prog)
 		error(_ERR_STD)(name);
 	file->prog_name[PROG_NAME_LENGTH] != '\0' ? error(_ERR_CSIZE_DIFFER)(name) : 0;
 	read(fd, buf, PADDING_PROGN) != PADDING_PROGN ? error(_ERR_STD)(name) : 0;
-	if (read(fd, (void*)&(file->prog_size), U_) != U_)
+	open_file_(&name, &file, &fd, &n, &prog, &buf);
+	/*	if (read(fd, (void*)&(file->prog_size), U_) != U_)
 		error(_ERR_STD)(name);
 	if ((file->prog_size = swap_32int(file->prog_size)) != (unsigned int)n)
 		error(_ERR_CSIZE_DIFFER)(name);
@@ -47,6 +63,6 @@ t_header		*open_file(const char *name, char *prog)
 	read(fd, buf, PADDING_CMT) != PADDING_CMT ? error(_ERR_STD)(name) : 0;
 	file->comment[COMMENT_LENGTH] != '\0' ? error(_ERR_CSIZE_DIFFER)(name) : 0;
 	read(fd, prog, n) == -1 ? error(_ERR_STD)(name) : 0;
-	close(fd) == -1 ? error(_ERR_STD)(name) : 0;
+	close(fd) == -1 ? error(_ERR_STD)(name) : 0;*/
 	return (file);
 }

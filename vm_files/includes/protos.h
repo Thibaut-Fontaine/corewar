@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/28 15:52:43 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/01 05:06:09 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "structs.h"
 
+int			n_champ(int n);
 int			count_live(int reset);
 t_argv		*parse(int argc, const char *argv[]);
 int			is_there_flag(t_opt flag, int which);

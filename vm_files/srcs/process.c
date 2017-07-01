@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/28 16:09:36 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/01 05:06:29 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 static void 	fill_process_init(t_plst *cur, int n_champs, int i)
 {
-	ft_bzero(cur->proc.reg, sizeof(int) * REG_NUMBER);
+	cur->proc.instruct = NULL;
+	ft_bzero(cur->proc.reg, sizeof(cur->proc.reg));
 	cur->proc.pc = (MEM_SIZE / n_champs) * (n_champs - i - 1);
 	cur->proc.carry = 0;
 	cur->proc.wait = 0;
-	cur->proc.p_num = n_champs;
 	cur->proc.instruct = NULL;
 	cur->proc.id = i + 1;
+	cur->proc.reg[0] = i + 1;
+	cur->proc.exec_live = 0;
 	cur->nxt = NULL;
 }
 
@@ -63,32 +65,35 @@ t_plst			*init_process(t_argv info)
 
 void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 {
-	size_t		reg;
 	t_plst		*new;
 
 	if ((new = malloc(sizeof(t_plst))) == NULL)
 		error(_ERR_STD)(NULL);
-	reg = 0;
-	while (reg < REG_NUMBER)
-	{
-		new->proc.reg[reg] = to_fork->proc.reg[reg];
-		++reg;
-	}
+	ft_memcpy(new->proc.reg, to_fork->proc.reg, sizeof(to_fork->proc.reg));
 	new->proc.pc = pc;
 	new->proc.carry = to_fork->proc.carry;
 	new->proc.wait = 0;
 	new->proc.instruct = NULL;
 	new->proc.id = to_fork->proc.id;
+	new->proc.exec_live = 0;
 	new->nxt = *head;
 	*head = new;
 }
 
+int				process_live(t_plst **head)
+{
+	(void)head;
+	return (0);
+}
+
+
+//OLD:
 /*
 ** kill all process with a champ's live egal to 0
 ** and replace all live != 0 of process with 0
 ** return 0 if there is a least 1 process still alive
 ** return the id of the last living champ if all process are dead
-*/
+
 
 int				process_live(t_plst **head)
 {
@@ -128,4 +133,4 @@ int				process_live(t_plst **head)
 		++i;
 	}
 	return (ret);
-}
+}*/

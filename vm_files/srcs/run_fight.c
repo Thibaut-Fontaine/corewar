@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/28 17:52:52 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/01 05:06:42 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /*
 ** func to check the number of call to live
 */
-
 
 static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
 {
@@ -59,7 +58,7 @@ static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *
 ** see processus->pc;
 */
 
-static void	execute_one_process(t_plst *curr, t_plst *head, char *arena, int **ref_tab)
+static void		execute_one_process(t_plst *curr, t_plst *head, char *arena, int **ref_tab)
 {
 	if (!curr->proc.instruct)
 	{
@@ -86,7 +85,7 @@ static void	execute_one_process(t_plst *curr, t_plst *head, char *arena, int **r
 ** execute all the process, beginning with the younger.
 */
 
-static void	execute_all_process(t_plst *head, char *arena, int **ref_tab)
+static void			execute_all_process(t_plst *head, char *arena, int **ref_tab)
 {
 	t_plst		*p;
 
@@ -102,7 +101,27 @@ static void	execute_all_process(t_plst *head, char *arena, int **ref_tab)
 ** execute the fight and return the winner champ's number.
 */
 
-int				run(t_argv info)
+int					run(t_argv info)
+{
+	t_plst			*head;
+	uintmax_t		cycle;
+	uintmax_t		cycle_to_die;
+
+	head = init_process(info);
+	execute_all_process(head, info.arena, info.ref_tab);
+	cycle = 0;
+	cycle_to_die = CYCLE_TO_DIE;
+	while (head)
+	{
+		if (cycle == cycle_to_die)
+			process_live(&head);
+		++cycle;
+	}
+	return (0);
+}
+
+// OLD :
+/*int				run(t_argv info)
 {
 	unsigned int	cycle;
 	unsigned int	cycle_to_die;
@@ -143,4 +162,4 @@ int				run(t_argv info)
 		}
 	}
 	return (ret);
-}
+}*/

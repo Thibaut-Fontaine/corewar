@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/28 15:11:45 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/01 03:14:46 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,15 @@ void	free_instruction(t_instruct *instruct)
 	}
 }
 
-int count_live(int reset)
+int		count_live(int reset)
 {
-	static unsigned int lives = 0;
+	static uint	live = 0;
+	uint		tmp;
+
+	tmp = live;
 	if (reset)
-		lives = 0;
+		live = 0;
 	else
-		lives++;
-	return lives;
+		++live;
+	return (tmp);
 }

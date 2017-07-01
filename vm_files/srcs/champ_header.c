@@ -6,22 +6,31 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 02:10:01 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/22 19:39:52 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/01 05:05:48 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-t_champion	*get_champion(void)
+t_champion				*get_champion(void)
 {
 	static t_champion	local[MAX_PLAYERS];
 
 	return (local);
 }
 
-void		save_ch_names(t_header ch[MAX_PLAYERS])
+int						n_champ(int n)
 {
-	uint8_t	i;
+	static int			local = -1;
+
+	if (local == -1)
+		local = n;
+	return (local);
+}
+
+void					save_ch_names(t_header ch[MAX_PLAYERS])
+{
+	uint8_t				i;
 
 	i = 0;
 	while (i < MAX_PLAYERS)
