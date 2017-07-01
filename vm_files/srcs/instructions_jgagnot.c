@@ -14,10 +14,12 @@
 
 int		_live(t_process *proc, t_instruct *i)
 {
-	count_live(0);
 	if (i->args[0] > 0 && i->args[0] < n_champ(0))
 	{
-		get_champion()[i->args[0] - 1].live = 1;
+		count_live(0);
+		proc->exec_live = 1;
+		*last_living_player() = i->args[0];
+		//get_champion()[i->args[0] - 1].live = 1;
 		display_live(i->args[0], get_champion());
 	}
 	proc->pc = (proc->pc + i->size) % MEM_SIZE;

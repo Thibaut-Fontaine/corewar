@@ -15,6 +15,7 @@
 
 #include "structs.h"
 
+int			*last_living_player(void);
 int			n_champ(int n);
 int			count_live(int reset);
 t_argv		*parse(int argc, const char *argv[]);

@@ -108,13 +108,15 @@ int					run(t_argv info)
 	uintmax_t		cycle_to_die;
 
 	head = init_process(info);
-	execute_all_process(head, info.arena, info.ref_tab);
 	cycle = 0;
 	cycle_to_die = CYCLE_TO_DIE;
 	while (head)
 	{
-		if (cycle == cycle_to_die)
+		execute_all_process(head, info.arena, info.ref_tab);
+		if (cycle % cycle_to_die == 0)
 			process_live(&head);
+		if (NBR_LIVE <= count_live(1))
+			cycle_to_die -= CYCLE_DELTA;
 		++cycle;
 	}
 	return (0);

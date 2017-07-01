@@ -82,7 +82,30 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 
 int				process_live(t_plst **head)
 {
-	(void)head;
+	t_plst		*p;
+	t_plst		*tmp;
+
+	while ((*head)->proc.exec_live == 0)
+	{
+		tmp = (*head)->nxt;
+		if ((*head)->proc.instruct)
+			free((*head)->proc.instruct);
+		free((*head));
+		*head = tmp;
+	}
+	p = *head;
+	while (p)
+	{
+		if (p->proc.exec_live == 0)
+		{
+			tmp = p->nxt;
+			if (p->proc.instruct)
+				free(p->proc.instruct);
+			free(p);
+			p = tmp;
+		}
+		p = p->nxt;
+	}
 	return (0);
 }
 

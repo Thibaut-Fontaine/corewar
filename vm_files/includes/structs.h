@@ -35,7 +35,7 @@ typedef struct		s_opt
 
 typedef struct		s_champion
 {
-	int				live;
+	//int				live;
 	char			prog_name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
 }					t_champion;
