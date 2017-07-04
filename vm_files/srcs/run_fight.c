@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/01 05:06:42 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/04 11:49:50 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,25 +103,25 @@ void			execute_all_process(t_plst *head, char *arena, int **ref_tab)
 ** execute the fight and return the winner champ's number.
 */
 
-int					run(t_argv info)
+int					run(t_argv *info)
 {
 	t_plst			*head;
 	uintmax_t		cycle;
 	uintmax_t		cycle_to_die;
 	uintmax_t		checks;
 
-	head = init_process(info);
+	head = init_process(*info);
 	cycle = 0;
 	checks = 0;
 	cycle_to_die = CYCLE_TO_DIE;
 	while (head)
 	{
-		if (is_there_flag(info.f, _S_) != -1 && info.f.ns != 0
-				&& cycle % info.f.ns == 0)
-			dump(info.arena);
-		else if (is_there_flag(info.f, _D_) != -1 && cycle == (uint)info.f.nd)
-			dump(info.arena);
-		execute_all_process(head, info.arena, info.ref_tab);
+		if (is_there_flag(info->f, _S_) != -1 && info->f.ns != 0
+				&& cycle % info->f.ns == 0)
+			dump(info->arena);
+		else if (is_there_flag(info->f, _D_) != -1 && cycle == (uint)info->f.nd)
+			dump(info->arena);
+		execute_all_process(head, info->arena, info->ref_tab);
 		if (cycle % cycle_to_die == 0 && cycle)
 		{
 			++checks;

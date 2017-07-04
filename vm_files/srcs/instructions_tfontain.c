@@ -6,45 +6,23 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/28 17:52:54 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/04 23:22:25 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-/*
-** functions who returns the pt where to write in all case (can be IND or REG)
-** or return a value to read (DIR, INT or REG)
-*/
-
-int				op_value(t_process *proc, t_instruct *i, char *arena, int n)
+int				_live(t_process *proc, t_instruct *i)
 {
-	if (i->types[n] == T_REG)
+	if (i->args[0] > 0 && i->args[0] <= n_champ(0))
 	{
-		if (!is_valid_reg(i->args[n]))
-			return (0);
-		return (proc->reg[i->args[n] - 1]);
+		count_live(0);
+		proc->exec_live = 1;
+		*last_living_player() = i->args[0];
+		display_live(i->args[0], get_champion());
 	}
-	if (i->types[n] == T_IND)
-		return (*(arena + ((i->args[n] - 1 + proc->pc) % MEM_SIZE)));
-	if (i->types[n] == T_DIR)
-		return (i->args[n]);
+	proc->pc = (proc->pc + i->size) % MEM_SIZE;
 	return (0);
-}
-
-void			*op_stock(t_process *proc, t_instruct *i, char *arena, int n)
-{
-	if (i->types[n] == T_REG)
-	{
-		if (!is_valid_reg(i->args[n]))
-			return (NULL);
-		return (proc->reg + i->args[n] - 1);
-	}
-	if (i->types[n] == T_IND)
-		return (arena + ((i->args[n] - 1 + proc->pc) % MEM_SIZE));
-	if (i->types[n] == T_DIR) // on ne peut pas ecrire dans un direct, ->erreur
-		return (NULL);
-	return (NULL);
 }
 
 int				_and(t_process *proc, t_instruct *i, char *arena)

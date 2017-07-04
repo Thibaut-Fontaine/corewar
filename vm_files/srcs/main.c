@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:22:42 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/01 05:11:21 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/04 23:21:27 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 **  by tfontain       ╚═╝     ╚═ ╚═╝  ╚═ ╝╚═════ ╚═╝  ╚═ ╚═ ╚═╝  ╚═══ ╚══════╝
 */
 
+#include "./test_instructions.c"
+
 int			main(int argc, const char *argv[])
 {
 	t_argv	*all;
@@ -36,7 +38,7 @@ int			main(int argc, const char *argv[])
 	n_champ(all->n_champs);
 	save_ch_names(all->champ);
 	introducing_contestants(all->n_champs, all->champ);
-	winner_n = run(*all);
+	winner_n = run(all);
 	display_winner(winner_n, all->champ);
 	return (0);
 }

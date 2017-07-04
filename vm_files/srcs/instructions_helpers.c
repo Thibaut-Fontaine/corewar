@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/01 03:14:46 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/04 19:42:13 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,43 @@ int		count_live(int reset)
 	else
 		++live;
 	return (tmp);
+}
+
+/*
+** functions who returns the pt where to write in all case (can be IND or REG)
+** or return a value to read (DIR, INT or REG)
+*/
+
+int		op_value(t_process *proc, t_instruct *i, char *arena, int n)
+{
+	if (i->types[n] == T_DIR)
+		return (i->args[n]);
+	if (i->args[n] <= 0)
+		return (0);
+	if (i->types[n] == T_REG)
+	{
+		if (!is_valid_reg(i->args[n]))
+			return (0);
+		return (proc->reg[i->args[n] - 1]);
+	}
+	if (i->types[n] == T_IND)
+		return (*(arena + ((i->args[n] - 1 + proc->pc) % MEM_SIZE)));
+	return (0);
+}
+
+void	*op_stock(t_process *proc, t_instruct *i, char *arena, int n)
+{
+	if (i->types[n] == T_DIR)
+		return (NULL);
+	if (i->args[n] <= 0)
+		return (NULL);
+	if (i->types[n] == T_REG)
+	{
+		if (!is_valid_reg(i->args[n]))
+			return (NULL);
+		return (proc->reg + i->args[n] - 1);
+	}
+	if (i->types[n] == T_IND)
+		return (arena + ((i->args[n] - 1 + proc->pc) % MEM_SIZE));
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/01 05:06:09 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/04 11:49:03 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int 		_lfork(t_plst *self, t_plst *head, t_instruct *instruct);
 int 		_fork(t_plst *self, t_plst *head, t_instruct *instruct);
 int 		_aff(t_process *proc, t_instruct *instruct);
 
-int			run(t_argv info);
+int			run(t_argv *info);
 
 
 #endif
