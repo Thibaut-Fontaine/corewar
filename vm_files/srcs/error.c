@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:11 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/22 19:39:57 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/05 15:46:25 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void		usage(void)
 {
 	ft_putstr("Usage: ./corewar");
 	ft_putstr("[-d N -s N -v N | -b --stealth | -n --stealth] [-a]");
-	ft_putstr("<champion1.cor> <...>\n");
+	ft_putstr(" <champion1.cor> <...>\n");
 	exit(-1);
 }

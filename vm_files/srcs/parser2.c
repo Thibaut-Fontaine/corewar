@@ -6,37 +6,37 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 13:35:35 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/22 19:42:02 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/05 18:38:12 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
+
 int			count_champions(int argc, const char *argv[])
 {
-	int		argcrem;
+	int		n;
 
-	argcrem = argc;
-	while (argc)
+	n = argc;
+	while (argc > 0)
 	{
 		if (ft_strequ(*argv, "-a") || ft_strequ(*argv, "-b")
 				|| ft_strequ(*argv, "-n") || ft_strequ(*argv, "--stealth"))
-			--argcrem;
+			--n;
 		else if (**argv == '-' && (*argv)[2] == '\0' && ((*argv)[1] == 'v'
 					|| (*argv)[1] == 's' || (*argv)[1] == 'd'))
 		{
 			if (*(argv + 1))
 			{
-				--argcrem;
-				--argcrem;
-				++argv;
+				n -= 2;
 				--argc;
+				++argv;
 			}
 			else
-				--argcrem;
+				--n;
 		}
 		++argv;
 		--argc;
 	}
-	return (argcrem);
+	return (n);
 }

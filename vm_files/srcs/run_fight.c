@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/05 06:23:35 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/05 17:16:22 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,20 +133,23 @@ int					run(t_argv *info)
 			}
 		}
 		++info->cycle;
-		refresh_display(info, head);
-		if (wait == 0)
+		if (is_there_flag(info->f, _N_) != -1)
 		{
-			ch = getch();
-			if (ch == '1')
-				wait++;
-			else if (ch == '2')
-				wait += 10;
-			else if (ch == '3')
-				wait += 100;
-			else if (ch == '4')
-				wait += 1000;
+			refresh_display(info, head);
+			if (wait == 0)
+			{
+				ch = getch();
+				if (ch == '1')
+					wait++;
+				else if (ch == '2')
+					wait += 10;
+				else if (ch == '3')
+					wait += 100;
+				else if (ch == '4')
+					wait += 1000;
+			}
+			wait ? wait-- : wait;
 		}
-		wait ? wait-- : wait;
 	}
 	return (*last_living_player());
 }
