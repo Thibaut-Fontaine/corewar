@@ -6,7 +6,7 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/06/29 11:05:57 by tfontain         ###   ########.fr        #
+#    Updated: 2017/07/05 02:09:03 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS_NAME = main.c\
 			generator.c\
 			get_args.c\
 			get_ref_tab.c\
+			gui.c\
 			instructions_helpers.c\
 			instructions_jgagnot.c\
 			instructions_mperronc.c\
@@ -53,7 +54,7 @@ OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 
-LIBRARY = -lm -L ../libft/ -lft
+LIBRARY = -lm -L ../libft/ -lft -lncurses
 
 all: odir $(NAME)
 

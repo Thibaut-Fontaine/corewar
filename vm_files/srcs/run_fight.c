@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/04 11:49:50 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/05 06:23:35 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
 {
-	ft_printf("instruction n.%d executee.\n", p_current->proc.instruct->opcode); //
+	// ft_printf("instruction n.%d executee.\n", p_current->proc.instruct->opcode); //
 	if (p_current->proc.instruct->opcode == 0x01)
 		_live(&p_current->proc, p_current->proc.instruct);
 	if (p_current->proc.instruct->opcode == 0x02)
@@ -106,33 +106,47 @@ void			execute_all_process(t_plst *head, char *arena, int **ref_tab)
 int					run(t_argv *info)
 {
 	t_plst			*head;
-	uintmax_t		cycle;
-	uintmax_t		cycle_to_die;
-	uintmax_t		checks;
+	int				ch;
+	int				wait;
 
+	wait = 0;
 	head = init_process(*info);
-	cycle = 0;
-	checks = 0;
-	cycle_to_die = CYCLE_TO_DIE;
+	info->cycle = 0;
+	info->checks = 0;
+	info->cycle_to_die = CYCLE_TO_DIE;
 	while (head)
 	{
 		if (is_there_flag(info->f, _S_) != -1 && info->f.ns != 0
-				&& cycle % info->f.ns == 0)
+				&& info->cycle % info->f.ns == 0)
 			dump(info->arena);
-		else if (is_there_flag(info->f, _D_) != -1 && cycle == (uint)info->f.nd)
+		else if (is_there_flag(info->f, _D_) != -1 && info->cycle == (uint)info->f.nd)
 			dump(info->arena);
 		execute_all_process(head, info->arena, info->ref_tab);
-		if (cycle % cycle_to_die == 0 && cycle)
+		if (info->cycle % info->cycle_to_die == 0 && info->cycle)
 		{
-			++checks;
+			++info->checks;
 			process_live(&head);
-			if (NBR_LIVE <= count_live(1) || checks % MAX_CHECKS == 0)
+			if (NBR_LIVE <= count_live(1) || info->checks % MAX_CHECKS == 0)
 			{
-				cycle_to_die -= CYCLE_DELTA;
-				checks = 0;
+				info->cycle_to_die -= CYCLE_DELTA;
+				info->checks = 0;
 			}
 		}
-		++cycle;
+		++info->cycle;
+		refresh_display(info, head);
+		if (wait == 0)
+		{
+			ch = getch();
+			if (ch == '1')
+				wait++;
+			else if (ch == '2')
+				wait += 10;
+			else if (ch == '3')
+				wait += 100;
+			else if (ch == '4')
+				wait += 1000;
+		}
+		wait ? wait-- : wait;
 	}
 	return (*last_living_player());
 }

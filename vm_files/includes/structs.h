@@ -6,14 +6,16 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/01 04:56:28 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/05 04:47:53 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+#include "gui.h"
 #include "op.h"
+
 
 typedef void		(*t_error)();
 
@@ -48,6 +50,7 @@ typedef struct		s_process
 	int				wait;
 	int				id;
 	int				exec_live;
+	WINDOW			*win;
 }					t_process;
 
 typedef struct		s_argv
@@ -57,6 +60,10 @@ typedef struct		s_argv
 	t_header		champ[MAX_PLAYERS];
 	char			*arena;
 	int 			**ref_tab;
+	t_gui			*gui;
+	uintmax_t		cycle;
+	uintmax_t		checks;
+	uintmax_t		cycle_to_die;
 }					t_argv;
 
 typedef struct		s_plst

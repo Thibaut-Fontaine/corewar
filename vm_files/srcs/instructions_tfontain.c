@@ -6,24 +6,24 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/04 23:22:25 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/05 01:06:25 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int				_live(t_process *proc, t_instruct *i)
-{
-	if (i->args[0] > 0 && i->args[0] <= n_champ(0))
-	{
-		count_live(0);
-		proc->exec_live = 1;
-		*last_living_player() = i->args[0];
-		display_live(i->args[0], get_champion());
-	}
-	proc->pc = (proc->pc + i->size) % MEM_SIZE;
-	return (0);
-}
+// int				_live(t_process *proc, t_instruct *i)
+// {
+// 	if (i->args[0] > 0 && i->args[0] <= n_champ(0))
+// 	{
+// 		count_live(0);
+// 		proc->exec_live = 1;
+// 		*last_living_player() = i->args[0];
+// 		display_live(i->args[0], get_champion());
+// 	}
+// 	proc->pc = (proc->pc + i->size) % MEM_SIZE;
+// 	return (0);
+// }
 
 int				_and(t_process *proc, t_instruct *i, char *arena)
 {

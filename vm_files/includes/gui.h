@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm.h                                               :+:      :+:    :+:   */
+/*   gui.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/22 18:52:23 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/05 04:22:57 by mperronc         ###   ########.fr       */
+/*   Created: 2017/07/05 01:31:06 by mperronc          #+#    #+#             */
+/*   Updated: 2017/07/05 06:25:14 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VM_H
-# define VM_H
+#ifndef GUI_H
+# define GUI_H
 
-# include <fcntl.h>
-# include <stdio.h>
-# include <errno.h>
-# include <ncurses.h>
-# include <time.h>
+# include "vm.h"
 
-# include "../../libft/includes/libft.h"
-# include "defines.h"
-# include "op.h"
-# include "error.h"
-# include "structs.h"
-# include "protos.h"
-# include "gui.h"
+# define ARENA_W		64 * 3 + 1
+# define ARENA_H		64 + 2
+# define INFO_W			48
+# define INFO_H			8
+# define CHAMP_W		48
+# define CHAMP_H		8
+# define PROC_W			48
+# define PROC_H			13
+
+typedef struct	s_gui
+{
+	WINDOW *win_arena;
+	WINDOW *win_vm_info;
+	WINDOW **win_champions;
+}				t_gui;
 
 #endif
