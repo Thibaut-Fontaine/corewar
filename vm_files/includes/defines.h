@@ -6,19 +6,12 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:47:44 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/22 18:50:32 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/05 15:46:47 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
-
-/*
-** argv parsing flags.
-** -
-** simple example :
-** flag = _b | _stealth; ((flag & (1 << 4)) != 0 && (flag & (1 << 6)) != 0) ?..
-*/
 
 # define _A_ (1 << 0)
 # define _D_ (1 << 1)
