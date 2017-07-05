@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/05 01:06:25 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/05 22:04:26 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,10 @@ int				_zjmp(t_process *proc, t_instruct *i, char *arena)
 
 int				_sti(t_process *proc, t_instruct *i, char *arena)
 {
-	int			tmp;
-
-	if ((tmp = op_value(proc, i, arena, 1) + op_value(proc, i, arena, 2)
-				% MEM_SIZE) == 0)
+	if (/*(arena[((op_value(proc, i, arena, 1) + op_value(proc, i, arena, 2)) % IDX_MOD + proc->pc) % MEM_SIZE] = op_value(proc, i, arena, 0))*/(store_at(arena, proc->pc, op_value(proc, i, arena, 1) + op_value(proc, i, arena, 2))) == 0)
 		proc->carry = 1;
 	else
 		proc->carry = 0;
-	arena[tmp] = op_value(proc, i, arena, 0);
 	proc->pc = (proc->pc + i->size) % MEM_SIZE;
 	return (0);
 }

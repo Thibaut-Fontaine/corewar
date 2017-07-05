@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/05 18:32:39 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/05 21:12:37 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ t_argv	*parse(int argc, const char *argv[])
 	--argc;
 	++argv;
 	ret.n_champs = count_champions(argc, argv);
-	printf("%d\n", ret.n_champs); // a retirer
 	if (ret.n_champs > MAX_PLAYERS)
 		error(_ERR_TOO_MANY_CH)();
 	ret.n_champs == 0 ? error(_ERR_USAGE)() : 0;
