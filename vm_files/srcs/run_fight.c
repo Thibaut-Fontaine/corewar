@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/05 17:16:22 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/06 19:04:55 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
 {
 	// ft_printf("instruction n.%d executee.\n", p_current->proc.instruct->opcode); //
+	if (check_register(p_current->proc.instruct) == 0)
+		return (0);
 	if (p_current->proc.instruct->opcode == 0x01)
 		_live(&p_current->proc, p_current->proc.instruct);
 	if (p_current->proc.instruct->opcode == 0x02)
@@ -132,7 +134,6 @@ int					run(t_argv *info)
 				info->checks = 0;
 			}
 		}
-		++info->cycle;
 		if (is_there_flag(info->f, _N_) != -1)
 		{
 			refresh_display(info, head);
@@ -150,50 +151,7 @@ int					run(t_argv *info)
 			}
 			wait ? wait-- : wait;
 		}
+		++info->cycle;
 	}
 	return (*last_living_player());
 }
-
-// OLD :
-/*int				run(t_argv info)
-{
-	unsigned int	cycle;
-	unsigned int	cycle_to_die;
-	int				checks;
-	t_plst			*head;
-	int				ret;
-
-	cycle_to_die = CYCLE_TO_DIE;
-	checks = 0;
-	head = init_process(info);
-	cycle = 0;
-	while (head != NULL)
-	{
-		if (is_there_flag(info.f, _S_) != -1 && info.f.ns != 0 && cycle % info.f.ns == 0) //
-			dump(info.arena);
-		else if (is_there_flag(info.f, _D_) != -1 && cycle == (uint)info.f.nd)
-			dump(info.arena);
-		//if (is_there_flag(info.f, _V_) != -1 && cycle % info.f.nv == 0) // NO SURE TO DO VERBOSE BONUS
-		//	; // verbose, see flag.c file for more infos
-		// -----------
-		execute_all_process(head, info.arena, info.ref_tab);
-		++cycle;
-		if (cycle == cycle_to_die)
-		{
-			ret = process_live(&head);
-			checks++;
-			if (count_live(1) >= NBR_LIVE)
-			{
-				cycle_to_die -= CYCLE_DELTA;
-				checks = 0;
-			}
-			if (checks >= MAX_CHECKS)
-			{
-				cycle_to_die -= CYCLE_DELTA;
-				checks = 0;
-			}
-			cycle = 0;
-		}
-	}
-	return (ret);
-}*/

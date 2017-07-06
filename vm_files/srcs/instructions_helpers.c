@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/04 19:42:13 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/06 16:28:42 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int		is_valid_reg(int reg)
 {
-	if (reg < 1 || reg > 16)
+	if (reg < 1 || reg > REG_NUMBER)
 		return (0);
 	return (1);
 }
 
-int 	store_at(char *arena, int i, int val)
+int 	store_at(char *arena, const int i, const int val)
 {
 	int		offset;
 	int 	ref;
@@ -33,7 +33,7 @@ int 	store_at(char *arena, int i, int val)
 		*(arena + ((i + offset) % MEM_SIZE)) = ref;
 		offset ++;
 	}
-	return (0);
+	return (val);
 }
 
 int		extract_at(char *arena, int addr)
@@ -114,4 +114,19 @@ void	*op_stock(t_process *proc, t_instruct *i, char *arena, int n)
 	if (i->types[n] == T_IND)
 		return (arena + ((i->args[n] - 1 + proc->pc) % MEM_SIZE));
 	return (NULL);
+}
+
+/*
+** check if each arg who is a register is between 1 and REG_NUMBER.
+*/
+
+int		check_register(t_instruct *i)
+{
+	if (i->types[0] == T_REG && !is_valid_reg(i->args[0]))
+		return (0);
+	if (i->types[1] == T_REG && !is_valid_reg(i->args[1]))
+		return (0);
+	if (i->types[2] == T_REG && !is_valid_reg(i->args[2]))
+		return (0);
+	return (1);
 }

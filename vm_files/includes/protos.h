@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/05 04:49:41 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/06 16:25:12 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "structs.h"
 
+int			check_register(t_instruct *i);
 int			*last_living_player(void);
 int			n_champ(int n);
 int			count_live(int reset);

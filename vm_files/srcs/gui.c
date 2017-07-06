@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:07:37 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/05 06:22:09 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/06 17:50:19 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void refresh_info(t_argv *all, WINDOW *win)
 	mvwprintw(win, 1, 1, "CYCLE : %d", all->cycle);
 	mvwprintw(win, 2, 1, "CYCLE TO DIE : %d", all->cycle_to_die);
 	mvwprintw(win, 3, 1, "CHECKS : %d", all->checks);
+	mvwprintw(win, 4, 1, "LAST LIVING PLAYER : %d", *last_living_player());
 	wrefresh(win);
 }
 
@@ -71,6 +72,7 @@ static void refresh_process(t_process *proc, WINDOW *arena)
 	werase(proc->win);
 	box(proc->win, 0, 0);
 	mvwprintw(proc->win, 0, 2, "PROCESS %d", proc->id);
+	mvwprintw(proc->win, 1, 13, "|  LIVE : %d", proc->exec_live);
 	mvwprintw(proc->win, 1, 1, "CARRY : %d", proc->carry);
 	mvwprintw(proc->win, 2, 1, "PC : %d", proc->pc);
 	mvwprintw(proc->win, 3, 1, "WAIT : %d", proc->wait);
