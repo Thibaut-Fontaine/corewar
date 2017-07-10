@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 19:45:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/06/28 16:22:12 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/10 19:45:12 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int _ldi(t_process *proc, t_instruct *instruct, char *arena)
 		return (0);
 	}
 	if (instruct->types[0] == T_REG)
-		val1 = proc->reg[instruct->args[0]];
+		val1 = proc->reg[instruct->args[0] - 1];
 	else if (instruct->types[0] == T_DIR)
 		val1 = instruct->args[0];
 	else
@@ -102,10 +102,9 @@ int _ldi(t_process *proc, t_instruct *instruct, char *arena)
 		val2 = instruct->args[1];
 	else
 		val2 = extract_at(arena, proc->pc + (instruct->args[1] % IDX_MOD));
-	val1 = val1 + val2;
-	proc->reg[instruct->args[2] - 1] = val1;
+	proc->reg[instruct->args[2] - 1] = val1 + val2;
 	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
-	proc->carry = (val1 ? 0 : 1);
+	proc->carry = (proc->reg[instruct->args[2] - 1] ? 0 : 1);
 	return (1);
 }
 

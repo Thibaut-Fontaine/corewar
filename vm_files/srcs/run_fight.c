@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/06 19:04:55 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/10 18:23:22 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,12 @@ static void		execute_one_process(t_plst *curr, t_plst *head, char *arena,
 	{
 		select_process_and_execute(curr, head, arena);
 		free_instruction(curr->proc.instruct);
-		curr->proc.instruct = NULL;
+		if ((curr->proc.instruct = check_operation(arena, &curr->proc, ref_tab)))
+			--curr->proc.wait;
 	}
 	else
 		curr->proc.pc = (curr->proc.pc + 1) % MEM_SIZE;
 }
-
-
 /*
 ** execute all the process, beginning with the younger.
 */

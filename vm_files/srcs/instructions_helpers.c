@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/06 16:28:42 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/10 20:23:25 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,14 @@ int		extract_at(char *arena, int addr)
 	int ret;
 
 	ret = 0;
-	ret = ret | *(arena + (addr++ % MEM_SIZE)) * (1 << 24);
-	ret = ret | *(arena + (addr++ % MEM_SIZE)) * (1 << 16);
-	ret = ret | *(arena + (addr++ % MEM_SIZE)) * (1 << 8);
-	ret = ret | *(arena + (addr % MEM_SIZE));
+	ret |= arena[(addr++ % MEM_SIZE)] << 24;
+	ret |= arena[(addr++ % MEM_SIZE)] << 16;
+	ret |= arena[(addr++ % MEM_SIZE)] << 8;
+	ret |= arena[(addr % MEM_SIZE)];
+	/*ret |= *(arena + (addr++ % MEM_SIZE)) * (1 << 24);
+	ret |= *(arena + (addr++ % MEM_SIZE)) * (1 << 16);
+	ret |= *(arena + (addr++ % MEM_SIZE)) * (1 << 8);
+	ret |= *(arena + (addr % MEM_SIZE));*/
 	return (ret);
 }
 
@@ -82,20 +86,24 @@ int		count_live(int reset)
 ** or return a value to read (DIR, INT or REG)
 */
 
-int		op_value(t_process *proc, t_instruct *i, char *arena, int n)
+int		op_value(t_process *proc, char *arena, int n, int idx)
 {
-	if (i->types[n] == T_DIR)
-		return (i->args[n]);
-	if (i->args[n] <= 0)
-		return (0);
-	if (i->types[n] == T_REG)
+	if (proc->instruct->types[n] == T_DIR)
+		return (proc->instruct->args[n]);
+	if (proc->instruct->types[n] == T_REG)
 	{
-		if (!is_valid_reg(i->args[n]))
+		if (!is_valid_reg(proc->instruct->args[n]))
 			return (0);
-		return (proc->reg[i->args[n] - 1]);
+		return (proc->reg[proc->instruct->args[n] - 1]);
 	}
-	if (i->types[n] == T_IND)
-		return (*(arena + ((i->args[n] - 1 + proc->pc) % MEM_SIZE)));
+	if (proc->instruct->types[n] == T_IND)
+	{
+		if (idx == 0)
+			return (extract_at(arena, proc->pc + proc->instruct->args[n]));
+		else
+			return (extract_at(arena, proc->pc +
+				(proc->instruct->args[n] % IDX_MOD)));
+	}
 	return (0);
 }
 

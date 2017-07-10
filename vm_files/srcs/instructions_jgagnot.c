@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 13:38:15 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/01 05:11:41 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/10 18:40:12 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		_st(t_process *proc, t_instruct *instruct, char *arena)
 			proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
 			return (0);
 		}
-		proc->reg[instruct->args[1]] = val;
+		proc->reg[instruct->args[1] - 1] = val;
 	}
 	else
 		store_at(arena, proc->pc + (instruct->args[1] % IDX_MOD), val);
@@ -62,7 +62,7 @@ int		_add(t_process *proc, t_instruct *instruct)
 	proc->reg[instruct->args[2] - 1] = proc->reg[instruct->args[0] - 1] +
 	proc->reg[instruct->args[1] - 1];
 	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
-	proc->carry = (proc->reg[instruct->args[2]] ? 1 : 0);
+	proc->carry = (proc->reg[instruct->args[2] - 1] ? 0 : 1);
 	return (1);
 }
 
@@ -77,6 +77,6 @@ int		_sub(t_process *proc, t_instruct *instruct)
 	proc->reg[instruct->args[2] - 1] = proc->reg[instruct->args[0] - 1] -
 	proc->reg[instruct->args[1] - 1];
 	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
-	proc->carry = (proc->reg[instruct->args[2]] ? 1 : 0);
+	proc->carry = (proc->reg[instruct->args[2] - 1] ? 0 : 1);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/06 16:25:12 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/10 18:56:40 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void		free_instruction(t_instruct *instruct);
 ** op_stock is used to fill a value in an indirect or in a register
 */
 
-int			op_value(t_process *proc, t_instruct *i, char *arena, int n);
-void		*op_stock(t_process *proc, t_instruct *i, char *arena, int n);
+int			op_value(t_process *proc, char *arena, int n, int idx);
+//void		*op_stock(t_process *proc, t_instruct *i, char *arena, int n);
 
 int			_live(t_process *proc, t_instruct *i);
 int 		_ld(t_process *proc, t_instruct *instruct, char *arena);
