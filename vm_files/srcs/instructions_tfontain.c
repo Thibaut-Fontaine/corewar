@@ -6,39 +6,11 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/10 20:23:36 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/11 16:00:43 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
-
-int				_or(t_process *proc, t_instruct *i, char *arena)
-{
-	(void)proc;
-	(void)i;
-	(void)arena;
-	/*if ((*(int*)op_stock(proc, i, arena, 2) =
-		(op_value(proc, i, arena, 0) | op_value(proc, i, arena, 1))) == 0)
-		proc->carry = 1;
-	else
-		proc->carry = 0;
-	proc->pc = (proc->pc + i->size) % MEM_SIZE;*/
-	return (0);
-}
-
-int				_xor(t_process *proc, t_instruct *i, char *arena)
-{
-	(void)proc;
-	(void)i;
-	(void)arena;
-	/*if ((*(int*)op_stock(proc, i, arena, 2) =
-		(op_value(proc, i, arena, 0) ^ op_value(proc, i, arena, 1))) == 0)
-		proc->carry = 1;
-	else
-		proc->carry = 0;
-	proc->pc = (proc->pc + i->size) % MEM_SIZE;*/
-	return (0);
-}
 
 int				_zjmp(t_process *proc, t_instruct *i, char *arena)
 {
