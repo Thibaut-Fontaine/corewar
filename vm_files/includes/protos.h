@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/10 18:56:40 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/11 18:17:41 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			_sub(t_process *proc, t_instruct *instruct);
 int			_and(t_process *proc, t_instruct *i, char *arena);
 int			_or(t_process *proc, t_instruct *i, char *arena);
 int			_xor(t_process *proc, t_instruct *i, char *arena);
-int			_zjmp(t_process *proc, t_instruct *i, char *arena);
+int			_zjmp(t_process *proc, char *arena);
 int 		_ldi(t_process *proc, t_instruct *instruct, char *arena);
 int			_sti(t_process *proc, t_instruct *i, char *arena);
 int 		_lld(t_process *proc, t_instruct *instruct, char *arena);

@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 16:15:35 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/06/28 17:53:03 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/11 17:33:12 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			extract_reg(t_process *proc, t_instruct *instruct, char *arena)
 {
 	int		i;
 
-	i = *(arena + ((proc->pc + instruct->size) % MEM_SIZE));
+	i = (*(arena + ((proc->pc + instruct->size) % MEM_SIZE)) & 0x000000FF);
 	instruct->size += 1;
 	return (i);
 }

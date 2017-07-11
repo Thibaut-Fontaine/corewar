@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/10 18:23:22 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/11 18:17:57 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *
 	if (p_current->proc.instruct->opcode == 0x08)
 		_xor(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x09)
-		_zjmp(&p_current->proc, p_current->proc.instruct, arena);
+		_zjmp(&p_current->proc, arena);
 	if (p_current->proc.instruct->opcode == 0x0A)
 		_ldi(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x0B)

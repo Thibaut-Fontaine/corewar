@@ -6,13 +6,13 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/11 18:13:52 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/11 18:17:43 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int				_zjmp(t_process *proc, t_instruct *i, char *arena)
+int				_zjmp(t_process *proc, char *arena)
 {
 	if (proc->carry == 1)
 		proc->pc = (proc->pc + op_value(proc, arena, 0, 0)) % MEM_SIZE;
