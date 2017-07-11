@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/05 04:58:48 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/12 00:45:25 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void 	fill_process_init(t_plst *cur, int n_champs, int i)
 	cur->proc.wait = 0;
 	cur->proc.instruct = NULL;
 	cur->proc.id = i + 1;
-	cur->proc.reg[0] = i + 1;
+	cur->proc.reg[0] = 0xFFFFFFFF - i;
 	cur->proc.exec_live = 0;
 	cur->proc.win = newwin(PROC_H, PROC_W, PROC_H * (cur->proc.id - 1), ARENA_W + INFO_W + 1);
 	cur->nxt = NULL;
@@ -105,6 +105,8 @@ int				process_live(t_plst **head)
 			free(p);
 			p = tmp;
 		}
+		else
+			p->proc.exec_live = 0;
 		p = p->nxt;
 	}
 	return (0);
