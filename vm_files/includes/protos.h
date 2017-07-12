@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/11 18:17:41 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/13 00:35:23 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			op_value(t_process *proc, char *arena, int n, int idx);
 
 int			_live(t_process *proc, t_instruct *i);
 int 		_ld(t_process *proc, t_instruct *instruct, char *arena);
-int			_st(t_process *proc, t_instruct *instruct, char *arena);
+int			_st(t_process *proc, t_instruct *instruct, char *arena, char *color);
 int			_add(t_process *proc, t_instruct *instruct);
 int			_sub(t_process *proc, t_instruct *instruct);
 int			_and(t_process *proc, t_instruct *i, char *arena);
@@ -67,7 +67,7 @@ int			_or(t_process *proc, t_instruct *i, char *arena);
 int			_xor(t_process *proc, t_instruct *i, char *arena);
 int			_zjmp(t_process *proc, char *arena);
 int 		_ldi(t_process *proc, t_instruct *instruct, char *arena);
-int			_sti(t_process *proc, t_instruct *i, char *arena);
+int			_sti(t_process *proc, t_instruct *i, char *arena, char *color);
 int 		_lld(t_process *proc, t_instruct *instruct, char *arena);
 int 		_lldi(t_process *proc, t_instruct *instruct, char *arena);
 int 		_lfork(t_plst *self, t_plst *head, t_instruct *instruct);
@@ -77,6 +77,7 @@ int 		_aff(t_process *proc, t_instruct *instruct);
 int			run(t_argv *info);
 
 void		gui(t_argv *all);
+void		write_color(char *color, int index, int id);
 void		refresh_display(t_argv *all, t_plst *head);
 
 #endif

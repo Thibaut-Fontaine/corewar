@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/12 00:25:22 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/13 00:37:31 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** func to check the number of call to live
 */
 
-static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena)
+static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena, char *color)
 {
 	// ft_printf("instruction n.%d executee.\n", p_current->proc.instruct->opcode); //
 	if (check_register(p_current->proc.instruct) == 0)
@@ -26,7 +26,7 @@ static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *
 	if (p_current->proc.instruct->opcode == 0x02)
 		_ld(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x03)
-		_st(&p_current->proc, p_current->proc.instruct, arena);
+		_st(&p_current->proc, p_current->proc.instruct, arena, color);
 	if (p_current->proc.instruct->opcode == 0x04)
 		_add(&p_current->proc, p_current->proc.instruct);
 	if (p_current->proc.instruct->opcode == 0x05)
@@ -42,7 +42,7 @@ static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *
 	if (p_current->proc.instruct->opcode == 0x0A)
 		_ldi(&p_current->proc, p_current->proc.instruct, arena);
 	if (p_current->proc.instruct->opcode == 0x0B)
-		_sti(&p_current->proc, p_current->proc.instruct, arena);
+		_sti(&p_current->proc, p_current->proc.instruct, arena, color);
 	if (p_current->proc.instruct->opcode == 0x0C)
 		_fork(p_current, p_head, p_current->proc.instruct);
 	if (p_current->proc.instruct->opcode == 0x0D)
@@ -61,7 +61,7 @@ static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *
 ** see processus->pc;
 */
 
-static void		execute_one_process(t_plst *curr, t_plst *head, char *arena,
+static void		execute_one_process(t_plst *curr, t_plst *head, char *arena, char *color,
 		int **ref_tab)
 {
 	if (!curr->proc.instruct)
@@ -76,7 +76,7 @@ static void		execute_one_process(t_plst *curr, t_plst *head, char *arena,
 		--curr->proc.wait;
 	else if (curr->proc.wait == 0)
 	{
-		select_process_and_execute(curr, head, arena);
+		select_process_and_execute(curr, head, arena, color);
 		free_instruction(curr->proc.instruct);
 		if ((curr->proc.instruct = check_operation(arena, &curr->proc, ref_tab)))
 			--curr->proc.wait;
@@ -88,14 +88,14 @@ static void		execute_one_process(t_plst *curr, t_plst *head, char *arena,
 ** execute all the process, beginning with the younger.
 */
 
-void			execute_all_process(t_plst *head, char *arena, int **ref_tab)
+void			execute_all_process(t_plst *head, char *arena, char *color, int **ref_tab)
 {
 	t_plst		*p;
 
 	p = head;
 	while (p)
 	{
-		execute_one_process(p, head, arena, ref_tab);
+		execute_one_process(p, head, arena, color, ref_tab);
 		p = p->nxt;
 	}
 }
@@ -122,7 +122,7 @@ int					run(t_argv *info)
 			dump(info->arena);
 		else if (is_there_flag(info->f, _D_) != -1 && info->cycle == (uint)info->f.nd)
 			dump(info->arena);
-		execute_all_process(head, info->arena, info->ref_tab);
+		execute_all_process(head, info->arena, info->gui->color, info->ref_tab);
 		if (info->cycle % info->cycle_to_die == 0 && info->cycle)
 		{
 			++info->checks;
