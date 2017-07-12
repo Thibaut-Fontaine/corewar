@@ -6,11 +6,31 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:07:37 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/06 17:50:19 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/12 21:41:10 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
+
+static char *types(int type)
+{
+	if (type == 1)
+		return ("REGISTER");
+	else if (type == 2)
+		return ("DIRECT");
+	else if (type == 4)
+		return "INDIRECT";
+	else
+		return ("");
+}
+
+static char *op(int opcode)
+{
+	static char ops[16][6]  = {"LIVE","LD","ST","ADD","SUB","AND","OR","XOR",
+							"ZJMP","LDI","STI","FORK","LLD","LLDI","LFORK","AFF"};
+
+	return ops[opcode - 1];
+}
 
 static void refresh_arena(char *arena, WINDOW *win)
 {
@@ -81,9 +101,9 @@ static void refresh_process(t_process *proc, WINDOW *arena)
 		mvwprintw(proc->win, 5 + i, 1, "%10d %10d %10d %10d", proc->reg[(i * 4)], proc->reg[(i * 4) + 1], proc->reg[(i * 4) + 2], proc->reg[(i * 4) + 3]);
 	if (proc->instruct)
 	{
-		mvwprintw(proc->win, 9, 1, "CURRENT OP : %d", proc->instruct->opcode);
-		mvwprintw(proc->win, 10, 1, "ARGS :");
-		mvwprintw(proc->win, 11, 1, "%10d %10d %10d", proc->instruct->args[0], proc->instruct->args[1], proc->instruct->args[2]);
+		mvwprintw(proc->win, 9, 1, "CURRENT OP : %s", op(proc->instruct->opcode));
+		mvwprintw(proc->win, 10, 1, "TYPES : %10s %10s %10s", types(proc->instruct->types[0]), types(proc->instruct->types[1]), types(proc->instruct->types[2]));
+		mvwprintw(proc->win, 11, 1, "ARGS :  %10d %10d %10d", proc->instruct->args[0], proc->instruct->args[1], proc->instruct->args[2]);
 	}
 	mvwchgat(arena, (proc->pc / 64) + 1 , ((proc->pc % 64) * 3) + 1 , 2 , A_REVERSE, 0, NULL);
 	wrefresh(proc->win);
