@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 00:44:14 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 00:51:05 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,10 @@ int				process_live(t_plst **head)
 		}
 		else
 			p->proc.exec_live = 0;
-		p = p->nxt;
+	ft_putendl("debug 88"); // 
+		if (p != NULL)
+			p = p->nxt;
+	ft_putendl("debug 99"); //
 	}
 	return (0);
 }

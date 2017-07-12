@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 01:14:51 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 01:48:20 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,13 @@ int					run(t_argv *info)
 		{
 			++info->checks;
 			process_live(&head);
+			ft_putendl("ok\n"); //
 			if (NBR_LIVE <= count_live(1) || info->checks % MAX_CHECKS == 0)
 			{
 				info->cycle_to_die -= CYCLE_DELTA;
 				info->checks = 0;
 			}
+			ft_putendl("pi\n"); //
 		}
 		if (is_there_flag(info->f, _N_) != -1)
 		{
