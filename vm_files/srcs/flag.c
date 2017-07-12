@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 02:01:54 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/22 19:40:00 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/12 23:26:47 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** value, or -1 if the flag isn't present.
 */
 
-int		is_there_flag(t_opt flag, int which)
+int				is_there_flag(t_opt flag, int which)
 {
 	if ((flag.flag & which) != 0)
 	{
@@ -32,4 +32,15 @@ int		is_there_flag(t_opt flag, int which)
 	}
 	else
 		return (-1);
+}
+
+/*
+** return the flags as an int
+*/
+
+int				*flags(void)
+{
+	static int	flag;
+
+	return (&flag);
 }

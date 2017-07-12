@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:22:42 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/05 17:15:30 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/12 23:29:41 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			main(int argc, const char *argv[])
 
 	all = parse(argc, argv);
 	n_champ(all->n_champs);
+	*flags() = all->f.flag;
 	save_ch_names(all->champ);
 	introducing_contestants(all->n_champs, all->champ);
 	if (is_there_flag(all->f, _N_) != -1)
