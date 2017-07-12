@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 03:54:02 by tfontain          #+#    #+#             */
-/*   Updated: 2017/06/28 08:43:02 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/12 21:54:54 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void			display_live(int ch_number, t_champion champ[MAX_PLAYERS])
 
 /*
 ** for -v (verbose)
-*/
+*/ //
 
 void			display_infos(int n)
 {

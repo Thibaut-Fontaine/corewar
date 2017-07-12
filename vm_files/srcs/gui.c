@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:07:37 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/12 21:41:10 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/12 22:25:36 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static void refresh_process(t_process *proc, WINDOW *arena)
 	box(proc->win, 0, 0);
 	mvwprintw(proc->win, 0, 2, "PROCESS %d", proc->id);
 	mvwprintw(proc->win, 1, 13, "|  LIVE : %d", proc->exec_live);
+	mvwprintw(proc->win, 1, 25, "|  CHAMPION %d", proc->id);
 	mvwprintw(proc->win, 1, 1, "CARRY : %d", proc->carry);
 	mvwprintw(proc->win, 2, 1, "PC : %d", proc->pc);
 	mvwprintw(proc->win, 3, 1, "WAIT : %d", proc->wait);
