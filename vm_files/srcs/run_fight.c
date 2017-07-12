@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 00:37:31 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 01:14:51 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int					run(t_argv *info)
 			dump(info->arena);
 		else if (is_there_flag(info->f, _D_) != -1 && info->cycle == (uint)info->f.nd)
 			dump(info->arena);
-		execute_all_process(head, info->arena, info->gui->color, info->ref_tab);
+		execute_all_process(head, info->arena, info->color, info->ref_tab);
 		if (info->cycle % info->cycle_to_die == 0 && info->cycle)
 		{
 			++info->checks;

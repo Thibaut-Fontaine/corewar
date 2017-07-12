@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/05 04:47:53 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 01:12:59 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct		s_argv
 	int				n_champs;
 	t_header		champ[MAX_PLAYERS];
 	char			*arena;
+	char			*color;
 	int 			**ref_tab;
 	t_gui			*gui;
 	uintmax_t		cycle;

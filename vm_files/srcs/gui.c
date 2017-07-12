@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:07:37 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/13 00:44:55 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 01:21:27 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ static void refresh_process(t_process *proc, WINDOW *arena)
 	box(proc->win, 0, 0);
 	mvwprintw(proc->win, 0, 2, "PROCESS %d", proc->id);
 	mvwprintw(proc->win, 1, 13, "|  LIVE : %d", proc->exec_live);
-	mvwprintw(proc->win, 1, 25, "|  CHAMPION %d", proc->id);
 	mvwprintw(proc->win, 1, 1, "CARRY : %d", proc->carry);
 	mvwprintw(proc->win, 2, 1, "PC : %d", proc->pc);
 	mvwprintw(proc->win, 3, 1, "WAIT : %d", proc->wait);
@@ -111,25 +110,6 @@ static void refresh_process(t_process *proc, WINDOW *arena)
 	mvwchgat(arena, (proc->pc / 64) + 1 , ((proc->pc % 64) * 3) + 1 , 2 , A_REVERSE, 0, NULL);
 	wrefresh(proc->win);
 	wrefresh(arena);
-}
-
-static void init_color_arena(t_argv *all)
-{
-	int i;
-	unsigned int j;
-
-	i = 0;
-	while (i < all->n_champs)
-	{
-		mvprintw(71 + i, 40, "%d", all->champ[i].prog_size);
-		j = 0;
-		while (j < all->champ[i].prog_size)
-		{
-			all->gui->color[j + ((MEM_SIZE / all->n_champs) * i)] = i + 1;
-			j++;
-		}
-		i++;
-	}
 }
 
 void	gui(t_argv *all)
@@ -150,8 +130,6 @@ void	gui(t_argv *all)
 	init_pair(4, P4_COLOR, COLOR_BLACK);
 
 	all->gui = (t_gui *)malloc(sizeof(t_gui));
-	all->gui->color = ft_strnew(MEM_SIZE);
-	init_color_arena(all);
 	all->gui->win_champions = (WINDOW **)malloc(sizeof(WINDOW *) * all->n_champs);
 	all->gui->win_arena = newwin(ARENA_H, ARENA_W, 0, 0);
 	all->gui->win_vm_info = newwin(INFO_H, INFO_W, 0, 0 + ARENA_W + 1);
@@ -169,7 +147,7 @@ void	refresh_display(t_argv *all, t_plst *head)
 	int i;
 
 	mvprintw(70, 30, "Press 1, 2, 3 or 4 to go forward 1, 10, 100 or 1000 cycles");
-	refresh_arena(all->arena, all->gui->color, all->gui->win_arena);
+	refresh_arena(all->arena, all->color, all->gui->win_arena);
 	refresh_info(all, all->gui->win_vm_info);
 	i = 0;
 	while (i < all->n_champs)

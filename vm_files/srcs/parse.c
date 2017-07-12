@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/05 21:12:37 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/13 01:47:10 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,27 @@ static inline char		*champion_to_memory(const char *arg,
 	return (arena);
 }
 
+static char *init_color_arena(t_argv *all)
+{
+	int i;
+	unsigned int j;
+	char *color;
+
+	color = ft_strnew(MEM_SIZE);
+	i = 0;
+	while (i < all->n_champs)
+	{
+		j = 0;
+		while (j < all->champ[i].prog_size)
+		{
+			color[j + ((MEM_SIZE / all->n_champs) * i)] = i + 1;
+			j++;
+		}
+		i++;
+	}
+	return (color);
+}
+
 t_argv	*parse(int argc, const char *argv[])
 {
 	int				tmp;
@@ -102,6 +123,8 @@ t_argv	*parse(int argc, const char *argv[])
 		++argv;
 		--argc;
 	}
+	if (ret.f.flag & _N_)
+		ret.color = init_color_arena(&ret);
 	ret.ref_tab = get_ref_tab();
 	return (&ret);
 }

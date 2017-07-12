@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:31:06 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/12 23:30:19 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 01:12:41 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct	s_gui
 	WINDOW 	*win_arena;
 	WINDOW 	*win_vm_info;
 	WINDOW 	**win_champions;
-	char	*color;
 }				t_gui;
 
 #endif

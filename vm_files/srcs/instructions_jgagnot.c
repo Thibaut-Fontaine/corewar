@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 13:38:15 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/13 00:35:38 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 01:45:06 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int		_st(t_process *proc, t_instruct *instruct, char *arena, char *color)
 	else
 	{
 		store_at(arena, proc->pc + (instruct->args[1] % IDX_MOD), val);
-		write_color(color, proc->pc + (instruct->args[1] % IDX_MOD), proc->id);
+		if (*flags() & _N_)
+			write_color(color, proc->pc + (instruct->args[1] % IDX_MOD), proc->id);
 	}
 	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
 	proc->carry = (val ? 0 : 1);
