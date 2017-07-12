@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/11 18:17:41 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/12 23:28:57 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int			check_register(t_instruct *i);
 int			*last_living_player(void);
+int			*flags(void);
 int			n_champ(int n);
 int			count_live(int reset);
 t_argv		*parse(int argc, const char *argv[]);
