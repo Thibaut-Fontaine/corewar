@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/12 22:22:38 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 00:44:14 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static void 	fill_process_init(t_plst *cur, int n_champs, int i)
 {
+	i = n_champs - i - 1; // verifier que les champions sont bien inseres dans la liste en ordre inverse
 	cur->proc.instruct = NULL;
 	ft_bzero(cur->proc.reg, sizeof(cur->proc.reg));
-	cur->proc.pc = (MEM_SIZE / n_champs) * (n_champs - i - 1);
+	//cur->proc.pc = (MEM_SIZE / n_champs) * (n_champs - i - 1);
+	cur->proc.pc = (MEM_SIZE / n_champs) * i;
 	cur->proc.carry = 0;
 	cur->proc.wait = 0;
 	cur->proc.instruct = NULL;
