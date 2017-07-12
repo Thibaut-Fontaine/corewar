@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 13:38:15 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/10 18:40:12 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/13 00:35:38 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		_live(t_process *proc, t_instruct *i)
 	return (0);
 }
 
-int		_st(t_process *proc, t_instruct *instruct, char *arena)
+int		_st(t_process *proc, t_instruct *instruct, char *arena, char *color)
 {
 	int		val;
 
@@ -45,7 +45,10 @@ int		_st(t_process *proc, t_instruct *instruct, char *arena)
 		proc->reg[instruct->args[1] - 1] = val;
 	}
 	else
+	{
 		store_at(arena, proc->pc + (instruct->args[1] % IDX_MOD), val);
+		write_color(color, proc->pc + (instruct->args[1] % IDX_MOD), proc->id);
+	}
 	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
 	proc->carry = (val ? 0 : 1);
 	return (1);

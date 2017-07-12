@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/11 18:05:52 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/13 00:38:39 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,16 @@ int		check_register(t_instruct *i)
 	if (i->types[2] == T_REG && !is_valid_reg(i->args[2]))
 		return (0);
 	return (1);
+}
+
+void write_color(char *color, int index, int id)
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		color[index + i] = id;
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:07:37 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/12 22:25:36 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/13 00:44:55 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char *op(int opcode)
 	return ops[opcode - 1];
 }
 
-static void refresh_arena(char *arena, WINDOW *win)
+static void refresh_arena(char *arena, char *color, WINDOW *win)
 {
 	int	i;
 	int x;
@@ -45,6 +45,7 @@ static void refresh_arena(char *arena, WINDOW *win)
 	y = 1;
 	while (i < MEM_SIZE)
 	{
+		wattron(win, COLOR_PAIR(color[i]));
 		mvwprintw(win, y , x, ft_bytohex(arena[i], TRUE));
 		x += 2;
 		if (x >= ARENA_W - 2)
@@ -62,6 +63,7 @@ static void refresh_arena(char *arena, WINDOW *win)
 				y++;
 			}
 		}
+		wattroff(win, COLOR_PAIR(color[i]));
 		i++;
 	}
 	wrefresh(win);
@@ -111,6 +113,25 @@ static void refresh_process(t_process *proc, WINDOW *arena)
 	wrefresh(arena);
 }
 
+static void init_color_arena(t_argv *all)
+{
+	int i;
+	unsigned int j;
+
+	i = 0;
+	while (i < all->n_champs)
+	{
+		mvprintw(71 + i, 40, "%d", all->champ[i].prog_size);
+		j = 0;
+		while (j < all->champ[i].prog_size)
+		{
+			all->gui->color[j + ((MEM_SIZE / all->n_champs) * i)] = i + 1;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	gui(t_argv *all)
 {
 	initscr();
@@ -118,9 +139,19 @@ void	gui(t_argv *all)
 	cbreak();
 	curs_set(0);
 	keypad(stdscr, TRUE);
+	start_color();
 	clear();
 	refresh();
+
+	init_pair(0, COLOR_WHITE, COLOR_BLACK);
+	init_pair(1, P1_COLOR, COLOR_BLACK);
+	init_pair(2, P2_COLOR, COLOR_BLACK);
+	init_pair(3, P3_COLOR, COLOR_BLACK);
+	init_pair(4, P4_COLOR, COLOR_BLACK);
+
 	all->gui = (t_gui *)malloc(sizeof(t_gui));
+	all->gui->color = ft_strnew(MEM_SIZE);
+	init_color_arena(all);
 	all->gui->win_champions = (WINDOW **)malloc(sizeof(WINDOW *) * all->n_champs);
 	all->gui->win_arena = newwin(ARENA_H, ARENA_W, 0, 0);
 	all->gui->win_vm_info = newwin(INFO_H, INFO_W, 0, 0 + ARENA_W + 1);
@@ -138,7 +169,7 @@ void	refresh_display(t_argv *all, t_plst *head)
 	int i;
 
 	mvprintw(70, 30, "Press 1, 2, 3 or 4 to go forward 1, 10, 100 or 1000 cycles");
-	refresh_arena(all->arena, all->gui->win_arena);
+	refresh_arena(all->arena, all->gui->color, all->gui->win_arena);
 	refresh_info(all, all->gui->win_vm_info);
 	i = 0;
 	while (i < all->n_champs)
