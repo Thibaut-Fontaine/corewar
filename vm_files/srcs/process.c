@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 03:35:02 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/13 20:04:50 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void 	fill_process_init(t_plst *cur, int n_champs, int i)
 	cur->proc.id = i + 1;
 	cur->proc.reg[0] = 0xFFFFFFFF - i;
 	cur->proc.exec_live = 0;
-	cur->proc.win = newwin(PROC_H, PROC_W, PROC_H * (cur->proc.id - 1), ARENA_W + INFO_W + 1);
 	cur->nxt = NULL;
 }
 
@@ -79,7 +78,6 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 	new->proc.instruct = NULL;
 	new->proc.id = to_fork->proc.id;
 	new->proc.exec_live = 0;
-	new->proc.win = newwin(PROC_H, PROC_W, PROC_H * (new->proc.id - 1), ARENA_W + INFO_W + 1);
 	new->nxt = *head;
 	*head = new;
 }

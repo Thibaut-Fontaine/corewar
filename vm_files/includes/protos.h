@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/13 01:12:24 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 21:36:30 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int 		_aff(t_process *proc, t_instruct *instruct);
 
 int			run(t_argv *info);
 
-void		gui(t_argv *all);
+void		gui(t_argv *all, t_plst *head);
 void		write_color(char *color, int index, int id);
 void		refresh_display(t_argv *all, t_plst *head);
 

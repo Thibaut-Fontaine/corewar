@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:31:06 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/13 01:12:41 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 20:33:45 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,18 @@
 # define P4_COLOR 		COLOR_BLUE
 # define N_COLOR		COLOR_WHITE
 
+typedef struct		s_wlist
+{
+	WINDOW 			*win;
+	struct s_wlist	*next;
+}					t_wlist;
+
 typedef struct	s_gui
 {
-	WINDOW 	*win_arena;
-	WINDOW 	*win_vm_info;
-	WINDOW 	**win_champions;
+	WINDOW 		*win_arena;
+	WINDOW 		*win_vm_info;
+	WINDOW 		**win_champions;
+	t_wlist		*wlist_process;
 }				t_gui;
 
 #endif

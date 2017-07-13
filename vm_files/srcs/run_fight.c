@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 03:34:59 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/13 21:36:26 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ int					run(t_argv *info)
 	info->cycle = 0;
 	info->checks = 0;
 	info->cycle_to_die = CYCLE_TO_DIE;
+	if (is_there_flag(info->f, _N_) != -1)
+		gui(info, head);
 	while (head)
 	{
 		if (is_there_flag(info->f, _S_) != -1 && info->f.ns != 0

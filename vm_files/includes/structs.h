@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 01:12:59 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 21:36:29 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct		s_process
 	int				wait;
 	int				id;
 	int				exec_live;
-	WINDOW			*win;
 }					t_process;
 
 typedef struct		s_argv

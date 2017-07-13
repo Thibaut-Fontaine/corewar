@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:07:37 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/13 01:21:27 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 22:04:08 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,30 +89,112 @@ static void refresh_champion(t_header *champ, WINDOW *win, int i)
 	wrefresh(win);
 }
 
-static void refresh_process(t_process *proc, WINDOW *arena)
+static void refresh_process(WINDOW *win, WINDOW *arena, t_process *proc)
 {
-	werase(proc->win);
-	box(proc->win, 0, 0);
-	mvwprintw(proc->win, 0, 2, "PROCESS %d", proc->id);
-	mvwprintw(proc->win, 1, 13, "|  LIVE : %d", proc->exec_live);
-	mvwprintw(proc->win, 1, 1, "CARRY : %d", proc->carry);
-	mvwprintw(proc->win, 2, 1, "PC : %d", proc->pc);
-	mvwprintw(proc->win, 3, 1, "WAIT : %d", proc->wait);
-	mvwprintw(proc->win, 4, 1, "REGISTERS :");
+	werase(win);
+	box(win, 0, 0);
+	mvwprintw(win, 0, 2, "CHAMPION %d'S PROCESS", proc->id);
+	mvwprintw(win, 1, 13, "|  LIVE : %d", proc->exec_live);
+	mvwprintw(win, 1, 1, "CARRY : %d", proc->carry);
+	mvwprintw(win, 2, 1, "PC : %d", proc->pc);
+	mvwprintw(win, 3, 1, "WAIT : %d", proc->wait);
+	mvwprintw(win, 4, 1, "REGISTERS :");
 	for (int i = 0; i < 4; i++)
-		mvwprintw(proc->win, 5 + i, 1, "%10d %10d %10d %10d", proc->reg[(i * 4)], proc->reg[(i * 4) + 1], proc->reg[(i * 4) + 2], proc->reg[(i * 4) + 3]);
+		mvwprintw(win, 5 + i, 1, "%10d %10d %10d %10d", proc->reg[(i * 4)], proc->reg[(i * 4) + 1], proc->reg[(i * 4) + 2], proc->reg[(i * 4) + 3]);
 	if (proc->instruct)
 	{
-		mvwprintw(proc->win, 9, 1, "CURRENT OP : %s", op(proc->instruct->opcode));
-		mvwprintw(proc->win, 10, 1, "TYPES : %10s %10s %10s", types(proc->instruct->types[0]), types(proc->instruct->types[1]), types(proc->instruct->types[2]));
-		mvwprintw(proc->win, 11, 1, "ARGS :  %10d %10d %10d", proc->instruct->args[0], proc->instruct->args[1], proc->instruct->args[2]);
+		mvwprintw(win, 9, 1, "CURRENT OP : %s", op(proc->instruct->opcode));
+		mvwprintw(win, 10, 1, "TYPES : %10s %10s %10s", types(proc->instruct->types[0]), types(proc->instruct->types[1]), types(proc->instruct->types[2]));
+		mvwprintw(win, 11, 1, "ARGS :  %10d %10d %10d", proc->instruct->args[0], proc->instruct->args[1], proc->instruct->args[2]);
 	}
 	mvwchgat(arena, (proc->pc / 64) + 1 , ((proc->pc % 64) * 3) + 1 , 2 , A_REVERSE, 0, NULL);
-	wrefresh(proc->win);
+	wrefresh(win);
 	wrefresh(arena);
 }
 
-void	gui(t_argv *all)
+static t_wlist *build_wlist(t_plst *plst)
+{
+	t_plst *cur;
+	t_wlist	*wlist;
+	t_wlist *whead;
+	int n;
+
+	cur = plst;
+	if (cur)
+	{
+		wlist = (t_wlist *)malloc(sizeof (t_wlist));
+		whead = wlist;
+		wlist->win = newwin(PROC_H, PROC_W, 0, ARENA_W + INFO_W + 1);
+		wlist->next = NULL;
+		cur = cur->nxt;
+	}
+	n = 1;
+	while (cur)
+	{
+		wlist->next = (t_wlist *)malloc(sizeof(t_wlist));
+		wlist = wlist->next;
+		wlist->win = newwin(PROC_H, PROC_W, n * PROC_H, ARENA_W + INFO_W + 1);
+		wlist->next = NULL;
+		cur = cur->nxt;
+	}
+	return (whead);
+}
+
+static int lists_same_length(t_plst *plst, t_wlist *wlist)
+{
+	int n;
+	int m;
+
+	n = 0;
+	m = 0;
+	while (plst)
+	{
+		n++;
+		plst = plst->nxt;
+	}
+	while (wlist)
+	{
+		m++;
+		wlist = wlist->next;
+	}
+	mvprintw(71, 40, "Plist length : %d, wlist length : %d\n", n, m);
+	return (n == m);
+}
+
+static void destroy_wlist(t_wlist *wlist)
+{
+	t_wlist *tmp;
+
+	while (wlist)
+	{
+		tmp = wlist;
+		wlist = wlist->next;
+		werase(tmp->win);
+		delwin(tmp->win);
+		free(tmp);
+	}
+}
+
+static void refresh_wlist(t_plst *plst, t_argv *all)
+{
+	if (!plst)
+		return ;
+	t_wlist *cur;
+	if (!lists_same_length(plst, all->gui->wlist_process))
+	{
+		destroy_wlist(all->gui->wlist_process);
+		all->gui->wlist_process = build_wlist(plst);
+	}
+	cur = all->gui->wlist_process;
+	while (cur)
+	{
+		refresh_process(cur->win, all->gui->win_arena, &(plst->proc));
+		cur = cur->next;
+		plst = plst->nxt;
+	}
+}
+
+void	gui(t_argv *all, t_plst *plst)
 {
 	initscr();
 	noecho();
@@ -133,6 +215,7 @@ void	gui(t_argv *all)
 	all->gui->win_champions = (WINDOW **)malloc(sizeof(WINDOW *) * all->n_champs);
 	all->gui->win_arena = newwin(ARENA_H, ARENA_W, 0, 0);
 	all->gui->win_vm_info = newwin(INFO_H, INFO_W, 0, 0 + ARENA_W + 1);
+	all->gui->wlist_process = build_wlist(plst);
 	int i = 0;
 	while (i < all->n_champs)
 	{
@@ -155,9 +238,5 @@ void	refresh_display(t_argv *all, t_plst *head)
 		refresh_champion(&(all->champ[i]), all->gui->win_champions[i], i + 1);
 		i++;
 	}
-	while (head)
-	{
-		refresh_process(&(head->proc), all->gui->win_arena);
-		head = head->nxt;
-	}
+	refresh_wlist(head, all);
 }
