@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:07:37 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/13 22:37:17 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 23:41:27 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ static void destroy_wlist(t_wlist *wlist)
 		tmp = wlist;
 		wlist = wlist->next;
 		werase(tmp->win);
+		wrefresh(tmp->win);
 		delwin(tmp->win);
 		free(tmp);
 	}

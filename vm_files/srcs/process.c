@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 20:04:50 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 23:56:42 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 	*head = new;
 }
 
-int				process_live(t_plst **head)
+int				process_live(t_plst **head) // fonction a refaire
 {
 	t_plst		*p;
 	t_plst		*tmp;
@@ -96,69 +96,22 @@ int				process_live(t_plst **head)
 		*head = tmp;
 	}
 	p = *head;
-	while (p)
+	if (p->nxt == NULL && p->proc.exec_live == 1)
+		p->proc.exec_live = 0;
+	while (p && p->nxt)
 	{
-		if (p->proc.exec_live == 0)
+		if (p->nxt->proc.exec_live == 0)
 		{
-			tmp = p->nxt;
-			if (p->proc.instruct)
-				free(p->proc.instruct);
-			free(p);
-			p = tmp;
+			tmp = p->nxt->nxt;
+			if (p->nxt->proc.instruct)
+				free(p->nxt->proc.instruct);
+			free(p->nxt);
+			p->nxt = tmp;
 		}
 		else
-			p->proc.exec_live = 0;
-		//if (p != NULL)
-			p = p->nxt;
+			p->nxt->proc.exec_live = 0;
+		if (p->nxt != NULL)
+			p->nxt = p->nxt->nxt;
 	}
 	return (0);
 }
-
-
-//OLD:
-/*
-** kill all process with a champ's live egal to 0
-** and replace all live != 0 of process with 0
-** return 0 if there is a least 1 process still alive
-** return the id of the last living champ if all process are dead
-
-
-int				process_live(t_plst **head)
-{
-	int			i;
-	t_plst		*cur;
-	t_plst		*tmp;
-	int			ret;
-
-	i = 0;
-	ret = 0;
-	while (i < MAX_PLAYERS)
-	{
-		if (get_champion()[i].live)
-			get_champion()[i].live = 0;
-		else
-		{
-			while (*head && (*head)->proc.id == i + 1)
-			{
-				tmp = (*head)->nxt;
-				if ((*head)->nxt == NULL)
-					ret = (*head)->proc.id;
-				free(*head);
-				*head = tmp;
-			}
-			cur = *head;
-			while (cur && cur->nxt)
-			{
-				if (cur->nxt->proc.id == i + 1)
-				{
-					tmp = cur->nxt->nxt;
-					free(cur->nxt);
-					cur->nxt = tmp;
-				}
-				cur = cur->nxt;
-			}
-		}
-		++i;
-	}
-	return (ret);
-}*/
