@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:07:37 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/13 22:04:08 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/13 22:37:17 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static void refresh_process(WINDOW *win, WINDOW *arena, t_process *proc)
 		mvwprintw(win, 10, 1, "TYPES : %10s %10s %10s", types(proc->instruct->types[0]), types(proc->instruct->types[1]), types(proc->instruct->types[2]));
 		mvwprintw(win, 11, 1, "ARGS :  %10d %10d %10d", proc->instruct->args[0], proc->instruct->args[1], proc->instruct->args[2]);
 	}
-	mvwchgat(arena, (proc->pc / 64) + 1 , ((proc->pc % 64) * 3) + 1 , 2 , A_REVERSE, 0, NULL);
+	mvwchgat(arena, (proc->pc / 64) + 1 , ((proc->pc % 64) * 3) + 1 , 2 , A_REVERSE, proc->id, NULL);
 	wrefresh(win);
 	wrefresh(arena);
 }
@@ -136,6 +136,7 @@ static t_wlist *build_wlist(t_plst *plst)
 		wlist->win = newwin(PROC_H, PROC_W, n * PROC_H, ARENA_W + INFO_W + 1);
 		wlist->next = NULL;
 		cur = cur->nxt;
+		n++;
 	}
 	return (whead);
 }
