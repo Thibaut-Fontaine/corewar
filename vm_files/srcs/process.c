@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/14 03:30:45 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/14 23:41:04 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,15 +107,17 @@ static inline void		delete_process(t_plst *current, t_plst **head)
 int						process_live(t_plst **head)
 {
 	t_plst				*cur;
+	t_plst				*tmp;
 
 	cur = *head;
 	while (cur)
 	{
+		tmp = cur->nxt;
 		if (cur->proc.exec_live == 0)
 			delete_process(cur, head);
 		else
 			cur->proc.exec_live = 0;
-		cur = cur->nxt;
+		cur = tmp;
 	}
 	return (0);
 }
