@@ -6,13 +6,13 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 23:56:42 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/14 03:30:45 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static void 	fill_process_init(t_plst *cur, int n_champs, int i)
+static void				fill_process_init(t_plst *cur, int n_champs, int i)
 {
 	i = n_champs - i - 1; // verifier que les champions sont bien inseres dans la liste en ordre inverse
 	cur->proc.instruct = NULL;
@@ -33,11 +33,11 @@ static void 	fill_process_init(t_plst *cur, int n_champs, int i)
 ** finishing with the first.
 */
 
-t_plst			*init_process(t_argv info)
+t_plst					*init_process(t_argv info)
 {
-	t_plst		*head;
-	t_plst		*cur;
-	int			i;
+	t_plst				*head;
+	t_plst				*cur;
+	int					i;
 
 	head = NULL;
 	i = 0;
@@ -65,9 +65,9 @@ t_plst			*init_process(t_argv info)
 ** because the last process is the first to be executed.
 */
 
-void			fork_process(t_plst **head, t_plst *to_fork, int pc)
+void					fork_process(t_plst **head, t_plst *to_fork, int pc)
 {
-	t_plst		*new;
+	t_plst				*new;
 
 	if ((new = malloc(sizeof(t_plst))) == NULL)
 		error(_ERR_STD)(NULL);
@@ -82,36 +82,40 @@ void			fork_process(t_plst **head, t_plst *to_fork, int pc)
 	*head = new;
 }
 
-int				process_live(t_plst **head) // fonction a refaire
+static inline void		delete_process(t_plst *current, t_plst **head)
 {
-	t_plst		*p;
-	t_plst		*tmp;
+	t_plst				*tmp;
 
-	while (*head && (*head)->proc.exec_live == 0)
+	if (current == *head)
 	{
-		tmp = (*head)->nxt;
-		if ((*head)->proc.instruct)
-			free((*head)->proc.instruct);
-		free((*head));
+		tmp = current->nxt;
+		if (current->proc.instruct)
+			free(current->proc.instruct);
+		free(current);
 		*head = tmp;
+		return ;
 	}
-	p = *head;
-	if (p->nxt == NULL && p->proc.exec_live == 1)
-		p->proc.exec_live = 0;
-	while (p && p->nxt)
+	tmp = *head;
+	while (tmp->nxt != current)
+		tmp = tmp->nxt;
+	tmp->nxt = tmp->nxt->nxt;
+	if (current->proc.instruct)
+		free(current->proc.instruct);
+	free(current);
+}
+
+int						process_live(t_plst **head)
+{
+	t_plst				*cur;
+
+	cur = *head;
+	while (cur)
 	{
-		if (p->nxt->proc.exec_live == 0)
-		{
-			tmp = p->nxt->nxt;
-			if (p->nxt->proc.instruct)
-				free(p->nxt->proc.instruct);
-			free(p->nxt);
-			p->nxt = tmp;
-		}
+		if (cur->proc.exec_live == 0)
+			delete_process(cur, head);
 		else
-			p->nxt->proc.exec_live = 0;
-		if (p->nxt != NULL)
-			p->nxt = p->nxt->nxt;
+			cur->proc.exec_live = 0;
+		cur = cur->nxt;
 	}
 	return (0);
 }
