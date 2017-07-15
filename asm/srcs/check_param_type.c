@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_param_type.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgagnot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 14:18:17 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/17 14:18:18 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/15 14:51:28 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void			check_param_type(t_arglist *arg, int type, t_asm *obj,
 	int		i;
 
 	i = arg->type & type;
+	ft_printf("expected : %d got : %d\n", type, arg->type);
 	if (i == 0)
 		param_error(arg, type, obj, parser);
 }
