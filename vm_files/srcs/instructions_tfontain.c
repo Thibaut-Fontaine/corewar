@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 01:44:25 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/15 10:40:07 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int				_zjmp(t_process *proc, char *arena)
 {
 	if (proc->carry == 1)
 		proc->pc = (proc->pc + op_value(proc, arena, 0, 0)) % MEM_SIZE;
+	else
+		proc->pc = (proc->pc + proc->instruct->size) % MEM_SIZE;
 	return (0);
 }
 
