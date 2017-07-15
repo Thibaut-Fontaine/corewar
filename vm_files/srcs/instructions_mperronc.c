@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 19:45:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/12 23:32:15 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/15 14:30:50 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,20 @@ int _ldi(t_process *proc, t_instruct *instruct, char *arena)
 	int val1;
 	int val2;
 
-	if (instruct->args[1] < 1 || instruct->args[1] > REG_NUMBER)
+	if (!is_valid_reg(instruct->args[2]))
 	{
 		proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
 		return (0);
 	}
 	if (instruct->types[0] == T_REG)
+	{
+		if (!is_valid_reg(instruct->args[0]))
+		{
+			proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
+			return (0);
+		}
 		val1 = proc->reg[instruct->args[0] - 1];
+	}
 	else if (instruct->types[0] == T_DIR)
 		val1 = instruct->args[0];
 	else
@@ -103,7 +110,8 @@ int _ldi(t_process *proc, t_instruct *instruct, char *arena)
 		val2 = instruct->args[1];
 	else
 		val2 = extract_at(arena, proc->pc + (instruct->args[1] % IDX_MOD));
-	proc->reg[instruct->args[2] - 1] = val1 + val2;
+	proc->reg[instruct->args[2] - 1] =
+		extract_at(arena, proc->pc + (val1 + val2) % IDX_MOD);
 	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
 	proc->carry = (proc->reg[instruct->args[2] - 1] ? 0 : 1);
 	return (1);

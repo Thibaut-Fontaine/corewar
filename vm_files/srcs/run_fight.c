@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 21:36:26 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/15 13:52:35 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 static int		select_process_and_execute(t_plst *p_current, t_plst *p_head, char *arena, char *color)
 {
-	// ft_printf("instruction n.%d executee.\n", p_current->proc.instruct->opcode); //
 	if (check_register(p_current->proc.instruct) == 0)
 		return (0);
 	if (p_current->proc.instruct->opcode == 0x01)
