@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 18:18:20 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/05/16 22:26:02 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/15 13:23:17 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void			check_labels_error(t_labellist *labellist, t_oplist *oplist,
 	t_oplist	*current;
 	t_arglist	*arg;
 
-	if (!labellist)
-		return ;
 	current = oplist;
 	arg = oplist->args;
 	while (current)
@@ -42,7 +40,7 @@ void			check_labels_error(t_labellist *labellist, t_oplist *oplist,
 		while (arg)
 		{
 			if (arg->type == T_LAB + T_DIR || arg->type == T_LAB + T_IND)
-				if (label_exist(arg->value, labellist) == 0)
+				if (!labellist || label_exist(arg->value, labellist) == 0)
 					label_error(arg->value, arg->line, obj, parser);
 			arg = arg->next;
 		}
