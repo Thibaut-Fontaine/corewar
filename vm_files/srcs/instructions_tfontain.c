@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/15 10:40:07 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/15 16:12:08 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int				_sti(t_process *proc, t_instruct *i, char *arena, char *color)
 {
 	int			n;
 
+	if (!is_valid_reg(i->types[0]))
+	{
+		proc->pc = (proc->pc + i->size) % MEM_SIZE;
+		return (0);
+	}
 	if (i->types[1] == T_REG)
 	{
 		if (!is_valid_reg(i->args[1]))
@@ -39,10 +44,9 @@ int				_sti(t_process *proc, t_instruct *i, char *arena, char *color)
 	else
 		n = i->args[1];
 	if (i->types[2] == T_IND)
-		n += arena[i->args[2]];
+		n += extract_at(arena, proc->pc + (i->args[2] % IDX_MOD));
 	else
 		n += i->args[2];
-
 	store_at(arena, n, proc->reg[i->args[0] - 1]);
 	if (*flags() & _N_)
 		write_color(color, n, proc->id);
