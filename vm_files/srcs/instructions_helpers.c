@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/13 00:38:39 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/15 09:29:22 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int		extract_at(char *arena, int addr)
 	int ret;
 
 	ret = 0;
-	ret = ret | ((*(arena + (addr % MEM_SIZE)) & 0x000000FF) * (1 << 24));;
+	ret = ret | ((*(arena + (addr % MEM_SIZE)) & 0x000000FF) * (1 << 24));
 	ret = ret | ((*(arena + (addr + 1 % MEM_SIZE)) & 0x000000FF) * (1 << 16));
 	ret = ret | ((*(arena + (addr + 2 % MEM_SIZE)) & 0x000000FF) * (1 << 8));
-  ret = ret | (*(arena + (addr + 2 % MEM_SIZE)) & 0x000000FF);
+	ret = ret | (*(arena + (addr + 3 % MEM_SIZE)) & 0x000000FF);
 	return (ret);
 }
 
@@ -100,7 +100,7 @@ int		op_value(t_process *proc, char *arena, int n, int idx)
 			return (extract_at(arena, proc->pc + proc->instruct->args[n]));
 		else
 			return (extract_at(arena, proc->pc +
-				(proc->instruct->args[n] % IDX_MOD)));
+						(proc->instruct->args[n] % IDX_MOD)));
 	}
 	return (0);
 }

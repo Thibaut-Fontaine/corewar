@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 18:41:38 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/15 08:20:05 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/15 09:11:13 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ int				_or(t_process *proc, t_instruct *i, char *arena)
 		proc->pc = (proc->pc + i->size) % MEM_SIZE;
 		return (0);
 	}
+	//
+	static int oo = 68;
+	mvprintw(oo++, 100, "opvalue : %8d | %.8x | %8d | %.8x\n",
+			op_value(proc, arena, 0, 1), op_value(proc, arena, 0, 1),
+			op_value(proc, arena, 1, 1), op_value(proc, arena, 1, 1));
+	//
 	proc->reg[i->args[2] - 1] = op_value(proc, arena, 0, 1)
 		| op_value(proc, arena, 1, 1);
 	proc->pc = (proc->pc + i->size) % MEM_SIZE;
