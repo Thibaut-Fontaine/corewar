@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/13 21:36:30 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/16 09:23:49 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int 		_ldi(t_process *proc, t_instruct *instruct, char *arena);
 int			_sti(t_process *proc, t_instruct *i, char *arena, char *color);
 int 		_lld(t_process *proc, t_instruct *instruct, char *arena);
 int 		_lldi(t_process *proc, t_instruct *instruct, char *arena);
-int 		_lfork(t_plst *self, t_plst *head, t_instruct *instruct);
-int 		_fork(t_plst *self, t_plst *head, t_instruct *instruct);
+int 		_lfork(t_plst *self, t_plst **head, t_instruct *instruct);
+int 		_fork(t_plst *self, t_plst **head, t_instruct *instruct);
 int 		_aff(t_process *proc, t_instruct *instruct);
 
 int			run(t_argv *info);
