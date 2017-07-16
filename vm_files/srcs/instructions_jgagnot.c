@@ -6,14 +6,19 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 13:38:15 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/15 02:58:45 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/16 12:21:44 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
+/*
+** live read on negative numbers
+*/
+
 int		_live(t_process *proc, t_instruct *i)
 {
+	i->args[0] = -i->args[0];
 	if (i->args[0] > 0 && i->args[0] <= n_champ(0))
 	{
 		count_live(0);
