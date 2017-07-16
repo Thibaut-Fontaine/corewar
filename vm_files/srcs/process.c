@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/14 23:41:04 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/16 14:40:35 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void					fork_process(t_plst **head, t_plst *to_fork, int pc)
 	new->proc.wait = 0;
 	new->proc.instruct = NULL;
 	new->proc.id = to_fork->proc.id;
-	new->proc.exec_live = 0;
+	new->proc.exec_live = to_fork->proc.exec_live;
 	new->nxt = *head;
 	*head = new;
 }
