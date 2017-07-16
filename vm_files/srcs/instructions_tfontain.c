@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/16 13:46:23 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/16 20:22:05 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int				_sti(t_process *proc, t_instruct *i, char *arena, char *color)
 		n = proc->reg[i->args[1] - 1];
 	}
 	else if (i->types[1] == T_IND)
-		n = extract_at(arena, proc->pc + (i->args[1] % IDX_MOD));
+		n = extract_at(arena, proc->pc + mod(i->args[1], IDX_MOD));
 	else
 		n = i->args[1];
 	if (i->types[2] == T_IND)
-		n += extract_at(arena, proc->pc + (i->args[2] % IDX_MOD));
+		n += extract_at(arena, proc->pc + mod(i->args[2], IDX_MOD));
 	else
 		n += i->args[2];
 	store_at(arena, n + proc->pc, proc->reg[i->args[0] - 1]);

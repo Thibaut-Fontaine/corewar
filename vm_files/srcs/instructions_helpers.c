@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/15 09:29:22 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/16 20:07:10 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,24 @@ int		is_valid_reg(int reg)
 	return (1);
 }
 
-int 	store_at(char *arena, const int i, const int val)
+int		store_at(char *arena, const int i, const int val)
 {
-	int		offset;
-	int 	ref;
-
-	offset = 0;
-	ref = val;
-	while (offset < 4)
-	{
-		ref = val << offset * 8;
-		ref = ref >> 3 * 8;
-		*(arena + ((i + offset) % MEM_SIZE)) = ref;
-		offset ++;
-	}
+	arena[mod((i + 0), MEM_SIZE)] = ((char*)(&val))[3];
+	arena[mod((i + 1), MEM_SIZE)] = ((char*)(&val))[2];
+	arena[mod((i + 2), MEM_SIZE)] = ((char*)(&val))[1];
+	arena[mod((i + 3), MEM_SIZE)] = ((char*)(&val))[0];
 	return (val);
 }
 
-int		extract_at(char *arena, int addr)
+int		extract_at(char *arena, int i)
 {
-	int ret;
+	int	val;
 
-	ret = 0;
-	ret = ret | ((*(arena + (addr % MEM_SIZE)) & 0x000000FF) * (1 << 24));
-	ret = ret | ((*(arena + (addr + 1 % MEM_SIZE)) & 0x000000FF) * (1 << 16));
-	ret = ret | ((*(arena + (addr + 2 % MEM_SIZE)) & 0x000000FF) * (1 << 8));
-	ret = ret | (*(arena + (addr + 3 % MEM_SIZE)) & 0x000000FF);
-	return (ret);
+	((char*)(&val))[3] = arena[mod((i + 0), MEM_SIZE)];
+	((char*)(&val))[2] = arena[mod((i + 1), MEM_SIZE)];
+	((char*)(&val))[1] = arena[mod((i + 2), MEM_SIZE)];
+	((char*)(&val))[0] = arena[mod((i + 3), MEM_SIZE)];
+	return (val);
 }
 
 int		swap_32int(int num)
@@ -85,9 +76,7 @@ int		count_live(int reset)
 int		op_value(t_process *proc, char *arena, int n, int idx)
 {
 	if (proc->instruct->types[n] == T_DIR)
-	{
 		return (proc->instruct->args[n]);
-	}
 	if (proc->instruct->types[n] == T_REG)
 	{
 		if (!is_valid_reg(proc->instruct->args[n]))
@@ -100,7 +89,7 @@ int		op_value(t_process *proc, char *arena, int n, int idx)
 			return (extract_at(arena, proc->pc + proc->instruct->args[n]));
 		else
 			return (extract_at(arena, proc->pc +
-						(proc->instruct->args[n] % IDX_MOD)));
+						(mod(proc->instruct->args[n], IDX_MOD))));
 	}
 	return (0);
 }
@@ -120,14 +109,17 @@ int		check_register(t_instruct *i)
 	return (1);
 }
 
-void write_color(char *color, int index, int id)
+void	write_color(char *color, int index, char id)
 {
-	int i;
+	color[mod(index + 0, MEM_SIZE)] = id;
+	color[mod(index + 1, MEM_SIZE)] = id;
+	color[mod(index + 2, MEM_SIZE)] = id;
+	color[mod(index + 3, MEM_SIZE)] = id;
+}
 
-	i = 0;
-	while (i < 4)
-	{
-		color[index + i] = id;
-		i++;
-	}
+inline int		mod(int n, int d)
+{
+	n %= d;
+
+	return (n < 0 ? n + d : n);
 }

@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/16 09:23:49 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/16 20:07:06 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "structs.h"
 
+int			mod(int n, int d);
 int			check_register(t_instruct *i);
 int			*last_living_player(void);
 int			*flags(void);
@@ -78,7 +79,7 @@ int 		_aff(t_process *proc, t_instruct *instruct);
 int			run(t_argv *info);
 
 void		gui(t_argv *all, t_plst *head);
-void		write_color(char *color, int index, int id);
+void		write_color(char *color, int index, char id);
 void		refresh_display(t_argv *all, t_plst *head);
 
 #endif
