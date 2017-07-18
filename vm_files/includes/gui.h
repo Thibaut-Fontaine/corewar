@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:31:06 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/13 22:39:32 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/18 17:22:10 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 # define CHAMP_W		48
 # define CHAMP_H		8
 # define PROC_W			48
-# define PROC_H			13
+# define PROC_H			10
+# define WPH			10
 
 # define P1_COLOR 		COLOR_RED
 # define P2_COLOR 		COLOR_GREEN

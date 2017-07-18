@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 01:07:37 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/13 23:41:27 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/18 17:33:16 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,18 +94,14 @@ static void refresh_process(WINDOW *win, WINDOW *arena, t_process *proc)
 	werase(win);
 	box(win, 0, 0);
 	mvwprintw(win, 0, 2, "CHAMPION %d'S PROCESS", proc->id);
-	mvwprintw(win, 1, 13, "|  LIVE : %d", proc->exec_live);
-	mvwprintw(win, 1, 1, "CARRY : %d", proc->carry);
-	mvwprintw(win, 2, 1, "PC : %d", proc->pc);
-	mvwprintw(win, 3, 1, "WAIT : %d", proc->wait);
-	mvwprintw(win, 4, 1, "REGISTERS :");
+	mvwprintw(win, 1, 1, "CARRY : %d | LIVE : %d | PC : %d | WAIT : %d", proc->carry, proc->exec_live, proc->pc, proc->wait);
 	for (int i = 0; i < 4; i++)
-		mvwprintw(win, 5 + i, 1, "%10d %10d %10d %10d", proc->reg[(i * 4)], proc->reg[(i * 4) + 1], proc->reg[(i * 4) + 2], proc->reg[(i * 4) + 3]);
+		mvwprintw(win, 2 + i, 1, "%10d %10d %10d %10d", proc->reg[(i * 4)], proc->reg[(i * 4) + 1], proc->reg[(i * 4) + 2], proc->reg[(i * 4) + 3]);
 	if (proc->instruct)
 	{
-		mvwprintw(win, 9, 1, "CURRENT OP : %s", op(proc->instruct->opcode));
-		mvwprintw(win, 10, 1, "TYPES : %10s %10s %10s", types(proc->instruct->types[0]), types(proc->instruct->types[1]), types(proc->instruct->types[2]));
-		mvwprintw(win, 11, 1, "ARGS :  %10d %10d %10d", proc->instruct->args[0], proc->instruct->args[1], proc->instruct->args[2]);
+		mvwprintw(win, 6, 1, "CURRENT OP : %s", op(proc->instruct->opcode));
+		mvwprintw(win, 7, 1, "TYPES : %10s %10s %10s", types(proc->instruct->types[0]), types(proc->instruct->types[1]), types(proc->instruct->types[2]));
+		mvwprintw(win, 8, 1, "ARGS :  %10d %10d %10d", proc->instruct->args[0], proc->instruct->args[1], proc->instruct->args[2]);
 	}
 	mvwchgat(arena, (proc->pc / 64) + 1 , ((proc->pc % 64) * 3) + 1 , 2 , A_REVERSE, proc->id, NULL);
 	wrefresh(win);
@@ -133,7 +129,7 @@ static t_wlist *build_wlist(t_plst *plst)
 	{
 		wlist->next = (t_wlist *)malloc(sizeof(t_wlist));
 		wlist = wlist->next;
-		wlist->win = newwin(PROC_H, PROC_W, n * PROC_H, ARENA_W + INFO_W + 1);
+		wlist->win = newwin(PROC_H, PROC_W, (n % WPH) * PROC_H, (ARENA_W + ((1 + (n / WPH)) * INFO_W) + 1));
 		wlist->next = NULL;
 		cur = cur->nxt;
 		n++;

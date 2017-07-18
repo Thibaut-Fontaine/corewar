@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/16 09:26:01 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/18 17:59:44 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 static int		select_process_and_execute(t_plst *p_current, t_plst **p_head, char *arena, char *color)
 {
-	if (check_register(p_current->proc.instruct) == 0)
-		return (0);
+	// if (check_register(p_current->proc.instruct) == 0)
+	// 	return (0);
 	if (p_current->proc.instruct->opcode == 0x01)
 		_live(&p_current->proc, p_current->proc.instruct);
 	else if (p_current->proc.instruct->opcode == 0x02)
@@ -43,7 +43,7 @@ static int		select_process_and_execute(t_plst *p_current, t_plst **p_head, char 
 	else if (p_current->proc.instruct->opcode == 0x0B)
 		_sti(&p_current->proc, p_current->proc.instruct, arena, color);
 	else if (p_current->proc.instruct->opcode == 0x0C)
-		_fork(p_current, p_head, p_current->proc.instruct);
+		_fork( p_current, p_head, p_current->proc.instruct);
 	else if (p_current->proc.instruct->opcode == 0x0D)
 		_lld(&p_current->proc, p_current->proc.instruct, arena);
 	else if (p_current->proc.instruct->opcode == 0x0E)

@@ -6,11 +6,12 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 16:15:43 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/11 17:31:16 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/18 16:31:50 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
+
 
 int			extract_dir(t_process *proc, t_instruct *instruct, char *arena,
 	int *tab)
@@ -28,5 +29,5 @@ int			extract_dir(t_process *proc, t_instruct *instruct, char *arena,
 		size++;
 	}
 	instruct->size += tab[3];
-	return (i);
+	return (tab[3] == 4 ? i : (short) i);
 }
