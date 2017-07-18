@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 14:45:12 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/15 14:55:55 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:28:13 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int		*fill_tab(int x, int y, int i, int j)
 	return (ret);
 }
 
-int		**get_ref_tab(void)
+int				**get_ref_tab(void)
 {
 	int	**tab;
 

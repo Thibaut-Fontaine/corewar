@@ -6,13 +6,13 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 19:45:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/18 18:02:14 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:33:25 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int _aff(t_process *proc, t_instruct *instruct)
+int	op_aff(t_process *proc, t_instruct *instruct)
 {
 	int reg_num;
 
@@ -25,7 +25,7 @@ int _aff(t_process *proc, t_instruct *instruct)
 	return (1);
 }
 
-int _fork(t_plst *self, t_plst **head, t_instruct *instruct)
+int	op_fork(t_plst *self, t_plst **head, t_instruct *instruct)
 {
 	int npc;
 
@@ -35,7 +35,7 @@ int _fork(t_plst *self, t_plst **head, t_instruct *instruct)
 	return (1);
 }
 
-int _lfork(t_plst *self, t_plst **head, t_instruct *instruct)
+int	op_lfork(t_plst *self, t_plst **head, t_instruct *instruct)
 {
 	int npc;
 
@@ -45,7 +45,7 @@ int _lfork(t_plst *self, t_plst **head, t_instruct *instruct)
 	return (1);
 }
 
-int _ld(t_process *proc, t_instruct *instruct, char *arena)
+int	op_ld(t_process *proc, t_instruct *instruct, char *arena)
 {
 	int val;
 
@@ -64,7 +64,7 @@ int _ld(t_process *proc, t_instruct *instruct, char *arena)
 	return (1);
 }
 
-int _lld(t_process *proc, t_instruct *instruct, char *arena)
+int	op_lld(t_process *proc, t_instruct *instruct, char *arena)
 {
 	int val;
 
@@ -83,7 +83,7 @@ int _lld(t_process *proc, t_instruct *instruct, char *arena)
 	return (1);
 }
 
-int _ldi(t_process *proc, t_instruct *instruct, char *arena)
+int	op_ldi(t_process *proc, t_instruct *instruct, char *arena)
 {
 	int val;
 
@@ -109,14 +109,13 @@ int _ldi(t_process *proc, t_instruct *instruct, char *arena)
 		val += instruct->args[1];
 	else
 		val += extract_at(arena, proc->pc + (instruct->args[1] % IDX_MOD));
-	proc->reg[instruct->args[2] - 1] =
-		extract_at(arena, proc->pc + (val % IDX_MOD));
+	proc->reg[instruct->args[2] - 1] = extract_at(arena, proc->pc + (val % IDX_MOD));
 	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
 	proc->carry = (proc->reg[instruct->args[2] - 1] ? 0 : 1);
 	return (1);
 }
 
-int _lldi(t_process *proc, t_instruct *instruct, char *arena)
+int	op_lldi(t_process *proc, t_instruct *instruct, char *arena)
 {
 	int val;
 

@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 15:47:37 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/15 13:18:34 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:28:11 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	set_wait(char opcode)
 	static int wait[] =
 	{10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25,
 		800, 10, 50, 1000, 2};
+
 	return (wait[opcode - 1]);
 }
 

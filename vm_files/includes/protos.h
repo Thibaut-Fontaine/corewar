@@ -6,14 +6,14 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/18 17:59:03 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/18 20:06:50 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROTOS_H
 # define PROTOS_H
 
-#include "structs.h"
+# include "structs.h"
 
 int			mod(int n, int d);
 int			check_register(t_instruct *i);
@@ -42,8 +42,8 @@ int			extract_ind(t_process *proc, t_instruct *instruct, char *arena);
 int			extract_reg(t_process *proc, t_instruct *instruct, char *arena);
 
 int			is_valid_reg(int reg);
-int 		store_at(char *arena, int i, int val);
-int 		extract_at(char *arena, int addr);
+int			store_at(char *arena, int i, int val);
+int			extract_at(char *arena, int addr);
 int			swap_32int(int num);
 int			**get_ref_tab(void);
 void		fork_process(t_plst **head, t_plst *to_fork, int pc);
@@ -57,29 +57,36 @@ void		free_instruction(t_instruct *instruct);
 */
 
 int			op_value(t_process *proc, char *arena, int n, int idx);
-//void		*op_stock(t_process *proc, t_instruct *i, char *arena, int n);
 
-int			_live(t_process *proc, t_instruct *i);
-int 		_ld(t_process *proc, t_instruct *instruct, char *arena);
-int			_st(t_process *proc, t_instruct *instruct, char *arena, char *color);
-int			_add(t_process *proc, t_instruct *instruct);
-int			_sub(t_process *proc, t_instruct *instruct);
-int			_and(t_process *proc, t_instruct *i, char *arena);
-int			_or(t_process *proc, t_instruct *i, char *arena);
-int			_xor(t_process *proc, t_instruct *i, char *arena);
-int			_zjmp(t_process *proc, char *arena);
-int 		_ldi(t_process *proc, t_instruct *instruct, char *arena);
-int			_sti(t_process *proc, t_instruct *i, char *arena, char *color);
-int 		_lld(t_process *proc, t_instruct *instruct, char *arena);
-int 		_lldi(t_process *proc, t_instruct *instruct, char *arena);
-int 		_lfork(t_plst *self, t_plst **head, t_instruct *instruct);
-int 		_fork(t_plst *self, t_plst **head, t_instruct *instruct);
-int 		_aff(t_process *proc, t_instruct *instruct);
+int			op_live(t_process *proc, t_instruct *i);
+int			op_ld(t_process *proc, t_instruct *instruct, char *arena);
+int			op_st(t_process *proc, t_instruct *ins, char *arena, char *color);
+int			op_add(t_process *proc, t_instruct *instruct);
+int			op_sub(t_process *proc, t_instruct *instruct);
+int			op_and(t_process *proc, t_instruct *i, char *arena);
+int			op_or(t_process *proc, t_instruct *i, char *arena);
+int			op_xor(t_process *proc, t_instruct *i, char *arena);
+int			op_zjmp(t_process *proc, char *arena);
+int			op_ldi(t_process *proc, t_instruct *instruct, char *arena);
+int			op_sti(t_process *proc, t_instruct *i, char *arena, char *color);
+int			op_lld(t_process *proc, t_instruct *instruct, char *arena);
+int			op_lldi(t_process *proc, t_instruct *instruct, char *arena);
+int			op_lfork(t_plst *self, t_plst **head, t_instruct *instruct);
+int			op_fork(t_plst *self, t_plst **head, t_instruct *instruct);
+int			op_aff(t_process *proc, t_instruct *instruct);
 
 int			run(t_argv *info);
 
 void		gui(t_argv *all, t_plst *head);
+char		*op(int opcode);
+char		*types(int type);
 void		write_color(char *color, int index, char id);
 void		refresh_display(t_argv *all, t_plst *head);
+void		refresh_champion(t_header *champ, WINDOW *win, int i);
+void		refresh_info(t_argv *all, WINDOW *win);
+void		refresh_process(WINDOW *win, WINDOW *arena, t_process *proc);
+void		refresh_arena(char *arena, char *color, WINDOW *win);
+void		refresh_wlist(t_plst *plst, t_argv *all);
+t_wlist		*build_wlist(t_plst *plst);
 
 #endif

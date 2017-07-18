@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 01:47:10 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:46:30 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ static inline char		*champion_to_memory(const char *arg,
 	return (arena);
 }
 
-static char *init_color_arena(t_argv *all)
+static char				*init_color_arena(t_argv *all)
 {
-	int i;
-	unsigned int j;
-	char *color;
+	int				i;
+	unsigned int	j;
+	char			*color;
 
 	color = ft_strnew(MEM_SIZE);
 	i = 0;
@@ -95,7 +95,7 @@ static char *init_color_arena(t_argv *all)
 	return (color);
 }
 
-t_argv	*parse(int argc, const char *argv[])
+t_argv					*parse(int argc, const char *argv[])
 {
 	int				tmp;
 	static t_argv	ret;

@@ -34,6 +34,8 @@ SRCS_NAME = main.c\
 			get_args.c\
 			get_ref_tab.c\
 			gui.c\
+			gui_refreshers.c\
+			gui_wlist.c\
 			instructions_helpers.c\
 			instructions_jgagnot.c\
 			instructions_mperronc.c\

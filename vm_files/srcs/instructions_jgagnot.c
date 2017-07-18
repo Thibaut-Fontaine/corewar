@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 13:38:15 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/18 16:33:08 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:32:11 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** live read on negative numbers
 */
 
-int		_live(t_process *proc, t_instruct *i)
+int		op_live(t_process *proc, t_instruct *i)
 {
 	i->args[0] = -i->args[0];
 	count_live(0);
@@ -30,7 +30,7 @@ int		_live(t_process *proc, t_instruct *i)
 	return (0);
 }
 
-int		_st(t_process *proc, t_instruct *instruct, char *arena, char *color)
+int		op_st(t_process *proc, t_instruct *instruct, char *arena, char *color)
 {
 	int		val;
 
@@ -53,14 +53,15 @@ int		_st(t_process *proc, t_instruct *instruct, char *arena, char *color)
 	{
 		store_at(arena, proc->pc + (instruct->args[1] % IDX_MOD), val);
 		if (*flags() & _N_)
-			write_color(color, proc->pc + (instruct->args[1] % IDX_MOD), proc->id);
+			write_color(color, proc->pc + (instruct->args[1] % IDX_MOD),
+			proc->id);
 	}
 	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
 	proc->carry = (val ? 0 : 1);
 	return (1);
 }
 
-int		_add(t_process *proc, t_instruct *instruct)
+int		op_add(t_process *proc, t_instruct *instruct)
 {
 	if (!is_valid_reg(instruct->args[0]) || !is_valid_reg(instruct->args[1])
 		|| !is_valid_reg(instruct->args[2]))
@@ -75,14 +76,14 @@ int		_add(t_process *proc, t_instruct *instruct)
 	return (1);
 }
 
-int		_sub(t_process *proc, t_instruct *instruct)
+int		op_sub(t_process *proc, t_instruct *instruct)
 {
 	if (!is_valid_reg(instruct->args[0]) || !is_valid_reg(instruct->args[1])
 		|| !is_valid_reg(instruct->args[2]))
-		{
-			proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
-			return (0);
-		}
+	{
+		proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
+		return (0);
+	}
 	proc->reg[instruct->args[2] - 1] = proc->reg[instruct->args[0] - 1] -
 	proc->reg[instruct->args[1] - 1];
 	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;

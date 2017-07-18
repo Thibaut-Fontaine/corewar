@@ -6,13 +6,13 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 18:41:38 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/15 09:30:32 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:30:19 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int				_and(t_process *proc, t_instruct *i, char *arena)
+int				op_and(t_process *proc, t_instruct *i, char *arena)
 {
 	if (!is_valid_reg(i->args[2]))
 	{
@@ -26,7 +26,7 @@ int				_and(t_process *proc, t_instruct *i, char *arena)
 	return (0);
 }
 
-int				_or(t_process *proc, t_instruct *i, char *arena)
+int				op_or(t_process *proc, t_instruct *i, char *arena)
 {
 	if (!is_valid_reg(i->args[2]))
 	{
@@ -40,7 +40,7 @@ int				_or(t_process *proc, t_instruct *i, char *arena)
 	return (0);
 }
 
-int				_xor(t_process *proc, t_instruct *i, char *arena)
+int				op_xor(t_process *proc, t_instruct *i, char *arena)
 {
 	if (!is_valid_reg(i->args[2]))
 	{

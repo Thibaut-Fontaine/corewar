@@ -6,20 +6,20 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/16 20:07:10 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:31:31 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int		is_valid_reg(int reg)
+int			is_valid_reg(int reg)
 {
 	if (reg < 1 || reg > REG_NUMBER)
 		return (0);
 	return (1);
 }
 
-int		store_at(char *arena, const int i, const int val)
+int			store_at(char *arena, const int i, const int val)
 {
 	arena[mod((i + 0), MEM_SIZE)] = ((char*)(&val))[3];
 	arena[mod((i + 1), MEM_SIZE)] = ((char*)(&val))[2];
@@ -28,7 +28,7 @@ int		store_at(char *arena, const int i, const int val)
 	return (val);
 }
 
-int		extract_at(char *arena, int i)
+int			extract_at(char *arena, int i)
 {
 	int	val;
 
@@ -39,13 +39,13 @@ int		extract_at(char *arena, int i)
 	return (val);
 }
 
-int		swap_32int(int num)
+int			swap_32int(int num)
 {
-	return ((num >> 24) & 0xff) | ((num << 8) & 0xff0000)
-		| ((num >> 8) & 0xff00) | ((num << 24) & 0xff000000);
+	return ((num >> 24) & 0xff) | ((num << 8) & 0xff0000) |
+	((num >> 8) & 0xff00) | ((num << 24) & 0xff000000);
 }
 
-void	free_instruction(t_instruct *instruct)
+void		free_instruction(t_instruct *instruct)
 {
 	if (instruct)
 	{
@@ -55,7 +55,7 @@ void	free_instruction(t_instruct *instruct)
 	}
 }
 
-int		count_live(int reset)
+int			count_live(int reset)
 {
 	static uint	live = 0;
 	uint		tmp;
@@ -73,7 +73,7 @@ int		count_live(int reset)
 ** or return a value to read (DIR, INT or REG)
 */
 
-int		op_value(t_process *proc, char *arena, int n, int idx)
+int			op_value(t_process *proc, char *arena, int n, int idx)
 {
 	if (proc->instruct->types[n] == T_DIR)
 		return (proc->instruct->args[n]);
@@ -98,7 +98,7 @@ int		op_value(t_process *proc, char *arena, int n, int idx)
 ** check if each arg who is a register is between 1 and REG_NUMBER.
 */
 
-int		check_register(t_instruct *i)
+int			check_register(t_instruct *i)
 {
 	if (i->types[0] == T_REG && !is_valid_reg(i->args[0]))
 		return (0);
@@ -109,17 +109,8 @@ int		check_register(t_instruct *i)
 	return (1);
 }
 
-void	write_color(char *color, int index, char id)
-{
-	color[mod(index + 0, MEM_SIZE)] = id;
-	color[mod(index + 1, MEM_SIZE)] = id;
-	color[mod(index + 2, MEM_SIZE)] = id;
-	color[mod(index + 3, MEM_SIZE)] = id;
-}
-
-inline int		mod(int n, int d)
+inline int	mod(int n, int d)
 {
 	n %= d;
-
 	return (n < 0 ? n + d : n);
 }

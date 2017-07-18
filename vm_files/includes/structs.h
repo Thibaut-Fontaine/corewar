@@ -6,16 +6,15 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/13 21:36:29 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:41:53 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-#include "gui.h"
-#include "op.h"
-
+# include "gui.h"
+# include "op.h"
 
 typedef void		(*t_error)();
 
@@ -59,7 +58,7 @@ typedef struct		s_argv
 	t_header		champ[MAX_PLAYERS];
 	char			*arena;
 	char			*color;
-	int 			**ref_tab;
+	int				**ref_tab;
 	t_gui			*gui;
 	uintmax_t		cycle;
 	uintmax_t		checks;

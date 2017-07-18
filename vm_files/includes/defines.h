@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:47:44 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/11 21:30:56 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:47:57 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define _N_ (1 << 5)
 # define _STEALTH_ (1 << 6)
 
-typedef unsigned int uint;
+typedef unsigned int	uint;
 
 # define CH_NUM_RESET 0
 # define C_ (CH_NUM_RESET + 1)

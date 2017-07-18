@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/18 17:59:44 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:53:38 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,42 +16,41 @@
 ** func to check the number of call to live
 */
 
-static int		select_process_and_execute(t_plst *p_current, t_plst **p_head, char *arena, char *color)
+static int		select_process_and_execute(t_plst *p_current, t_plst **p_head,
+	char *arena, char *color)
 {
-	// if (check_register(p_current->proc.instruct) == 0)
-	// 	return (0);
 	if (p_current->proc.instruct->opcode == 0x01)
-		_live(&p_current->proc, p_current->proc.instruct);
+		op_live(&p_current->proc, p_current->proc.instruct);
 	else if (p_current->proc.instruct->opcode == 0x02)
-		_ld(&p_current->proc, p_current->proc.instruct, arena);
+		op_ld(&p_current->proc, p_current->proc.instruct, arena);
 	else if (p_current->proc.instruct->opcode == 0x03)
-		_st(&p_current->proc, p_current->proc.instruct, arena, color);
+		op_st(&p_current->proc, p_current->proc.instruct, arena, color);
 	else if (p_current->proc.instruct->opcode == 0x04)
-		_add(&p_current->proc, p_current->proc.instruct);
+		op_add(&p_current->proc, p_current->proc.instruct);
 	else if (p_current->proc.instruct->opcode == 0x05)
-		_sub(&p_current->proc, p_current->proc.instruct);
+		op_sub(&p_current->proc, p_current->proc.instruct);
 	else if (p_current->proc.instruct->opcode == 0x06)
-		_and(&p_current->proc, p_current->proc.instruct, arena);
+		op_and(&p_current->proc, p_current->proc.instruct, arena);
 	else if (p_current->proc.instruct->opcode == 0x07)
-		_or(&p_current->proc, p_current->proc.instruct, arena);
+		op_or(&p_current->proc, p_current->proc.instruct, arena);
 	else if (p_current->proc.instruct->opcode == 0x08)
-		_xor(&p_current->proc, p_current->proc.instruct, arena);
+		op_xor(&p_current->proc, p_current->proc.instruct, arena);
 	else if (p_current->proc.instruct->opcode == 0x09)
-		_zjmp(&p_current->proc, arena);
+		op_zjmp(&p_current->proc, arena);
 	else if (p_current->proc.instruct->opcode == 0x0A)
-		_ldi(&p_current->proc, p_current->proc.instruct, arena);
+		op_ldi(&p_current->proc, p_current->proc.instruct, arena);
 	else if (p_current->proc.instruct->opcode == 0x0B)
-		_sti(&p_current->proc, p_current->proc.instruct, arena, color);
+		op_sti(&p_current->proc, p_current->proc.instruct, arena, color);
 	else if (p_current->proc.instruct->opcode == 0x0C)
-		_fork( p_current, p_head, p_current->proc.instruct);
+		op_fork(p_current, p_head, p_current->proc.instruct);
 	else if (p_current->proc.instruct->opcode == 0x0D)
-		_lld(&p_current->proc, p_current->proc.instruct, arena);
+		op_lld(&p_current->proc, p_current->proc.instruct, arena);
 	else if (p_current->proc.instruct->opcode == 0x0E)
-		_lldi(&p_current->proc, p_current->proc.instruct, arena);
+		op_lldi(&p_current->proc, p_current->proc.instruct, arena);
 	else if (p_current->proc.instruct->opcode == 0x0F)
-		_lfork(p_current, p_head, p_current->proc.instruct);
+		op_lfork(p_current, p_head, p_current->proc.instruct);
 	else if (p_current->proc.instruct->opcode == 0x10)
-		_aff(&p_current->proc, p_current->proc.instruct);
+		op_aff(&p_current->proc, p_current->proc.instruct);
 	return (0);
 }
 
@@ -60,12 +59,13 @@ static int		select_process_and_execute(t_plst *p_current, t_plst **p_head, char 
 ** see processus->pc;
 */
 
-static void		execute_one_process(t_plst *curr, t_plst **head, char *arena, char *color,
-		int **ref_tab)
+static void		execute_one_process(t_plst *curr, t_plst **head, char *arena,
+	char *color, int **ref_tab)
 {
 	if (!curr->proc.instruct)
 	{
-		if (!(curr->proc.instruct = check_operation(arena, &curr->proc, ref_tab)))
+		if (!(curr->proc.instruct =
+			check_operation(arena, &curr->proc, ref_tab)))
 		{
 			curr->proc.pc = (curr->proc.pc + 1) % MEM_SIZE;
 			return ;
@@ -77,17 +77,20 @@ static void		execute_one_process(t_plst *curr, t_plst **head, char *arena, char 
 	{
 		select_process_and_execute(curr, head, arena, color);
 		free_instruction(curr->proc.instruct);
-		if ((curr->proc.instruct = check_operation(arena, &curr->proc, ref_tab)))
+		if ((curr->proc.instruct =
+			check_operation(arena, &curr->proc, ref_tab)))
 			--curr->proc.wait;
 	}
 	else
 		curr->proc.pc = (curr->proc.pc + 1) % MEM_SIZE;
 }
+
 /*
 ** execute all the process, beginning with the younger.
 */
 
-void			execute_all_process(t_plst **head, char *arena, char *color, int **ref_tab)
+void			execute_all_process(t_plst **head, char *arena, char *color,
+	int **ref_tab)
 {
 	t_plst		*p;
 
@@ -103,7 +106,7 @@ void			execute_all_process(t_plst **head, char *arena, char *color, int **ref_ta
 ** execute the fight and return the winner champ's number.
 */
 
-int					run(t_argv *info)
+int				run(t_argv *info)
 {
 	t_plst			*head;
 	int				ch;
@@ -121,7 +124,8 @@ int					run(t_argv *info)
 		if (is_there_flag(info->f, _S_) != -1 && info->f.ns != 0
 				&& info->cycle % info->f.ns == 0)
 			dump(info->arena);
-		else if (is_there_flag(info->f, _D_) != -1 && info->cycle == (uint)info->f.nd)
+		else if (is_there_flag(info->f, _D_) != -1 &&
+								info->cycle == (uint)info->f.nd)
 			dump(info->arena);
 		execute_all_process(&head, info->arena, info->color, info->ref_tab);
 		if (info->cycle % info->cycle_to_die == 0 && info->cycle)

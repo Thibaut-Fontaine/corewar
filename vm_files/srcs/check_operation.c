@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 16:25:18 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/05 06:24:34 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:27:59 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ static int	convert(char byte)
 	return (ret);
 }
 
-static int	check_coding_byte(t_instruct *instruct, const char coding_byte, int *tab)
+static int	check_coding_byte(t_instruct *instruct, const char cbyte, int *tab)
 {
 	int		offset;
 	int		coding_int;
 	int		ret;
 
-	coding_int = convert(coding_byte);
+	coding_int = convert(cbyte);
 	offset = 0;
 	while ((ret = check_arg(coding_int, tab[1], offset)))
 	{
@@ -62,7 +62,7 @@ static int	check_coding_byte(t_instruct *instruct, const char coding_byte, int *
 	return (0);
 }
 
-static int		fill_instruction(char *arena, t_process *proc, t_instruct *instruct,
+static int	fill_instruction(char *arena, t_process *proc, t_instruct *instruct,
 	int **tab)
 {
 	unsigned char c_byte;
@@ -97,8 +97,8 @@ t_instruct	*check_operation(char *arena, t_process *proc, int **tab)
 	if (!(instruct = (t_instruct *)malloc(sizeof(t_instruct))))
 		exit_perror("Malloc error");
 	instruct->size = 0;
-	instruct->types = (int *) ft_memalloc(sizeof(int) * 3);
-	instruct->args = (int *) ft_memalloc(sizeof(int) * 3);
+	instruct->types = (int *)ft_memalloc(sizeof(int) * 3);
+	instruct->args = (int *)ft_memalloc(sizeof(int) * 3);
 	if (*(arena + proc->pc) < 1 || *(arena + proc->pc) > 16)
 		return (NULL);
 	instruct->opcode = *(arena + proc->pc);

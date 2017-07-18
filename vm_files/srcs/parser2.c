@@ -6,12 +6,11 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 13:35:35 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/05 18:38:12 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/18 19:46:13 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
-
 
 int			count_champions(int argc, const char *argv[])
 {
