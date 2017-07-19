@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 13:38:15 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/18 19:32:11 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/19 03:35:54 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ int		op_st(t_process *proc, t_instruct *instruct, char *arena, char *color)
 	int		val;
 
 	if (!is_valid_reg(instruct->args[0]))
-	{
-		proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
-		return (0);
-	}
+		return (proc->pc = (proc->pc + instruct->size) % MEM_SIZE);
 	val = proc->reg[instruct->args[0] - 1];
 	if (instruct->types[1] == T_REG)
 	{

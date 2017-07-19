@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:47:44 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/18 19:47:57 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/19 03:20:00 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@
 # define _N_ (1 << 5)
 # define _STEALTH_ (1 << 6)
 
-typedef unsigned int	uint;
-
 # define CH_NUM_RESET 0
 # define C_ (CH_NUM_RESET + 1)
-# define _
 # define MAX_BYTES_PER_PLAYER (MEM_SIZE / MAX_PLAYERS)
 # define U_ sizeof(unsigned int)
 # define PROG_NAME_LEN_0 (PROG_NAME_LENGTH + sizeof(char))
@@ -34,5 +31,9 @@ typedef unsigned int	uint;
 # define PADDING_CMT (U_ - COMMENT_LEN_0 % U_)
 # define PADDING (PADDING_PROGN + PADDING_CMT)
 # define HEADER_LENGTH (PROG_NAME_LEN_0 + COMMENT_LEN_0 + U_ * 2 + PADDING)
+
+# define CHMAX CHAMP_MAX_SIZE
+# define COM_L COMMENT_LENGTH
+# define PRGM PROG_NAME_LENGTH
 
 #endif

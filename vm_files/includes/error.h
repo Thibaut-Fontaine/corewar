@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 01:43:01 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/18 19:45:39 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/19 02:27:55 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 # define _ERR_CH_TOO_BIG 7
 # define _ERR_TOO_MANY_CH 8
 
-void	(*error(int err))();
+typedef void(*t_ptft)();
+t_ptft	error(int err);
+
 void	exit_perror(const char *name);
 void	usage(void);
 void	bad_source_file(const char *name);

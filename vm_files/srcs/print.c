@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 03:54:02 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/18 19:46:07 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/19 03:41:19 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,6 @@
 ** dump the arena on the std output.
 ** 64 * 64
 */
-
-static float	ft_sqrt(float num)
-{
-	float		guess;
-	float		e;
-	float		upperbound;
-
-	guess = 1;
-	e = 0.001;
-	upperbound = num / guess;
-	guess = (upperbound + guess) / 2;
-	while (!(guess * guess >= num - e && guess * guess <= num + e))
-	{
-		upperbound = num / guess;
-		guess = (upperbound + guess) / 2;
-	}
-	return (guess);
-}
 
 void			dump(char *arena)
 {
@@ -94,7 +76,7 @@ void			display_winner(int champ_number, t_header champ[MAX_PLAYERS])
 {
 	if (*flags() & _N_)
 	{
-		mvprintw(AH + 3, IW + CW + 5 , "Contestant %d, \"%s\", has won !\n",
+		mvprintw(AH + 3, IW + CW + 5, "Contestant %d, \"%s\", has won !\n",
 				champ_number, champ[champ_number - 1].prog_name);
 		return ;
 	}

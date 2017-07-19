@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 19:58:50 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/18 20:06:39 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/19 02:32:23 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		refresh_process(WINDOW *win, WINDOW *arena, t_process *proc)
 		mvwprintw(win, 8, 1, "ARGS :  %10d %10d %10d", proc->instruct->args[0],
 		proc->instruct->args[1], proc->instruct->args[2]);
 	}
-	mvwchgat(arena, (PC / 64) + 1, ((PC % 64) * 3) + 1, 2, A_REVERSE, P->id, NULL);
+	mvwchgat(arena, PC / 64 + 1, (PC % 64) * 3 + 1, 2, A_REVERSE, P->id, NULL);
 	wrefresh(win);
 	wrefresh(arena);
 }
@@ -78,7 +78,7 @@ void		refresh_champion(t_header *champ, WINDOW *win, int i)
 {
 	box(win, 0, 0);
 	mvwprintw(win, 0, 2, "CHAMPION %d", i);
-	mvwprintw(win, 1, 1, "%.58s" ,champ->prog_name);
+	mvwprintw(win, 1, 1, "%.58s", champ->prog_name);
 	mvwprintw(win, 2, 1, "%.58s", champ->comment);
 	wrefresh(win);
 }

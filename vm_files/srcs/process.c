@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 06:11:08 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/18 19:46:00 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/19 02:37:03 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static inline void		delete_process(t_plst *current, t_plst **head)
 	{
 		tmp = current->nxt;
 		if (current->proc.instruct)
-			free(current->proc.instruct);
+			free_instruction(current->proc.instruct);
 		free(current);
 		*head = tmp;
 		return ;
@@ -99,7 +99,7 @@ static inline void		delete_process(t_plst *current, t_plst **head)
 		tmp = tmp->nxt;
 	tmp->nxt = tmp->nxt->nxt;
 	if (current->proc.instruct)
-		free(current->proc.instruct);
+		free_instruction(current->proc.instruct);
 	free(current);
 }
 

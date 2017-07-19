@@ -6,7 +6,7 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/07/11 16:03:18 by jgagnot          ###   ########.fr        #
+#    Updated: 2017/07/19 03:01:53 by tfontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,9 @@ SRCS_NAME = main.c\
 			print.c\
 			process.c\
 			run_fight.c\
-			last_living_player.c
+			last_living_player.c\
+			mathfuncs.c\
+			fork.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

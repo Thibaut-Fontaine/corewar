@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 19:11:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/18 19:31:31 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/19 02:40:49 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ int			extract_at(char *arena, int i)
 	return (val);
 }
 
-int			swap_32int(int num)
-{
-	return ((num >> 24) & 0xff) | ((num << 8) & 0xff0000) |
-	((num >> 8) & 0xff00) | ((num << 24) & 0xff000000);
-}
-
 void		free_instruction(t_instruct *instruct)
 {
 	if (instruct)
@@ -53,19 +47,6 @@ void		free_instruction(t_instruct *instruct)
 		free(instruct->types);
 		free(instruct);
 	}
-}
-
-int			count_live(int reset)
-{
-	static uint	live = 0;
-	uint		tmp;
-
-	tmp = live;
-	if (reset)
-		live = 0;
-	else
-		++live;
-	return (tmp);
 }
 
 /*
@@ -92,25 +73,4 @@ int			op_value(t_process *proc, char *arena, int n, int idx)
 						(mod(proc->instruct->args[n], IDX_MOD))));
 	}
 	return (0);
-}
-
-/*
-** check if each arg who is a register is between 1 and REG_NUMBER.
-*/
-
-int			check_register(t_instruct *i)
-{
-	if (i->types[0] == T_REG && !is_valid_reg(i->args[0]))
-		return (0);
-	if (i->types[1] == T_REG && !is_valid_reg(i->args[1]))
-		return (0);
-	if (i->types[2] == T_REG && !is_valid_reg(i->args[2]))
-		return (0);
-	return (1);
-}
-
-inline int	mod(int n, int d)
-{
-	n %= d;
-	return (n < 0 ? n + d : n);
 }
