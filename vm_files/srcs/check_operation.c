@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 16:25:18 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/18 19:27:59 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/21 15:55:19 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,14 @@ t_instruct	*check_operation(char *arena, t_process *proc, int **tab)
 {
 	t_instruct	*instruct;
 
+	if (arena[proc->pc] < 1 || arena[proc->pc] > 16)
+		return (NULL);
 	if (!(instruct = (t_instruct *)malloc(sizeof(t_instruct))))
 		exit_perror("Malloc error");
 	instruct->size = 0;
 	instruct->types = (int *)ft_memalloc(sizeof(int) * 3);
 	instruct->args = (int *)ft_memalloc(sizeof(int) * 3);
-	if (*(arena + proc->pc) < 1 || *(arena + proc->pc) > 16)
-		return (NULL);
-	instruct->opcode = *(arena + proc->pc);
+	instruct->opcode = arena[proc->pc];
 	if (!(fill_instruction(arena, proc, instruct, tab)))
 	{
 		free_instruction(instruct);
