@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/19 09:59:24 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/22 14:56:45 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int				run(t_argv *info)
 			process_live(&head);
 			if (NBR_LIVE <= count_live(1) || info->checks % MAX_CHECKS == 0)
 			{
-				if (info->cycle_to_die -= CYCLE_DELTA <= 0)
+				if ((info->cycle_to_die -= CYCLE_DELTA) <= 0)
 					break ;
 				info->checks = 0;
 			}
