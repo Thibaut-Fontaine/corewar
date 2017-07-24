@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:47:44 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/19 03:20:00 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/24 18:39:16 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define _A_ (1 << 0)
 # define _D_ (1 << 1)
 # define _S_ (1 << 2)
-# define _V_ (1 << 3)
+# define _G_ (1 << 3)
 # define _B_ (1 << 4)
 # define _N_ (1 << 5)
 # define _STEALTH_ (1 << 6)

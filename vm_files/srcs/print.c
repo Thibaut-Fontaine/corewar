@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 03:54:02 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/19 03:41:19 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/24 18:51:22 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			dump(char *arena)
 	int			sq;
 	int			i;
 
-	if (*flags() & _N_)
+	if (*flags() & _G_)
 		return ;
 	sq = ft_sqrt(MEM_SIZE);
 	i = 0;
@@ -48,7 +48,7 @@ void			introducing_contestants(int n_champs,
 {
 	int			i;
 
-	if (*flags() & _N_)
+	if (*flags() & _G_)
 		return ;
 	ft_putstr("Introducing contestants...\n");
 	i = 0;
@@ -74,7 +74,7 @@ void			introducing_contestants(int n_champs,
 
 void			display_winner(int champ_number, t_header champ[MAX_PLAYERS])
 {
-	if (*flags() & _N_)
+	if (*flags() & _G_)
 	{
 		mvprintw(AH + 3, IW + CW + 5, "Contestant %d, \"%s\", has won !\n",
 				champ_number, champ[champ_number - 1].prog_name);
@@ -91,7 +91,7 @@ void			display_winner(int champ_number, t_header champ[MAX_PLAYERS])
 
 void			display_live(int ch_number, t_champion champ[MAX_PLAYERS])
 {
-	if (*flags() & _N_)
+	if (*flags() & _G_)
 	{
 		mvprintw(AH + 3, IW + CW + 5, "Player %d, \"%s\", is alive !\n",
 		ch_number, champ[ch_number - 1].prog_name);
@@ -107,7 +107,7 @@ void			display_live(int ch_number, t_champion champ[MAX_PLAYERS])
 
 void			display_infos(int n)
 {
-	if (*flags() & _N_)
+	if (*flags() & _G_)
 		return ;
 	(void)n;
 }

@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 01:26:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/19 03:05:30 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/24 18:37:51 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int				op_sti(t_process *proc, t_instruct *i, char *arena, char *color)
 	else
 		n += i->args[2];
 	store_at(arena, n + proc->pc, proc->reg[i->args[0] - 1]);
-	if (*flags() & _N_)
+	if (*flags() & _G_)
 		write_color(color, n + proc->pc, proc->id);
 	proc->pc = (proc->pc + i->size) % MEM_SIZE;
 	return (1);

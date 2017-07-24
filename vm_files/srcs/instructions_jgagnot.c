@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 13:38:15 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/19 03:35:54 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/24 18:37:30 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		op_st(t_process *proc, t_instruct *instruct, char *arena, char *color)
 	else
 	{
 		store_at(arena, proc->pc + (instruct->args[1] % IDX_MOD), val);
-		if (*flags() & _N_)
+		if (*flags() & _G_)
 			write_color(color, proc->pc + (instruct->args[1] % IDX_MOD),
 			proc->id);
 	}

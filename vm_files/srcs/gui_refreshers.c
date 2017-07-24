@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 19:58:50 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/19 02:32:23 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/24 18:52:21 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void		refresh_arena(char *arena, char *color, WINDOW *win)
 {
-	int	i;
+	int		i;
 
 	box(win, 0, 0);
 	mvwprintw(win, 0, 2, "ARENA");
@@ -27,7 +27,7 @@ void		refresh_arena(char *arena, char *color, WINDOW *win)
 	{
 		wattron(win, COLOR_PAIR(color[i]));
 		mvwprintw(win, (i / 64) + 1, ((i % 64) * 3) + 1, "%s",
-		ft_bytohex(arena[i], TRUE));
+		ft_bytohex(arena[i] | ((*flags() & _STEALTH_) * 0xFF), TRUE)); // pour --stealth
 		wattroff(win, COLOR_PAIR(color[i]));
 		i++;
 	}
@@ -36,7 +36,7 @@ void		refresh_arena(char *arena, char *color, WINDOW *win)
 
 void		refresh_process(WINDOW *win, WINDOW *arena, t_process *proc)
 {
-	int i;
+	int		i;
 
 	werase(win);
 	box(win, 0, 0);
@@ -85,7 +85,7 @@ void		refresh_champion(t_header *champ, WINDOW *win, int i)
 
 void		refresh_display(t_argv *all, t_plst *head)
 {
-	int i;
+	int		i;
 
 	refresh_arena(all->arena, all->color, all->gui->win_arena);
 	refresh_info(all, all->gui->win_vm_info);

@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/18 19:46:30 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/24 18:37:06 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static inline int		ret_flag(char c)
 		return (_D_);
 	else if (c == 's')
 		return (_S_);
-	else if (c == 'v')
-		return (_V_);
-	else if (c == 'b')
-		return (_B_);
 	else if (c == 'n')
 		return (_N_);
+	else if (c == 'b')
+		return (_B_);
+	else if (c == 'g')
+		return (_G_);
 	else
 		return (0);
 }
@@ -53,9 +53,9 @@ static inline int		get_arg(int i, t_opt *f, const char *argv[])
 		return (f->nd = ft_atoi(*argv));
 	else if (i == _S_)
 		return (f->ns = ft_atoi(*argv));
-	else if (i == _V_)
+	else if (i == _N_)
 		return (f->nv = ft_atoi(*argv));
-	else if ((i == _B_ || i == _N_) && ft_strequ(*argv, "--stealth"))
+	else if ((i == _B_ || i == _G_) && ft_strequ(*argv, "--stealth"))
 		f->flag |= _STEALTH_;
 	return (-1);
 }
@@ -123,7 +123,7 @@ t_argv					*parse(int argc, const char *argv[])
 		++argv;
 		--argc;
 	}
-	if (ret.f.flag & _N_)
+	if (ret.f.flag & _G_)
 		ret.color = init_color_arena(&ret);
 	ret.ref_tab = get_ref_tab();
 	return (&ret);

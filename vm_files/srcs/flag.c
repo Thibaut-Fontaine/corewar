@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 02:01:54 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/18 19:28:08 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/24 18:51:03 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int				is_there_flag(t_opt flag, int which)
 			return (flag.nd);
 		if (which == _S_)
 			return (flag.ns);
-		if (which == _V_)
+		if (which == _N_)
 			return (flag.nv);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 19:45:05 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/19 03:00:42 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/24 18:37:41 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	op_aff(t_process *proc, t_instruct *instruct)
 	reg_num = instruct->args[0];
 	if (reg_num < 1 || reg_num > REG_NUMBER)
 		return (0);
-	if ((*flags() & _N_) == 0)
+	if ((*flags() & _G_) == 0)
 		ft_putchar(proc->reg[reg_num - 1] % 256);
 	proc->pc = (proc->pc + instruct->size) % MEM_SIZE;
 	return (1);
