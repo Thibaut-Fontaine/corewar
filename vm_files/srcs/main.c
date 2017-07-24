@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:22:42 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/24 18:38:03 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/24 18:57:17 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int			main(int argc, const char *argv[])
 	if (is_there_flag(all->f, _G_) != -1)
 	{
 		getch();
+		free_gui(all);
 		endwin();
 	}
 	return (0);
