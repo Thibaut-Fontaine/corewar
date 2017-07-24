@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:45:06 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/24 18:52:50 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/24 18:55:17 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void free_wlist(t_wlist *wlist)
 	{
 		tmp = cur;
 		cur = cur->next;
+		delwin(tmp->win);
 		free(tmp);
 	}
 }
