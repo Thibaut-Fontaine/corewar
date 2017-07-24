@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 16:26:12 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/15 14:47:51 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/24 16:50:27 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_param_parser	*param_parser_init(void)
 	tab[7] = (t_param_parser){8, "xor", 3, {7, 7, 1}, 2, 4};
 	tab[8] = (t_param_parser){9, "zjmp", 1, {2, 0, 0}, 1, 2};
 	tab[9] = (t_param_parser){10, "ldi", 3, {7, 3, 1}, 2, 2};
-	tab[10] = (t_param_parser){11, "sti", 3, {1, 7, 6}, 2, 2};
+	tab[10] = (t_param_parser){11, "sti", 3, {1, 7, 3}, 2, 2};
 	tab[11] = (t_param_parser){12, "fork", 1, {2, 0, 0}, 1, 2};
 	tab[12] = (t_param_parser){13, "lld", 2, {6, 1, 0}, 2, 4};
 	tab[13] = (t_param_parser){14, "lldi", 3, {7, 3, 1}, 2, 2};

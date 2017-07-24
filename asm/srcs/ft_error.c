@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 18:44:29 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/10 20:35:03 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/24 13:55:10 by jgagnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		param_error(t_arglist *arg, int type, t_asm *obj, t_parser *parser)
 	else
 		prefix = ":";
 	ft_putstr_fd("Invalid parameter: ", 2);
-	ft_putstr_fd(prefix, 2); //segfault here
+	ft_putstr_fd(prefix, 2);
 	ft_putstr_fd(arg->value, 2);
 	ft_putstr_fd(", expected argument of type ", 2);
 	expected_type(type);
