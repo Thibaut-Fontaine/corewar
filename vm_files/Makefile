@@ -6,7 +6,7 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/07/19 03:01:53 by tfontain         ###   ########.fr        #
+#    Updated: 2017/07/24 18:53:17 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS_NAME = main.c\
 			extract_ind.c\
 			extract_reg.c\
 			flag.c\
+			free_gui.c\
 			generator.c\
 			get_args.c\
 			get_ref_tab.c\
