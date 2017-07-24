@@ -37,14 +37,13 @@ int				op_sti(t_process *proc, t_instruct *i, char *arena, char *color)
 		n = extract_at(arena, proc->pc + (i->args[1] % IDX_MOD));
 	else
 		n = i->args[1];
-	if (i->types[2] == T_IND)
-		n += extract_at(arena, proc->pc + (i->args[2] % IDX_MOD));
+	if (i->types[2] == T_REG)
+		n += proc->reg[i->args[2] - 1];
 	else
 		n += i->args[2];
 	store_at(arena, n + proc->pc, proc->reg[i->args[0] - 1]);
 	if (*flags() & _N_)
 		write_color(color, n + proc->pc, proc->id);
 	proc->pc = (proc->pc + i->size) % MEM_SIZE;
-	proc->carry = (i->args[0] ? 0 : 1);
 	return (1);
 }

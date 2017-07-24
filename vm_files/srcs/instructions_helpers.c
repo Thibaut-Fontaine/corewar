@@ -70,7 +70,7 @@ int			op_value(t_process *proc, char *arena, int n, int idx)
 			return (extract_at(arena, proc->pc + proc->instruct->args[n]));
 		else
 			return (extract_at(arena, proc->pc +
-						(mod(proc->instruct->args[n], IDX_MOD))));
+						proc->instruct->args[n] % IDX_MOD));
 	}
 	return (0);
 }
