@@ -6,13 +6,13 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:45:06 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/24 18:55:17 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/24 19:06:06 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static void free_champs(WINDOW **wins, int n)
+static void	free_champs(WINDOW **wins, int n)
 {
 	int i;
 
@@ -25,7 +25,7 @@ static void free_champs(WINDOW **wins, int n)
 	free(wins);
 }
 
-static void free_wlist(t_wlist *wlist)
+static void	free_wlist(t_wlist *wlist)
 {
 	t_wlist *cur;
 	t_wlist *tmp;
@@ -40,7 +40,28 @@ static void free_wlist(t_wlist *wlist)
 	}
 }
 
-void free_gui(t_argv *all)
+char		*init_color_arena(t_argv *all)
+{
+	int				i;
+	unsigned int	j;
+	char			*color;
+
+	color = ft_strnew(MEM_SIZE);
+	i = 0;
+	while (i < all->n_champs)
+	{
+		j = 0;
+		while (j < all->champ[i].prog_size)
+		{
+			color[j + ((MEM_SIZE / all->n_champs) * i)] = i + 1;
+			j++;
+		}
+		i++;
+	}
+	return (color);
+}
+
+void		free_gui(t_argv *all)
 {
 	t_gui *gui;
 

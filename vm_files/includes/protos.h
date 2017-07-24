@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/24 18:53:08 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/24 19:06:01 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int			run(t_argv *info);
 
 void		gui(t_argv *all, t_plst *head);
 void		free_gui(t_argv *all);
+char		*init_color_arena(t_argv *all);
 char		*op(int opcode);
 char		*types(int type);
 void		write_color(char *color, int index, char id);
