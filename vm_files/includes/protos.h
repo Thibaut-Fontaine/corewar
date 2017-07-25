@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/24 18:53:08 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/24 19:18:03 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "structs.h"
 
+int			ret_flag(char c);
 int			mod(int n, int d);
 float		ft_sqrt(float num);
 int			check_register(t_instruct *i);

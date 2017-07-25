@@ -6,36 +6,33 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 13:35:35 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/18 19:46:13 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/24 21:15:59 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int			count_champions(int argc, const char *argv[])
+int			count_champions(int ac, const char *av[])
 {
 	int		n;
 
-	n = argc;
-	while (argc > 0)
+	n = ac;
+	--ac;
+	while (ac >= 0)
 	{
-		if (ft_strequ(*argv, "-a") || ft_strequ(*argv, "-b")
-				|| ft_strequ(*argv, "-n") || ft_strequ(*argv, "--stealth"))
-			--n;
-		else if (**argv == '-' && (*argv)[2] == '\0' && ((*argv)[1] == 'v'
-					|| (*argv)[1] == 's' || (*argv)[1] == 'd'))
+		printf("%s\n", av[ac]);
+		if (av[ac][0] == '-' && av[ac][2] == 0)
 		{
-			if (*(argv + 1))
+			--n;
+			if (av[ac][1] == 'n' || av[ac][1] == 's' || av[ac][1] == 'd')
+				--ac;
+			else if (av[ac][1] == 'g')
 			{
-				n -= 2;
-				--argc;
-				++argv;
 			}
-			else
-				--n;
 		}
-		++argv;
-		--argc;
+		;
+		--ac;
 	}
+	printf("%d\n", n);
 	return (n);
 }

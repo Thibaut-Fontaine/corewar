@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 19:58:50 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/24 18:52:21 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/24 19:09:13 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		refresh_arena(char *arena, char *color, WINDOW *win)
 	{
 		wattron(win, COLOR_PAIR(color[i]));
 		mvwprintw(win, (i / 64) + 1, ((i % 64) * 3) + 1, "%s",
-		ft_bytohex(arena[i] | ((*flags() & _STEALTH_) * 0xFF), TRUE)); // pour --stealth
+		ft_bytohex(arena[i], TRUE));
 		wattroff(win, COLOR_PAIR(color[i]));
 		i++;
 	}

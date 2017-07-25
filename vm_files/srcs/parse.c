@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/24 18:37:06 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/24 21:00:16 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,16 @@
 ** [-d N -s N -v N | -b --stealth | -n --stealth] [-a] <champion1.cor> <...>
 */
 
-static inline int		ret_flag(char c)
+inline int		ret_flag(char c)
 {
-	if (c == 'a')
-		return (0);
-	else if (c == 'd')
-		return (_D_);
+	if (c == 'g')
+		return (_G_);
 	else if (c == 's')
 		return (_S_);
 	else if (c == 'n')
 		return (_N_);
-	else if (c == 'b')
-		return (_B_);
-	else if (c == 'g')
-		return (_G_);
+	else if (c == 'd')
+		return (_D_);
 	else
 		return (0);
 }
@@ -55,8 +51,8 @@ static inline int		get_arg(int i, t_opt *f, const char *argv[])
 		return (f->ns = ft_atoi(*argv));
 	else if (i == _N_)
 		return (f->nv = ft_atoi(*argv));
-	else if ((i == _B_ || i == _G_) && ft_strequ(*argv, "--stealth"))
-		f->flag |= _STEALTH_;
+	else if (i == _G_)
+		return (0);
 	return (-1);
 }
 
