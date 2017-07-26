@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/18 19:41:53 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/26 19:53:16 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ typedef struct		s_instruct
 typedef struct		s_opt
 {
 	int				flag;
-	int				nd;
-	int				ns;
-	int				nv;
+	int				n;
 }					t_opt;
 
 typedef struct		s_champion

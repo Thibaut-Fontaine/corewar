@@ -6,15 +6,15 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/07/24 18:53:17 by mperronc         ###   ########.fr        #
+#    Updated: 2017/07/25 22:41:11 by tfontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = corewar
 
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -O3 # -g #-fsanitize=address
 
-CC = gcc
+CC = clang
 
 INCLUDES_PATH = includes/
 

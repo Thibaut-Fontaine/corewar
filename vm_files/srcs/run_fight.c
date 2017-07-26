@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/24 18:39:09 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/26 21:44:40 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,11 @@ int				run(t_argv *info)
 		gui(info, head);
 	while (head)
 	{
-		if (is_there_flag(info->f, _S_) != -1 && info->f.ns != 0
-				&& info->cycle % info->f.ns == 0)
+		if (is_there_flag(info->f, _S_) != -1 && info->f.n != 0
+				&& info->cycle % info->f.n == 0)
 			dump(info->arena);
 		else if (is_there_flag(info->f, _D_) != -1 &&
-								info->cycle == (unsigned int)info->f.nd)
+								info->cycle == (unsigned int)info->f.n)
 			dump(info->arena);
 		execute_all_process(&head, info->arena, info->color, info->ref_tab);
 		if (info->cycle % info->cycle_to_die == 0 && info->cycle)
