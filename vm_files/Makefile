@@ -6,7 +6,7 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/07/25 22:41:11 by tfontain         ###   ########.fr        #
+#    Updated: 2017/07/27 11:20:29 by jgagnot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS_NAME = main.c\
 			print.c\
 			process.c\
 			run_fight.c\
+			exec_process.c\
 			last_living_player.c\
 			mathfuncs.c\
 			fork.c
