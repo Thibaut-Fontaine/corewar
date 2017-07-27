@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 03:43:41 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/19 03:36:30 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/27 16:17:38 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ static inline unsigned	swapegal(unsigned int *i)
 ** return the struct and close the file.
 */
 
-t_header				*open_file(const char *n, char *prog)
+t_header				*open_file(const char *n, char *prog, t_header *file)
 {
 	int					fd;
-	t_header			*file;
 	char				buf[U_];
 	int					i;
 
@@ -34,7 +33,6 @@ t_header				*open_file(const char *n, char *prog)
 	(i = lseek(fd, 0, SEEK_END)) == -1 ? error(_ERR_STD)(n) : 0;
 	(i = i - HEADER_LENGTH) <= 0 ? error(_ERR_CH_TOO_SMALL)(n) : 0;
 	lseek(fd, 0, SEEK_SET) == -1 ? error(_ERR_STD)(n) : 0;
-	(file = malloc(sizeof(t_header))) == NULL ? error(_ERR_STD)(n) : 0;
 	read(fd, (void*)&(file->magic), U_) != U_ ? error(_ERR_STD)(n) : 0;
 	file->magic = swap_32int(file->magic);
 	COREWAR_EXEC_MAGIC != file->magic ? error(_ERR_MAGIC_NUMBER)(n) : 0;

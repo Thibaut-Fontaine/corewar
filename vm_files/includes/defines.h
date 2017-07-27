@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:47:44 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/24 19:05:56 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/27 14:37:07 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # define _G_ (1 << 2)
 # define _N_ (1 << 3)
 
-# define CH_NUM_RESET 0
-# define C_ (CH_NUM_RESET + 1)
 # define MAX_BYTES_PER_PLAYER (MEM_SIZE / MAX_PLAYERS)
 # define U_ sizeof(unsigned int)
 # define PROG_NAME_LEN_0 (PROG_NAME_LENGTH + sizeof(char))
