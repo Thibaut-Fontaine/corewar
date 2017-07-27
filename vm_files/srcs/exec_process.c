@@ -6,13 +6,13 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 11:17:25 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/27 15:23:54 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/27 16:28:27 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static int		select_process_and_execute2(t_plst *p_current, t_plst **p_head,
+static void 	select_process_and_execute2(t_plst *p_current, t_plst **p_head,
 		char *arena, char *color)
 {
 	if (p_current->proc.instruct->opcode == 0x08)
@@ -33,10 +33,9 @@ static int		select_process_and_execute2(t_plst *p_current, t_plst **p_head,
 		op_lfork(p_current, p_head, p_current->proc.instruct);
 	else if (p_current->proc.instruct->opcode == 0x10)
 		op_aff(&p_current->proc, p_current->proc.instruct);
-	return (0);
 }
 
-static int		select_process_and_execute(t_plst *p_current, t_plst **p_head,
+static void 	select_process_and_execute(t_plst *p_current, t_plst **p_head,
 		char *arena, char *color)
 {
 	if (p_current->proc.instruct->opcode == 0x01)
@@ -53,7 +52,8 @@ static int		select_process_and_execute(t_plst *p_current, t_plst **p_head,
 		op_and(&p_current->proc, p_current->proc.instruct, arena);
 	else if (p_current->proc.instruct->opcode == 0x07)
 		op_or(&p_current->proc, p_current->proc.instruct, arena);
-	return (select_process_and_execute2(p_current, p_head, arena, color));
+	else
+		select_process_and_execute2(p_current, p_head, arena, color);
 }
 
 static void		execute_one_process(t_plst *curr, t_plst **head, t_argv *info)
@@ -73,6 +73,7 @@ static void		execute_one_process(t_plst *curr, t_plst **head, t_argv *info)
 	{
 		select_process_and_execute(curr, head, info->arena, info->color);
 		free_instruction(curr->proc.instruct);
+		curr->proc.instruct = NULL;
 		if ((curr->proc.instruct =
 			check_operation(info->arena, &curr->proc, info->ref_tab)))
 			--curr->proc.wait;
