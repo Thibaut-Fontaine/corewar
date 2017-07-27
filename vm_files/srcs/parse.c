@@ -6,35 +6,33 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/27 16:12:31 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/27 16:22:05 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
 static inline char		*champion_to_memory(const char *arg,
-		t_header *current_champ, int n_players)
+		t_header *champs, int n_players, unsigned int champ_number)
 {
-	char			*ptchamp;
-	char			*arena;
-	t_header		*tofree;
+	static char			arena[MEM_SIZE] = {0};
 
-	arena = generate_memory(&ptchamp, n_players);
-	tofree = open_file(arg, ptchamp);
-	*current_champ = *tofree;
-	free(tofree);
+	open_file(arg, arena + (MEM_SIZE / n_players) * champ_number,
+			champs + champ_number);
 	return (arena);
 }
 
 t_argv				*parse(int ac, const char *av[])
 {
 	static t_argv	ret;
+	unsigned int	champ_number;
 
 	++av;
 	--ac;
 	ret.n_champs = count_champions(ac, av);
 	ret.n_champs > MAX_PLAYERS ? error(_ERR_TOO_MANY_CH)() : 0;
 	ret.n_champs == 0 ? error(_ERR_USAGE)() : 0;
+	champ_number = 0;
 	while (ac > 0)
 	{
 		if ((*av)[0] == '-' && (*av)[2] == 0)
@@ -45,7 +43,7 @@ t_argv				*parse(int ac, const char *av[])
 					error(_ERR_USAGE)();
 				if ((*av)[1] == 'n')
 					; // n. du champion
-				else // si 's' ou 'd'
+				else
 					ret.f.flag |= ((*av)[1] == 'd' ? _D_ : _S_);
 				--ac;
 				++av;
@@ -54,8 +52,8 @@ t_argv				*parse(int ac, const char *av[])
 				ret.f.flag |= _G_;
 		}
 		else
-			ret.arena = champion_to_memory(*av, ret.champ + champ_num(C_),
-					ret.n_champs);
+			ret.arena = champion_to_memory(*av, ret.champ,
+					ret.n_champs, champ_number++);
 		--ac;
 		++av;
 	}
