@@ -6,13 +6,13 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 11:17:25 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/27 16:28:27 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/27 18:58:19 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static void 	select_process_and_execute2(t_plst *p_current, t_plst **p_head,
+static void		select_process_and_execute2(t_plst *p_current, t_plst **p_head,
 		char *arena, char *color)
 {
 	if (p_current->proc.instruct->opcode == 0x08)
@@ -35,7 +35,7 @@ static void 	select_process_and_execute2(t_plst *p_current, t_plst **p_head,
 		op_aff(&p_current->proc, p_current->proc.instruct);
 }
 
-static void 	select_process_and_execute(t_plst *p_current, t_plst **p_head,
+static void		select_process_and_execute(t_plst *p_current, t_plst **p_head,
 		char *arena, char *color)
 {
 	if (p_current->proc.instruct->opcode == 0x01)

@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 13:35:35 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/27 16:19:35 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/27 18:58:50 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			count_champions(int ac, const char *av[])
 			{
 				if (ac == 1)
 					return (n - 1);
-				if ((*av)[1] == 'n') //
+				if ((*av)[1] == 'n')
 					ft_atoi(av[1]);
 				--n;
 				--n;
