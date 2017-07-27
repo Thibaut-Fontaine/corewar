@@ -6,43 +6,47 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/27 16:18:46 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/27 22:41:01 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static inline char		*champion_to_memory(const char *arg,
-		t_header *champs, int n_players, unsigned int champ_number)
+static inline char		*to_memory(const char *arg,
+		t_header *champs, int n_players, unsigned int n)
 {
 	static char			arena[MEM_SIZE] = {0};
 
-	open_file(arg, arena + (MEM_SIZE / n_players) * champ_number,
-			champs + champ_number);
+	open_file(arg, arena + (MEM_SIZE / n_players) * n, champs + n);
 	return (arena);
 }
 
-t_argv				*parse(int ac, const char *av[])
+t_argv					*parse(int ac, const char *av[])
 {
-	static t_argv	ret;
-	unsigned int	champ_number;
+	static t_argv		ret;
+	unsigned int		ch_number;
+	//t_ch				champs[MAX_PLAYERS];
+	//const char			*pl[MAX_PLAYERS] = {0};
+	unsigned int		n;
+	int					binary_n;
 
+	n = 0;
 	++av;
 	--ac;
-	ret.n_champs = count_champions(ac, av);
+	ft_bzero(&ret, sizeof(ret));
+	ret.n_champs = count_champions(ac, av, &binary_n); //
 	ret.n_champs > MAX_PLAYERS ? error(_ERR_TOO_MANY_CH)() : 0;
 	ret.n_champs == 0 ? error(_ERR_USAGE)() : 0;
-	champ_number = 0;
+	//ft_bzero(champs, sizeof(t_ch) * MAX_PLAYERS);
+	ch_number = 0;
 	while (ac > 0)
 	{
 		if ((*av)[0] == '-' && (*av)[2] == 0)
 		{
 			if ((*av)[1] == 'n' || (*av)[1] == 's' || (*av)[1] == 'd')
 			{
-				if (ac == 1)
-					error(_ERR_USAGE)();
 				if ((*av)[1] == 'n')
-					; // n. du champion
+					n = ft_atoi(av[1]);
 				else
 					ret.f.flag |= ((*av)[1] == 'd' ? _D_ : _S_);
 				--ac;
@@ -52,102 +56,21 @@ t_argv				*parse(int ac, const char *av[])
 				ret.f.flag |= _G_;
 		}
 		else
-			ret.arena = champion_to_memory(*av, ret.champ,
-					ret.n_champs, champ_number++);
-		--ac;
+		{
+			ret.arena = to_memory(*av, ret.champ, ret.n_champs, ch_number++);
+			/*
+			if (1 <= n && n <= MAX_PLAYERS)
+				pl[n] = *av; // binary_n
+			pl[ch_number] = *av; // tout enregistrer ici, puis trier et mem
+			*/
+		}
 		++av;
+		--ac;
 	}
+	//
+	//
 	if (ret.f.flag & _G_)
 		ret.color = init_color_arena(&ret);
 	ret.ref_tab = get_ref_tab();
 	return (&ret);
 }
-
-// OLD:
-/*inline int		ret_flag(char c)
-{
-	if (c == 'g')
-		return (_G_);
-	else if (c == 's')
-		return (_S_);
-	else if (c == 'n')
-		return (_N_);
-	else if (c == 'd')
-		return (_D_);
-	else
-		return (0);
-}
-
-static inline int		fill_flag(t_opt *f, const char *c)
-{
-	if (c[0] == '-')
-	{
-		if (c[2] == 0)
-		{
-			f->flag |= ret_flag(c[1]);
-			return (ret_flag(c[1]));
-		}
-	}
-	return (0);
-}
-
-static inline int		get_arg(int i, t_opt *f, const char *argv[])
-{
-	if (i == _D_)
-		return (f->nd = ft_atoi(*argv));
-	else if (i == _S_)
-		return (f->ns = ft_atoi(*argv));
-	else if (i == _N_)
-		return (f->nn = ft_atoi(*argv));
-	else if (i == _G_)
-		return (0);
-	return (-1);
-}
-
-static inline char		*champion_to_memory(const char *arg,
-		t_header *current_champ, int n_players)
-{
-	char			*ptchamp;
-	char			*arena;
-	t_header		*tofree;
-
-	arena = generate_memory(&ptchamp, n_players);
-	tofree = open_file(arg, ptchamp);
-	*current_champ = *tofree;
-	free(tofree);
-	return (arena);
-}
-
-t_argv					*parse(int argc, const char *argv[])
-{
-	int				tmp;
-	static t_argv	ret;
-
-	ft_bzero(&ret, sizeof(ret));
-	--argc;
-	++argv;
-	ret.n_champs = count_champions(argc, argv);
-	if (ret.n_champs > MAX_PLAYERS)
-		error(_ERR_TOO_MANY_CH)();
-	ret.n_champs == 0 ? error(_ERR_USAGE)() : 0;
-	while (argc)
-	{
-		if (argc >= 2 && (tmp = fill_flag(&ret.f, *argv)) != 0)
-		{
-			if (get_arg(tmp, &ret.f, argv) != -1)
-			{
-				++argv;
-				--argc;
-			}
-		}
-		else
-			ret.arena = champion_to_memory(*argv, ret.champ + champ_num(C_),
-					ret.n_champs);
-		++argv;
-		--argc;
-	}
-	if (ret.f.flag & _G_)
-		ret.color = init_color_arena(&ret);
-	ret.ref_tab = get_ref_tab();
-	return (&ret);
-}*/

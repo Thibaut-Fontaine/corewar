@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/27 16:16:12 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/27 22:39:21 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_argv		*parse(int argc, const char *argv[]);
 int			is_there_flag(t_opt flag, int which);
 void		save_ch_names(t_header ch[MAX_PLAYERS]);
 t_header	*open_file(const char *name, char *prog, t_header *file);
-int			count_champions(int argc, const char *argv[]);
+int			count_champions(int argc, const char *argv[], int *i);
 t_champion	*get_champion(void);
 
 void		introducing_contestants(int n_champs, t_header champ[MAX_PLAYERS]);

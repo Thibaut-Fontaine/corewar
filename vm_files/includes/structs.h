@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/27 15:49:04 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/27 19:54:25 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 # include "op.h"
 
 typedef void		(*t_error)();
+
+/*typedef struct
+{
+	char			*name;
+	int				n;
+
+}					t_ch;*/
 
 typedef struct		s_instruct
 {
