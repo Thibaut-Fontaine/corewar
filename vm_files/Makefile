@@ -6,7 +6,7 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/07/27 11:20:29 by jgagnot          ###   ########.fr        #
+#    Updated: 2017/07/27 13:59:02 by mperronc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS_NAME = main.c\
 			get_args.c\
 			get_ref_tab.c\
 			gui.c\
+			gui_misc.c\
 			gui_refreshers.c\
 			gui_wlist.c\
 			instructions_helpers.c\

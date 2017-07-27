@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 18:46:49 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/27 11:33:01 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/27 14:00:23 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int				run(t_argv *info)
 {
 	t_plst			*head;
-	int				ch;
-	int				wait;
 
-	wait = 0;
 	head = init_process(*info);
 	info->cycle = 0;
 	info->checks = 0;
@@ -48,19 +45,7 @@ int				run(t_argv *info)
 		if (is_there_flag(info->f, _G_) != -1)
 		{
 			refresh_display(info, head);
-			if (wait == 0)
-			{
-				ch = getch();
-				if (ch == '1')
-					wait++;
-				else if (ch == '2')
-					wait += 10;
-				else if (ch == '3')
-					wait += 100;
-				else if (ch == '4')
-					wait += 1000;
-			}
-			wait ? wait-- : wait;
+			handle_wait();
 		}
 		++info->cycle;
 	}

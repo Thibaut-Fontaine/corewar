@@ -6,7 +6,7 @@
 /*   By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 11:17:25 by jgagnot           #+#    #+#             */
-/*   Updated: 2017/07/27 11:17:48 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/27 15:23:54 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void		execute_one_process(t_plst *curr, t_plst **head, t_argv *info)
 	if (!curr->proc.instruct)
 	{
 		if (!(curr->proc.instruct =
-					check_operation(info->arena, &curr->proc, info->ref_tab)))
+			check_operation(info->arena, &curr->proc, info->ref_tab)))
 		{
 			curr->proc.pc = (curr->proc.pc + 1) % MEM_SIZE;
 			return ;
@@ -71,13 +71,10 @@ static void		execute_one_process(t_plst *curr, t_plst **head, t_argv *info)
 		--curr->proc.wait;
 	else if (curr->proc.wait == 0)
 	{
-		curr->proc.instruct = check_operation(info->arena, &curr->proc,
-			info->ref_tab);
-		curr->proc.wait = 0;
 		select_process_and_execute(curr, head, info->arena, info->color);
 		free_instruction(curr->proc.instruct);
 		if ((curr->proc.instruct =
-					check_operation(info->arena, &curr->proc, info->ref_tab)))
+			check_operation(info->arena, &curr->proc, info->ref_tab)))
 			--curr->proc.wait;
 	}
 	else
