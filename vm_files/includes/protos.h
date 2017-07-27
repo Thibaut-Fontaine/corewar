@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 18:50:43 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/27 11:20:18 by jgagnot          ###   ########.fr       */
+/*   Updated: 2017/07/27 16:15:12 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ int			count_live(int reset);
 t_argv		*parse(int argc, const char *argv[]);
 int			is_there_flag(t_opt flag, int which);
 void		save_ch_names(t_header ch[MAX_PLAYERS]);
-int			champ_num(int reset);
-char		*generate_memory(char **arena_pt, int n_players);
-t_header	*open_file(const char *name, char *prog);
+t_header	*open_file(const char *name, char *prog, t_header *file);
 int			count_champions(int argc, const char *argv[]);
 t_champion	*get_champion(void);
 
