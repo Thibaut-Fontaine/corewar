@@ -6,7 +6,7 @@
 /*   By: mperronc <mperronc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 13:47:59 by mperronc          #+#    #+#             */
-/*   Updated: 2017/07/27 14:02:20 by mperronc         ###   ########.fr       */
+/*   Updated: 2017/07/27 15:57:59 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ char		*init_color_arena(t_argv *all)
 	return (color);
 }
 
-void	handle_wait(void)
+void		handle_wait(void)
 {
-	static int wait = 0;
-	int ch;
+	static int	wait = 0;
+	int			ch;
 
 	while (wait == 0)
 	{

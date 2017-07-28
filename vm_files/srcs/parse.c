@@ -6,7 +6,8 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/27 22:41:01 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/28 06:28:56 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/27 16:22:05 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +68,11 @@ t_argv					*parse(int ac, const char *av[])
 		++av;
 		--ac;
 	}
-	//
-	//
 	if (ret.f.flag & _G_)
 		ret.color = init_color_arena(&ret);
 	ret.ref_tab = get_ref_tab();
+	ret.cycle = 0;
+	ret.checks = 0;
+	ret.cycle_to_die = CYCLE_TO_DIE;
 	return (&ret);
 }

@@ -6,13 +6,13 @@
 #    By: jgagnot <jgagnot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/13 09:59:01 by jgagnot           #+#    #+#              #
-#    Updated: 2017/07/27 18:32:49 by tfontain         ###   ########.fr        #
+#    Updated: 2017/07/28 06:30:01 by tfontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = corewar
 
-CFLAGS = -Wall -Wextra -Werror -O3 # -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 CC = clang
 
