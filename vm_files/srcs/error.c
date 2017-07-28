@@ -6,11 +6,18 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:11 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/27 17:59:01 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/28 07:13:17 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
+
+void		bad_nflag(void)
+{
+	ft_putstr("[-n N] argument have to specifie a number between 1 and the ");
+	ft_putstr("number of players\n");
+	exit(-1);
+}
 
 void		(*error(int err))()
 {
@@ -30,6 +37,8 @@ void		(*error(int err))()
 		return (champion_too_big);
 	if (err == _ERR_TOO_MANY_CH)
 		return (too_many_champions);
+	if (err == _ERR_BAD_NFLAG)
+		return (bad_nflag);
 	return (NULL);
 }
 

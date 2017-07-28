@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 20:35:26 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/28 06:28:56 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/28 07:48:52 by tfontain         ###   ########.fr       */
 /*   Updated: 2017/07/27 16:22:05 by mperronc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #include "../includes/vm.h"
 
 static inline char		*to_memory(const char *arg,
-		t_header *champs, int n_players, unsigned int n)
+		t_header *champs, int n_players, int n)
 {
 	static char			arena[MEM_SIZE] = {0};
 
@@ -25,21 +25,18 @@ static inline char		*to_memory(const char *arg,
 t_argv					*parse(int ac, const char *av[])
 {
 	static t_argv		ret;
-	unsigned int		ch_number;
-	//t_ch				champs[MAX_PLAYERS];
-	//const char			*pl[MAX_PLAYERS] = {0};
-	unsigned int		n;
-	int					binary_n;
+	int					ch_number;
+	int					nflag;
+	int					n;
 
-	n = 0;
+	n = -1;
 	++av;
 	--ac;
 	ft_bzero(&ret, sizeof(ret));
-	ret.n_champs = count_champions(ac, av, &binary_n); //
+	ret.n_champs = count_champions(ac, av, &nflag);
 	ret.n_champs > MAX_PLAYERS ? error(_ERR_TOO_MANY_CH)() : 0;
 	ret.n_champs == 0 ? error(_ERR_USAGE)() : 0;
-	//ft_bzero(champs, sizeof(t_ch) * MAX_PLAYERS);
-	ch_number = 0;
+	ch_number = 1;
 	while (ac > 0)
 	{
 		if ((*av)[0] == '-' && (*av)[2] == 0)
@@ -58,12 +55,19 @@ t_argv					*parse(int ac, const char *av[])
 		}
 		else
 		{
-			ret.arena = to_memory(*av, ret.champ, ret.n_champs, ch_number++);
-			/*
-			if (1 <= n && n <= MAX_PLAYERS)
-				pl[n] = *av; // binary_n
-			pl[ch_number] = *av; // tout enregistrer ici, puis trier et mem
-			*/
+			if (n > ret.n_champs)
+				error(_ERR_BAD_NFLAG)();
+			if (n != -1)
+			{
+				ret.arena = to_memory(*av, ret.champ, ret.n_champs, n - 1);
+				n = -1;
+			}
+			else
+			{
+				while (ch_number <= ret.n_champs && check_nflag(ch_number, nflag))
+					++ch_number;
+				ret.arena = to_memory(*av, ret.champ, ret.n_champs, ch_number - 1);
+			}
 		}
 		++av;
 		--ac;
