@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:11 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/28 07:13:17 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/29 06:17:16 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		bad_nflag(void)
 {
 	ft_putstr("[-n N] argument have to specifie a number between 1 and the ");
-	ft_putstr("number of players\n");
+	ft_putstr("number of players. All numbers must be differents.\n");
 	exit(-1);
 }
 

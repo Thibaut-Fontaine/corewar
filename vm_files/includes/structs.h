@@ -6,7 +6,7 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:50:25 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/27 19:54:25 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/30 01:44:02 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,6 @@
 # include "op.h"
 
 typedef void		(*t_error)();
-
-/*typedef struct
-{
-	char			*name;
-	int				n;
-
-}					t_ch;*/
 
 typedef struct		s_instruct
 {
@@ -67,7 +60,7 @@ typedef struct		s_argv
 	t_gui			*gui;
 	uintmax_t		cycle;
 	uintmax_t		checks;
-	uintmax_t		cycle_to_die;
+	intmax_t		cycle_to_die;
 }					t_argv;
 
 typedef struct		s_plst

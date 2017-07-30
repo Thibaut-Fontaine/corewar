@@ -6,22 +6,17 @@
 /*   By: tfontain <tfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 13:35:35 by tfontain          #+#    #+#             */
-/*   Updated: 2017/07/28 07:29:47 by tfontain         ###   ########.fr       */
+/*   Updated: 2017/07/30 01:34:18 by tfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int						check_nflag(int ispresent, int flag)
-{
-	return ((1 << ispresent) & flag);
-}
-
-int						count_champions(int ac, const char *av[], int *i)
+int						count_champions(int ac, const char *av[], const char **champs)
 {
 	int					n;
 
-	*i = 0;
+	ft_bzero(champs, sizeof(char *) * MAX_PLAYERS);
 	n = ac;
 	while (ac > 0)
 	{
@@ -33,9 +28,10 @@ int						count_champions(int ac, const char *av[], int *i)
 					error(_ERR_USAGE)();
 				if ((*av)[1] == 'n')
 				{
-					if (ft_atoi(av[1]) < 1 || ft_atoi(av[1]) > MAX_PLAYERS)
+					if (ft_atoi(av[1]) < 1 || ft_atoi(av[1]) > MAX_PLAYERS
+							|| champs[ft_atoi(av[1]) - 1] != NULL)
 						error(_ERR_BAD_NFLAG)();
-					*i |= ft_atoi(av[1]);
+					champs[ft_atoi(av[1]) - 1] = av[2];
 				}
 				--n;
 				--n;
